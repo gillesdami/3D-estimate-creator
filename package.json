@@ -1,0 +1,21 @@
+{
+  "name": "estimate-creator",
+  "version": "1.0.0",
+  "description": "Drag and drop objects in a 3d scene and estimate their cost",
+  "repository": "https://github.com/gillesdami/3D-estimate-creator.git",
+  "author": "Damien GILLES, Alexis TAJFEL, Julien OSOUF, Alex VACHERET",
+  "license": "CC-BY-NC-4.0",
+  "scripts": {
+    "serve": "parcel index.html -p 8080 --hmr-port 8081",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-runtime": "^6.26.0",
+    "parcel-bundler": "^1.7.0"
+  }
+}
