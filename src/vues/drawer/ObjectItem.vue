@@ -6,18 +6,13 @@
 </template>
 
 <script>
+    import { actionCreator, CLICKED_OBJECT_ITEM_ICON } from '../../actions';
+
     export default {
         name: "object-item",
-        data() {
-            return {
-                item2: {
-                    name: "hello"
-                }
-            }
-        },
         methods: {
             clickedObjectItem: function () {
-                this.$root.$emit('put', {"type": "some action ! :)"});
+                this.$root.$emit('put', actionCreator(CLICKED_OBJECT_ITEM_ICON, this.item));
             }
         },
         props: ['item']

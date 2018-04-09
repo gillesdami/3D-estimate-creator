@@ -1,8 +1,8 @@
 <template>
     <div id="app">
         <buttons/>
-        <object-item :item="item"></object-item>
-        <object-item :item="item"></object-item>
+        <object-item :item="store.objects.item"></object-item>
+        <object-item :item="store.objects.item2"></object-item>
     </div>
 </template>
 
@@ -16,14 +16,7 @@
             'buttons' : Buttons,
             'object-item' : ObjectItem
         },
-        data() {
-            return {
-                msg: 'Welcome to Your Vue.js App!',
-                item: {
-                    name: "hi"
-                }
-            }
-        }
+        props: ['store']
     }
 </script>
 
