@@ -1,6 +1,7 @@
 <template>
     <div id="total">
-        <p> Total : {{totalValue}} € </p>
+        <p class="value"> Total : {{totalValue}} €* </p>
+        <p class="estimation"> *estimation non contractuelle</p>
     </div>
 </template>
 
@@ -12,6 +13,15 @@
 </script>
 
 <style scoped>
+    .estimation {
+        margin-top: 0;
+        font-size: 0.5em;
+    }
+
+    .value {
+        margin-bottom: 0;
+    }
+
     #total {
         font-weight: bold;
     }
