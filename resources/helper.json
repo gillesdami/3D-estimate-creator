@@ -1,0 +1,12 @@
+{
+  "helperItems": [
+    {
+      "icon": "assets/helper/mouseLeftClick.png",
+      "description": "Clic gauche pour blablabla"
+    },
+    {
+      "icon": "assets/helper/mouseRightClick.jpg",
+      "description": "Clic droit pour blablabla"
+    }
+  ]
+}
