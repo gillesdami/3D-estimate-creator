@@ -1,20 +1,19 @@
 <template>
     <div id="app">
         <buttons/>
-        <object-item :item="store.objects.item"></object-item>
-        <object-item :item="store.objects.item2"></object-item>
+        <object-list category="Tente de réception" expanded=1></object-list>
     </div>
 </template>
 
 <script>
     import Buttons from './3d/Buttons';
-    import ObjectItem from './drawer/ObjectItem.vue';
+    import ObjectList from './drawer/ObjectList.vue';
 
     export default {
         name: 'app',
         components : {
             'buttons' : Buttons,
-            'object-item' : ObjectItem
+            'object-list' : ObjectList
         },
         props: ['store']
     }

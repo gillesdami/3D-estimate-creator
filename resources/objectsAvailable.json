@@ -1,0 +1,113 @@
+{
+    "Tente de réception - 10m x [3]m": {
+        "actif": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage ",
+        "prix": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": {
+            "name": "longueur",
+            "type": "slider",
+            "min": 3,
+            "max": 300,
+            "step": 3,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }
+    },
+    "Tente de réception - 15m x [3]m": {
+        "actif": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage ",
+        "prix": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "longueur",
+            "type": "slider",
+            "min": 3,
+            "max": 300,
+            "step": 3,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }]
+    },
+    "Tente de réception - 5m x [3]m": {
+        "actif": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage 3.30m à 3.50m",
+        "prix": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "longueur",
+            "type": "slider",
+            "min": 3,
+            "max": 300,
+            "step": 3,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }]
+    },
+    "Tente de réception - 5m x [5]m": {
+        "actif": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "description": "",
+        "prix": {
+            "ILE DE FRANCE": 13,
+            "PACA": 14
+        },
+        "settings": [{
+            "name": "longueur",
+            "type": "slider",
+            "min": 5,
+            "max": 500,
+            "step": 5,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }]
+    },
+    "Tente de réception - 6m x [3]m": {
+        "actif": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage 3.30m à 3.50m",
+        "prix": {
+            "ILE DE FRANCE": 10,
+            "PACA": 20
+        },
+        "settings": [{
+            "name": "longueur",
+            "type": "slider",
+            "min": 3,
+            "max": 300,
+            "step": 3,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }]
+    },
+    "rideau blanc": {
+        "actif": true,
+        "section": "Structure",
+        "category": "Rideau",
+        "description": "",
+        "prix": {
+            "ILE DE FRANCE": 1,
+            "PACA": 2
+        },
+        "settings": []
+    }
+}
