@@ -1,4 +1,4 @@
-import {SETTING_CHANGED} from "../actions";
+import {SETTING_CHANGED, TOGGLE_HELPER_PANEL} from "../actions";
 
 const defaultObjectsDisplayedState = [
     {
@@ -37,5 +37,14 @@ export const objectsDisplayed = (state = [], action) => {
 
         default:
             return defaultObjectsDisplayedState;
+    }
+};
+
+export const helper = (state = {}, action) => {
+    switch (action.type) {
+        case TOGGLE_HELPER_PANEL:
+            return Object.assign(state, {['isDisplay']: !state['isDisplay']});
+        default:
+            return state;
     }
 };
