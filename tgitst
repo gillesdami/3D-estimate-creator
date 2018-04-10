@@ -1,0 +1,66 @@
+[33mcommit bc4fd1f0cb3ed527a5069acda7f683dc7a65aa56[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 5270cfe 14f11fd
+Author: Alex1664 <alex.vacheret@free.fr>
+Date:   Tue Apr 10 12:13:29 2018 +0200
+
+    Merge branch 'master' of github.com:gillesdami/D-estimate-creator
+
+[33mcommit 5270cfea7c3a48874e1d6c1aedbe33d3d40a81d5[m
+Author: Alex1664 <alex.vacheret@free.fr>
+Date:   Tue Apr 10 12:09:18 2018 +0200
+
+    add helper component
+
+[33mcommit 14f11fd3fadac202d1d017732847cb7d234b6f41[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Damien GILLES <pro@gillesdamien.com>
+Date:   Tue Apr 10 00:05:08 2018 +0200
+
+    started refactoring vue
+
+[33mcommit 8fe8d318a5b5d23a9779661e0ded8754fc40edd4[m
+Author: Damien GILLES <pro@gillesdamien.com>
+Date:   Mon Apr 9 20:19:30 2018 +0200
+
+    added component ObjectItem
+
+[33mcommit 78f9029585860a4c4bc1238d9469007fe5aa9191[m
+Author: Julien Osouf <osoufjulie@eisti.eu>
+Date:   Mon Apr 9 14:56:40 2018 +0200
+
+    css
+
+[33mcommit f6be8de06aa45ec7f7c1602d085ab35d183da415[m
+Author: Julien Osouf <osoufjulie@eisti.eu>
+Date:   Mon Apr 9 14:19:51 2018 +0200
+
+    new components
+
+[33mcommit 17336524f5d4e311774236a4512ef5c2261915b8[m
+Author: Alex1664 <alex.vacheret@free.fr>
+Date:   Mon Apr 9 13:38:04 2018 +0200
+
+    add helper / trash buttons views
+
+[33mcommit 3944a1f5b3dd30684ba4aee5b70c40ea04f4b966[m
+Author: Damien Gilles <pro@gillesdamien.com>
+Date:   Wed Apr 4 12:24:25 2018 +0200
+
+    added vuejs
+
+[33mcommit e6dfc5b775032ab2d57177223da8364e778badd6[m
+Author: Damien Gilles <pro@gillesdamien.com>
+Date:   Wed Apr 4 11:53:42 2018 +0200
+
+    added tests
+
+[33mcommit eb36e47b461bce1873c66642bcf99ef9c04c4fae[m
+Author: Damien Gilles <pro@gillesdamien.com>
+Date:   Wed Apr 4 11:14:22 2018 +0200
+
+    init readux saga project
+
+[33mcommit 6928a27e6c56ed14e09b11c36f96cd75f9da13c6[m
+Author: Damien GILLES <pro@gillesdamien.com>
+Date:   Wed Apr 4 10:17:43 2018 +0200
+
+    Initial commit

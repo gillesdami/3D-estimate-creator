@@ -4,12 +4,14 @@
         <helper-panel id="helperPanel"/>
         <object-item :item="store.objects.item"></object-item>
         <object-item :item="store.objects.item2"></object-item>
+        <details-comp :object="object"></details-comp>
     </div>
 </template>
 
 <script>
     import HelperPanel from './3d/helperPanel/HelperPanel'
-    import Buttons from './3d/Buttons'
+    import Buttons from './3d/Buttons';
+    import Parameters from './3d/Parameters';
     import ObjectItem from './drawer/ObjectItem.vue';
 
     export default {
@@ -17,9 +19,17 @@
         components: {
             'helper-panel': HelperPanel,
             'buttons': Buttons,
-            'object-item': ObjectItem
+            'object-item': ObjectItem,
+            'details-comp' : Parameters
         },
-        props: ['store']
+        props: ['store'],
+        data() {
+            return {
+                object: {
+                    itemName: "tente"
+                }
+            }
+        }
     }
 </script>
 
