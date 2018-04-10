@@ -4,11 +4,7 @@ import compose from 'redux/es/compose';
 import reducer from './reducers';
 import { initSaga } from './sagas';
 
-const initstate = localStorage["store"] || {
-    helper: {
-        isDisplay: false
-    }
-};
+const initstate = localStorage["store"] || {};
 
 //DEBUG
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

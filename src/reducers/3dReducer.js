@@ -12,6 +12,10 @@ const defaultObjectsDisplayedState = [
     }
 ];
 
+const defaultHelperState = {
+    isDisplay: false
+};
+
 export const objectsDisplayed = (state = [], action) => {
     switch (action.type) {
         case SETTING_CHANGED:
@@ -45,6 +49,6 @@ export const helper = (state = {}, action) => {
         case TOGGLE_HELPER_PANEL:
             return Object.assign(state, {['isDisplay']: !state['isDisplay']});
         default:
-            return state;
+            return defaultHelperState;
     }
 };
