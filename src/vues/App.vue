@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <buttons id="buttonsPanel"/>
-        <helper-panel id="helperPanel"/>
+        <helper-panel v-if="store.helper.isDisplay" id="helperPanel"/>
         <object-item :item="store.objects.item"></object-item>
         <object-item :item="store.objects.item2"></object-item>
         <details-comp :object="object"></details-comp>
@@ -20,14 +20,14 @@
             'helper-panel': HelperPanel,
             'buttons': Buttons,
             'object-item': ObjectItem,
-            'details-comp' : Parameters
+            'details-comp': Parameters
         },
         props: ['store'],
         data() {
             return {
                 object: {
                     itemName: "tente"
-                }
+                },
             }
         }
     }

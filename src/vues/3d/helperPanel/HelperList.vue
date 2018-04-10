@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import HelperItem from './HelperItem'
+    import HelperItem from './HelperItem';
 
     export default {
         name: "helper-list",

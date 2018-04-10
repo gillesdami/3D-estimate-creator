@@ -6,6 +6,8 @@
 </template>
 
 <script>
+    import { actionCreator, DELETE_ALL, TOGGLE_HELPER_PANEL } from "../../actions";
+
     export default {
         name: "buttons",
         data() {
@@ -15,10 +17,10 @@
         },
         methods: {
             help: function () {
-                alert('Display help panel')
+                this.$root.$emit('put', actionCreator(TOGGLE_HELPER_PANEL));
             },
             deleteAll: function () {
-                alert('Delete all ...')
+                this.$root.$emit('put', actionCreator(DELETE_ALL));
             }
         }
     }

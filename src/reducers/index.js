@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { CLICKED_OBJECT_ITEM_ICON, VIEW_CREATED, SETTING_CHANGED } from '../actions';
+import { CLICKED_OBJECT_ITEM_ICON, SETTING_CHANGED, TOGGLE_HELPER_PANEL, VIEW_CREATED } from '../actions';
 
 const rootReducer = combineReducers({
     "objects": (state = {}, action) => {
-        switch(action.type) {
+        switch (action.type) {
             case CLICKED_OBJECT_ITEM_ICON:
                 return Object.assign(state, {[action.payload.name]: {name: "clicked"}});
             default:
@@ -38,10 +38,18 @@ const rootReducer = combineReducers({
                 return state;
         }
     },
+    "helper": (state = {}, action) => {
+        switch (action.type) {
+            case TOGGLE_HELPER_PANEL:
+                return Object.assign(state, {['isDisplay']: !state['isDisplay']});
+            default:
+                return state;
+        }
+    },
     //todo remove
     "vue": (state = {}, action) => {
         console.log(state, action);
-        switch(action.type) {
+        switch (action.type) {
             case VIEW_CREATED:
                 return {vue: action.payload};
             case CLICKED_OBJECT_ITEM_ICON:
