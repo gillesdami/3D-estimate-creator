@@ -17,14 +17,13 @@
     import objectsAvailable from '../../../resources/objectsAvailable.json'
 
     export default {
-        name: "object-list",
+        name: "object-category",
         methods: {
             clickedObjectCategory: function () {
-                console.log(this.items, this.category);
                 this.$root.$emit('put', actionCreator(CLICKED_OBJECT_CATEGORY, this.category));
             }
         },
-        props: ['category', 'expanded'],
+        props: ['category', 'expanded', 'items'],
         data() {
             return {items: objectsAvailable};
         },
