@@ -9,7 +9,7 @@
 
 <script>
     import Buttons from './3d/Buttons';
-    import Parameters from './3d/Parameters';
+    import Details from './3d/Details';
     import ObjectItem from './drawer/ObjectItem.vue';
 
     export default {
@@ -17,13 +17,14 @@
         components : {
             'buttons' : Buttons,
             'object-item' : ObjectItem,
-            'details-comp' : Parameters
+            'details-comp' : Details
         },
         props: ['store'],
         data() {
             return {
                 object: {
-                    itemName: "tente"
+                    itemName: "tente",
+                    price: "30"
                 }
             }
         }
