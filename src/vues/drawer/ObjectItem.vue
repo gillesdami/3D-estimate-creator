@@ -1,7 +1,7 @@
 <template>
     <div class="objectItem" v-on:click="clickedObjectItem">
-        <img class="objectItemIcon" :src="`assets/objectIcons/${ item.name }.jpg`"/>
-        <span class="objectItemTitle">{{ item.name }}</span>
+        <img class="objectItemIcon" :src="`assets/objectIcons/${ name }.jpg`"/>
+        <span class="objectItemTitle">{{ name }}</span>
     </div>
 </template>
 
@@ -15,7 +15,7 @@
                 this.$root.$emit('put', actionCreator(CLICKED_OBJECT_ITEM_ICON, this.item));
             }
         },
-        props: ['item']
+        props: ['name', 'item']
     }
 </script>
 

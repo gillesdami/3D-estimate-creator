@@ -1,15 +1,10 @@
 import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import compose from "redux/es/compose";
-
+import compose from 'redux/es/compose';
 import reducer from './reducers';
 import { initSaga } from './sagas';
 
 const initstate = localStorage["store"] || {
-    objects: {
-        item: {name: "item"},
-        item2: {name: "item2"}
-    },
     objectsDisplayed: [
         {
             name: "tente",
@@ -25,6 +20,8 @@ const initstate = localStorage["store"] || {
         isDisplay: false
     }
 };
+
+//DEBUG
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const sagaMiddleware = createSagaMiddleware();

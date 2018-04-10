@@ -2,32 +2,32 @@
     <div id="app">
         <buttons id="buttonsPanel"/>
         <helper-panel v-if="store.helper.isDisplay" id="helperPanel"/>
-        <object-item :item="store.objects.item"></object-item>
-        <object-item :item="store.objects.item2"></object-item>
+        <object-list category="Tente de réception" expanded=1></object-list>
         <details-comp :object="object"></details-comp>
     </div>
 </template>
 
 <script>
-    import HelperPanel from './3d/helperPanel/HelperPanel'
+    import HelperPanel from './3d/helperPanel/HelperPanel';
     import Buttons from './3d/Buttons';
-    import Parameters from './3d/Parameters';
-    import ObjectItem from './drawer/ObjectItem.vue';
+    import ObjectList from './drawer/ObjectList.vue';
+    import Details from './3d/Details';
 
     export default {
         name: 'app',
         components: {
             'helper-panel': HelperPanel,
             'buttons': Buttons,
-            'object-item': ObjectItem,
-            'details-comp': Parameters
+            'details-comp': Details,
+            'object-list': ObjectList,
         },
         props: ['store'],
         data() {
             return {
                 object: {
-                    itemName: "tente"
-                },
+                    itemName: "tente",
+                    price: "30"
+                }
             }
         }
     }

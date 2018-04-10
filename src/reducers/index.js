@@ -1,15 +1,9 @@
 import { combineReducers } from 'redux';
-import { CLICKED_OBJECT_ITEM_ICON, SETTING_CHANGED, TOGGLE_HELPER_PANEL, VIEW_CREATED } from '../actions';
+import { SETTING_CHANGED, TOGGLE_HELPER_PANEL, VIEW_CREATED } from '../actions';
+import { objectSections } from './drawerReducer';
 
 const rootReducer = combineReducers({
-    "objects": (state = {}, action) => {
-        switch (action.type) {
-            case CLICKED_OBJECT_ITEM_ICON:
-                return Object.assign(state, {[action.payload.name]: {name: "clicked"}});
-            default:
-                return state;
-        }
-    },
+    objectSections,
     "objectsDisplayed": (state = [], action) => {
         switch (action.type) {
             case SETTING_CHANGED:
@@ -52,10 +46,6 @@ const rootReducer = combineReducers({
         switch (action.type) {
             case VIEW_CREATED:
                 return {vue: action.payload};
-            case CLICKED_OBJECT_ITEM_ICON:
-                console.log(state.vue);
-                state.vue.$forceUpdate();
-                return {vue: state.vue};
             default:
                 return state;
         }
