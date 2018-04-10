@@ -8,9 +8,21 @@ const initstate = localStorage["store"] || {
     objects: {
         item: {name: "item"},
         item2: {name: "item2"}
-    }
+    },
+    objectsDisplayed: [
+        {
+            name: "tente",
+            position: "",
+            rotation: "",
+            settings: [{
+                type: 'color',
+                value: 'default'
+            }]
+        }
+    ]
 };
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducer, initstate, applyMiddleware(sagaMiddleware));
+const store = createStore(reducer, initstate,  composeEnhancers(applyMiddleware(sagaMiddleware)));
 sagaMiddleware.run(initSaga);
