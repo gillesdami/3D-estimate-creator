@@ -1,5 +1,5 @@
 <template>
-    <div id="buttons">
+    <div>
         <img v-on:click="help" id="questionMark" src="../../../assets/questionMark.jpg"/>
         <img v-on:click="deleteAll" id="trash" src="../../../assets/trash.png"/>
     </div>
@@ -25,17 +25,13 @@
 </script>
 
 <style lang=css>
-    #buttons {
-        margin: 0.5% 0 0 0.5%
-    }
-
     #questionMark {
-        height: 3%;
-        width: 2%;
+        height: 1.5vw;
+        width: 1.5vw;
     }
 
     #trash {
-        height: 3%;
-        width: 2%;
+        height: 1.5vw;
+        width: 1.5vw;
     }
 </style>
