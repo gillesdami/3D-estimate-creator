@@ -4,7 +4,7 @@ Drag and drop objects in a 3d scene and estimate their cost
 # Build & Run
 You can use docker (or not):
 ```bash
-docker run --name 3EC -it -p 8080:8080 -p 8081:8081 -w /var/www-v ${pwd}:/var/www node /bin/bas
+docker run --name 3EC -it -p 8080:8080 -p 8081:8081 -w /var/www-v ${pwd}:/var/www node /bin/bash
 ```
 
 Gather dependancies:
