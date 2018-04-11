@@ -2,11 +2,17 @@ import {SETTING_CHANGED, TOGGLE_HELPER_PANEL} from "../actions";
 
 const defaultObjectsDisplayedState = [
     {
-        name: "tente",
+        name: "Tente",
         position: "",
         rotation: "",
         settings: [{
-            type: 'color',
+            name: 'couleur',
+            value: 'default'
+        },{
+            name: 'longueur',
+            value: 'default'
+        },{
+            name: 'hauteur',
             value: 'default'
         }]
     }
@@ -24,7 +30,7 @@ export const objectsDisplayed = (state = [], action) => {
                     return {
                         ...object,
                         settings: object.settings.map(setting => {
-                            if (setting.type === action.payload.setting.type) {
+                            if (setting.name === action.payload.setting.name) {
                                 return {
                                     ...setting,
                                     value: action.payload.setting.value
