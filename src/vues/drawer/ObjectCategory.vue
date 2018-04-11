@@ -12,21 +12,20 @@
 </template>
 
 <script>
-    import { actionCreator, CLICKED_OBJECT_CATEGORY } from '../../actions';
+    import { actionCreator, CLICKED_COLLAPSIBLE } from '../../actions';
     import ObjectItem from './ObjectItem';
-    import objectsAvailable from '../../../resources/objectsAvailable.json'
 
     export default {
         name: "object-category",
         methods: {
             clickedObjectCategory: function () {
-                this.$root.$emit('put', actionCreator(CLICKED_OBJECT_CATEGORY, this.category));
+                this.$root.$emit('put', actionCreator(CLICKED_COLLAPSIBLE, {
+                    section: this.section,
+                    category: this.category
+                    }));
             }
         },
-        props: ['category', 'expanded', 'items'],
-        data() {
-            return {items: objectsAvailable};
-        },
+        props: ['section', 'category', 'expanded', 'items'],
         components : {
             'object-item' : ObjectItem
         },

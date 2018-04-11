@@ -1,20 +1,25 @@
-import { CLICKED_OBJECT_SECTION, CLICKED_OBJECT_ITEM_CATEGORY } from '../actions';
+import { CLICKED_COLLAPSIBLE } from '../actions';
 
-export const objectSections = (state = {}, action) => {
-    switch(action.type) {
-        case CLICKED_OBJECT_SECTION:
-            return {...state, [action.payload.name]: !state[action.payload.name]};
-        case CLICKED_OBJECT_ITEM_CATEGORY:
-            return {...state, objectCategories: objectCategories(state.objectCategories, action)};
-        default:
-            return state;
-    }
-};
+export const COLLAPSED = false;
+export const EXPANDED = true;
 
-export const objectCategories = (state = {}, action) => {
+//state = { [sectionName]: { self: bool, [categoryName]: bool, ...}, ...}
+export const collapsiblesStatus = (state = {}, action) => {
     switch(action.type) {
-        case CLICKED_OBJECT_ITEM_CATEGORY:
-            return {...state, [action.payload.name]: !state[action.payload.name]};
+        //togle collapsible boolean
+        case CLICKED_COLLAPSIBLE:
+        console.log({
+            ...state, 
+            [action.payload.section]: {
+                [action.payload.category || "self"]: !(state[action.payload.section] || {})[action.payload.category || "self"]
+            }
+        });
+            return {
+                ...state, 
+                [action.payload.section]: {
+                    [action.payload.category || "self"]: !(state[action.payload.section] || {})[action.payload.category || "self"]
+                }
+            };
         default:
             return state;
     }

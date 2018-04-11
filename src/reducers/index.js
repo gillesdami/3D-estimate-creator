@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { objectSections } from './drawerReducer';
+import { collapsiblesStatus } from './drawerReducer';
 import { CLICKED_OBJECT_ITEM_ICON, VIEW_CREATED, SETTING_CHANGED } from '../actions';
 
 const rootReducer = combineReducers({
-    objectSections,
+    collapsiblesStatus,
     "objectsDisplayed": (state = [], action) => {
         switch (action.type) {
             case SETTING_CHANGED:
@@ -32,12 +32,12 @@ const rootReducer = combineReducers({
                 return state;
         }
     },
-    
+
     //todo remove
     "vue": (state = {}, action) => {
-        console.log(state, action);
         switch(action.type) {
             case VIEW_CREATED:
+                console.log(action.payload);
                 return {vue: action.payload};
             default:
                 return state;

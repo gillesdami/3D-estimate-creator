@@ -1,21 +1,21 @@
 <template>
     <div id="app">
         <buttons/>
-        <object-list category="Tente de réception" expanded=1></object-list>
+        <objects :collapsiblesStatus="store.collapsiblesStatus"></objects>
         <details-comp :object="object"></details-comp>
     </div>
 </template>
 
 <script>
     import Buttons from './3d/Buttons';
-    import ObjectList from './drawer/ObjectList.vue';
+    import Objects from './drawer/Objects.vue';
     import Details from './3d/Details';
 
     export default {
         name: 'app',
         components : {
             'buttons' : Buttons,
-            'object-list' : ObjectList,
+            'objects' : Objects,
             'details-comp' : Details
         },
         props: ['store'],
@@ -26,7 +26,12 @@
                     price: "30"
                 }
             }
-        }
+        },
+        watch: {
+            'store': function (val, oldVal) {
+                console.log(oldVal + 'has been changed to ' + val + ' from outside.');
+            }
+        },
     }
 </script>
 
