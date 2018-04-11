@@ -1,4 +1,4 @@
-import {SETTING_CHANGED, TOGGLE_HELPER_PANEL} from "../actions";
+import { DELETE_ALL, SETTING_CHANGED, TOGGLE_HELPER_PANEL } from "../actions";
 
 const defaultObjectsDisplayedState = [
     {
@@ -56,5 +56,16 @@ export const helper = (state = {}, action) => {
             return Object.assign(state, {['isDisplay']: !state['isDisplay']});
         default:
             return defaultHelperState;
+    }
+};
+
+export const deleteAll = (state = {}, action) => {
+    switch (action.type) {
+        case DELETE_ALL:
+            localStorage.clear();
+            location.reload(true);
+            return state;
+        default:
+            return state;
     }
 };
