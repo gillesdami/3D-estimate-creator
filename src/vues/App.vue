@@ -1,7 +1,6 @@
 <template>
     <div id="app">
-        <cart :objects-displayed="store.objectsDisplayed"/>
-        <objects :collapsiblesStatus="store.collapsiblesStatus"/>
+        <drawer :store="store"/>
 
         <buttons id="buttonsPanel"/>
         <helper-panel v-if="store.helper.isDisplay" id="helperPanel"/>
@@ -13,18 +12,16 @@
 <script>
     import HelperPanel from './3d/helperPanel/HelperPanel.vue';
     import Buttons from './3d/Buttons.vue';
-    import Objects from './drawer/objects/Objects.vue';
     import Details from './3d/Details.vue';
-    import Cart from './drawer/cart/Cart.vue'
+    import Drawer from './drawer/Drawer.vue';
 
     export default {
         name: 'app',
-        components : {
-            'buttons' : Buttons,
-            'objects' : Objects,
-            'details-comp' : Details,
+        components: {
+            'buttons': Buttons,
+            'details-comp': Details,
             'helper-panel': HelperPanel,
-            'cart': Cart,
+            'drawer': Drawer,
         },
         props: ['store'],
         data() {

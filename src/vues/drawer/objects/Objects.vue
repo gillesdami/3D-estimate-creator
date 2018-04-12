@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h2>Catalogue</h2>
         <object-section
             v-for="(sectionItems, sectionName) in itemsBySection" 
             :items="sectionItems" :section="sectionName" :section-collapsibles-status="collapsiblesStatus[sectionName] || {}">
