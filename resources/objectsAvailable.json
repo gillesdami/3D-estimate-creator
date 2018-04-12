@@ -20,19 +20,15 @@
                 }
             }
         ],
-        "apparel": [
+        "apparels": [
             {
-                "type": [
-                    "toit"
-                ],
+                "type": "toit",
                 "values": [
                     "toit blanc 3m"
                 ]
             },
             {
-                "type": [
-                    "rideau"
-                ],
+                "type": "rideau",
                 "values": [
                     "rideau blanc [3]m",
                     "rideau fenêtre [3]m",
@@ -40,9 +36,7 @@
                 ]
             },
             {
-                "type": [
-                    "pignon"
-                ],
+                "type": "pignon",
                 "values": [
                     "pignon cristal 3m",
                     "pignon blanc 3m"
@@ -71,19 +65,15 @@
                 }
             }
         ],
-        "apparel": [
+        "apparels": [
             {
-                "type": [
-                    "toit"
-                ],
+                "type": "toit",
                 "values": [
                     "toit blanc 3m"
                 ]
             },
             {
-                "type": [
-                    "rideau"
-                ],
+                "type": "rideau",
                 "values": [
                     "rideau blanc [3]m",
                     "rideau fenêtre [3]m",
@@ -91,9 +81,7 @@
                 ]
             },
             {
-                "type": [
-                    "pignon"
-                ],
+                "type": "pignon",
                 "values": [
                     "pignon cristal 3m",
                     "pignon blanc 3m"
@@ -122,19 +110,15 @@
                 }
             }
         ],
-        "apparel": [
+        "apparels": [
             {
-                "type": [
-                    "toit"
-                ],
+                "type": "toit",
                 "values": [
                     "toit blanc 3m"
                 ]
             },
             {
-                "type": [
-                    "rideau"
-                ],
+                "type": "rideau",
                 "values": [
                     "rideau blanc [3]m",
                     "rideau fenêtre [3]m",
@@ -142,9 +126,7 @@
                 ]
             },
             {
-                "type": [
-                    "pignon"
-                ],
+                "type": "pignon",
                 "values": [
                     "pignon cristal 3m",
                     "pignon blanc 3m"
@@ -173,19 +155,15 @@
                 }
             }
         ],
-        "apparel": [
+        "apparels": [
             {
-                "type": [
-                    "toit"
-                ],
+                "type": "toit",
                 "values": [
                     "toit blanc 3m"
                 ]
             },
             {
-                "type": [
-                    "rideau"
-                ],
+                "type": "rideau",
                 "values": [
                     "rideau blanc [3]m",
                     "rideau fenêtre [3]m",
@@ -193,9 +171,7 @@
                 ]
             },
             {
-                "type": [
-                    "pignon"
-                ],
+                "type": "pignon",
                 "values": [
                     "pignon cristal 3m",
                     "pignon blanc 3m"
@@ -224,19 +200,15 @@
                 }
             }
         ],
-        "apparel": [
+        "apparels": [
             {
-                "type": [
-                    "toit"
-                ],
+                "type": "toit",
                 "values": [
                     "toit blanc 3m"
                 ]
             },
             {
-                "type": [
-                    "rideau"
-                ],
+                "type": "rideau",
                 "values": [
                     "rideau blanc [3]m",
                     "rideau fenêtre [3]m",
@@ -244,9 +216,7 @@
                 ]
             },
             {
-                "type": [
-                    "pignon"
-                ],
+                "type": "pignon",
                 "values": [
                     "pignon cristal 3m",
                     "pignon blanc 3m"

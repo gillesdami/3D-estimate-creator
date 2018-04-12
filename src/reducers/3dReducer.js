@@ -1,46 +1,20 @@
-import { APPAREL_CHANGED, DELETE_ALL, SETTING_CHANGED, TOGGLE_HELPER_PANEL } from "../actions";
-
-const defaultObjectsDisplayedState = [
-    {
-        name: "Tente de réception - 10m x [3]m",
-        position: "",
-        rotation: "",
-        settings: [{
-            name: 'longueur',
-            value: 'default'
-        }],
-        apparels: [
-            {
-                type: 'rideau',
-                name: 'rideau 3x3',
-                value: 'blanc'
-            },
-            {
-                type: 'rideau',
-                name: 'rideau 3x3',
-                value: 'blanc'
-            },
-            {
-                type: 'pignon',
-                name: 'pignon 3x3',
-                value: 'cristal'
-            },
-
-            {
-                type: 'toit',
-                name: 'toit 3x3',
-                value: 'toit'
-            }
-        ]
-    }
-];
+import {ADD_OBJECT_DISPLAYED, APPAREL_CHANGED, DELETE_ALL, SETTING_CHANGED, TOGGLE_HELPER_PANEL} from "../actions";
 
 const defaultHelperState = {
     isDisplay: false
 };
 
-export const objectsDisplayed = (state = defaultObjectsDisplayedState, action) => {
+export const objectsDisplayed = (state = [], action) => {
     switch (action.type) {
+        case ADD_OBJECT_DISPLAYED:
+            return [
+                ...state,
+                {
+                    name: action.payload.itemName,
+                    settings: action.payload.item.settings,
+                    apparels: action.payload.item.apparels
+                }
+            ];
         case SETTING_CHANGED:
             return state.map(object => {
                 if (object.name === action.payload.itemName) {
