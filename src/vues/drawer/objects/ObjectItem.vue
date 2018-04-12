@@ -12,7 +12,6 @@
         name: "object-item",
         methods: {
             clickedObjectItem: function () {
-                console.log(this.item);
                 this.$root.$emit('put', actionCreator(ADD_OBJECT_DISPLAYED, {
                     itemName: this.name,
                     item: this.item

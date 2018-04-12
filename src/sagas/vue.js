@@ -33,7 +33,6 @@ export function* dispatchSaga(action) {
 }
 
 export function* updateVue(vue) {
-    console.log("updated", vue);
     vue.$forceUpdate();
 
     for(let child in vue.$children)

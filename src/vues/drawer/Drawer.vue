@@ -5,7 +5,7 @@
             <button id="buttonCart" class="buttonTab" v-on:click="changeTab">Panier</button>
         </span>
         <cart id="cart" :objects-displayed="store.objectsDisplayed"/>
-        <objects id="objects" :collapsiblesStatus="store.collapsiblesStatus"/>
+        <objects/>
     </div>
 </template>
 

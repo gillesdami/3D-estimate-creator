@@ -136,7 +136,7 @@
     },
     "Tente de réception - 5m x [5]m": {
         "actif": true,
-        "section": "Structure",
+        "section": "Structure2",
         "category": "Tente de réception",
         "description": "",
         "prix": {
@@ -182,7 +182,7 @@
     "Tente de réception - 6m x [3]m": {
         "actif": true,
         "section": "Structure",
-        "category": "Tente de réception",
+        "category": "Tente de réception2",
         "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage 3.30m à 3.50m",
         "prix": {
             "ILE DE FRANCE": 10,

@@ -1,12 +1,11 @@
 <template>
     <div>
         <h3 class="objectCategory" v-on:click="clickedObjectCategory">{{ category }}</h3>
-        <div class="objectList" v-bind:class="{ expanded: expanded }">
+        <div class="objectList" v-bind:class="{ expanded: categoryCollapsiblesStatus() }">
             <object-item 
                 v-for="(item, itemName) in items" 
-                v-if="item.category === category" 
-                :item="item" :name="itemName">
-            </object-item>
+                v-if="item.section === section && item.category === category" 
+                :item="item" :name="itemName"/>
         </div>
     </div>
 </template>
@@ -14,6 +13,9 @@
 <script>
     import { actionCreator, CLICKED_COLLAPSIBLE } from '../../../actions';
     import ObjectItem from './ObjectItem';
+    import { $select } from '../../../sagas/vue';
+    import { getCategoryCollapsibleState } from '../../../selectors';
+    import objectsAvailable from '../../../../resources/objectsAvailable.json'
 
     export default {
         name: "object-category",
@@ -23,9 +25,17 @@
                     section: this.section,
                     category: this.category
                     }));
+            },
+            categoryCollapsiblesStatus: function() {
+                return $select(getCategoryCollapsibleState, this.section, this.category);
             }
         },
-        props: ['section', 'category', 'expanded', 'items'],
+        computed: {
+            items: function() {
+                return objectsAvailable;
+            }
+        },
+        props: ['section', 'category'],
         components : {
             'object-item' : ObjectItem
         },

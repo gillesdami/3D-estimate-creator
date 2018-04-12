@@ -7,14 +7,12 @@
         <helper-panel v-if="store().helper.isDisplay" id="helperPanel"/>
 
         <details-comp :object="object"/>
-        <objects :collapsiblesStatus="store().collapsiblesStatus"></objects>
     </div>
 </template>
 
 <script>
     import HelperPanel from './3d/helperPanel/HelperPanel';
     import Buttons from './3d/Buttons';
-    import Objects from './drawer/objects/Objects.vue';
     import Details from './3d/Details';
     import { $select } from '../sagas/vue';
     import { rootselector } from '../selectors';
@@ -26,8 +24,7 @@
             'buttons': Buttons,
             'details-comp': Details,
             'helper-panel': HelperPanel,
-            'drawer': Drawer,
-            'objects': Objects
+            'drawer': Drawer
         },
         data() {
             return {
