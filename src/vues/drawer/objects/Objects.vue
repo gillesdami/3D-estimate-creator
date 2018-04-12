@@ -1,10 +1,7 @@
 <template>
     <div>
         <h2>Catalogue</h2>
-        <object-section
-            v-for="(sectionItems, sectionName) in itemsBySection" 
-            :items="sectionItems" :section="sectionName" :section-collapsibles-status="collapsiblesStatus[sectionName] || {}">
-        </object-section>
+        <object-section v-for="section in sections" :section="section"/>
     </div>
 </template>
 
@@ -16,18 +13,16 @@
         name: "objects",
         props: ['collapsiblesStatus'],
         computed: {
-            itemsBySection: function() {
-                const groupedItems = {};
+            sections: function() {
+                const sections = [];
 
                 Object.keys(objectsAvailable).forEach(function(key) {
-                    if(!groupedItems[objectsAvailable[key].section]) {
-                        groupedItems[objectsAvailable[key].section] = {};
+                    if(!sections.includes(objectsAvailable[key].section)) {
+                        sections.push(objectsAvailable[key].section);
                     }
-
-                    groupedItems[objectsAvailable[key].section][key] = objectsAvailable[key];
                 });
 
-                return groupedItems;
+                return sections;
             }
         },
         components : {

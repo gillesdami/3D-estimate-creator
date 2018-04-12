@@ -2,10 +2,7 @@
     <div>
         <h3 class="objectSection" v-on:click="clickedObjectSection">{{ section }}</h3>
         <div class="objectSectionList" v-bind:class="{ expanded: sectionCollapsiblesStatus().self }">
-            <object-category
-                v-for="(categoryItems, categoryName) in itemsByCategory" 
-                :items="categoryItems" :category="categoryName" :expanded="sectionCollapsiblesStatus()[categoryName]" :section="section">
-            </object-category>
+            <object-category v-for="category in categories" :section="section" :category="category"/>
         </div>
     </div>
 </template>
@@ -15,6 +12,7 @@
     import ObjectCategory from './ObjectCategory';
     import { $select } from '../../../sagas/vue';
     import { getSectionCollapsibleState } from '../../../selectors';
+    import objectsAvailable from '../../../../resources/objectsAvailable.json'
 
     export default {
         name: "object-section",
@@ -28,20 +26,19 @@
                 return $select(getSectionCollapsibleState, this.section);
             }
         },
-        props: ['section'/*, 'sectionCollapsiblesStatus',*/, 'items'],
+        props: ['section'],
         computed: {
-            itemsByCategory: function() {
-                const groupedItems = {};
+            categories: function() {
+                const categories = [];
 
-                Object.keys(this.items).forEach((key) => {
-                    if(!groupedItems[this.items[key].category]) {
-                        groupedItems[this.items[key].category] = {};
+                Object.keys(objectsAvailable).forEach((key) => {
+                    if(objectsAvailable[key].section === this.section
+                        && !categories.includes(objectsAvailable[key].category)) {
+                        categories.push(objectsAvailable[key].category);
                     }
-
-                    groupedItems[this.items[key].category][key] = this.items[key];
                 });
 
-                return groupedItems;
+                return categories;
             }
         },
         components : {
