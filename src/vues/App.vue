@@ -1,8 +1,8 @@
 <template>
     <div id="app">
-        <objects :collapsiblesStatus="store.collapsiblesStatus"></objects>
+        <objects :collapsiblesStatus="store().collapsiblesStatus"></objects>
         <buttons id="buttonsPanel"/>
-        <helper-panel v-if="store.helper.isDisplay" id="helperPanel"/>
+        <helper-panel v-if="store().helper.isDisplay" id="helperPanel"/>
         <details-comp :object="object"></details-comp>
     </div>
 </template>
@@ -12,6 +12,8 @@
     import Buttons from './3d/Buttons';
     import Objects from './drawer/Objects.vue';
     import Details from './3d/Details';
+    import { $select } from '../sagas/vue';
+    import { rootselector } from '../selectors';
 
     export default {
         name: 'app',
@@ -21,7 +23,6 @@
             'details-comp' : Details,
             'helper-panel': HelperPanel,
         },
-        props: ['store'],
         data() {
             return {
                 object: {
@@ -30,9 +31,9 @@
                 }
             }
         },
-        watch: {
-            'store': function (val, oldVal) {
-                console.log(oldVal + 'has been changed to ' + val + ' from outside.');
+        methods: {
+            'store': function() {
+                return $select(rootselector);
             }
         },
     }

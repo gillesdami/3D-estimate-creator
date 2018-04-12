@@ -8,12 +8,6 @@ export const collapsiblesStatus = (state = {}, action) => {
     switch(action.type) {
         //togle collapsible boolean
         case CLICKED_COLLAPSIBLE:
-        console.log({
-            ...state, 
-            [action.payload.section]: {
-                [action.payload.category || "self"]: !(state[action.payload.section] || {})[action.payload.category || "self"]
-            }
-        });
             return {
                 ...state, 
                 [action.payload.section]: {

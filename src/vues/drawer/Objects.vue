@@ -14,18 +14,20 @@
     export default {
         name: "objects",
         props: ['collapsiblesStatus'],
-        data() {
-            const groupedItems = {};
+        computed: {
+            itemsBySection: function() {
+                const groupedItems = {};
 
-            Object.keys(objectsAvailable).forEach(function(key) {
-                if(!groupedItems[objectsAvailable[key].section]) {
-                    groupedItems[objectsAvailable[key].section] = {};
-                }
+                Object.keys(objectsAvailable).forEach(function(key) {
+                    if(!groupedItems[objectsAvailable[key].section]) {
+                        groupedItems[objectsAvailable[key].section] = {};
+                    }
 
-                groupedItems[objectsAvailable[key].section][key] = objectsAvailable[key];
-            });
+                    groupedItems[objectsAvailable[key].section][key] = objectsAvailable[key];
+                });
 
-            return {itemsBySection: groupedItems};
+                return groupedItems;
+            }
         },
         components : {
             'object-section' : ObjectSection

@@ -33,5 +33,7 @@
 </script>
 
 <style lang=css>
-    
+    .expanded {
+        background-color: red;
+    }
 </style>

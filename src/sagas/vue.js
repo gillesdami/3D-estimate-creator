@@ -11,19 +11,35 @@ export function* initVueSaga() {
     const vue = yield new Promise(resolve => {
         new Vue({
             el: 'body',
-            render: h => h(App, {props: {store: store}}),
+            render: h => h(App),
             created() {
                 resolve(this);
             },
+            methods: {
+                select: function(selector, ...args)  {
+                    return selector(store, ...args);
+                }
+            }
         });
     });
-    
+
     yield put(actionCreator(VIEW_CREATED, vue));
     yield takeEvery(yield call(domChannel, vue), dispatchSaga);
+    yield takeEvery('*', updateVue, vue);
 }
 
 export function* dispatchSaga(action) {
     yield put(action);
+}
+
+export function* updateVue(vue) {
+    console.log("updated", vue);
+    vue.$forceUpdate();
+
+    for(let child in vue.$children)
+    {
+        yield call(updateVue, vue.$children[child]);
+    }
 }
 
 /**
@@ -38,3 +54,5 @@ function domChannel(vue) {
         return () => {}
     })
 }
+
+export const $select = (selector, ...args) => selector(window.store.getState(), ...args);
