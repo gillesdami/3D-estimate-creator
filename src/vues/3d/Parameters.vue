@@ -1,6 +1,7 @@
 <template>
     <div>
         <div v-if="detailsState().item && detailsState().item.settings.length>0">
+            <h3>Paramètres</h3>
             <div v-for="(setting, index) in detailsState().item.settings">
                 <div v-if="setting.type === 'slider'">
                     <span>{{setting.name}}</span>

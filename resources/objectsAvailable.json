@@ -62,7 +62,7 @@
         },
         "settings": [
             {
-                "name": "longueur2",
+                "name": "Longueur 2",
                 "type": "slider",
                 "min": 3,
                 "max": 300,
@@ -107,7 +107,7 @@
         },
         "settings": [
             {
-                "name": "longueur3",
+                "name": "Longueur 3",
                 "type": "slider",
                 "min": 3,
                 "max": 300,
@@ -152,7 +152,7 @@
         },
         "settings": [
             {
-                "name": "longueur4",
+                "name": "Longueur 4",
                 "type": "slider",
                 "min": 5,
                 "max": 500,
@@ -197,7 +197,7 @@
         },
         "settings": [
             {
-                "name": "longueur5",
+                "name": "Longueur 5",
                 "type": "slider",
                 "min": 3,
                 "max": 300,
