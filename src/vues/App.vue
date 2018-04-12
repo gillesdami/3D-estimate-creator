@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-
+        <div id="threeRoot"></div>
         <drawer :store="store()"/>
 
         <buttons id="buttonsPanel"/>
@@ -15,7 +15,7 @@
     import Buttons from './3d/Buttons';
     import Details from './3d/Details';
     import { $select } from '../sagas/vue';
-    import { rootselector } from '../selectors';
+    import { rootselector, rendererSelector } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
 
     export default {
@@ -53,6 +53,13 @@
                 return $select(rootselector);
             }
         },
+        mounted: function() {
+            const renderer = $select(rendererSelector);
+
+            if(renderer.domElement) {
+                document.getElementById('threeRoot').appendChild(renderer.domElement);
+            }
+        }
     }
 </script>
 

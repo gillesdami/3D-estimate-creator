@@ -29,3 +29,8 @@ export const DELETE_ALL = "DELETE_ALL";
  * vue actions
  */
 export const VIEW_CREATED = "VIEW_CREATED";
+
+/**
+ * three actions
+ */
+export const RENDERER_CREATED = "RENDERER_CREATED";

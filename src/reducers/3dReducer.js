@@ -1,4 +1,4 @@
-import {ADD_OBJECT_DISPLAYED, APPAREL_CHANGED, DELETE_ALL, SETTING_CHANGED, TOGGLE_HELPER_PANEL} from "../actions";
+import {ADD_OBJECT_DISPLAYED, APPAREL_CHANGED, DELETE_ALL, SETTING_CHANGED, TOGGLE_HELPER_PANEL, RENDERER_CREATED } from "../actions";
 
 const defaultHelperState = {
     isDisplay: false
@@ -73,6 +73,15 @@ export const deleteAll = (state = {}, action) => {
             localStorage.clear();
             location.reload(true);
             return state;
+        default:
+            return state;
+    }
+};
+
+export const renderer = (state = {}, action) => {
+    switch (action.type) {
+        case RENDERER_CREATED:
+            return action.payload;
         default:
             return state;
     }

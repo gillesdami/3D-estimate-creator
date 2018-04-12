@@ -1,12 +1,14 @@
-import { call,  put, takeEvery, select } from 'redux-saga/effects';
+import { call,  put, takeEvery, select, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { rootselector } from '../selectors';
 import Vue from 'vue';
 import App from '../vues/App.vue';
-import { actionCreator, VIEW_CREATED } from '../actions';
+import { actionCreator, VIEW_CREATED, RENDERER_CREATED } from '../actions';
 
 export function* initVueSaga() {
     const store = yield select(rootselector);
+
+    yield take(RENDERER_CREATED);
 
     const vue = yield new Promise(resolve => {
         new Vue({
