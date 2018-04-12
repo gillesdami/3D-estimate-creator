@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import { actionCreator, CLICKED_COLLAPSIBLE } from '../../actions';
+    import { actionCreator, CLICKED_COLLAPSIBLE } from '../../../actions';
     import ObjectCategory from './ObjectCategory';
 
     export default {

@@ -1,17 +1,21 @@
 <template>
     <div id="app">
-        <objects :collapsiblesStatus="store.collapsiblesStatus"></objects>
+        <cart :objects-displayed="store.objectsDisplayed"/>
+        <objects :collapsiblesStatus="store.collapsiblesStatus"/>
+
         <buttons id="buttonsPanel"/>
         <helper-panel v-if="store.helper.isDisplay" id="helperPanel"/>
-        <details-comp :object="object"></details-comp>
+
+        <details-comp :object="object"/>
     </div>
 </template>
 
 <script>
-    import HelperPanel from './3d/helperPanel/HelperPanel';
-    import Buttons from './3d/Buttons';
-    import Objects from './drawer/Objects.vue';
-    import Details from './3d/Details';
+    import HelperPanel from './3d/helperPanel/HelperPanel.vue';
+    import Buttons from './3d/Buttons.vue';
+    import Objects from './drawer/objects/Objects.vue';
+    import Details from './3d/Details.vue';
+    import Cart from './drawer/cart/Cart.vue'
 
     export default {
         name: 'app',
@@ -20,6 +24,7 @@
             'objects' : Objects,
             'details-comp' : Details,
             'helper-panel': HelperPanel,
+            'cart': Cart,
         },
         props: ['store'],
         data() {

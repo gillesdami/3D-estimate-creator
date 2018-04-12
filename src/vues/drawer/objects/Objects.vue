@@ -9,7 +9,7 @@
 
 <script>
     import ObjectSection from './ObjectSection';
-    import objectsAvailable from '../../../resources/objectsAvailable.json'
+    import objectsAvailable from '../../../../resources/objectsAvailable.json'
 
     export default {
         name: "objects",

@@ -2,13 +2,36 @@ import { DELETE_ALL, SETTING_CHANGED, TOGGLE_HELPER_PANEL } from "../actions";
 
 const defaultObjectsDisplayedState = [
     {
-        name: "tente",
+        name: "Tente de réception - 10m x [3]m",
         position: "",
         rotation: "",
         settings: [{
-            type: 'color',
+            name: 'longueur',
             value: 'default'
-        }]
+        }],
+        apparels: [
+            {
+                type: 'rideau',
+                name: 'rideau 3x3',
+                value: 'blanc'
+            },
+            {
+                type: 'rideau',
+                name: 'rideau 3x3',
+                value: 'blanc'
+            },
+            {
+                type: 'pignon',
+                name: 'pignon 3x3',
+                value: 'cristal'
+            },
+
+            {
+                type: 'toit',
+                name: 'toit 3x3',
+                value: 'toit'
+            }
+        ]
     }
 ];
 

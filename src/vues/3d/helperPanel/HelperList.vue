@@ -1,8 +1,6 @@
 <template>
     <div>
-        <span v-for="item in items">
-            <helper-item :icon="item['icon']" :description="item['description']"/>
-        </span>
+        <helper-item v-for="item in items" :icon="item['icon']" :description="item['description']"/>
     </div>
 </template>
 

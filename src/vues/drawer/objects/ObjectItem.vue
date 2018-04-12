@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import { actionCreator, CLICKED_OBJECT_ITEM_ICON } from '../../actions';
+    import { actionCreator, CLICKED_OBJECT_ITEM_ICON } from '../../../actions';
 
     export default {
         name: "object-item",
