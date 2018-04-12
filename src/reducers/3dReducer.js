@@ -1,4 +1,4 @@
-import { DELETE_ALL, SETTING_CHANGED, TOGGLE_HELPER_PANEL } from "../actions";
+import { APPAREL_CHANGED, DELETE_ALL, SETTING_CHANGED, TOGGLE_HELPER_PANEL } from "../actions";
 
 const defaultObjectsDisplayedState = [
     {
@@ -39,7 +39,7 @@ const defaultHelperState = {
     isDisplay: false
 };
 
-export const objectsDisplayed = (state = [], action) => {
+export const objectsDisplayed = (state = defaultObjectsDisplayedState, action) => {
     switch (action.type) {
         case SETTING_CHANGED:
             return state.map(object => {
@@ -47,7 +47,7 @@ export const objectsDisplayed = (state = [], action) => {
                     return {
                         ...object,
                         settings: object.settings.map(setting => {
-                            if (setting.type === action.payload.setting.type) {
+                            if (setting.name === action.payload.setting.name) {
                                 return {
                                     ...setting,
                                     value: action.payload.setting.value
@@ -61,18 +61,35 @@ export const objectsDisplayed = (state = [], action) => {
 
                 return object;
             });
+        case APPAREL_CHANGED:
+            return state.map(object => {
+                if (object.name === action.payload.itemName) {
+                    return {
+                        ...object,
+                        apparels: object.apparels.map(apparel => {
+                            if (apparel.type === action.payload.apparel.type) {
+                                return {
+                                    ...apparel,
+                                    value: action.payload.apparel.value
+                                }
+                            }
 
+                            return apparel;
+                        })
+                    }
+                }
+            });
         default:
-            return defaultObjectsDisplayedState;
+            return state;
     }
 };
 
-export const helper = (state = {}, action) => {
+export const helper = (state = defaultHelperState, action) => {
     switch (action.type) {
         case TOGGLE_HELPER_PANEL:
             return Object.assign(state, {['isDisplay']: !state['isDisplay']});
         default:
-            return defaultHelperState;
+            return state;
     }
 };
 

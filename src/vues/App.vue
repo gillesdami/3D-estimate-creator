@@ -30,8 +30,22 @@
         data() {
             return {
                 object: {
-                    itemName: "tente",
-                    price: "30"
+                    itemName: 'Tente',
+                    price: '30',
+                    settings: [{
+                        name: 'longueur',
+                        type: 'slider',
+                        min: 3,
+                        max: 300,
+                        step: 3,
+                        effect: {
+                            type: 'repeat-y'
+                        }
+                    }],
+                    apparels: [{
+                        type: 'rideau',
+                        values: ['Rideau blanc 3x3', 'Rideau cristal 3x3']
+                    }]
                 }
             }
         },
