@@ -13,8 +13,8 @@
 <script>
     import { actionCreator, CLICKED_COLLAPSIBLE } from '../../../actions';
     import ObjectCategory from './ObjectCategory';
-    import { $select } from '../../sagas/vue';
-    import { getSectionCollapsibleState } from '../../selectors';
+    import { $select } from '../../../sagas/vue';
+    import { getSectionCollapsibleState } from '../../../selectors';
 
     export default {
         name: "object-section",
