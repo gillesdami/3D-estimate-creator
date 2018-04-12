@@ -1,7 +1,7 @@
 <template>
-    <div id="objectDetails">
+    <div>
         <general></general>
-        <!--<parameters></parameters>-->
+        <parameters></parameters>
         <!--<apparels></apparels>-->
     </div>
 </template>

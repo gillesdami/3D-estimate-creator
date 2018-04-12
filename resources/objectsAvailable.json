@@ -10,11 +10,18 @@
         },
         "settings": [
             {
-                "name": "longueur",
+                "name": "Longueur",
                 "type": "slider",
                 "min": 3,
                 "max": 300,
                 "step": 3,
+                "effect": {
+                    "type": "repeat-y"
+                }
+            }, {
+                "name": "Couleur",
+                "type": "select",
+                "values": ["Rouge", "Vert", "Bleu"],
                 "effect": {
                     "type": "repeat-y"
                 }
@@ -55,7 +62,7 @@
         },
         "settings": [
             {
-                "name": "longueur",
+                "name": "longueur2",
                 "type": "slider",
                 "min": 3,
                 "max": 300,
@@ -100,7 +107,7 @@
         },
         "settings": [
             {
-                "name": "longueur",
+                "name": "longueur3",
                 "type": "slider",
                 "min": 3,
                 "max": 300,
@@ -145,7 +152,7 @@
         },
         "settings": [
             {
-                "name": "longueur",
+                "name": "longueur4",
                 "type": "slider",
                 "min": 5,
                 "max": 500,
@@ -190,7 +197,7 @@
         },
         "settings": [
             {
-                "name": "longueur",
+                "name": "longueur5",
                 "type": "slider",
                 "min": 3,
                 "max": 300,

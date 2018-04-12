@@ -1,5 +1,5 @@
 <template>
-    <div id="apparels">
+    <div>
         <div v-if="selects.length>0">
             <div v-for="(select, index) in selects">
                 <select name="color"
