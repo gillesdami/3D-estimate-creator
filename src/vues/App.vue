@@ -4,9 +4,9 @@
         <drawer :store="store()"/>
 
         <buttons id="buttonsPanel"/>
-        <helper-panel v-if="store().helper.isDisplay" id="helperPanel"/>
+        <helper-panel v-if="store().helper.isDisplayed" id="helperPanel"/>
 
-        <details-comp :object="object"/>
+        <details-comp/>
     </div>
 </template>
 
@@ -28,24 +28,7 @@
         },
         data() {
             return {
-                object: {
-                    itemName: 'Tente',
-                    price: '30',
-                    settings: [{
-                        name: 'longueur',
-                        type: 'slider',
-                        min: 3,
-                        max: 300,
-                        step: 3,
-                        effect: {
-                            type: 'repeat-y'
-                        }
-                    }],
-                    apparels: [{
-                        type: 'rideau',
-                        values: ['Rideau blanc 3x3', 'Rideau cristal 3x3']
-                    }]
-                }
+
             }
         },
         methods: {

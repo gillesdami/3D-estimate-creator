@@ -11,7 +11,6 @@
             </div>
         </div>
 
-
         <div v-if="sliders.length>0">
             <div v-for="(slider, index) in sliders">
                 <span>{{slider.name}}</span>
@@ -30,6 +29,8 @@
 
 <script>
     import { actionCreator, SETTING_CHANGED } from '../../actions';
+    import { $select } from '../../sagas/vue';
+    import { getDetailsState } from "../../selectors";
 
     export default {
         name: "Parameters",
@@ -38,23 +39,26 @@
                 sliderSettings: [],
                 selectSettings: [],
                 sliders: [],
-                selects: []
+                selects: [],
+                details: this.detailsState()
             }
         },
-        props: ['object'],
         methods: {
             dispatchChange: function(value, name) {
                 this.$root.$emit('put', actionCreator(SETTING_CHANGED, {
-                    itemName: this.object.itemName,
+                    itemName: this.detailsState().itemName,
                     setting: {
                         name,
                         value
                     }
                 }));
+            },
+            detailsState: function() {
+                return $select(getDetailsState);
             }
         },
-        created() {
-            this.object.settings.forEach(setting => {
+        updated() {
+            this.detailsState().item.settings.forEach(setting => {
                 switch (setting.type) {
                     case 'slider':
                         this.sliders.push(setting);
@@ -65,20 +69,19 @@
                     default:
                 }
             });
-        },
-        mounted() {
-            if (this.sliders.length > 0) {
-                this.sliders.forEach((sliderObject, index) => {
-                    const slider = document.getElementById(`rangeInput${index}`);
-                    const output = document.getElementById(`rangeInputValue${index}`);
-                    output.innerHTML = slider.value; // Display the default slider value
 
-                    // Update the current slider value (each time you drag the slider handle)
-                    slider.oninput = function() {
-                        output.innerHTML = this.value;
-                    }
-                });
-            }
+            // if (this.sliders.length > 0) {
+            //     this.sliders.forEach((sliderObject, index) => {
+            //         const slider = document.getElementById(`rangeInput${index}`);
+            //         const output = document.getElementById(`rangeInputValue${index}`);
+            //         output.innerHTML = slider.value; // Display the default slider value
+            //
+            //         // Update the current slider value (each time you drag the slider handle)
+            //         slider.oninput = function() {
+            //             output.innerHTML = this.value;
+            //         }
+            //     });
+            // }
         }
     }
 </script>

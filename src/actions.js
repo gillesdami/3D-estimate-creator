@@ -16,7 +16,13 @@ export const SETTING_CHANGED = "SETTING_CHANGED";
 export const APPAREL_CHANGED = "APPAREL_CHANGED";
 
 /**
- * helperPaner actions
+ * detailsPanel actions
+ */
+export const TOGGLE_DETAILS_PANEL = "TOGGLE_DETAILS_PANEL";
+
+
+/**
+ * helperPanel actions
  */
 export const TOGGLE_HELPER_PANEL = "TOGGLE_HELPER_PANEL";
 

@@ -1,8 +1,8 @@
 <template>
     <div id="objectDetails">
-        <general :object="object"></general>
-        <parameters :object="object"></parameters>
-        <apparels :object="object"></apparels>
+        <general></general>
+        <!--<parameters></parameters>-->
+        <!--<apparels></apparels>-->
     </div>
 </template>
 
@@ -17,8 +17,7 @@
             'general': General,
             'parameters': Parameters,
             'apparels': Apparels
-        },
-        props: ['object']
+        }
     }
 </script>
 

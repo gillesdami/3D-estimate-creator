@@ -1,14 +1,23 @@
 <template>
     <div id="general">
-        <p> Nom : <span> {{object.itemName}}</span></p>
-        <p> Prix : <span> {{object.price}} €</span></p>
+        <div v-if="detailsState().itemName && detailsState().item">
+            <p> Nom : <span> {{detailsState().itemName}}</span></p>
+            <p> Prix : <span> {{detailsState().item.price}} €</span></p>
+        </div>
     </div>
 </template>
 
 <script>
+    import { $select } from '../../sagas/vue';
+    import { getDetailsState } from "../../selectors";
+
     export default {
         name: "General",
-        props: ['object']
+        methods : {
+            detailsState: function() {
+                return $select(getDetailsState);
+            }
+        }
     }
 </script>
 
