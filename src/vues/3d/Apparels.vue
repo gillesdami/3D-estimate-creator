@@ -15,6 +15,8 @@
 
 <script>
     import { actionCreator, APPAREL_CHANGED } from '../../actions';
+    import { $select } from '../../sagas/vue';
+    import { getDetailsState } from "../../selectors";
 
     export default {
         name: "Apparels",
@@ -24,7 +26,6 @@
                 selects: []
             }
         },
-        props: ['object'],
         methods: {
             dispatchChange: function(value, type) {
                 this.$root.$emit('put', actionCreator(APPAREL_CHANGED, {
@@ -34,10 +35,13 @@
                         value
                     }
                 }));
+            },
+            detailsState: function() {
+                return $select(getDetailsState);
             }
         },
-        created() {
-            this.object.apparels.forEach(apparel => this.selects.push(apparel));
+        updated() {
+            this.detailsState().item.apparels.forEach(apparel => this.selects.push(apparel));
         }
     }
 </script>

@@ -1,10 +1,10 @@
 {
     "Tente de réception - 10m x [3]m": {
-        "actif": true,
+        "activate": true,
         "section": "Structure",
         "category": "Tente de réception",
         "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage ",
-        "prix": {
+        "price": {
             "ILE DE FRANCE": 10,
             "PACA": 11
         },
@@ -45,11 +45,11 @@
         ]
     },
     "Tente de réception - 15m x [3]m": {
-        "actif": true,
+        "activate": true,
         "section": "Structure",
         "category": "Tente de réception",
         "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage ",
-        "prix": {
+        "price": {
             "ILE DE FRANCE": 10,
             "PACA": 11
         },
@@ -90,11 +90,11 @@
         ]
     },
     "Tente de réception - 5m x [3]m": {
-        "actif": true,
+        "activate": true,
         "section": "Structure",
         "category": "Tente de réception",
         "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage 3.30m à 3.50m",
-        "prix": {
+        "price": {
             "ILE DE FRANCE": 10,
             "PACA": 11
         },
@@ -135,11 +135,11 @@
         ]
     },
     "Tente de réception - 5m x [5]m": {
-        "actif": true,
+        "activate": true,
         "section": "Structure",
         "category": "Tente de réception",
         "description": "",
-        "prix": {
+        "price": {
             "ILE DE FRANCE": 13,
             "PACA": 14
         },
@@ -180,11 +180,11 @@
         ]
     },
     "Tente de réception - 6m x [3]m": {
-        "actif": true,
+        "activate": true,
         "section": "Structure",
         "category": "Tente de réception",
         "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage 3.30m à 3.50m",
-        "prix": {
+        "price": {
             "ILE DE FRANCE": 10,
             "PACA": 20
         },

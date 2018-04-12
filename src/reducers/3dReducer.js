@@ -1,7 +1,20 @@
-import {ADD_OBJECT_DISPLAYED, APPAREL_CHANGED, DELETE_ALL, SETTING_CHANGED, TOGGLE_HELPER_PANEL} from "../actions";
+import {
+    ADD_OBJECT_DISPLAYED,
+    APPAREL_CHANGED,
+    DELETE_ALL,
+    SETTING_CHANGED,
+    TOGGLE_DETAILS_PANEL,
+    TOGGLE_HELPER_PANEL
+} from "../actions";
 
 const defaultHelperState = {
-    isDisplay: false
+    isDisplayed: false
+};
+
+const defaultDetailsState = {
+    isDisplayed: false,
+    itemName: null,
+    item: null
 };
 
 export const objectsDisplayed = (state = [], action) => {
@@ -58,10 +71,24 @@ export const objectsDisplayed = (state = [], action) => {
     }
 };
 
+export const details = (state = defaultDetailsState, action) => {
+    switch (action.type) {
+        case TOGGLE_DETAILS_PANEL:
+            return {
+                ...state,
+                isDisplayed : !state.isDisplayed,
+                itemName: action.payload.itemName,
+                item: action.payload.item
+            };
+        default:
+            return state;
+    }
+};
+
 export const helper = (state = defaultHelperState, action) => {
     switch (action.type) {
         case TOGGLE_HELPER_PANEL:
-            return Object.assign(state, {['isDisplay']: !state['isDisplay']});
+            return Object.assign(state, {['isDisplayed']: !state['isDisplayed']});
         default:
             return state;
     }
