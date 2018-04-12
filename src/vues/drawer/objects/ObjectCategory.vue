@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import { actionCreator, CLICKED_COLLAPSIBLE } from '../../actions';
+    import { actionCreator, CLICKED_COLLAPSIBLE } from '../../../actions';
     import ObjectItem from './ObjectItem';
 
     export default {

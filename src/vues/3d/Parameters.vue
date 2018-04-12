@@ -1,10 +1,30 @@
 <template>
     <div id="parameters">
-        <select name="color" v-model="colorSetting" v-on:change="dispatchChange">
-            <option value="red">Rouge</option>
-            <option value="green">Vert</option>
-            <option value="blue">Bleu</option>
-        </select>
+        <div v-if="selects.length>0">
+            <div v-for="(select, index) in selects">
+                <span>  </span>
+                <select name="color"
+                        v-model="selectSettings[index]"
+                        v-on:change="dispatchChange(selectSettings[index], select.name)">
+                    <option v-for="value in select.values" :value="`${value}`">{{value}}</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div v-if="sliders.length>0">
+            <div v-for="(slider, index) in sliders">
+                <span>{{slider.name}}</span>
+                <input :id="`rangeInput${index}`"
+                       type="range"
+                       v-model="sliderSettings[index]"
+                       v-on:change="dispatchChange(sliderSettings[index], slider.name)"
+                       :min="slider.min"
+                       :max="slider.max"
+                       :step="slider.step">
+                <span :id="`rangeInputValue${index}`"></span>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -15,19 +35,49 @@
         name: "Parameters",
         data() {
             return {
-                colorSetting: 'default'
+                sliderSettings: [],
+                selectSettings: [],
+                sliders: [],
+                selects: []
             }
         },
         props: ['object'],
         methods: {
-            dispatchChange: function() {
+            dispatchChange: function(value, name) {
                 this.$root.$emit('put', actionCreator(SETTING_CHANGED, {
                     itemName: this.object.itemName,
                     setting: {
-                        type: 'color',
-                        value: this.colorSetting
+                        name,
+                        value
                     }
                 }));
+            }
+        },
+        created() {
+            this.object.settings.forEach(setting => {
+                switch (setting.type) {
+                    case 'slider':
+                        this.sliders.push(setting);
+                        break;
+                    case 'select':
+                        this.selects.push(setting);
+                        break;
+                    default:
+                }
+            });
+        },
+        mounted() {
+            if (this.sliders.length > 0) {
+                this.sliders.forEach((sliderObject, index) => {
+                    const slider = document.getElementById(`rangeInput${index}`);
+                    const output = document.getElementById(`rangeInputValue${index}`);
+                    output.innerHTML = slider.value; // Display the default slider value
+
+                    // Update the current slider value (each time you drag the slider handle)
+                    slider.oninput = function() {
+                        output.innerHTML = this.value;
+                    }
+                });
             }
         }
     }

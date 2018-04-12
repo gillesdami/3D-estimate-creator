@@ -6,13 +6,17 @@
 </template>
 
 <script>
-    import { actionCreator, CLICKED_OBJECT_ITEM_ICON } from '../../actions';
+    import { actionCreator, ADD_OBJECT_DISPLAYED } from '../../../actions';
 
     export default {
         name: "object-item",
         methods: {
             clickedObjectItem: function () {
-                this.$root.$emit('put', actionCreator(CLICKED_OBJECT_ITEM_ICON, this.item));
+                console.log(this.item);
+                this.$root.$emit('put', actionCreator(ADD_OBJECT_DISPLAYED, {
+                    itemName: this.name,
+                    item: this.item
+                }));
             }
         },
         props: ['name', 'item']

@@ -8,16 +8,41 @@
             "ILE DE FRANCE": 10,
             "PACA": 11
         },
-        "settings": {
-            "name": "longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
+        "settings": [
+            {
+                "name": "longueur",
+                "type": "slider",
+                "min": 3,
+                "max": 300,
+                "step": 3,
+                "effect": {
+                    "type": "repeat-y"
+                }
             }
-        }
+        ],
+        "apparels": [
+            {
+                "type": "toit",
+                "values": [
+                    "toit blanc 3m"
+                ]
+            },
+            {
+                "type": "rideau",
+                "values": [
+                    "rideau blanc [3]m",
+                    "rideau fenêtre [3]m",
+                    "rideau cristal [3]m"
+                ]
+            },
+            {
+                "type": "pignon",
+                "values": [
+                    "pignon cristal 3m",
+                    "pignon blanc 3m"
+                ]
+            }
+        ]
     },
     "Tente de réception - 15m x [3]m": {
         "actif": true,
@@ -28,16 +53,41 @@
             "ILE DE FRANCE": 10,
             "PACA": 11
         },
-        "settings": [{
-            "name": "longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
+        "settings": [
+            {
+                "name": "longueur",
+                "type": "slider",
+                "min": 3,
+                "max": 300,
+                "step": 3,
+                "effect": {
+                    "type": "repeat-y"
+                }
             }
-        }]
+        ],
+        "apparels": [
+            {
+                "type": "toit",
+                "values": [
+                    "toit blanc 3m"
+                ]
+            },
+            {
+                "type": "rideau",
+                "values": [
+                    "rideau blanc [3]m",
+                    "rideau fenêtre [3]m",
+                    "rideau cristal [3]m"
+                ]
+            },
+            {
+                "type": "pignon",
+                "values": [
+                    "pignon cristal 3m",
+                    "pignon blanc 3m"
+                ]
+            }
+        ]
     },
     "Tente de réception - 5m x [3]m": {
         "actif": true,
@@ -48,16 +98,41 @@
             "ILE DE FRANCE": 10,
             "PACA": 11
         },
-        "settings": [{
-            "name": "longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
+        "settings": [
+            {
+                "name": "longueur",
+                "type": "slider",
+                "min": 3,
+                "max": 300,
+                "step": 3,
+                "effect": {
+                    "type": "repeat-y"
+                }
             }
-        }]
+        ],
+        "apparels": [
+            {
+                "type": "toit",
+                "values": [
+                    "toit blanc 3m"
+                ]
+            },
+            {
+                "type": "rideau",
+                "values": [
+                    "rideau blanc [3]m",
+                    "rideau fenêtre [3]m",
+                    "rideau cristal [3]m"
+                ]
+            },
+            {
+                "type": "pignon",
+                "values": [
+                    "pignon cristal 3m",
+                    "pignon blanc 3m"
+                ]
+            }
+        ]
     },
     "Tente de réception - 5m x [5]m": {
         "actif": true,
@@ -68,16 +143,41 @@
             "ILE DE FRANCE": 13,
             "PACA": 14
         },
-        "settings": [{
-            "name": "longueur",
-            "type": "slider",
-            "min": 5,
-            "max": 500,
-            "step": 5,
-            "effect": {
-                "type": "repeat-y"
+        "settings": [
+            {
+                "name": "longueur",
+                "type": "slider",
+                "min": 5,
+                "max": 500,
+                "step": 5,
+                "effect": {
+                    "type": "repeat-y"
+                }
             }
-        }]
+        ],
+        "apparels": [
+            {
+                "type": "toit",
+                "values": [
+                    "toit blanc 3m"
+                ]
+            },
+            {
+                "type": "rideau",
+                "values": [
+                    "rideau blanc [3]m",
+                    "rideau fenêtre [3]m",
+                    "rideau cristal [3]m"
+                ]
+            },
+            {
+                "type": "pignon",
+                "values": [
+                    "pignon cristal 3m",
+                    "pignon blanc 3m"
+                ]
+            }
+        ]
     },
     "Tente de réception - 6m x [3]m": {
         "actif": true,
@@ -88,26 +188,40 @@
             "ILE DE FRANCE": 10,
             "PACA": 20
         },
-        "settings": [{
-            "name": "longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
+        "settings": [
+            {
+                "name": "longueur",
+                "type": "slider",
+                "min": 3,
+                "max": 300,
+                "step": 3,
+                "effect": {
+                    "type": "repeat-y"
+                }
             }
-        }]
-    },
-    "rideau blanc": {
-        "actif": true,
-        "section": "Structure",
-        "category": "Rideau",
-        "description": "",
-        "prix": {
-            "ILE DE FRANCE": 1,
-            "PACA": 2
-        },
-        "settings": []
+        ],
+        "apparels": [
+            {
+                "type": "toit",
+                "values": [
+                    "toit blanc 3m"
+                ]
+            },
+            {
+                "type": "rideau",
+                "values": [
+                    "rideau blanc [3]m",
+                    "rideau fenêtre [3]m",
+                    "rideau cristal [3]m"
+                ]
+            },
+            {
+                "type": "pignon",
+                "values": [
+                    "pignon cristal 3m",
+                    "pignon blanc 3m"
+                ]
+            }
+        ]
     }
 }

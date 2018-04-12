@@ -1,9 +1,13 @@
 <template>
     <div id="app">
-        <objects :collapsiblesStatus="store().collapsiblesStatus"></objects>
+
+        <drawer :store="store"/>
+
         <buttons id="buttonsPanel"/>
-        <helper-panel v-if="store().helper.isDisplay" id="helperPanel"/>
-        <details-comp :object="object"></details-comp>
+        <helper-panel v-if="store.helper.isDisplay" id="helperPanel"/>
+
+        <details-comp :object="object"/>
+        <objects :collapsiblesStatus="store().collapsiblesStatus"></objects>
     </div>
 </template>
 
@@ -14,20 +18,35 @@
     import Details from './3d/Details';
     import { $select } from '../sagas/vue';
     import { rootselector } from '../selectors';
+    import Drawer from './drawer/Drawer.vue';
 
     export default {
         name: 'app',
-        components : {
-            'buttons' : Buttons,
-            'objects' : Objects,
-            'details-comp' : Details,
+        components: {
+            'buttons': Buttons,
+            'details-comp': Details,
             'helper-panel': HelperPanel,
+            'drawer': Drawer,
         },
         data() {
             return {
                 object: {
-                    itemName: "tente",
-                    price: "30"
+                    itemName: 'Tente',
+                    price: '30',
+                    settings: [{
+                        name: 'longueur',
+                        type: 'slider',
+                        min: 3,
+                        max: 300,
+                        step: 3,
+                        effect: {
+                            type: 'repeat-y'
+                        }
+                    }],
+                    apparels: [{
+                        type: 'rideau',
+                        values: ['Rideau blanc 3x3', 'Rideau cristal 3x3']
+                    }]
                 }
             }
         },
