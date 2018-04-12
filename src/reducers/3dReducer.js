@@ -20,7 +20,7 @@ const defaultHelperState = {
     isDisplay: false
 };
 
-export const objectsDisplayed = (state = [], action) => {
+export const objectsDisplayed = (state = defaultObjectsDisplayedState, action) => {
     switch (action.type) {
         case SETTING_CHANGED:
             return state.map(object => {
@@ -61,16 +61,16 @@ export const objectsDisplayed = (state = [], action) => {
                 }
             });
         default:
-            return defaultObjectsDisplayedState;
+            return state;
     }
 };
 
-export const helper = (state = {}, action) => {
+export const helper = (state = defaultHelperState, action) => {
     switch (action.type) {
         case TOGGLE_HELPER_PANEL:
             return Object.assign(state, {['isDisplay']: !state['isDisplay']});
         default:
-            return defaultHelperState;
+            return state;
     }
 };
 
