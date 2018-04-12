@@ -25,34 +25,22 @@
         data() {
             return {
                 object: {
-                    itemName: "Tente",
-                    price: "30",
+                    itemName: 'Tente',
+                    price: '30',
                     settings: [{
-                        name: "longueur",
-                        type: "slider",
+                        name: 'longueur',
+                        type: 'slider',
                         min: 3,
                         max: 300,
                         step: 3,
                         effect: {
-                            type: "repeat-y"
+                            type: 'repeat-y'
                         }
-                    },{
-                        name: "hauteur",
-                        type: "slider",
-                        min: 5,
-                        max: 200,
-                        step: 5,
-                        effect: {
-                            type: "repeat-y"
-                        }
-                    },{
-                        name: "couleur",
-                        type: "select",
-                        values: ["Rouge", "Vert", "Bleu"],
-                        effect: {
-                            type: "repeat-y"
-                        }
-                    } ]
+                    }],
+                    apparels: [{
+                        type: 'rideau',
+                        values: ['Rideau blanc 3x3', 'Rideau cristal 3x3']
+                    }]
                 }
             }
         },

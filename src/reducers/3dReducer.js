@@ -1,4 +1,4 @@
-import { DELETE_ALL, SETTING_CHANGED, TOGGLE_HELPER_PANEL } from "../actions";
+import {APPAREL_CHANGED, DELETE_ALL, SETTING_CHANGED, TOGGLE_HELPER_PANEL} from "../actions";
 
 const defaultObjectsDisplayedState = [
     {
@@ -6,13 +6,11 @@ const defaultObjectsDisplayedState = [
         position: "",
         rotation: "",
         settings: [{
-            name: 'couleur',
-            value: 'default'
-        },{
             name: 'longueur',
             value: 'default'
-        },{
-            name: 'hauteur',
+        }],
+        apparels: [{
+            type: 'rideau',
             value: 'default'
         }]
     }
@@ -44,7 +42,24 @@ export const objectsDisplayed = (state = [], action) => {
 
                 return object;
             });
+        case APPAREL_CHANGED:
+            return state.map(object => {
+                if (object.name === action.payload.itemName) {
+                    return {
+                        ...object,
+                        apparels: object.apparels.map(apparel => {
+                            if (apparel.type === action.payload.apparel.type) {
+                                return {
+                                    ...apparel,
+                                    value: action.payload.apparel.value
+                                }
+                            }
 
+                            return apparel;
+                        })
+                    }
+                }
+            });
         default:
             return defaultObjectsDisplayedState;
     }
