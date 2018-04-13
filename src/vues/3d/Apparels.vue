@@ -2,9 +2,10 @@
     <div>
         <div v-if="detailsState().item && detailsState().item.apparels.length>0">
             <h3>Habillage</h3>
-            <div v-for="(apparel, index) in detailsState().item.apparels">
+            <div class="input-field" v-for="(apparel, index) in detailsState().item.apparels">
                 <select v-model="selectApparels[index]"
                         v-on:change="handleChange(selectApparels[index], apparel.type)">
+                    <option disabled selected value="">Faites votre choix</option>
                     <option v-for="value in apparel.values"
                             :value="`${value}`">{{value}}</option>
                 </select>

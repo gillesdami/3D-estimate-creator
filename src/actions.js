@@ -40,3 +40,4 @@ export const VIEW_CREATED = "VIEW_CREATED";
  * three actions
  */
 export const RENDERER_CREATED = "RENDERER_CREATED";
+export const SET_RENDERER_SIZE = "SET_RENDERER_SIZE";

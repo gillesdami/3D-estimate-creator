@@ -1,7 +1,6 @@
 import * as THREE from 'three';
-import { create } from '../util';
-import { put, takeEvery, fork } from 'redux-saga/effects';
-import { RENDERER_CREATED, actionCreator } from '../actions';
+import {fork, put, takeEvery} from 'redux-saga/effects';
+import {actionCreator, RENDERER_CREATED, SET_RENDERER_SIZE} from '../actions';
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
@@ -16,10 +15,12 @@ export function* initThreeSaga() {
 	scene.add(mesh);
 
 	const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth*0.7, window.innerHeight);
+    renderer.setSize(window.innerWidth*0.75, window.innerHeight);
     
     yield put(actionCreator(RENDERER_CREATED, renderer));
     yield fork(drawFrame, mesh, scene, camera, renderer);
+
+    yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
 }
 
 export function* drawFrame(mesh, scene, camera, renderer) {
@@ -31,4 +32,8 @@ export function* drawFrame(mesh, scene, camera, renderer) {
     
         renderer.render( scene, camera );
     }
+}
+
+export function* setRendererSize(action) {
+    action.payload.renderer.setSize(action.payload.width, action.payload.height);
 }

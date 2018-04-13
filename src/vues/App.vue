@@ -1,15 +1,18 @@
 <template>
-    <body>
-        <div id="v3D">
-            <div id="threeRoot"></div>
+    <div class="row">
+        <div id="v3D" class="col s8">
+            <details-comp/>
+
+            <!--<div id="threeRoot"></div>-->
 
             <buttons id="buttonsPanel"/>
-            <helper-panel v-if="store().helper.isDisplayed" id="helperPanel"/>
-            <details-comp/>
+            <helper-panel id="helperPanel"
+                          v-if="store().helper.isDisplayed"/>
         </div>
-        
-        <drawer :store="store()"/>
-    </body>
+
+        <drawer class="col s4"
+                :store="store()"/>
+    </div>
 </template>
 
 <script>
@@ -19,6 +22,7 @@
     import { $select } from '../sagas/vue';
     import { rootselector, rendererSelector } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
+    import { actionCreator, SET_RENDERER_SIZE } from '../actions'
 
     export default {
         name: 'app',
@@ -31,19 +35,32 @@
         methods: {
             'store': function() {
                 return $select(rootselector);
+            },
+            resizeRenderer: function() {
+
             }
         },
         mounted: function() {
             const renderer = $select(rendererSelector);
 
-            if(renderer.domElement) {
-                document.getElementById('threeRoot').appendChild(renderer.domElement);
-            }
+            document.getElementById('threeRoot').appendChild(renderer.domElement);
+
+            window.addEventListener('resize', () => {
+                const container = document.getElementById('v3D');
+                this.$root.$emit('put', actionCreator(SET_RENDERER_SIZE, {
+                    renderer,
+                    width: container.clientWidth,
+                    height: container.clientHeight
+                } ));
+            });
         }
     }
 </script>
 
 <style lang="css">
+    #v3D {
+        padding: 0;
+    }
 
     #buttonsPanel {
         margin: 0.5% 0 0 0.5%;
