@@ -13,15 +13,11 @@
 
 <script>
     import CartItem from "./CartItem.vue";
-    import Cart from "./Cart";
     import { $select } from '../../../sagas/vue';
     import { objectsDisplayed } from '../../../selectors';
 
     export default {
-        components: {
-            Cart,
-            CartItem,
-        },
+        components: { CartItem },
         name: "cart-list",
         methods: {
             objectsInCart: function () {
@@ -29,9 +25,10 @@
                 const objectsInCart = [];
                 
                 objs.forEach((obj) => {
-                    let objTmp = {
+                    const objTmp = {
                         name: obj.name,
-                        value: obj.value,
+                        price: obj.price,
+                        apparels: obj.apparels,
                         qte: 1
                     };
 
@@ -47,7 +44,7 @@
                     if (!isAlreadyIn) {
                         objectsInCart.push(objTmp);
                     }
-console.log(objectsInCart);
+                    console.log(objectsInCart);
                     return objectsInCart;
                 });
             }

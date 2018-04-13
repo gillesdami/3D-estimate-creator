@@ -8,7 +8,7 @@
 </template>
 
 <script>
-    import ObjectsAvailable from '../../../../resources/objectsAvailable.json';
+    import objectsAvailable from '../../../../resources/objectsAvailable.json';
     import CartList from "./CartList";
     import { $select } from '../../../sagas/vue';
     import { totalSelector } from '../../../selectors';
@@ -18,7 +18,9 @@
         name: "cart",
         methods: {
             total: function() {
-                return $select(totalSelector);
+                const tt =  $select(totalSelector, objectsAvailable);
+                console.log(tt);
+                return tt;
             }
         }
     }
