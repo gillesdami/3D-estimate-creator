@@ -1,13 +1,15 @@
 <template>
-    <div id="app">
-        <div id="threeRoot"></div>
+    <body>
+        <div id="v3D">
+            <div id="threeRoot"></div>
+
+            <buttons id="buttonsPanel"/>
+            <helper-panel v-if="store().helper.isDisplayed" id="helperPanel"/>
+            <details-comp/>
+        </div>
+        
         <drawer :store="store()"/>
-
-        <buttons id="buttonsPanel"/>
-        <helper-panel v-if="store().helper.isDisplayed" id="helperPanel"/>
-
-        <details-comp/>
-    </div>
+    </body>
 </template>
 
 <script>
@@ -26,11 +28,6 @@
             'helper-panel': HelperPanel,
             'drawer': Drawer
         },
-        data() {
-            return {
-
-            }
-        },
         methods: {
             'store': function() {
                 return $select(rootselector);
@@ -47,9 +44,6 @@
 </script>
 
 <style lang="css">
-    #app {
-        color: #56b983;
-    }
 
     #buttonsPanel {
         margin: 0.5% 0 0 0.5%;

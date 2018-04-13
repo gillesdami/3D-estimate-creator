@@ -1,13 +1,13 @@
 <template>
     <table>
         <tr>
-            <td>{{obj['name']}}</td>
-            <td class="tdItem">{{obj['qte']}}</td>
-            <td class="tdItem">{{obj['price']}} €</td>
+            <td>{{ obj.name }}</td>
+            <td class="tdItem">{{ obj.qte }}</td>
+            <td class="tdItem">{{ obj.price }} €</td>
         </tr>
         <tr v-for="app in apparels">
-            <td class="tdSubItem">{{app['name']}} - {{app['value']}}</td>
-            <td class="tdSubItem">{{app['qte']}}</td>
+            <td class="tdSubItem">{{ app.name }} - {{ app.value }}</td>
+            <td class="tdSubItem">{{ app.qte }}</td>
         </tr>
     </table>
 </template>
@@ -22,7 +22,7 @@
             }
         },
         created() {
-            this.obj['apparels'].forEach((ap) => {
+            this.obj.apparels.forEach((ap) => {
                 let apTmp = {
                     name: ap.name,
                     value: ap.value,

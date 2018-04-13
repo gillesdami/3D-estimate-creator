@@ -4,14 +4,14 @@
             <button id="buttonObjects" class="buttonTab" v-on:click="changeTab">Objets</button>
             <button id="buttonCart" class="buttonTab" v-on:click="changeTab">Panier</button>
         </span>
-        <cart id="cart" :objects-displayed="store.objectsDisplayed"/>
-        <objects/>
+        <cart id="cart"/>
+        <objects id="objects"/>
     </div>
 </template>
 
 <script>
     import Objects from '../drawer/objects/Objects.vue';
-    import Cart from '../drawer/cart/Cart.vue'
+    import Cart from '../drawer/cart/Cart.vue';
 
     export default {
         components: {
@@ -19,10 +19,6 @@
             'cart': Cart,
         },
         name: "drawer",
-        props: ['store'],
-        data() {
-            return {}
-        },
         methods: {
             changeTab: function (event) {
                 if (event.target.id === "buttonCart") {
