@@ -1,11 +1,11 @@
 <template>
-    <div id="apparels">
-        <div v-if="selects.length>0">
-            <div v-for="(select, index) in selects">
-                <select name="color"
-                        v-model="selectApparels[index]"
-                        v-on:change="dispatchChange(selectApparels[index], select.type)">
-                    <option v-for="value in select.values"
+    <div>
+        <div v-if="detailsState().item && detailsState().item.apparels.length>0">
+            <h3>Habillage</h3>
+            <div v-for="(apparel, index) in detailsState().item.apparels">
+                <select v-model="selectApparels[index]"
+                        v-on:change="handleChange(selectApparels[index], apparel.type)">
+                    <option v-for="value in apparel.values"
                             :value="`${value}`">{{value}}</option>
                 </select>
             </div>
@@ -22,14 +22,13 @@
         name: "Apparels",
         data() {
             return {
-                selectApparels: [],
-                selects: []
+                selectApparels: []
             }
         },
         methods: {
-            dispatchChange: function(value, type) {
+            handleChange: function(value, type) {
                 this.$root.$emit('put', actionCreator(APPAREL_CHANGED, {
-                    itemName: this.object.itemName,
+                    itemName: this.detailsState().itemName,
                     apparel: {
                         type,
                         value
@@ -39,9 +38,6 @@
             detailsState: function() {
                 return $select(getDetailsState);
             }
-        },
-        updated() {
-            this.detailsState().item.apparels.forEach(apparel => this.selects.push(apparel));
         }
     }
 </script>

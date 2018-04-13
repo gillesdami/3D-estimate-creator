@@ -1,8 +1,8 @@
 <template>
-    <div id="objectDetails">
+    <div style="text-align: center">
         <general></general>
-        <!--<parameters></parameters>-->
-        <!--<apparels></apparels>-->
+        <parameters></parameters>
+        <apparels></apparels>
     </div>
 </template>
 

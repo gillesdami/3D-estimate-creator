@@ -13,14 +13,20 @@ const defaultDetailsState = {
 export const objectsDisplayed = (state = [], action) => {
     switch (action.type) {
         case ADD_OBJECT_DISPLAYED:
-            return [
-                ...state,
-                {
-                    name: action.payload.itemName,
-                    settings: action.payload.item.settings,
-                    apparels: action.payload.item.apparels
-                }
-            ];
+            const obj = state.find(obj => obj.name === action.payload.itemName);
+
+            if (!obj) {
+                return [
+                    ...state,
+                    {
+                        name: action.payload.itemName,
+                        settings: action.payload.item.settings,
+                        apparels: action.payload.item.apparels
+                    }
+                ];
+            }
+
+            return state;
         case SETTING_CHANGED:
             return state.map(object => {
                 if (object.name === action.payload.itemName) {
