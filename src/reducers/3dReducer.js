@@ -13,20 +13,20 @@ const defaultDetailsState = {
 export const objectsDisplayed = (state = [], action) => {
     switch (action.type) {
         case ADD_OBJECT_DISPLAYED:
-            const obj = state.find(obj => obj.name === action.payload.itemName);
+            const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
 
-            if (!obj) {
-                return [
-                    ...state,
-                    {
-                        name: action.payload.itemName,
-                        settings: action.payload.item.settings,
-                        apparels: action.payload.item.apparels
-                    }
-                ];
-            }
-
-            return state;
+            return [
+                ...state,
+                {
+                    uid: generateUid(),
+                    name: action.payload.itemName,
+                    settings: action.payload.item.settings,
+                    apparels: action.payload.item.apparels
+                }
+            ];
         case SETTING_CHANGED:
             return state.map(object => {
                 if (object.name === action.payload.itemName) {
