@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div id="v3D" class="col s8">
+        <div id="v3D" class="col s8 m8 l8">
             <details-comp/>
 
             <!--<div id="threeRoot"></div>-->
@@ -10,7 +10,7 @@
                           v-if="store().helper.isDisplayed"/>
         </div>
 
-        <drawer class="col s4"
+        <drawer class="col s4 m4 l4"
                 :store="store()"/>
     </div>
 </template>
@@ -58,6 +58,9 @@
 </script>
 
 <style lang="css">
+    select {
+        display: block;
+    }
     #v3D {
         padding: 0;
     }
