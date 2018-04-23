@@ -36,27 +36,29 @@
             'store': function() {
                 return $select(rootselector);
             },
-            resizeRenderer: function() {
-
-            }
-        },
-        mounted: function() {
-            const renderer = $select(rendererSelector);
-
-            const threeRoot = document.getElementById('threeRoot');
-            threeRoot.appendChild(renderer.domElement);
-
-            window.addEventListener('resize', () => {
+            'setRendererSize': function(renderer) {
                 const container = document.getElementById('v3D');
                 this.$root.$emit('put', actionCreator(SET_RENDERER_SIZE, {
                     renderer,
                     width: container.clientWidth,
                     height: container.clientHeight
                 } ));
-            });
+            }
+        },
+        mounted: function() {
+            const renderer = $select(rendererSelector);
+            const threeRoot = document.getElementById('threeRoot');
+            threeRoot.appendChild(renderer.domElement);
 
-            const detailsComp = document.getElementById('details');
-            detailsComp.style.left = (0.7*threeRoot.clientWidth).toString();
+            setTimeout(() => {
+                this.setRendererSize(renderer);
+                const detailsComp = document.getElementById('details');
+                detailsComp.style.left = (0.6*threeRoot.clientWidth).toString();
+            }, 100);
+
+            window.addEventListener('resize', () => {
+                this.setRendererSize(renderer);
+            });
         }
     }
 </script>

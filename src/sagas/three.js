@@ -15,7 +15,7 @@ export function* initThreeSaga() {
 	scene.add(mesh);
 
 	const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth*0.75, window.innerHeight);
+    renderer.setSize(window.innerWidth*0.65, window.innerHeight);
     
     yield put(actionCreator(RENDERER_CREATED, renderer));
     yield fork(drawFrame, mesh, scene, camera, renderer);
