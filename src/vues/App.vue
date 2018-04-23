@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row first-div">
         <div id="v3D" class="col s9">
             <details-comp id="details" v-show="detailsState().isDisplayed"/>
 
@@ -10,7 +10,7 @@
                           v-show="store().helper.isDisplayed"/>
         </div>
 
-        <drawer class="col s3"
+        <drawer id="drawer" class="col s3"
                 :store="store()"/>
     </div>
 </template>
@@ -85,8 +85,20 @@
         margin: 8px;
     }
 
+    .first-div {
+        margin-bottom: 0;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        height: 100%;
+    }
+
     #v3D {
         padding: 0;
+    }
+
+    #drawer {
+        overflow-y: scroll;
+        height: 100%;
     }
 
     #details {
