@@ -8,7 +8,7 @@ import { actionCreator, VIEW_CREATED, RENDERER_CREATED } from '../actions';
 export function* initVueSaga() {
     const store = yield select(rootselector);
 
-    // yield take(RENDERER_CREATED);
+    yield take(RENDERER_CREATED);
 
     const vue = yield new Promise(resolve => {
         new Vue({
