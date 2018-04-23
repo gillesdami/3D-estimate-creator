@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="detailsState().item && detailsState().item.apparels.length>0">
-            <h3>Habillage</h3>
+            <p class="title">Habillage</p>
             <div class="input-field" v-for="(apparel, index) in detailsState().item.apparels">
                 <select :v-model="selectApparels[index]"
                         v-on:change="handleChange(selectApparels[index], apparel.type)">
@@ -44,5 +44,8 @@
 </script>
 
 <style scoped>
-
+    .title {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
 </style>

@@ -75,7 +75,7 @@ export const details = (state = defaultDetailsState, action) => {
         case TOGGLE_DETAILS_PANEL:
             return {
                 ...state,
-                isDisplayed : !state.isDisplayed,
+                isDisplayed : true,
                 itemName: action.payload.itemName,
                 item: action.payload.item
             };

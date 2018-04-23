@@ -1,16 +1,16 @@
 <template>
     <div class="row">
-        <div id="v3D" class="col s8 m8 l8">
-            <details-comp id="details"/>
+        <div id="v3D" class="col s9">
+            <details-comp id="details" v-show="detailsState().isDisplayed"/>
 
             <div id="threeRoot"></div>
 
             <buttons id="buttonsPanel"/>
             <helper-panel id="helperPanel"
-                          v-if="store().helper.isDisplayed"/>
+                          v-show="store().helper.isDisplayed"/>
         </div>
 
-        <drawer class="col s4 m4 l4"
+        <drawer class="col s3"
                 :store="store()"/>
     </div>
 </template>
@@ -20,7 +20,7 @@
     import Buttons from './3d/Buttons';
     import Details from './3d/Details';
     import { $select } from '../sagas/vue';
-    import { rootselector, rendererSelector } from '../selectors';
+    import { rootselector, rendererSelector, getDetailsState } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
     import { actionCreator, SET_RENDERER_SIZE } from '../actions'
 
@@ -33,10 +33,13 @@
             'drawer': Drawer
         },
         methods: {
-            'store': function() {
+            store: function() {
                 return $select(rootselector);
             },
-            'setRendererSize': function(renderer) {
+            detailsState: function() {
+                return $select(getDetailsState);
+            },
+            setRendererSize: function(renderer) {
                 const container = document.getElementById('v3D');
                 this.$root.$emit('put', actionCreator(SET_RENDERER_SIZE, {
                     renderer,
@@ -99,8 +102,12 @@
     }
 
     #helperPanel {
-        width: 50%;
-        border: 1px solid black;
+        position: absolute;
+        top: 15px;
+        left: 0;
+        width: 25%;
+        background-color: #F6F7F8;
+        border: 1px solid white;
         padding: 2vw;
         margin: 2vw;
     }

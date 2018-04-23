@@ -1,7 +1,7 @@
 <template>
     <div>
-        <img v-on:click="help" id="questionMark" src="../../../assets/questionMark.jpg"/>
-        <img v-on:click="deleteAll" id="trash" src="../../../assets/trash.png"/>
+        <img v-on:click="help" id="questionMark" src="../../../assets/question.svg"/>
+        <img v-on:click="deleteAll" id="trash" src="../../../assets/delete.svg"/>
     </div>
 </template>
 
@@ -12,7 +12,6 @@
         name: "buttons",
         data() {
             return {
-                msg: 'Welcome to Your Vue.js App!'
             }
         },
         methods: {

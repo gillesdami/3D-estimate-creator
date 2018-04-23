@@ -23,6 +23,7 @@
 
 <style scoped>
     .details-panel {
+        width: 15%;
         text-align: center;
         padding: 5px;
         background-color: #F6F7F8;
