@@ -40,3 +40,4 @@ export const VIEW_CREATED = "VIEW_CREATED";
  * three actions
  */
 export const RENDERER_CREATED = "RENDERER_CREATED";
+export const ADD_3D_OBJECT = "ADD_3D_OBJECT";
