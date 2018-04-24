@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import ColladaLoader from 'three-collada-loader';
 import { create } from '../util';
 import { put, takeEvery, fork, call } from 'redux-saga/effects';
-import { RENDERER_CREATED, actionCreator, ADD_OBJECT_DISPLAYED, ADD_3D_OBJECT } from '../actions';
+import { RENDERER_CREATED, actionCreator, ADD_OBJECT_DISPLAYED, ADD_3D_OBJECT, SET_RENDERER_SIZE } from '../actions';
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 100000);
@@ -20,11 +20,12 @@ console.warn(camera);
     scene.add(ambientLight);
                 
 	const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth*0.7, window.innerHeight);
+    renderer.setSize(window.innerWidth*0.65, window.innerHeight);
     
     yield put(actionCreator(RENDERER_CREATED, renderer));
     yield fork(drawFrame, scene, camera, renderer);
     yield takeEvery(ADD_OBJECT_DISPLAYED, addObject, scene);
+    yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
 }
 
 export function* drawFrame(scene, camera, renderer) {
@@ -59,4 +60,8 @@ export function loadModel(dir, name) {
             reject
         );
     });
+}
+
+export function* setRendererSize(action) {
+    action.payload.renderer.setSize(action.payload.width, action.payload.height);
 }

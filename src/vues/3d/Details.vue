@@ -1,5 +1,5 @@
 <template>
-    <div style="text-align: center">
+    <div class="details-panel">
         <general></general>
         <parameters></parameters>
         <apparels></apparels>
@@ -22,5 +22,11 @@
 </script>
 
 <style scoped>
-
+    .details-panel {
+        width: 15%;
+        text-align: center;
+        padding: 5px;
+        background-color: #F6F7F8;
+        border-radius: 15px;
+    }
 </style>
