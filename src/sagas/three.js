@@ -17,6 +17,10 @@ export function* initThreeSaga() {
 
     const scene = new THREE.Scene();
 
+    const gridHelper = new THREE.GridHelper(10, 10);
+    gridHelper.rotation.x = Math.PI / 2;
+    scene.add(gridHelper);
+
     const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
     scene.add(ambientLight);
 
