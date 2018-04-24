@@ -11,15 +11,16 @@
     export default {
         name: "buttons",
         data() {
-            return {
-            }
+            return {}
         },
         methods: {
             help: function () {
                 this.$root.$emit('put', actionCreator(TOGGLE_HELPER_PANEL));
             },
             deleteAll: function () {
-                this.$root.$emit('put', actionCreator(DELETE_ALL));
+                if (confirm('Are you REALLY sure to delete all ? This action is irreversible !')) {
+                    this.$root.$emit('put', actionCreator(DELETE_ALL));
+                }
             }
         }
     }
