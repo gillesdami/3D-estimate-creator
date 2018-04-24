@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import { collapsiblesStatus } from './drawerReducer';
-import { VIEW_CREATED } from '../actions';
-import { objectsDisplayed, helper, deleteAll, renderer, details } from './3dReducer';
+import { objectsDisplayed, helper, deleteAll, renderer, details, camera } from './3dReducer';
 
 const rootReducer = combineReducers({
     collapsiblesStatus,
@@ -9,7 +8,8 @@ const rootReducer = combineReducers({
     details,
     helper,
     deleteAll,
-    renderer
+    renderer,
+    camera
 });
 
 export default rootReducer;

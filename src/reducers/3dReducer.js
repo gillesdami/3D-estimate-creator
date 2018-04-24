@@ -1,4 +1,7 @@
-import {ADD_OBJECT_DISPLAYED, APPAREL_CHANGED, DELETE_ALL, SETTING_CHANGED, TOGGLE_DETAILS_PANEL, TOGGLE_HELPER_PANEL, RENDERER_CREATED } from "../actions";
+import {
+    ADD_OBJECT_DISPLAYED, APPAREL_CHANGED, DELETE_ALL, SETTING_CHANGED, TOGGLE_DETAILS_PANEL, TOGGLE_HELPER_PANEL,
+    RENDERER_CREATED, MOUSEWHEEL_UPDATE
+} from "../actions";
 
 const defaultHelperState = {
     isDisplayed: false
@@ -108,6 +111,18 @@ export const renderer = (state = {}, action) => {
     switch (action.type) {
         case RENDERER_CREATED:
             return action.payload;
+        default:
+            return state;
+    }
+};
+
+export const camera = (state = {}, action) => {
+    switch (action.type) {
+        case MOUSEWHEEL_UPDATE :
+            return {
+                ...state,
+                zoomFactor : action.payload
+            };
         default:
             return state;
     }

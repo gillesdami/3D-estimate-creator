@@ -40,3 +40,6 @@ export const VIEW_CREATED = "VIEW_CREATED";
  * three actions
  */
 export const RENDERER_CREATED = "RENDERER_CREATED";
+export const MOUSEWHEEL_UP = "MOUSEWHEEL_UP";
+export const MOUSEWHEEL_DOWN = "MOUSEWHEEL_DOWN";
+export const MOUSEWHEEL_UPDATE = "MOUSEWHEEL_UPDATE";
