@@ -1,4 +1,14 @@
-import {ADD_OBJECT_DISPLAYED, APPAREL_CHANGED, DELETE_ALL, SETTING_CHANGED, TOGGLE_DETAILS_PANEL, TOGGLE_HELPER_PANEL, RENDERER_CREATED, ADD_3D_OBJECT } from "../actions";
+import {
+    ADD_3D_OBJECT,
+    ADD_OBJECT_DISPLAYED,
+    APPAREL_CHANGED,
+    DELETE_ALL,
+    MOUSEWHEEL_UPDATE,
+    RENDERER_CREATED,
+    SETTING_CHANGED,
+    TOGGLE_DETAILS_PANEL,
+    TOGGLE_HELPER_PANEL
+} from "../actions";
 
 const defaultHelperState = {
     isDisplayed: false
@@ -13,10 +23,10 @@ const defaultDetailsState = {
 export const objectsDisplayed = (state = [], action) => {
     switch (action.type) {
         case ADD_OBJECT_DISPLAYED:
-            const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                    const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-                    return v.toString(16);
-                });
+            const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
 
             return [
                 ...state,
@@ -75,7 +85,7 @@ export const details = (state = defaultDetailsState, action) => {
         case TOGGLE_DETAILS_PANEL:
             return {
                 ...state,
-                isDisplayed : true,
+                isDisplayed: true,
                 itemName: action.payload.itemName,
                 item: action.payload.item
             };
@@ -113,6 +123,18 @@ export const renderer = (state = {}, action) => {
     }
 };
 
+export const camera = (state = {}, action) => {
+    switch (action.type) {
+        case MOUSEWHEEL_UPDATE :
+            return {
+                ...state,
+                zoomFactor: action.payload
+            };
+        default:
+            return state;
+    }
+};
+
 /**
  * {
  *  uid: {
@@ -122,11 +144,11 @@ export const renderer = (state = {}, action) => {
  *      instance: Object3D (mutable)
  *  }
  * }
- * 
+ *
  * uid is a string matching with an objectDisplayed uid or an [apparealName] value
  */
 export const objects3d = (state = {}, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case ADD_3D_OBJECT:
             return {
                 ...state,

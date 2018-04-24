@@ -39,5 +39,87 @@
                 ]
             }
         ]
+    },
+    "Pagode - 4m x 4m": {
+        "activate": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "toit",
+                "values": [
+                    "toit blanc 3m",
+                    "toir cristal 3d"
+                ]
+            },
+            {
+                "type": "rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenêtre 3m",
+                    "rideau cristal 3m"
+                ]
+            },
+            {
+                "type": "plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "lestage",
+                "values": [
+                    "lestage pagode",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Pagode - 5m x 5m": {
+        "activate": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "toit",
+                "values": [
+                    "toit blanc 3m",
+                    "toir cristal 3d"
+                ]
+            },
+            {
+                "type": "rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenêtre 3m",
+                    "rideau cristal 3m"
+                ]
+            },
+            {
+                "type": "plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "lestage",
+                "values": [
+                    "lestage pagode",
+                    "aucun"
+                ]
+            }
+        ]
     }
 }

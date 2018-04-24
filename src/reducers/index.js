@@ -1,6 +1,6 @@
-import {combineReducers} from 'redux';
-import {collapsiblesStatus} from './drawerReducer';
-import {deleteAll, details, helper, objectsDisplayed, renderer} from './3dReducer';
+import { combineReducers } from 'redux';
+import { collapsiblesStatus } from './drawerReducer';
+import { camera, deleteAll, details, helper, objectsDisplayed, renderer } from './3dReducer';
 
 const rootReducer = combineReducers({
     collapsiblesStatus,
@@ -8,7 +8,8 @@ const rootReducer = combineReducers({
     details,
     helper,
     deleteAll,
-    renderer
+    renderer,
+    camera
 });
 
 export default rootReducer;

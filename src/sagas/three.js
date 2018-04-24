@@ -1,28 +1,29 @@
 import * as THREE from 'three';
-import OrbitControls from 'three-orbitcontrols';
-import ColladaLoader from 'three-collada-loader';
-import {call, fork, put, takeEvery} from 'redux-saga/effects';
+import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import {
     actionCreator,
     ADD_3D_OBJECT,
     ADD_OBJECT_DISPLAYED,
+    MOUSEWHEEL_UPDATE,
     MOUSE_MOVE,
     RENDERER_CREATED,
     SET_RENDERER_SIZE
 } from '../actions';
+import OrbitControls from 'three-orbitcontrols';
+import ColladaLoader from 'three-collada-loader';
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10000);
     camera.position.y = -10;
     camera.lookAt(new THREE.Vector3(0, 0, 0));
-    
-	const scene = new THREE.Scene();
+
+    const scene = new THREE.Scene();
 
     const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
     scene.add(ambientLight);
 
-	const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth*0.65, window.innerHeight);
+    const renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setSize(window.innerWidth * 0.65, window.innerHeight);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
@@ -36,9 +37,9 @@ export function* initThreeSaga() {
 }
 
 export function* drawFrame(scene, camera, renderer) {
-    while(1) {
+    while (1) {
         yield new Promise((resolve) => requestAnimationFrame(resolve));
-        renderer.render( scene, camera );
+        renderer.render(scene, camera);
     }
 }
 
@@ -55,7 +56,7 @@ export function* addObject(scene, action) {
     bb.getCenter(center);
     mesh.position.x -= center.x;
     mesh.position.y -= center.y;
-    mesh.position.z -= center.z;   
+    mesh.position.z -= center.z;
 
     yield put(actionCreator(ADD_3D_OBJECT, {
         uid: item.uid,
@@ -69,9 +70,10 @@ export function loadModel(dir, name) {
         const loader = new ColladaLoader();
 
         loader.load(
-            `/models/${dir}/${name}.dae`, 
+            `/models/${dir}/${name}.dae`,
             (collada) => resolve(collada.scene),
-            () => {}, //progress
+            () => {
+            }, //progress
             reject
         );
     });
@@ -79,6 +81,16 @@ export function loadModel(dir, name) {
 
 export function* setRendererSize(action) {
     action.payload.renderer.setSize(action.payload.width, action.payload.height);
+}
+
+export function* mouseWheel(camera, isUpOrDown) {
+    if (isUpOrDown) {
+        camera.zoom += 1;
+        yield put(actionCreator(MOUSEWHEEL_UPDATE, camera.zoom));
+    } else if (!isUpOrDown) {
+        camera.zoom -= 1;
+        yield put(actionCreator(MOUSEWHEEL_UPDATE, camera.zoom));
+    }
 }
 
 export function* mouseMove(camera, action) {
