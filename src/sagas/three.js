@@ -5,20 +5,15 @@ import { put, takeEvery, fork, call } from 'redux-saga/effects';
 import { RENDERER_CREATED, actionCreator, ADD_OBJECT_DISPLAYED, ADD_3D_OBJECT, SET_RENDERER_SIZE } from '../actions';
 
 export function* initThreeSaga() {
-    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 100000);
-	camera.position.z = 1;
-console.warn(camera);
+    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10000);
+    camera.position.y = -10;
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    
 	const scene = new THREE.Scene();
-
-	const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
-	const material = new THREE.MeshNormalMaterial();
-
-	const mesh = new THREE.Mesh(geometry, material);
-	scene.add(mesh);
 
     const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
     scene.add(ambientLight);
-                
+
 	const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth*0.65, window.innerHeight);
     
@@ -39,8 +34,16 @@ export function* addObject(scene, action) {
     const {itemName, item} = action.payload;
 
     const mesh = yield call(loadModel, itemName, itemName);
-    console.log(mesh);
     scene.add(mesh);
+
+    //center the mesh on vec0
+    const bb = new THREE.Box3();
+    const center = new THREE.Vector3();
+    bb.setFromObject(mesh);
+    bb.getCenter(center);
+    mesh.position.x -= center.x;
+    mesh.position.y -= center.y;
+    mesh.position.z -= center.z;   
 
     yield put(actionCreator(ADD_3D_OBJECT, {
         uid: item.uid,

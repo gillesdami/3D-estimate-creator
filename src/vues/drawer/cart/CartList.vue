@@ -44,7 +44,7 @@
                     if (!isAlreadyIn) {
                         objectsInCart.push(objTmp);
                     }
-                    console.log(objectsInCart);
+                    
                     return objectsInCart;
                 });
             }
