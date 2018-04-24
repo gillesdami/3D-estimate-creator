@@ -3753,6 +3753,10 @@ three-collada-loader@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/three-collada-loader/-/three-collada-loader-0.0.1.tgz#47c3885464d74916074d91a0b69e9c660c3c219b"
 
+three-orbitcontrols@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/three-orbitcontrols/-/three-orbitcontrols-2.0.0.tgz#4a0ce4c790bd85febb20de2ea4521c21c573794c"
+
 three@^0.91.0:
   version "0.91.0"
   resolved "https://registry.yarnpkg.com/three/-/three-0.91.0.tgz#033fe745b64e56e679a86581957cfd1c5f9fe284"
