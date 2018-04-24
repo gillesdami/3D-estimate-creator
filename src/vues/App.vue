@@ -52,6 +52,7 @@
             const renderer = $select(rendererSelector);
             const threeRoot = document.getElementById('threeRoot');
             threeRoot.appendChild(renderer.domElement);
+            threeRoot.addEventListener('contextmenu', event => event.preventDefault());
 
             setTimeout(() => {
                 this.setRendererSize(renderer);

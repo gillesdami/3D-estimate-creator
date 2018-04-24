@@ -1,8 +1,15 @@
 import * as THREE from 'three';
+import OrbitControls from 'three-orbitcontrols';
 import ColladaLoader from 'three-collada-loader';
-import { create } from '../util';
-import { put, takeEvery, fork, call } from 'redux-saga/effects';
-import { RENDERER_CREATED, actionCreator, ADD_OBJECT_DISPLAYED, ADD_3D_OBJECT, SET_RENDERER_SIZE } from '../actions';
+import {call, fork, put, takeEvery} from 'redux-saga/effects';
+import {
+    actionCreator,
+    ADD_3D_OBJECT,
+    ADD_OBJECT_DISPLAYED,
+    MOUSE_MOVE,
+    RENDERER_CREATED,
+    SET_RENDERER_SIZE
+} from '../actions';
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10000);
@@ -16,11 +23,16 @@ export function* initThreeSaga() {
 
 	const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth*0.65, window.innerHeight);
-    
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+
     yield put(actionCreator(RENDERER_CREATED, renderer));
     yield fork(drawFrame, scene, camera, renderer);
     yield takeEvery(ADD_OBJECT_DISPLAYED, addObject, scene);
     yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
+    yield takeEvery(MOUSE_MOVE, setRendererSize);
 }
 
 export function* drawFrame(scene, camera, renderer) {
@@ -67,4 +79,14 @@ export function loadModel(dir, name) {
 
 export function* setRendererSize(action) {
     action.payload.renderer.setSize(action.payload.width, action.payload.height);
+}
+
+export function* mouseMove(camera, action) {
+    // console.log(action.payload.mouseEvent);
+
+    if (action.payload.click === 'left') {
+
+    } else {
+        // camera.setPosition();
+    }
 }
