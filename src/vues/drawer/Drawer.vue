@@ -38,11 +38,6 @@
 </script>
 
 <style lang="css">
-    #drawer {
-        float: right;
-        width: 30vw;
-    }
-
     #cart {
         display: none;
     }

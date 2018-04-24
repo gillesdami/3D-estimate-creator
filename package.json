@@ -15,6 +15,7 @@
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
     "three": "^0.91.0",
+    "three-collada-loader": "^0.0.1",
     "vue": "^2.5.16",
     "vue-hot-reload-api": "^2.3.0"
   },

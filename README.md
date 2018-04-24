@@ -12,6 +12,8 @@ Gather dependancies:
 yarn
 ```
 
+Create a directory models under dist and add you models..
+
 Serve on 8080:
 ```bash
 yarn serve

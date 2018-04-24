@@ -19,7 +19,6 @@
         methods: {
             total: function() {
                 const tt =  $select(totalSelector, objectsAvailable);
-                console.log(tt);
                 return tt;
             }
         }

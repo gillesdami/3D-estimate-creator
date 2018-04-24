@@ -1,232 +1,123 @@
 {
-    "Tente de réception - 10m x [3]m": {
+    "Pagode - 3m x 3m": {
         "activate": true,
         "section": "Structure",
         "category": "Tente de réception",
-        "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage ",
         "price": {
             "ILE DE FRANCE": 10,
             "PACA": 11
         },
-        "settings": [
-            {
-                "name": "Longueur",
-                "type": "slider",
-                "min": 3,
-                "max": 300,
-                "step": 3,
-                "effect": {
-                    "type": "repeat-y"
-                }
-            }, {
-                "name": "Couleur",
-                "type": "select",
-                "values": ["Rouge", "Vert", "Bleu"],
-                "effect": {
-                    "type": "repeat-y"
-                }
-            }
-        ],
+        "settings": [],
         "apparels": [
             {
                 "type": "toit",
                 "values": [
-                    "toit blanc 3m"
+                    "toit blanc 3m",
+                    "toir cristal 3d"
                 ]
             },
             {
                 "type": "rideau",
                 "values": [
-                    "rideau blanc [3]m",
-                    "rideau fenêtre [3]m",
-                    "rideau cristal [3]m"
+                    "rideau ouvert",
+                    "rideau fenêtre 3m",
+                    "rideau cristal 3m"
                 ]
             },
             {
-                "type": "pignon",
+                "type": "plancher",
                 "values": [
-                    "pignon cristal 3m",
-                    "pignon blanc 3m"
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "lestage",
+                "values": [
+                    "lestage pagode",
+                    "aucun"
                 ]
             }
         ]
     },
-    "Tente de réception - 15m x [3]m": {
+    "Pagode - 4m x 4m": {
         "activate": true,
         "section": "Structure",
         "category": "Tente de réception",
-        "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage ",
         "price": {
             "ILE DE FRANCE": 10,
             "PACA": 11
         },
-        "settings": [
-            {
-                "name": "Longueur 2",
-                "type": "slider",
-                "min": 3,
-                "max": 300,
-                "step": 3,
-                "effect": {
-                    "type": "repeat-y"
-                }
-            }
-        ],
+        "settings": [],
         "apparels": [
             {
                 "type": "toit",
                 "values": [
-                    "toit blanc 3m"
+                    "toit blanc 3m",
+                    "toir cristal 3d"
                 ]
             },
             {
                 "type": "rideau",
                 "values": [
-                    "rideau blanc [3]m",
-                    "rideau fenêtre [3]m",
-                    "rideau cristal [3]m"
+                    "rideau ouvert",
+                    "rideau fenêtre 3m",
+                    "rideau cristal 3m"
                 ]
             },
             {
-                "type": "pignon",
+                "type": "plancher",
                 "values": [
-                    "pignon cristal 3m",
-                    "pignon blanc 3m"
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "lestage",
+                "values": [
+                    "lestage pagode",
+                    "aucun"
                 ]
             }
         ]
     },
-    "Tente de réception - 5m x [3]m": {
+    "Pagode - 5m x 5m": {
         "activate": true,
         "section": "Structure",
         "category": "Tente de réception",
-        "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage 3.30m à 3.50m",
         "price": {
             "ILE DE FRANCE": 10,
             "PACA": 11
         },
-        "settings": [
-            {
-                "name": "Longueur 3",
-                "type": "slider",
-                "min": 3,
-                "max": 300,
-                "step": 3,
-                "effect": {
-                    "type": "repeat-y"
-                }
-            }
-        ],
+        "settings": [],
         "apparels": [
             {
                 "type": "toit",
                 "values": [
-                    "toit blanc 3m"
+                    "toit blanc 3m",
+                    "toir cristal 3d"
                 ]
             },
             {
                 "type": "rideau",
                 "values": [
-                    "rideau blanc [3]m",
-                    "rideau fenêtre [3]m",
-                    "rideau cristal [3]m"
+                    "rideau ouvert",
+                    "rideau fenêtre 3m",
+                    "rideau cristal 3m"
                 ]
             },
             {
-                "type": "pignon",
+                "type": "plancher",
                 "values": [
-                    "pignon cristal 3m",
-                    "pignon blanc 3m"
-                ]
-            }
-        ]
-    },
-    "Tente de réception - 5m x [5]m": {
-        "activate": true,
-        "section": "Structure2",
-        "category": "Tente de réception",
-        "description": "",
-        "price": {
-            "ILE DE FRANCE": 13,
-            "PACA": 14
-        },
-        "settings": [
-            {
-                "name": "Longueur 4",
-                "type": "slider",
-                "min": 5,
-                "max": 500,
-                "step": 5,
-                "effect": {
-                    "type": "repeat-y"
-                }
-            }
-        ],
-        "apparels": [
-            {
-                "type": "toit",
-                "values": [
-                    "toit blanc 3m"
+                    "plancher",
+                    "aucun"
                 ]
             },
             {
-                "type": "rideau",
+                "type": "lestage",
                 "values": [
-                    "rideau blanc [3]m",
-                    "rideau fenêtre [3]m",
-                    "rideau cristal [3]m"
-                ]
-            },
-            {
-                "type": "pignon",
-                "values": [
-                    "pignon cristal 3m",
-                    "pignon blanc 3m"
-                ]
-            }
-        ]
-    },
-    "Tente de réception - 6m x [3]m": {
-        "activate": true,
-        "section": "Structure",
-        "category": "Tente de réception2",
-        "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage 3.30m à 3.50m",
-        "price": {
-            "ILE DE FRANCE": 10,
-            "PACA": 20
-        },
-        "settings": [
-            {
-                "name": "Longueur 5",
-                "type": "slider",
-                "min": 3,
-                "max": 300,
-                "step": 3,
-                "effect": {
-                    "type": "repeat-y"
-                }
-            }
-        ],
-        "apparels": [
-            {
-                "type": "toit",
-                "values": [
-                    "toit blanc 3m"
-                ]
-            },
-            {
-                "type": "rideau",
-                "values": [
-                    "rideau blanc [3]m",
-                    "rideau fenêtre [3]m",
-                    "rideau cristal [3]m"
-                ]
-            },
-            {
-                "type": "pignon",
-                "values": [
-                    "pignon cristal 3m",
-                    "pignon blanc 3m"
+                    "lestage pagode",
+                    "aucun"
                 ]
             }
         ]

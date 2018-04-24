@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="detailsState().itemName && detailsState().item">
-            <h3>Informations générales</h3>
+            <p class="title">Informations générales</p>
             <p> Nom : <span> {{detailsState().itemName}}</span></p>
             <p> Prix : <span> {{detailsState().item.price["ILE DE FRANCE"]}} €</span></p>
         </div>
@@ -23,5 +23,8 @@
 </script>
 
 <style scoped>
-
+    .title {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
 </style>

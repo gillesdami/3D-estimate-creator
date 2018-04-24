@@ -1,37 +1,79 @@
 import * as THREE from 'three';
-import { fork, put, takeEvery } from 'redux-saga/effects';
-import { actionCreator, MOUSEWHEEL_DOWN, MOUSEWHEEL_UP, MOUSEWHEEL_UPDATE, RENDERER_CREATED } from '../actions';
+import { call, fork, put, takeEvery } from 'redux-saga/effects';
+import {
+    actionCreator,
+    ADD_3D_OBJECT,
+    ADD_OBJECT_DISPLAYED,
+    MOUSEWHEEL_UPDATE,
+    RENDERER_CREATED,
+    SET_RENDERER_SIZE
+} from '../actions';
+import ColladaLoader from 'three-collada-loader';
 
 export function* initThreeSaga() {
-    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
-    camera.position.z = 1;
+    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10000);
+    camera.position.y = -10;
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     const scene = new THREE.Scene();
 
-    const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
-    const material = new THREE.MeshNormalMaterial();
-
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+    const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
+    scene.add(ambientLight);
 
     const renderer = new THREE.WebGLRenderer({antialias: true});
-    renderer.setSize(window.innerWidth * 0.7, window.innerHeight);
+    renderer.setSize(window.innerWidth * 0.65, window.innerHeight);
 
     yield put(actionCreator(RENDERER_CREATED, renderer));
-    yield fork(drawFrame, mesh, scene, camera, renderer);
-    yield takeEvery(MOUSEWHEEL_UP, mouseWheel, camera, true);
-    yield takeEvery(MOUSEWHEEL_DOWN, mouseWheel, camera, false);
+    yield fork(drawFrame, scene, camera, renderer);
+    yield takeEvery(ADD_OBJECT_DISPLAYED, addObject, scene);
+    yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
 }
 
-export function* drawFrame(mesh, scene, camera, renderer) {
+export function* drawFrame(scene, camera, renderer) {
     while (1) {
         yield new Promise((resolve) => requestAnimationFrame(resolve));
-
-        mesh.rotation.x += 0.01;
-        mesh.rotation.y += 0.02;
-
         renderer.render(scene, camera);
     }
+}
+
+export function* addObject(scene, action) {
+    const {itemName, item} = action.payload;
+
+    const mesh = yield call(loadModel, itemName, itemName);
+    scene.add(mesh);
+
+    //center the mesh on vec0
+    const bb = new THREE.Box3();
+    const center = new THREE.Vector3();
+    bb.setFromObject(mesh);
+    bb.getCenter(center);
+    mesh.position.x -= center.x;
+    mesh.position.y -= center.y;
+    mesh.position.z -= center.z;
+
+    yield put(actionCreator(ADD_3D_OBJECT, {
+        uid: item.uid,
+        instance: mesh,
+        apparels: {} //TODO
+    }));
+}
+
+export function loadModel(dir, name) {
+    return new Promise((resolve, reject) => {
+        const loader = new ColladaLoader();
+
+        loader.load(
+            `/models/${dir}/${name}.dae`,
+            (collada) => resolve(collada.scene),
+            () => {
+            }, //progress
+            reject
+        );
+    });
+}
+
+export function* setRendererSize(action) {
+    action.payload.renderer.setSize(action.payload.width, action.payload.height);
 }
 
 export function* mouseWheel(camera, isUpOrDown) {

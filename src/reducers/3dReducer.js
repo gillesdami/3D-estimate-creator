@@ -1,6 +1,13 @@
 import {
-    ADD_OBJECT_DISPLAYED, APPAREL_CHANGED, DELETE_ALL, SETTING_CHANGED, TOGGLE_DETAILS_PANEL, TOGGLE_HELPER_PANEL,
-    RENDERER_CREATED, MOUSEWHEEL_UPDATE
+    ADD_3D_OBJECT,
+    ADD_OBJECT_DISPLAYED,
+    APPAREL_CHANGED,
+    DELETE_ALL,
+    MOUSEWHEEL_UPDATE,
+    RENDERER_CREATED,
+    SETTING_CHANGED,
+    TOGGLE_DETAILS_PANEL,
+    TOGGLE_HELPER_PANEL
 } from "../actions";
 
 const defaultHelperState = {
@@ -16,10 +23,10 @@ const defaultDetailsState = {
 export const objectsDisplayed = (state = [], action) => {
     switch (action.type) {
         case ADD_OBJECT_DISPLAYED:
-            const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                    const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-                    return v.toString(16);
-                });
+            const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
 
             return [
                 ...state,
@@ -78,7 +85,7 @@ export const details = (state = defaultDetailsState, action) => {
         case TOGGLE_DETAILS_PANEL:
             return {
                 ...state,
-                isDisplayed : !state.isDisplayed,
+                isDisplayed: true,
                 itemName: action.payload.itemName,
                 item: action.payload.item
             };
@@ -121,7 +128,34 @@ export const camera = (state = {}, action) => {
         case MOUSEWHEEL_UPDATE :
             return {
                 ...state,
-                zoomFactor : action.payload
+                zoomFactor: action.payload
+            };
+        default:
+            return state;
+    }
+};
+
+/**
+ * {
+ *  uid: {
+ *      appareals {
+ *          [apparealName]: string
+ *      }
+ *      instance: Object3D (mutable)
+ *  }
+ * }
+ *
+ * uid is a string matching with an objectDisplayed uid or an [apparealName] value
+ */
+export const objects3d = (state = {}, action) => {
+    switch (action.type) {
+        case ADD_3D_OBJECT:
+            return {
+                ...state,
+                [action.payload.uid]: {
+                    instance: action.payload.instance,
+                    appareals: action.payload.appareals
+                }
             };
         default:
             return state;
