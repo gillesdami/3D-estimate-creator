@@ -4,8 +4,8 @@ import {
     actionCreator,
     ADD_3D_OBJECT,
     ADD_OBJECT_DISPLAYED,
-    MOUSEWHEEL_UPDATE,
     MOUSE_MOVE,
+    MOUSEWHEEL_UPDATE,
     RENDERER_CREATED,
     SET_RENDERER_SIZE
 } from '../actions';
@@ -14,13 +14,15 @@ import ColladaLoader from 'three-collada-loader';
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10000);
-    camera.position.y = -10;
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    camera.position.z = 10;
+    camera.position.y = 10;
 
     const scene = new THREE.Scene();
 
-    const gridHelper = new THREE.GridHelper(10, 10);
-    gridHelper.rotation.x = Math.PI / 2;
+    const axes = new THREE.AxisHelper(2);
+    scene.add(axes);
+
+    const gridHelper = new THREE.GridHelper(50, 25);
     scene.add(gridHelper);
 
     const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
@@ -30,8 +32,6 @@ export function* initThreeSaga() {
     renderer.setSize(window.innerWidth * 0.65, window.innerHeight);
 
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.25;
 
     yield put(actionCreator(RENDERER_CREATED, renderer));
     yield fork(drawFrame, scene, camera, renderer);
@@ -55,9 +55,11 @@ export function* addObject(scene, action) {
 
     //center the mesh on vec0
     const bb = new THREE.Box3();
-    const center = new THREE.Vector3();
+    const center = new THREE.Vector3(0, 0, 0);
     bb.setFromObject(mesh);
     bb.getCenter(center);
+
+    mesh.rotation.x -= Math.PI / 2;
     mesh.position.x -= center.x;
     mesh.position.y -= center.y;
     mesh.position.z -= center.z;
