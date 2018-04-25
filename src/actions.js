@@ -18,7 +18,8 @@ export const APPAREL_CHANGED = "APPAREL_CHANGED";
 /**
  * detailsPanel actions
  */
-export const TOGGLE_DETAILS_PANEL = "TOGGLE_DETAILS_PANEL";
+export const SHOW_DETAILS_PANEL = "SHOW_DETAILS_PANEL";
+export const HIDE_DETAILS_PANEL = "HIDE_DETAILS_PANEL";
 
 
 /**
