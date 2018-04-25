@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img v-on:click="help" id="questionMark" src="../../../assets/question.svg"/>
+        <img v-on:click="help" id="questionMark" src="../../../assets/help.svg"/>
         <img v-on:click="deleteAll" id="trash" src="../../../assets/delete.svg"/>
     </div>
 </template>
