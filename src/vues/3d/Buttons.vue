@@ -27,9 +27,6 @@
 </script>
 
 <style lang=css>
-    img {
-        background-color: BLACK;
-    }
 
     #questionMark {
         height: 1.5vw;
