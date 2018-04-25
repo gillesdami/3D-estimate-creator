@@ -22,7 +22,7 @@
     import { $select } from '../sagas/vue';
     import { rootselector, rendererSelector, getDetailsState } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
-    import { actionCreator, SET_RENDERER_SIZE } from '../actions'
+    import { actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL } from '../actions'
 
     export default {
         name: 'app',
@@ -57,11 +57,18 @@
             setTimeout(() => {
                 this.setRendererSize(renderer);
                 const detailsComp = document.getElementById('details');
-                detailsComp.style.left = (0.6*threeRoot.clientWidth).toString();
+                detailsComp.style.left = (0.75*threeRoot.clientWidth).toString();
             }, 100);
 
             window.addEventListener('resize', () => {
                 this.setRendererSize(renderer);
+            });
+
+            window.addEventListener('click', e => {
+                if (!document.getElementById('drawer').contains(e.target) &&
+                    !document.getElementById('details').contains(e.target)){
+                    this.$root.$emit('put', actionCreator(HIDE_DETAILS_PANEL));
+                }
             });
         }
     }

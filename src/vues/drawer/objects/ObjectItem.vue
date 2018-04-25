@@ -6,13 +6,13 @@
 </template>
 
 <script>
-    import {actionCreator, ADD_OBJECT_DISPLAYED, TOGGLE_DETAILS_PANEL} from '../../../actions';
+    import {actionCreator, ADD_OBJECT_DISPLAYED, SHOW_DETAILS_PANEL} from '../../../actions';
 
     export default {
         name: "object-item",
         methods: {
             clickedObjectItem: function () {
-                this.$root.$emit('put', actionCreator(TOGGLE_DETAILS_PANEL, {
+                this.$root.$emit('put', actionCreator(SHOW_DETAILS_PANEL, {
                     itemName: this.name,
                     item: this.item
                 }));

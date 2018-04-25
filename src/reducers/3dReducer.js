@@ -6,7 +6,8 @@ import {
     MOUSEWHEEL_UPDATE,
     RENDERER_CREATED,
     SETTING_CHANGED,
-    TOGGLE_DETAILS_PANEL,
+    SHOW_DETAILS_PANEL,
+    HIDE_DETAILS_PANEL,
     TOGGLE_HELPER_PANEL
 } from "../actions";
 
@@ -82,12 +83,17 @@ export const objectsDisplayed = (state = [], action) => {
 
 export const details = (state = defaultDetailsState, action) => {
     switch (action.type) {
-        case TOGGLE_DETAILS_PANEL:
+        case SHOW_DETAILS_PANEL:
             return {
                 ...state,
                 isDisplayed: true,
                 itemName: action.payload.itemName,
                 item: action.payload.item
+            };
+        case HIDE_DETAILS_PANEL:
+            return {
+                ...state,
+                isDisplayed: false
             };
         default:
             return state;
