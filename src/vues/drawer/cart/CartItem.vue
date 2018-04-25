@@ -39,9 +39,13 @@
                 });
 
                 if (!isAlreadyIn) {
-                    this.apparels = [...this.apparels, apTmp];
+                    this.apparels.push(apTmp);
                 }
             });
+
+            console.log("####################");
+            console.log(obj);
+            console.log(this.apparels);
         },
     }
 </script>

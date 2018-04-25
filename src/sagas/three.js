@@ -18,6 +18,7 @@ export function* initThreeSaga() {
     camera.position.y = 10;
 
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color( 0xffffff );
 
     const axes = new THREE.AxisHelper(2);
     scene.add(axes);

@@ -15,26 +15,27 @@
     import CartItem from "./CartItem.vue";
     import { $select } from '../../../sagas/vue';
     import { objectsDisplayed } from '../../../selectors';
+    import objectsAvailable from '../../../../resources/objectsAvailable.json';
 
     export default {
-        components: { CartItem },
+        components: {CartItem},
         name: "cart-list",
         methods: {
             objectsInCart: function () {
-                const objs = $select(objectsDisplayed);
-                const objectsInCart = [];
-                
-                objs.forEach((obj) => {
+                const objsDisplayed = $select(objectsDisplayed);
+                const objsInCart = [];
+
+                objsDisplayed.forEach((obj) => {
                     const objTmp = {
                         name: obj.name,
-                        price: obj.price,
+                        price: objectsAvailable[obj.name].price['ILE DE FRANCE'],
                         apparels: obj.apparels,
                         qte: 1
                     };
 
                     // Si il y a deja un objectsInCart similaire
                     let isAlreadyIn = false;
-                    objectsInCart.forEach((a) => {
+                    objsInCart.forEach((a) => {
                         if (a.name === objTmp.name) {
                             a.qte++;
                             isAlreadyIn = true;
@@ -42,10 +43,10 @@
                     });
 
                     if (!isAlreadyIn) {
-                        objectsInCart.push(objTmp);
+                        objsInCart.push(objTmp);
                     }
-                    
-                    return objectsInCart;
+
+                    return objsInCart;
                 });
             }
         }
