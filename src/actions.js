@@ -20,11 +20,11 @@ export const APPAREL_CHANGED = "APPAREL_CHANGED";
 // region detailsPanel actions
 export const TOGGLE_DETAILS_PANEL = "TOGGLE_DETAILS_PANEL";
 // endregion
-/**
- * detailsPanel actions
- */
+
+// region detailsPanel actions
 export const SHOW_DETAILS_PANEL = "SHOW_DETAILS_PANEL";
 export const HIDE_DETAILS_PANEL = "HIDE_DETAILS_PANEL";
+// endregion
 
  // region helperPanel actions
 export const TOGGLE_HELPER_PANEL = "TOGGLE_HELPER_PANEL";
