@@ -7,7 +7,8 @@ import {
     MOUSE_MOVE,
     MOUSEWHEEL_UPDATE,
     RENDERER_CREATED,
-    SET_RENDERER_SIZE
+    SET_RENDERER_SIZE,
+    DBCLICKED_CANVAS
 } from '../actions';
 import OrbitControls from 'three-orbitcontrols';
 import ColladaLoader from 'three-collada-loader';
@@ -39,6 +40,7 @@ export function* initThreeSaga() {
     yield takeEvery(ADD_OBJECT_DISPLAYED, addObject, scene);
     yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
     yield takeEvery(MOUSE_MOVE, setRendererSize);
+    yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, scene);
 }
 
 export function* drawFrame(scene, camera, renderer) {
@@ -108,4 +110,9 @@ export function* mouseMove(camera, action) {
     } else {
         // camera.setPosition();
     }
+}
+
+export function* doubleClickSelection(scene) {
+    // console.log("welcome to saga doubleClickSelection");
+    scene.child()
 }
