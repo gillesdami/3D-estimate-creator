@@ -15,11 +15,10 @@ import ColladaLoader from 'three-collada-loader';
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10000);
-    camera.position.z = 10;
-    camera.position.y = 10;
+    camera.position.set(10,10,10);
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xffffff );
+    scene.background = new THREE.Color( 0x135f5c );
 
     const axes = new THREE.AxisHelper(2);
     scene.add(axes);
@@ -113,6 +112,6 @@ export function* mouseMove(camera, action) {
 }
 
 export function* doubleClickSelection(scene) {
-    // console.log("welcome to saga doubleClickSelection");
+    console.log("welcome to saga doubleClickSelection");
     scene.child()
 }
