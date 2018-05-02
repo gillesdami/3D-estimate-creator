@@ -9,7 +9,6 @@ const rootReducer = combineReducers({
     helper,
     deleteAll,
     renderer,
-    camera
 });
 
 export default rootReducer;

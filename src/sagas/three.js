@@ -1,11 +1,14 @@
 import * as THREE from 'three';
-import { call, fork, put, takeEvery } from 'redux-saga/effects';
+import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
 import ColladaLoader from 'three-collada-loader';
+import { $select } from 'vue';
+import { objectsDisplayed } from '../selectors';
 import {
     actionCreator,
     ADD_3D_OBJECT,
-    ADD_OBJECT_DISPLAYED, APPAREL_CHANGED,
+    ADD_OBJECT_DISPLAYED,
+    APPAREL_CHANGED,
     MOUSE_MOVE,
     RENDERER_CREATED,
     SET_RENDERER_SIZE,
@@ -25,7 +28,7 @@ export function* initThreeSaga() {
     scene.add(axes);
 
     const gridHelper = new THREE.GridHelper(50, 25);
-    gridHelper.rotateX(Math.PI/2);
+    gridHelper.rotateX(Math.PI / 2);
     scene.add(gridHelper);
 
     const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
@@ -58,7 +61,7 @@ export function* addObject(scene, action) {
     const obj = yield call(loadModel, itemName, itemName);
     const bb = new THREE.Box3();
     bb.setFromObject(obj);
-    yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z)/2));
+    yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z) / 2));
     scene.add(obj);
 
     const calls = {};
@@ -66,7 +69,7 @@ export function* addObject(scene, action) {
     item.apparels.forEach((appareal) => {
         calls[appareal.type] = call(addAppareal, scene, itemName, obj, appareal.type, appareal.value || appareal.values[0]);
     });
-    
+
     const apparealsIds = yield all(calls);
 
     yield put(actionCreator(ADD_3D_OBJECT, {
@@ -77,11 +80,11 @@ export function* addObject(scene, action) {
 }
 
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue) {
-    if(apparealValue === "aucun") return null;
+    if (apparealValue === "aucun") return null;
 
     let obj, parentBox = new THREE.Box3(), bb = new THREE.Box3(), parentCenter;
 
-    switch(apparealType) {
+    switch (apparealType) {
         case "toit":
             obj = yield call(loadModel, itemName, apparealValue);
             parentBox = parentBox.setFromObject(parentObj);
@@ -95,7 +98,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj = yield call(loadModel, itemName, apparealValue);
             parentBox = parentBox.setFromObject(parentObj);
             bb.setFromObject(obj);
-            yield call(setBoxCenter, obj, new THREE.Vector3(parentBox.min.x, 0, ((bb.max.z - bb.min.z)/2)));
+            yield call(setBoxCenter, obj, new THREE.Vector3(parentBox.min.x, 0, ((bb.max.z - bb.min.z) / 2)));
             break;
         case "lestage":
             obj = new THREE.Group();
@@ -105,20 +108,20 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             bb = new THREE.Box3();
             bb.setFromObject(obj);
 
-            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.min.x, parentBox.min.y, (bb.max.z - bb.min.z)/2));
+            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.min.x, parentBox.min.y, (bb.max.z - bb.min.z) / 2));
             obj.add(lestage);
 
             lestage = lestage.clone();
-            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x, parentBox.max.y, (bb.max.z - bb.min.z)/2));
+            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x, parentBox.max.y, (bb.max.z - bb.min.z) / 2));
             obj.add(lestage);
-            
+
             let lestage2 = lestage.clone();
-            yield call(setBoxCenter, lestage2, new THREE.Vector3(parentBox.min.x, parentBox.max.y, (bb.max.z - bb.min.z)/2));
-            lestage2.rotateZ(Math.PI/2);
+            yield call(setBoxCenter, lestage2, new THREE.Vector3(parentBox.min.x, parentBox.max.y, (bb.max.z - bb.min.z) / 2));
+            lestage2.rotateZ(Math.PI / 2);
             obj.add(lestage2);
-            
+
             lestage = lestage.clone();
-            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x, parentBox.min.y, (bb.max.z - bb.min.z)/2));
+            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x, parentBox.min.y, (bb.max.z - bb.min.z) / 2));
             obj.add(lestage);
             break;
         default:
@@ -179,6 +182,18 @@ export function* compareSetting(action) {
 }
 
 export function* compareApparel(action) {
-    const {apparel, itemName} = action.payload;
-    console.log(action);
+    /*const {apparel, itemName} = action.payload;
+    const objectsDisplayed = $select(objectsDisplayed);
+
+    objectsDisplayed.forEach(obj => {
+        if (obj.name === itemName) {
+            obj.apparels.forEach(objApparel => {
+                if (objApparel.type === apparel.type) {
+                    if (objApparel.value != apparel.value) {
+
+                    }
+                }
+            });
+        }
+    })*/
 }

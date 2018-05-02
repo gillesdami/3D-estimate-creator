@@ -33,7 +33,7 @@
 </template>
 
 <script>
-    import { actionCreator, COMPARE_SETTING_CHANGES, SETTING_CHANGED } from '../../actions';
+    import { actionCreator, SETTING_CHANGED } from '../../actions';
     import { $select } from '../../sagas/vue';
     import { getDetailsState } from "../../selectors";
 
@@ -58,10 +58,6 @@
                         output.innerHTML = this.value;
                     };
                 }
-
-                console.log("#### parameters");
-                console.log(value);
-                console.log("#### end parameters");
 
                 // Event pour changer les settings dans le store
                 this.$root.$emit('put', actionCreator(SETTING_CHANGED, {

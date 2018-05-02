@@ -64,9 +64,6 @@ export const objectsDisplayed = (state = [], action) => {
                         ...object,
                         apparels: object.apparels.map(apparel => {
                             if (apparel.type === action.payload.apparel.type) {
-                                console.log("#### 3d reducers");
-                                console.log(action.payload.apparel);
-                                console.log("#### end 3d reducers");
                                 return {
                                     ...apparel,
                                     value: action.payload.apparel.value

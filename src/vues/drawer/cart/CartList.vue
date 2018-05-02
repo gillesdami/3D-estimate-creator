@@ -7,7 +7,7 @@
                 <th>Prix unitaire</th>
             </tr>
         </table>
-        <cart-item v-for="obj in objectsInCart()" :obj="obj"/>
+        <cart-item v-for="obj in objectsInCart" :objInCart="obj"/>
     </div>
 </template>
 
@@ -20,35 +20,35 @@
     export default {
         components: {CartItem},
         name: "cart-list",
-        methods: {
-            objectsInCart: function () {
-                const objsDisplayed = $select(objectsDisplayed);
-                const objsInCart = [];
-
-                objsDisplayed.forEach((obj) => {
-                    const objTmp = {
-                        name: obj.name,
-                        price: objectsAvailable[obj.name].price['ILE DE FRANCE'],
-                        apparels: obj.apparels,
-                        qte: 1
-                    };
-
-                    // Si il y a deja un objectsInCart similaire
-                    let isAlreadyIn = false;
-                    objsInCart.forEach((a) => {
-                        if (a.name === objTmp.name) {
-                            a.qte++;
-                            isAlreadyIn = true;
-                        }
-                    });
-
-                    if (!isAlreadyIn) {
-                        objsInCart.push(objTmp);
-                    }
-
-                    return objsInCart;
-                });
+        data() {
+            return {
+                objectsInCart: [],
             }
+        },
+        updated() {
+            const objsDisplayed = $select(objectsDisplayed);
+
+            objsDisplayed.forEach((obj) => {
+                const objTmp = {
+                    name: obj.name,
+                    price: objectsAvailable[obj.name].price['ILE DE FRANCE'],
+                    apparels: obj.apparels,
+                    qte: 1
+                };
+
+                // Si il y a deja un objectsInCart similaire
+                let isAlreadyIn = false;
+                this.objectsInCart.forEach((a) => {
+                    if (a.name === objTmp.name) {
+                        a.qte++;
+                        isAlreadyIn = true;
+                    }
+                });
+
+                if (!isAlreadyIn) {
+                    this.objectsInCart.push(objTmp);
+                }
+            });
         }
     }
 </script>
