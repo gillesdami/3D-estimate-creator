@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { call, fork, put, takeEvery } from 'redux-saga/effects';
+import {call, fork, put, takeEvery} from 'redux-saga/effects';
 import {
     actionCreator,
     ADD_3D_OBJECT,
@@ -13,12 +13,15 @@ import {
 import OrbitControls from 'three-orbitcontrols';
 import ColladaLoader from 'three-collada-loader';
 
+const cameraFrustum = 70;
+
 export function* initThreeSaga() {
-    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10000);
-    camera.position.set(10,10,10);
+
+    const camera = new THREE.PerspectiveCamera(cameraFrustum, window.innerWidth / window.innerHeight, 0.01, 10000);
+    camera.position.set(10, 10, 10);
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0x135f5c );
+    scene.background = new THREE.Color(0x135f5c);
 
     const axes = new THREE.AxisHelper(2);
     scene.add(axes);
@@ -39,7 +42,7 @@ export function* initThreeSaga() {
     yield takeEvery(ADD_OBJECT_DISPLAYED, addObject, scene);
     yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
     yield takeEvery(MOUSE_MOVE, setRendererSize);
-    yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, scene);
+    yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, camera, scene);
 }
 
 export function* drawFrame(scene, camera, renderer) {
@@ -111,7 +114,34 @@ export function* mouseMove(camera, action) {
     }
 }
 
-export function* doubleClickSelection(scene) {
+export function* doubleClickSelection(camera, scene) {
     console.log("welcome to saga doubleClickSelection");
-    scene.child()
+
+    //your object to be clicked
+    const object;
+
+    //vector from camera to mouse
+    const vectorMouse = new THREE.Vector3(
+        -(window.innerWidth / 2 - e.clientX) * 2 / window.innerWidth,
+        (window.innerHeight / 2 - e.clientY) * 2 / window.innerHeight,
+        -1 / Math.tan((cameraFrustum/2) * Math.PI / 180)
+    );
+
+    vectorMouse.applyQuaternion(camera.quaternion);
+    vectorMouse.normalize();
+
+    //vector from camera to object
+    const vectorObject = new THREE.Vector3(
+        object.x - camera.position.x,
+        object.y - camera.position.y,
+        object.z - camera.position.z
+    );
+
+    vectorObject.normalize();
+
+    if (vectorMouse.angleTo(vectorObject) * 180 / Math.PI < 1) {
+        //mouse's position is near object's position
+        console.log("ohh you touch my tralala");
+    }
+
 }
