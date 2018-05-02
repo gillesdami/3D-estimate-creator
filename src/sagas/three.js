@@ -6,7 +6,6 @@ import { $select } from 'vue';
 import { objectsDisplayed } from '../selectors';
 import {
     actionCreator,
-    ADD_3D_OBJECT,
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
     MOUSE_MOVE,
@@ -29,7 +28,7 @@ export function* initThreeSaga() {
     const axes = new THREE.AxesHelper(2);
     scene.add(axes);
 
-    const gridHelper = new THREE.GridHelper(50, 25);
+    const gridHelper = new THREE.GridHelper(50, 50);
     gridHelper.rotateX(Math.PI / 2);
     scene.add(gridHelper);
 
@@ -80,12 +79,6 @@ export function* addObject(scene, action) {
     });
 
     const apparealsIds = yield all(calls);
-
-    yield put(actionCreator(ADD_3D_OBJECT, {
-        uid: item.uid,
-        instance: obj,
-        apparels: apparealsIds
-    }));
 }
 
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue) {
@@ -155,12 +148,6 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
     }
 
     scene.add(obj);
-
-    yield put(actionCreator(ADD_3D_OBJECT, {
-        uid: obj.id,
-        instance: obj,
-        apparels: {}
-    }));
 
     return obj.id;
 }

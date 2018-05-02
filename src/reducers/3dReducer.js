@@ -1,5 +1,4 @@
 import {
-    ADD_3D_OBJECT,
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
     DELETE_ALL,
@@ -118,33 +117,6 @@ export const renderer = (state = {}, action) => {
     switch (action.type) {
         case RENDERER_CREATED:
             return action.payload;
-        default:
-            return state;
-    }
-};
-
-/**
- * {
- *  uid: {
- *      appareals {
- *          [apparealName]: string
- *      }
- *      instance: Object3D (mutable)
- *  }
- * }
- *
- * uid is a string matching with an objectDisplayed uid or an [apparealName] value
- */
-export const objects3d = (state = {}, action) => {
-    switch (action.type) {
-        case ADD_3D_OBJECT:
-            return {
-                ...state,
-                [action.payload.uid]: {
-                    instance: action.payload.instance,
-                    appareals: action.payload.appareals
-                }
-            };
         default:
             return state;
     }
