@@ -1,11 +1,11 @@
 <template>
     <table>
         <tr>
-            <td>{{ obj.name }}</td>
-            <td class="tdItem">{{ obj.qte }}</td>
-            <td class="tdItem">{{ obj.price }} €</td>
+            <td>{{ objInCart.name }}</td>
+            <td class="tdItem">{{ objInCart.qte }}</td>
+            <td class="tdItem">{{ objInCart.price }} €</td>
         </tr>
-        <tr v-for="app in apparels">
+        <tr v-for="app in updateApparels()">
             <td class="tdSubItem">{{ app.name }} - {{ app.value }}</td>
             <td class="tdSubItem">{{ app.qte }}</td>
         </tr>
@@ -15,38 +15,35 @@
 <script>
     export default {
         name: "cart-item",
-        props: ['obj'],
-        data() {
-            return {
-                apparels: []
-            }
-        },
-        created() {
-            this.obj.apparels.forEach((ap) => {
-                let apTmp = {
-                    name: ap.name,
-                    value: ap.value,
-                    qte: 1
-                };
+        props: ['objInCart'],
+        methods: {
+            updateApparels: function () {
+                const apparels = [];
 
-                // Si il y a deja un apparels similaire
-                let isAlreadyIn = false;
-                this.apparels.forEach((a) => {
-                    if (a.name === apTmp.name) {
-                        a.qte++;
-                        isAlreadyIn = true;
+                this.objInCart.apparels.forEach((ap) => {
+                    let apTmp = {
+                        name: ap.name,
+                        value: ap.value,
+                        qte: 1
+                    };
+
+                    // Si il y a deja un apparels similaire
+                    let isAlreadyIn = false;
+                    apparels.forEach((a) => {
+                        if (a.name === apTmp.name) {
+                            a.qte++;
+                            isAlreadyIn = true;
+                        }
+                    });
+
+                    if (!isAlreadyIn) {
+                        apparels.push(apTmp);
                     }
                 });
 
-                if (!isAlreadyIn) {
-                    this.apparels.push(apTmp);
-                }
-            });
-
-            console.log("####################");
-            console.log(obj);
-            console.log(this.apparels);
-        },
+                return apparels;
+            },
+        }
     }
 </script>
 

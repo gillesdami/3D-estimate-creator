@@ -7,21 +7,30 @@
             "ILE DE FRANCE": 10,
             "PACA": 11
         },
-        "settings": [],
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 3,
+            "max": 300,
+            "step": 3,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
         "apparels": [
             {
                 "type": "toit",
                 "values": [
                     "toit blanc 3m",
-                    "toir cristal 3d"
+                    "toit cristal 3m"
                 ]
             },
             {
                 "type": "rideau",
                 "values": [
                     "rideau ouvert",
-                    "rideau fenêtre 3m",
-                    "rideau cristal 3m"
+                    "rideau fenêtre",
+                    "rideau cristal"
                 ]
             },
             {
@@ -53,16 +62,16 @@
             {
                 "type": "toit",
                 "values": [
-                    "toit blanc 3m",
-                    "toir cristal 3d"
+                    "toit blanc",
+                    "toir cristal"
                 ]
             },
             {
                 "type": "rideau",
                 "values": [
                     "rideau ouvert",
-                    "rideau fenêtre 3m",
-                    "rideau cristal 3m"
+                    "rideau fenêtre",
+                    "rideau cristal"
                 ]
             },
             {
@@ -94,16 +103,16 @@
             {
                 "type": "toit",
                 "values": [
-                    "toit blanc 3m",
-                    "toir cristal 3d"
+                    "toit blanc",
+                    "toir cristal"
                 ]
             },
             {
                 "type": "rideau",
                 "values": [
                     "rideau ouvert",
-                    "rideau fenêtre 3m",
-                    "rideau cristal 3m"
+                    "rideau fenêtre",
+                    "rideau cristal"
                 ]
             },
             {

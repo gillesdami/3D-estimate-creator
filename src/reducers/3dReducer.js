@@ -3,7 +3,6 @@ import {
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
     DELETE_ALL,
-    MOUSEWHEEL_UPDATE,
     RENDERER_CREATED,
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL,
@@ -24,15 +23,10 @@ const defaultDetailsState = {
 export const objectsDisplayed = (state = [], action) => {
     switch (action.type) {
         case ADD_OBJECT_DISPLAYED:
-            const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-
             return [
                 ...state,
                 {
-                    uid: generateUid(),
+                    uid: action.payload.uid,
                     name: action.payload.itemName,
                     settings: action.payload.item.settings,
                     apparels: action.payload.item.apparels
@@ -124,18 +118,6 @@ export const renderer = (state = {}, action) => {
     switch (action.type) {
         case RENDERER_CREATED:
             return action.payload;
-        default:
-            return state;
-    }
-};
-
-export const camera = (state = {}, action) => {
-    switch (action.type) {
-        case MOUSEWHEEL_UPDATE :
-            return {
-                ...state,
-                zoomFactor: action.payload
-            };
         default:
             return state;
     }

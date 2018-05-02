@@ -8,7 +8,7 @@
                     <p class="range-field">
                         <input :id="`rangeInput${index}`"
                                type="range"
-                               :v-model="sliderSettings[index]"
+                               @input="sliderSettings[index] = $event.target.value"
                                v-on:change="handleChange(sliderSettings[index], setting.name, index)"
                                :min="setting.min"
                                :max="setting.max"
@@ -19,7 +19,7 @@
 
                 <div v-if="setting.type === 'select'">
                     <span>{{setting.name}}</span>
-                    <select :v-model="selectSettings[index]"
+                    <select @input="selectSettings[index] = $event.target.value"
                             v-on:change="handleChange(selectSettings[index], setting.name)">
                         <option disabled selected value="">Faites votre choix</option>
                         <option v-for="value in setting.values" :value="`${value}`">{{value}}</option>
@@ -33,9 +33,9 @@
 </template>
 
 <script>
-    import {actionCreator, SETTING_CHANGED} from '../../actions';
-    import {$select} from '../../sagas/vue';
-    import {getDetailsState} from "../../selectors";
+    import { actionCreator, SETTING_CHANGED } from '../../actions';
+    import { $select } from '../../sagas/vue';
+    import { getDetailsState } from "../../selectors";
 
     export default {
         name: "Parameters",
@@ -46,7 +46,7 @@
             }
         },
         methods: {
-            handleChange: function(value, name, index) {
+            handleChange: function (value, name, index) {
                 if (index >= 0) {
                     const slider = document.getElementById(`rangeInput${index}`);
                     const output = document.getElementById(`rangeInputValue${index}`);
@@ -54,11 +54,12 @@
                     output.innerHTML = slider.value; // Display the default slider value
 
                     // Update the current slider value (each time you drag the slider handle)
-                    slider.oninput = function() {
+                    slider.oninput = function () {
                         output.innerHTML = this.value;
                     };
                 }
 
+                // Event pour changer les settings dans le store
                 this.$root.$emit('put', actionCreator(SETTING_CHANGED, {
                     itemName: this.detailsState().itemName,
                     setting: {
@@ -67,7 +68,7 @@
                     }
                 }));
             },
-            detailsState: function() {
+            detailsState: function () {
                 return $select(getDetailsState);
             }
         }
