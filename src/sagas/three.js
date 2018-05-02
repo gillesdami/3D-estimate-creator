@@ -31,6 +31,11 @@ export function* initThreeSaga() {
     const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
     scene.add(ambientLight);
 
+    const directionalLight = new THREE.DirectionalLight(0xccccff, 0.6);
+    directionalLight.castShadow = true;
+    directionalLight.position.set(10, 10, 10);
+    scene.add(directionalLight);
+
     const renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setSize(window.innerWidth * 0.65, window.innerHeight);
 
@@ -83,7 +88,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
     switch(apparealType) {
         case "toit":
             obj = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, -.8 + parentBox.max.z));
+            yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
             break;
         case "plancher":
             obj = yield call(loadModel, itemName, apparealValue);
