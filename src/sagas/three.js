@@ -4,7 +4,6 @@ import OrbitControls from 'three-orbitcontrols';
 import ColladaLoader from 'three-collada-loader';
 import { $select } from 'vue';
 import { objectsDisplayed } from '../selectors';
-import {call, fork, put, takeEvery} from 'redux-saga/effects';
 import {
     actionCreator,
     ADD_3D_OBJECT,
@@ -228,31 +227,31 @@ export function* compareApparel(action) {
 export function* doubleClickSelection(camera, scene) {
     console.log("welcome to saga doubleClickSelection");
 
-    //your object to be clicked
-    const object;
-
-    //vector from camera to mouse
-    const vectorMouse = new THREE.Vector3(
-        -(window.innerWidth / 2 - e.clientX) * 2 / window.innerWidth,
-        (window.innerHeight / 2 - e.clientY) * 2 / window.innerHeight,
-        -1 / Math.tan((cameraFrustum/2) * Math.PI / 180)
-    );
-
-    vectorMouse.applyQuaternion(camera.quaternion);
-    vectorMouse.normalize();
-
-    //vector from camera to object
-    const vectorObject = new THREE.Vector3(
-        object.x - camera.position.x,
-        object.y - camera.position.y,
-        object.z - camera.position.z
-    );
-
-    vectorObject.normalize();
-
-    if (vectorMouse.angleTo(vectorObject) * 180 / Math.PI < 1) {
-        //mouse's position is near object's position
-        console.log("ohh you touch my tralala");
-    }
+    // //your object to be clicked
+    // const object;
+    //
+    // //vector from camera to mouse
+    // const vectorMouse = new THREE.Vector3(
+    //     -(window.innerWidth / 2 - e.clientX) * 2 / window.innerWidth,
+    //     (window.innerHeight / 2 - e.clientY) * 2 / window.innerHeight,
+    //     -1 / Math.tan((cameraFrustum/2) * Math.PI / 180)
+    // );
+    //
+    // vectorMouse.applyQuaternion(camera.quaternion);
+    // vectorMouse.normalize();
+    //
+    // //vector from camera to object
+    // const vectorObject = new THREE.Vector3(
+    //     object.x - camera.position.x,
+    //     object.y - camera.position.y,
+    //     object.z - camera.position.z
+    // );
+    //
+    // vectorObject.normalize();
+    //
+    // if (vectorMouse.angleTo(vectorObject) * 180 / Math.PI < 1) {
+    //     //mouse's position is near object's position
+    //     console.log("ohh you touch my tralala");
+    // }
 
 }
