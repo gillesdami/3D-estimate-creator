@@ -1,14 +1,12 @@
 import * as THREE from 'three';
-import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import {all, call, fork, put, takeEvery} from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
 import ColladaLoader from 'three-collada-loader';
-import { $select } from 'vue';
-import { objectsDisplayed } from '../selectors';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
-    MOUSE_MOVE,
+    MOUSE_CLICK,
     RENDERER_CREATED,
     SET_RENDERER_SIZE,
     SETTING_CHANGED,
@@ -44,14 +42,15 @@ export function* initThreeSaga() {
     renderer.setSize(window.innerWidth * 0.65, window.innerHeight);
 
     const controls = new OrbitControls(camera, renderer.domElement);
+    controls.maxPolarAngle = Math.PI / 2.1;
 
     yield put(actionCreator(RENDERER_CREATED, renderer));
     yield fork(drawFrame, scene, camera, renderer);
     yield takeEvery(ADD_OBJECT_DISPLAYED, addObject, scene);
     yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
-    yield takeEvery(MOUSE_MOVE, setRendererSize);
     yield takeEvery(SETTING_CHANGED, compareSetting);
     yield takeEvery(APPAREL_CHANGED, compareApparel);
+    yield takeEvery(MOUSE_CLICK, mouseClick, scene, camera, renderer);
     yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, camera, scene);
 }
 
@@ -102,7 +101,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             let rideau = yield call(loadModel, itemName, apparealValue);
             bb.setFromObject(rideau);
             rideau.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
-
+            
             yield call(setBoxCenter, rideau, new THREE.Vector3(parentBox.min.x, 0, ((bb.max.z - bb.min.z)/2) + .1));
             obj.add(rideau);
 
@@ -134,11 +133,11 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             lestage = lestage.clone();
             yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x + .5, parentBox.max.y + .5, (bb.max.z - bb.min.z)/2));
             obj.add(lestage);
-
+            
             lestage = lestage.clone();
             yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.min.x - .5, parentBox.max.y + .5, (bb.max.z - bb.min.z)/2));
             obj.add(lestage);
-
+            
             lestage = lestage.clone();
             yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x + .5, parentBox.min.y - .5, (bb.max.z - bb.min.z)/2));
             obj.add(lestage);
@@ -180,14 +179,19 @@ export function* setRendererSize(action) {
     action.payload.renderer.setSize(action.payload.width, action.payload.height);
 }
 
-export function* mouseMove(camera, action) {
-    // console.log(action.payload.mouseEvent);
+export function* mouseClick(scene, camera, renderer, action) {
+    const mouse = new THREE.Vector2();
+    const raycaster = new THREE.Raycaster();
 
-    if (action.payload.click === 'left') {
+    mouse.x = (action.payload.event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = - (action.payload.event.clientY / renderer.domElement.clientHeight) * 2 + 1;
 
-    } else {
-        // camera.setPosition();
-    }
+    raycaster.setFromCamera( mouse, camera );
+
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    console.log(scene.children);
+    console.log(intersects);
+    // intersects[ 0 ].object.material.color.set( 0xff0000 );
 }
 
 export function* compareSetting(action) {

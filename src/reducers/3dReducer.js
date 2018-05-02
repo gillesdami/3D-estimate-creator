@@ -81,7 +81,10 @@ export const details = (state = defaultDetailsState, action) => {
                 ...state,
                 isDisplayed: true,
                 itemName: action.payload.itemName,
-                item: action.payload.item
+                item: {
+                    ...action.payload.item,
+                    uid: action.payload.uid
+                }
             };
         case HIDE_DETAILS_PANEL:
             return {

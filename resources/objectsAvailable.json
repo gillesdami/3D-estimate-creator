@@ -1,6 +1,6 @@
 {
     "Pagode - 3m x 3m": {
-        "activate": true,
+        "activated": true,
         "section": "Structure",
         "category": "Tente de réception",
         "price": {
@@ -50,7 +50,7 @@
         ]
     },
     "Pagode - 4m x 4m": {
-        "activate": true,
+        "activated": true,
         "section": "Structure",
         "category": "Tente de réception",
         "price": {
@@ -91,7 +91,7 @@
         ]
     },
     "Pagode - 5m x 5m": {
-        "activate": true,
+        "activated": true,
         "section": "Structure",
         "category": "Tente de réception",
         "price": {
