@@ -22,9 +22,6 @@ export function* initThreeSaga() {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xffffff);
 
-    const mouse = new THREE.Vector2();
-    const raycaster = new THREE.Raycaster();
-
     const axes = new THREE.AxesHelper(2);
     scene.add(axes);
 
@@ -52,7 +49,7 @@ export function* initThreeSaga() {
     yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
     yield takeEvery(SETTING_CHANGED, compareSetting);
     yield takeEvery(APPAREL_CHANGED, compareApparel);
-    yield takeEvery(MOUSE_CLICK, mouseClick, {renderer, scene, raycaster, camera, mouse});
+    yield takeEvery(MOUSE_CLICK, mouseClick, scene, camera, renderer);
 }
 
 export function* drawFrame(scene, camera, renderer) {
@@ -192,15 +189,18 @@ export function* setRendererSize(action) {
     action.payload.renderer.setSize(action.payload.width, action.payload.height);
 }
 
-export function* mouseClick(params, action) {
-    params.mouse.x = ( action.payload.event.clientX / params.renderer.domElement.clientWidth ) * 2 - 1;
-    params.mouse.y = - ( action.payload.event.clientY / params.renderer.domElement.clientHeight ) * 2 + 1;
+export function* mouseClick(scene, camera, renderer, action) {
+    const mouse = new THREE.Vector2();
+    const raycaster = new THREE.Raycaster();
 
-    params.raycaster.setFromCamera( params.mouse, params.camera );
+    mouse.x = (action.payload.event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = - (action.payload.event.clientY / renderer.domElement.clientHeight) * 2 + 1;
 
-    const intersects = params.raycaster.intersectObjects( params.scene.children );
+    raycaster.setFromCamera( mouse, camera );
+
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    console.log(scene.children);
     console.log(intersects);
-
     // intersects[ 0 ].object.material.color.set( 0xff0000 );
 }
 
