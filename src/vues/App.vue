@@ -22,7 +22,7 @@
     import { $select } from '../sagas/vue';
     import { rootselector, rendererSelector, getDetailsState } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
-    import { actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL } from '../actions'
+    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK} from '../actions'
 
     export default {
         name: 'app',
@@ -51,7 +51,11 @@
                 let mouseTimer;
                 let hold = false;
 
-                threeRoot.addEventListener('mousedown', () => {
+                threeRoot.addEventListener('mousedown', e => {
+                    this.$root.$emit('put', actionCreator(MOUSE_CLICK, {
+                        event: e
+                    }));
+
                     mouseTimer = setTimeout(() => hold = true, 500);
                 });
 

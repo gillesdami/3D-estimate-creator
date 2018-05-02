@@ -42,5 +42,5 @@ export const VIEW_CREATED = "VIEW_CREATED";
 export const RENDERER_CREATED = "RENDERER_CREATED";
 export const ADD_3D_OBJECT = "ADD_3D_OBJECT";
 export const SET_RENDERER_SIZE = "SET_RENDERER_SIZE";
-export const MOUSE_MOVE = "MOUSE_MOVE";
+export const MOUSE_CLICK = "MOUSE_CLICK";
 // endregion

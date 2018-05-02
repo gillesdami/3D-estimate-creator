@@ -1,15 +1,13 @@
 import * as THREE from 'three';
-import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import {all, call, fork, put, takeEvery} from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
 import ColladaLoader from 'three-collada-loader';
-import { $select } from 'vue';
-import { objectsDisplayed } from '../selectors';
 import {
     actionCreator,
     ADD_3D_OBJECT,
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
-    MOUSE_MOVE,
+    MOUSE_CLICK,
     RENDERER_CREATED,
     SET_RENDERER_SIZE,
     SETTING_CHANGED
@@ -23,6 +21,9 @@ export function* initThreeSaga() {
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xffffff);
+
+    const mouse = new THREE.Vector2();
+    const raycaster = new THREE.Raycaster();
 
     const axes = new THREE.AxesHelper(2);
     scene.add(axes);
@@ -43,14 +44,15 @@ export function* initThreeSaga() {
     renderer.setSize(window.innerWidth * 0.65, window.innerHeight);
 
     const controls = new OrbitControls(camera, renderer.domElement);
+    controls.maxPolarAngle = Math.PI / 2.1;
 
     yield put(actionCreator(RENDERER_CREATED, renderer));
     yield fork(drawFrame, scene, camera, renderer);
     yield takeEvery(ADD_OBJECT_DISPLAYED, addObject, scene);
     yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
-    yield takeEvery(MOUSE_MOVE, setRendererSize);
     yield takeEvery(SETTING_CHANGED, compareSetting);
     yield takeEvery(APPAREL_CHANGED, compareApparel);
+    yield takeEvery(MOUSE_CLICK, mouseClick, {renderer, scene, raycaster, camera, mouse});
 }
 
 export function* drawFrame(scene, camera, renderer) {
@@ -189,14 +191,16 @@ export function* setRendererSize(action) {
     action.payload.renderer.setSize(action.payload.width, action.payload.height);
 }
 
-export function* mouseMove(camera, action) {
-    // console.log(action.payload.mouseEvent);
+export function* mouseClick(params, action) {
+    params.mouse.x = ( action.payload.event.clientX / params.renderer.domElement.clientWidth ) * 2 - 1;
+    params.mouse.y = - ( action.payload.event.clientY / params.renderer.domElement.clientHeight ) * 2 + 1;
 
-    if (action.payload.click === 'left') {
+    params.raycaster.setFromCamera( params.mouse, params.camera );
 
-    } else {
-        // camera.setPosition();
-    }
+    const intersects = params.raycaster.intersectObjects( params.scene.children );
+    console.log(intersects);
+
+    // intersects[ 0 ].object.material.color.set( 0xff0000 );
 }
 
 export function* compareSetting(action) {
