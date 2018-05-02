@@ -10,13 +10,15 @@ import {
     MOUSE_CLICK,
     RENDERER_CREATED,
     SET_RENDERER_SIZE,
-    SETTING_CHANGED
+    SETTING_CHANGED,
+    DBCLICKED_CANVAS
 } from '../actions';
 
+const cameraFrustum = 70;
+
 export function* initThreeSaga() {
-    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10000);
-    camera.position.z = 10;
-    camera.position.y = -10;
+    const camera = new THREE.PerspectiveCamera(cameraFrustum, window.innerWidth / window.innerHeight, 0.01, 10000);
+    camera.position.set(0, -10, 10);
     camera.up = new THREE.Vector3(0, 0, 1);
 
     const scene = new THREE.Scene();
@@ -50,6 +52,7 @@ export function* initThreeSaga() {
     yield takeEvery(SETTING_CHANGED, compareSetting);
     yield takeEvery(APPAREL_CHANGED, compareApparel);
     yield takeEvery(MOUSE_CLICK, mouseClick, scene, camera, renderer);
+    yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, camera, scene);
 }
 
 export function* drawFrame(scene, camera, renderer) {
@@ -223,4 +226,36 @@ export function* compareApparel(action) {
             });
         }
     })*/
+}
+
+export function* doubleClickSelection(camera, scene) {
+    console.log("welcome to saga doubleClickSelection");
+
+    // //your object to be clicked
+    // const object;
+    //
+    // //vector from camera to mouse
+    // const vectorMouse = new THREE.Vector3(
+    //     -(window.innerWidth / 2 - e.clientX) * 2 / window.innerWidth,
+    //     (window.innerHeight / 2 - e.clientY) * 2 / window.innerHeight,
+    //     -1 / Math.tan((cameraFrustum/2) * Math.PI / 180)
+    // );
+    //
+    // vectorMouse.applyQuaternion(camera.quaternion);
+    // vectorMouse.normalize();
+    //
+    // //vector from camera to object
+    // const vectorObject = new THREE.Vector3(
+    //     object.x - camera.position.x,
+    //     object.y - camera.position.y,
+    //     object.z - camera.position.z
+    // );
+    //
+    // vectorObject.normalize();
+    //
+    // if (vectorMouse.angleTo(vectorObject) * 180 / Math.PI < 1) {
+    //     //mouse's position is near object's position
+    //     console.log("ohh you touch my tralala");
+    // }
+
 }

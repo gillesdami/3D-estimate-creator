@@ -22,7 +22,7 @@
     import { $select } from '../sagas/vue';
     import { rootselector, rendererSelector, getDetailsState } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
-    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK} from '../actions'
+    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS} from '../actions'
 
     export default {
         name: 'app',
@@ -77,6 +77,8 @@
             const renderer = $select(rendererSelector);
             const threeRoot = document.getElementById('threeRoot');
             threeRoot.appendChild(renderer.domElement);
+            threeRoot.addEventListener('contextmenu', event => event.preventDefault());
+            threeRoot.addEventListener('dblclick', () => this.$root.$emit('put', actionCreator(DBCLICKED_CANVAS)));
 
             setTimeout(() => {
                 this.setRendererSize(renderer);
