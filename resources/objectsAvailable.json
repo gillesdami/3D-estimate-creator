@@ -7,7 +7,16 @@
             "ILE DE FRANCE": 10,
             "PACA": 11
         },
-        "settings": [],
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 3,
+            "max": 300,
+            "step": 3,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
         "apparels": [
             {
                 "type": "toit",

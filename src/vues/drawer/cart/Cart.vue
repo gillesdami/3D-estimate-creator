@@ -17,9 +17,8 @@
         components: {CartList},
         name: "cart",
         methods: {
-            total: function() {
-                const tt =  $select(totalSelector, objectsAvailable);
-                return tt;
+            total: function () {
+                return $select(totalSelector, objectsAvailable);
             }
         }
     }

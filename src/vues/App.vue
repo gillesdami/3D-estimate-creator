@@ -22,7 +22,7 @@
     import { $select } from '../sagas/vue';
     import { rootselector, rendererSelector, getDetailsState } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
-    import { actionCreator, SET_RENDERER_SIZE } from '../actions'
+    import { actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL } from '../actions'
 
     export default {
         name: 'app',
@@ -46,23 +46,46 @@
                     width: container.clientWidth,
                     height: container.clientHeight
                 } ));
+            },
+            handleHideDetailsPanel: function (threeRoot) {
+                let mouseTimer;
+                let hold = false;
+
+                threeRoot.addEventListener('mousedown', () => {
+                    mouseTimer = setTimeout(() => hold = true, 500);
+                });
+
+                threeRoot.addEventListener('mouseup', e => {
+                    clearTimeout(mouseTimer);
+
+                    if (!hold) {
+                        if (!document.getElementById('drawer').contains(e.target) &&
+                            !document.getElementById('details').contains(e.target)){
+                            this.$root.$emit('put', actionCreator(HIDE_DETAILS_PANEL));
+                        }
+                    } else {
+                        hold = false;
+                    }
+                });
             }
         },
         mounted: function() {
             const renderer = $select(rendererSelector);
             const threeRoot = document.getElementById('threeRoot');
             threeRoot.appendChild(renderer.domElement);
-            threeRoot.addEventListener('contextmenu', event => event.preventDefault());
 
             setTimeout(() => {
                 this.setRendererSize(renderer);
                 const detailsComp = document.getElementById('details');
-                detailsComp.style.left = (0.6*threeRoot.clientWidth).toString();
+                detailsComp.style.left = (0.75*threeRoot.clientWidth).toString();
             }, 100);
 
-            window.addEventListener('resize', () => {
-                this.setRendererSize(renderer);
-            });
+            // Désactiver click droit sur la scene
+            threeRoot.addEventListener('contextmenu', event => event.preventDefault());
+
+            this.handleHideDetailsPanel(threeRoot);
+
+            window.addEventListener('resize', () => this.setRendererSize(renderer));
         }
     }
 </script>
