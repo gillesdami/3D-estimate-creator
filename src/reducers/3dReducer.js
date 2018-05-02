@@ -23,15 +23,10 @@ const defaultDetailsState = {
 export const objectsDisplayed = (state = [], action) => {
     switch (action.type) {
         case ADD_OBJECT_DISPLAYED:
-            const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-
             return [
                 ...state,
                 {
-                    uid: generateUid(),
+                    uid: action.payload.uid,
                     name: action.payload.itemName,
                     settings: action.payload.item.settings,
                     apparels: action.payload.item.apparels
