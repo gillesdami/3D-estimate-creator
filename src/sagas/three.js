@@ -56,9 +56,10 @@ export function* drawFrame(scene, camera, renderer) {
 }
 
 export function* addObject(scene, action) {
-    const {itemName, item} = action.payload;
+    const {itemName, item, uid} = action.payload;
 
     const obj = yield call(loadModel, itemName, itemName);
+    obj.name = uid;
     const bb = new THREE.Box3();
     bb.setFromObject(obj);
     yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z)/2));
