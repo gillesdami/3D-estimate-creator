@@ -3,7 +3,7 @@
         <div v-if="detailsState().item && detailsState().item.apparels.length>0">
             <p class="title">Habillage</p>
             <div class="input-field" v-for="(apparel, index) in detailsState().item.apparels">
-                <select v-model="selectApparels[index]"
+                <select @input="selectApparels[index] = $event.target.value"
                         v-on:change="handleChange(selectApparels[index], apparel.type)">
                     <option disabled selected>Faites votre choix</option>
                     <option v-for="value in apparel.values"

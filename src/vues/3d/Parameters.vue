@@ -8,7 +8,7 @@
                     <p class="range-field">
                         <input :id="`rangeInput${index}`"
                                type="range"
-                               v-model="sliderSettings[index]"
+                               @input="sliderSettings[index] = $event.target.value"
                                v-on:change="handleChange(sliderSettings[index], setting.name, index)"
                                :min="setting.min"
                                :max="setting.max"
@@ -19,7 +19,7 @@
 
                 <div v-if="setting.type === 'select'">
                     <span>{{setting.name}}</span>
-                    <select v-model="selectSettings[index]"
+                    <select @input="selectSettings[index] = $event.target.value"
                             v-on:change="handleChange(selectSettings[index], setting.name)">
                         <option disabled selected value="">Faites votre choix</option>
                         <option v-for="value in setting.values" :value="`${value}`">{{value}}</option>
