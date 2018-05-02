@@ -22,7 +22,7 @@ export function* initThreeSaga() {
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xffffff);
-
+console.log(scene);
     const axes = new THREE.AxesHelper(2);
     scene.add(axes);
 
@@ -66,11 +66,12 @@ export function* addObject(scene, action) {
 
     const obj = yield call(loadModel, itemName, itemName);
     obj.name = uid;
+    console.log(obj.name);
     const bb = new THREE.Box3();
     bb.setFromObject(obj);
     yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z) / 2));
     scene.add(obj);
-
+    console.log(obj.name);
     const calls = {};
 
     item.apparels.forEach((appareal) => {
@@ -146,7 +147,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             yield call(setBoxCenter, obj);
     }
 
-    scene.add(obj);
+    parentObj.add(obj);
 
     return obj.id;
 }
