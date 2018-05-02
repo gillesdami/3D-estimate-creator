@@ -34,6 +34,11 @@ export function* initThreeSaga() {
     const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
     scene.add(ambientLight);
 
+    const directionalLight = new THREE.DirectionalLight(0xccccff, 0.6);
+    directionalLight.castShadow = true;
+    directionalLight.position.set(10, 10, 10);
+    scene.add(directionalLight);
+
     const renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setSize(window.innerWidth * 0.65, window.innerHeight);
 
@@ -83,45 +88,62 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
     if (apparealValue === "aucun") return null;
 
     let obj, parentBox = new THREE.Box3(), bb = new THREE.Box3(), parentCenter;
+    parentBox = parentBox.setFromObject(parentObj);
 
     switch (apparealType) {
         case "toit":
             obj = yield call(loadModel, itemName, apparealValue);
-            parentBox = parentBox.setFromObject(parentObj);
-            yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, -1 + parentBox.max.z));
+            yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
             break;
         case "plancher":
             obj = yield call(loadModel, itemName, apparealValue);
             yield call(setBoxCenter, obj);
             break;
         case "rideau":
-            obj = yield call(loadModel, itemName, apparealValue);
-            parentBox = parentBox.setFromObject(parentObj);
-            bb.setFromObject(obj);
-            yield call(setBoxCenter, obj, new THREE.Vector3(parentBox.min.x, 0, ((bb.max.z - bb.min.z) / 2)));
+            obj = new THREE.Group();
+
+            let rideau = yield call(loadModel, itemName, apparealValue);
+            bb.setFromObject(rideau);
+            rideau.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
+            
+            yield call(setBoxCenter, rideau, new THREE.Vector3(parentBox.min.x, 0, ((bb.max.z - bb.min.z)/2) + .1));
+            obj.add(rideau);
+
+            rideau = rideau.clone();
+            rideau.rotateZ(Math.PI/2);
+            yield call(setBoxCenter, rideau, new THREE.Vector3(0, parentBox.min.y, ((bb.max.z - bb.min.z)/2) + .1));
+            obj.add(rideau);
+
+            rideau = rideau.clone();
+            rideau.rotateZ(Math.PI/2);
+            yield call(setBoxCenter, rideau, new THREE.Vector3(parentBox.max.x, 0, ((bb.max.z - bb.min.z)/2) + .1));
+            obj.add(rideau);
+
+            rideau = rideau.clone();
+            rideau.rotateZ(Math.PI/2);
+            yield call(setBoxCenter, rideau, new THREE.Vector3(0, parentBox.max.y, ((bb.max.z - bb.min.z)/2) + .1));
+            obj.add(rideau);
             break;
         case "lestage":
             obj = new THREE.Group();
 
             let lestage = yield call(loadModel, itemName, apparealValue);
-            parentBox = parentBox.setFromObject(parentObj);
             bb = new THREE.Box3();
-            bb.setFromObject(obj);
+            bb.setFromObject(lestage);
 
-            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.min.x, parentBox.min.y, (bb.max.z - bb.min.z) / 2));
+            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.min.x - .5, parentBox.min.y - .5, (bb.max.z - bb.min.z)/2));
             obj.add(lestage);
 
             lestage = lestage.clone();
-            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x, parentBox.max.y, (bb.max.z - bb.min.z) / 2));
+            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x + .5, parentBox.max.y + .5, (bb.max.z - bb.min.z)/2));
             obj.add(lestage);
-
-            let lestage2 = lestage.clone();
-            yield call(setBoxCenter, lestage2, new THREE.Vector3(parentBox.min.x, parentBox.max.y, (bb.max.z - bb.min.z) / 2));
-            lestage2.rotateZ(Math.PI / 2);
-            obj.add(lestage2);
-
+            
             lestage = lestage.clone();
-            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x, parentBox.min.y, (bb.max.z - bb.min.z) / 2));
+            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.min.x - .5, parentBox.max.y + .5, (bb.max.z - bb.min.z)/2));
+            obj.add(lestage);
+            
+            lestage = lestage.clone();
+            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x + .5, parentBox.min.y - .5, (bb.max.z - bb.min.z)/2));
             obj.add(lestage);
             break;
         default:
