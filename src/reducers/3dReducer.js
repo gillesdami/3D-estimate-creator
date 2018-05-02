@@ -3,7 +3,6 @@ import {
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
     DELETE_ALL,
-    MOUSEWHEEL_UPDATE,
     RENDERER_CREATED,
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL,
@@ -65,6 +64,9 @@ export const objectsDisplayed = (state = [], action) => {
                         ...object,
                         apparels: object.apparels.map(apparel => {
                             if (apparel.type === action.payload.apparel.type) {
+                                console.log("#### 3d reducers");
+                                console.log(action.payload.apparel);
+                                console.log("#### end 3d reducers");
                                 return {
                                     ...apparel,
                                     value: action.payload.apparel.value
@@ -124,18 +126,6 @@ export const renderer = (state = {}, action) => {
     switch (action.type) {
         case RENDERER_CREATED:
             return action.payload;
-        default:
-            return state;
-    }
-};
-
-export const camera = (state = {}, action) => {
-    switch (action.type) {
-        case MOUSEWHEEL_UPDATE :
-            return {
-                ...state,
-                zoomFactor: action.payload
-            };
         default:
             return state;
     }

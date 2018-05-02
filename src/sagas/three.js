@@ -1,16 +1,16 @@
 import * as THREE from 'three';
 import { call, fork, put, takeEvery } from 'redux-saga/effects';
+import OrbitControls from 'three-orbitcontrols';
+import ColladaLoader from 'three-collada-loader';
 import {
     actionCreator,
     ADD_3D_OBJECT,
-    ADD_OBJECT_DISPLAYED,
+    ADD_OBJECT_DISPLAYED, APPAREL_CHANGED,
     MOUSE_MOVE,
-    MOUSEWHEEL_UPDATE,
     RENDERER_CREATED,
-    SET_RENDERER_SIZE
+    SET_RENDERER_SIZE,
+    SETTING_CHANGED
 } from '../actions';
-import OrbitControls from 'three-orbitcontrols';
-import ColladaLoader from 'three-collada-loader';
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10000);
@@ -18,7 +18,7 @@ export function* initThreeSaga() {
     camera.position.y = 10;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xffffff );
+    scene.background = new THREE.Color(0xffffff);
 
     const axes = new THREE.AxisHelper(2);
     scene.add(axes);
@@ -39,6 +39,8 @@ export function* initThreeSaga() {
     yield takeEvery(ADD_OBJECT_DISPLAYED, addObject, scene);
     yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
     yield takeEvery(MOUSE_MOVE, setRendererSize);
+    yield takeEvery(SETTING_CHANGED, compareSetting);
+    yield takeEvery(APPAREL_CHANGED, compareApparel);
 }
 
 export function* drawFrame(scene, camera, renderer) {
@@ -90,16 +92,6 @@ export function* setRendererSize(action) {
     action.payload.renderer.setSize(action.payload.width, action.payload.height);
 }
 
-export function* mouseWheel(camera, isUpOrDown) {
-    if (isUpOrDown) {
-        camera.zoom += 1;
-        yield put(actionCreator(MOUSEWHEEL_UPDATE, camera.zoom));
-    } else if (!isUpOrDown) {
-        camera.zoom -= 1;
-        yield put(actionCreator(MOUSEWHEEL_UPDATE, camera.zoom));
-    }
-}
-
 export function* mouseMove(camera, action) {
     // console.log(action.payload.mouseEvent);
 
@@ -108,4 +100,13 @@ export function* mouseMove(camera, action) {
     } else {
         // camera.setPosition();
     }
+}
+
+export function* compareSetting(action) {
+
+}
+
+export function* compareApparel(action) {
+    const {apparel, itemName} = action.payload;
+    console.log(action);
 }
