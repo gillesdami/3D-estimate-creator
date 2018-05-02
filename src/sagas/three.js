@@ -1,16 +1,19 @@
 import * as THREE from 'three';
+import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import OrbitControls from 'three-orbitcontrols';
+import ColladaLoader from 'three-collada-loader';
+import { $select } from 'vue';
+import { objectsDisplayed } from '../selectors';
 import {
     actionCreator,
     ADD_3D_OBJECT,
     ADD_OBJECT_DISPLAYED,
+    APPAREL_CHANGED,
     MOUSE_MOVE,
-    MOUSEWHEEL_UPDATE,
     RENDERER_CREATED,
-    SET_RENDERER_SIZE
+    SET_RENDERER_SIZE,
+    SETTING_CHANGED
 } from '../actions';
-import OrbitControls from 'three-orbitcontrols';
-import ColladaLoader from 'three-collada-loader';
-import { put, takeEvery, fork, call, all } from 'redux-saga/effects';
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10000);
@@ -19,13 +22,13 @@ export function* initThreeSaga() {
     camera.up = new THREE.Vector3(0, 0, 1);
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xffffff );
+    scene.background = new THREE.Color(0xffffff);
 
     const axes = new THREE.AxesHelper(2);
     scene.add(axes);
 
     const gridHelper = new THREE.GridHelper(50, 25);
-    gridHelper.rotateX(Math.PI/2);
+    gridHelper.rotateX(Math.PI / 2);
     scene.add(gridHelper);
 
     const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
@@ -46,6 +49,8 @@ export function* initThreeSaga() {
     yield takeEvery(ADD_OBJECT_DISPLAYED, addObject, scene);
     yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
     yield takeEvery(MOUSE_MOVE, setRendererSize);
+    yield takeEvery(SETTING_CHANGED, compareSetting);
+    yield takeEvery(APPAREL_CHANGED, compareApparel);
 }
 
 export function* drawFrame(scene, camera, renderer) {
@@ -62,7 +67,7 @@ export function* addObject(scene, action) {
     obj.name = uid;
     const bb = new THREE.Box3();
     bb.setFromObject(obj);
-    yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z)/2));
+    yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z) / 2));
     scene.add(obj);
 
     const calls = {};
@@ -70,7 +75,7 @@ export function* addObject(scene, action) {
     item.apparels.forEach((appareal) => {
         calls[appareal.type] = call(addAppareal, scene, itemName, obj, appareal.type, appareal.value || appareal.values[0]);
     });
-    
+
     const apparealsIds = yield all(calls);
 
     yield put(actionCreator(ADD_3D_OBJECT, {
@@ -81,12 +86,12 @@ export function* addObject(scene, action) {
 }
 
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue) {
-    if(apparealValue === "aucun") return null;
+    if (apparealValue === "aucun") return null;
 
     let obj, parentBox = new THREE.Box3(), bb = new THREE.Box3(), parentCenter;
     parentBox = parentBox.setFromObject(parentObj);
 
-    switch(apparealType) {
+    switch (apparealType) {
         case "toit":
             obj = yield call(loadModel, itemName, apparealValue);
             yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
@@ -185,16 +190,6 @@ export function* setRendererSize(action) {
     action.payload.renderer.setSize(action.payload.width, action.payload.height);
 }
 
-export function* mouseWheel(camera, isUpOrDown) {
-    if (isUpOrDown) {
-        camera.zoom += 1;
-        yield put(actionCreator(MOUSEWHEEL_UPDATE, camera.zoom));
-    } else if (!isUpOrDown) {
-        camera.zoom -= 1;
-        yield put(actionCreator(MOUSEWHEEL_UPDATE, camera.zoom));
-    }
-}
-
 export function* mouseMove(camera, action) {
     // console.log(action.payload.mouseEvent);
 
@@ -203,4 +198,25 @@ export function* mouseMove(camera, action) {
     } else {
         // camera.setPosition();
     }
+}
+
+export function* compareSetting(action) {
+
+}
+
+export function* compareApparel(action) {
+    /*const {apparel, itemName} = action.payload;
+    const objectsDisplayed = $select(objectsDisplayed);
+
+    objectsDisplayed.forEach(obj => {
+        if (obj.name === itemName) {
+            obj.apparels.forEach(objApparel => {
+                if (objApparel.type === apparel.type) {
+                    if (objApparel.value != apparel.value) {
+
+                    }
+                }
+            });
+        }
+    })*/
 }

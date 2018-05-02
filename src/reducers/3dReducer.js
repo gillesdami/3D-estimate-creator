@@ -3,7 +3,6 @@ import {
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
     DELETE_ALL,
-    MOUSEWHEEL_UPDATE,
     RENDERER_CREATED,
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL,
@@ -119,18 +118,6 @@ export const renderer = (state = {}, action) => {
     switch (action.type) {
         case RENDERER_CREATED:
             return action.payload;
-        default:
-            return state;
-    }
-};
-
-export const camera = (state = {}, action) => {
-    switch (action.type) {
-        case MOUSEWHEEL_UPDATE :
-            return {
-                ...state,
-                zoomFactor: action.payload
-            };
         default:
             return state;
     }

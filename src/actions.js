@@ -26,23 +26,20 @@ export const SHOW_DETAILS_PANEL = "SHOW_DETAILS_PANEL";
 export const HIDE_DETAILS_PANEL = "HIDE_DETAILS_PANEL";
 // endregion
 
- // region helperPanel actions
+// region helperPanel actions
 export const TOGGLE_HELPER_PANEL = "TOGGLE_HELPER_PANEL";
 // endregion
 
- // region deleteAll actions
+// region deleteAll actions
 export const DELETE_ALL = "DELETE_ALL";
 // endregion
 
- // region vue actions
+// region vue actions
 export const VIEW_CREATED = "VIEW_CREATED";
 // endregion
 
- // region three actions
+// region three actions
 export const RENDERER_CREATED = "RENDERER_CREATED";
-export const MOUSEWHEEL_UP = "MOUSEWHEEL_UP";
-export const MOUSEWHEEL_DOWN = "MOUSEWHEEL_DOWN";
-export const MOUSEWHEEL_UPDATE = "MOUSEWHEEL_UPDATE";
 export const ADD_3D_OBJECT = "ADD_3D_OBJECT";
 export const SET_RENDERER_SIZE = "SET_RENDERER_SIZE";
 export const MOUSE_MOVE = "MOUSE_MOVE";
