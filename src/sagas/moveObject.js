@@ -4,7 +4,7 @@ import { select } from 'redux-saga/effects';
 
 export default function* moveObject(scene, camera, renderer, action) {
     if(action.payload.event.buttons !== 1) return;
-    
+
     const selectedObject = yield select(getDetailsState);
 
     if(!selectedObject.item) return;
@@ -26,9 +26,9 @@ export default function* moveObject(scene, camera, renderer, action) {
 
     const intersectObjectPoint = new THREE.Vector3();
     raycaster.ray.intersectBox(collisionBox, intersectObjectPoint);
-    
+
     if(intersectObjectPoint.z === 0) return;
-    
+
     raycaster.ray.intersectPlane(new THREE.Plane(camera.up), mouseProjection);
 
     selectedObject3D.position.x = Math.max(-25, Math.min(25, mouseProjection.x));

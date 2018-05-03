@@ -39,15 +39,21 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
         case "pignon":
 
             let pignon = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, pignon);
+            yield call(setBoxCenter, pignon, new THREE.Vector3(2.45, 0, parentBox.max.z - 1));
             obj.add(pignon);
             break;
 
         case "croix de saint andre":
 
             let croixDeSaintAndre = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, croixDeSaintAndre,new THREE.Vector3(0, 5, parentBox.max.z - 3.40));
+            yield call(setBoxCenter, croixDeSaintAndre,new THREE.Vector3(0, 5.1, parentBox.max.z - 3.40));
             obj.add(croixDeSaintAndre);
+
+            croixDeSaintAndre = croixDeSaintAndre.clone();
+            croixDeSaintAndre.rotateZ(Math.PI);
+            yield call(setBoxCenter, croixDeSaintAndre,new THREE.Vector3(0, -5.1, parentBox.max.z - 3.40));
+            obj.add(croixDeSaintAndre);
+
             break;
 
         case "barre de pignon":
@@ -57,11 +63,18 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(barreDePignon);
             break;
 
-        case "toit":
-            let toit = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, toit, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
+        case "toitPagode":
+            let toitPagode = yield call(loadModel, itemName, apparealValue);
+            yield call(setBoxCenter, toitPagode, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
 
-            obj.add(toit);
+            obj.add(toitPagode);
+            break;
+
+        case "toitTravee":
+            let toitTravee = yield call(loadModel, itemName, apparealValue);
+            yield call(setBoxCenter, toitTravee, new THREE.Vector3(0, 0, parentBox.max.z - 1.03));
+
+            obj.add(toitTravee);
             break;
         case "plancher":
             let plancher = yield call(loadModel, itemName, apparealValue);

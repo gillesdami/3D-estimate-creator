@@ -19,7 +19,7 @@
         }],
         "apparels": [
             {
-                "type": "toit",
+                "type": "toitPagode",
                 "values": [
                     "toit blanc 3m",
                     "toit cristal 3m"
@@ -60,7 +60,7 @@
         "settings": [],
         "apparels": [
             {
-                "type": "toit",
+                "type": "toitPagode",
                 "values": [
                     "toit blanc",
                     "toir cristal"
@@ -101,7 +101,7 @@
         "settings": [],
         "apparels": [
             {
-                "type": "toit",
+                "type": "toitPagode",
                 "values": [
                     "toit blanc",
                     "toir cristal"
@@ -161,45 +161,37 @@
                 "values": [
                     "croix de saint andre"
                 ]
+            },
+            {
+                "type": "pignon",
+                "values": [
+                    "pignon blanc",
+                    "pignon cristal"
+                ]
+            },
+            {
+                "type": "toitTravee",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "rideau",
+                "values": [
+                    "rideau blanc",
+                    "rideau ouvert",
+                    "rideau fenêtre",
+                    "rideau cristal"
+                ]
+            },
+            {
+                "type": "plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
             }
-//            {
-//                "type": "pignon",
-//                "values": [
-//                    "pignon blanc",
-//                    "pignon cristal"
-//                ]
-//            }
-        //,
-//            {
-//                "type": "toit",
-//                "values": [
-//                    "toit blanc 3m",
-//                    "toit cristal 3m"
-//                ]
-//            },
-//            {
-//                "type": "rideau",
-//                "values": [
-//                    "rideau ouvert",
-//                    "rideau blanc",
-//                    "rideau fenêtre",
-//                    "rideau cristal"
-//                ]
-//            },
-//            {
-//                "type": "plancher",
-//                "values": [
-//                    "plancher",
-//                    "aucun"
-//                ]
-//            },
-//            {
-//                "type": "lestage",
-//                "values": [
-//                    "lestage pagode",
-//                    "aucun"
-//                ]
-//            }
         ]
     }
 }

@@ -25,7 +25,7 @@ export function* initThreeSaga() {
     camera.up = new THREE.Vector3(0, 0, 1);
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
+    scene.background = new THREE.Color(0xf0f0f0);
     window.THREE = THREE;//debug
     window.scene = scene;//debug
 
@@ -48,7 +48,7 @@ export function* initThreeSaga() {
     renderer.setSize(window.innerWidth * 0.65, window.innerHeight);
 
     const controls = new OrbitControls(camera, renderer.domElement);
-    // controls.maxPolarAngle = Math.PI / 2.1;
+    controls.maxPolarAngle = Math.PI / 2.1;
 
     yield put(actionCreator(RENDERER_CREATED, renderer));
     yield fork(drawFrame, scene, camera, renderer);
