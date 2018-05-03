@@ -6,18 +6,21 @@ import setBoxCenter from './util/setBoxCenter';
 export default function* addObject(scene, action) {
     const {itemName, item, uid} = action.payload;
 
-    const obj = yield call(loadModel, itemName, itemName);
+    const obj = new THREE.Group();
+    const base = yield call(loadModel, itemName, itemName);
     obj.name = uid;
-    console.log(obj.name);
+    
     const bb = new THREE.Box3();
-    bb.setFromObject(obj);
-    yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z) / 2));
+    bb.setFromObject(base);
+    yield call(setBoxCenter, base, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z) / 2));
+
+    obj.add(base);
     scene.add(obj);
-    console.log(obj.name);
+    
     const calls = {};
 
     item.apparels.forEach((appareal) => {
-        calls[appareal.type] = call(addAppareal, scene, itemName, obj, appareal.type, appareal.value || appareal.values[0]);
+        calls[appareal.type] = call(addAppareal, scene, itemName, base, appareal.type, appareal.value || appareal.values[0]);
     });
 
     const apparealsIds = yield all(calls);

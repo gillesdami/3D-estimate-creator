@@ -22,7 +22,7 @@
     import { $select } from '../sagas/vue';
     import { rootselector, rendererSelector, getDetailsState, objectsDisplayed } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
-    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS} from '../actions'
+    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS, MOUSE_MOVE} from '../actions'
 
     export default {
         name: 'app',
@@ -76,6 +76,12 @@
                     } else {
                         hold = false;
                     }
+                });
+
+                threeRoot.addEventListener('mousemove', e => {
+                    this.$root.$emit('put', actionCreator(MOUSE_MOVE, {
+                        event: e
+                    }));
                 });
             }
         },
