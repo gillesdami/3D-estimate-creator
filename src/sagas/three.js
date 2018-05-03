@@ -22,7 +22,9 @@ export function* initThreeSaga() {
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xffffff);
-console.log(scene);
+    window.THREE = THREE;//debug
+    window.scene = scene;//debug
+
     const axes = new THREE.AxesHelper(2);
     scene.add(axes);
 
@@ -84,21 +86,26 @@ export function* addObject(scene, action) {
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue) {
     if (apparealValue === "aucun") return null;
 
-    let obj, parentBox = new THREE.Box3(), bb = new THREE.Box3(), parentCenter;
+    let obj = new THREE.Group(), 
+        parentBox = new THREE.Box3(), 
+        bb = new THREE.Box3();
+
     parentBox = parentBox.setFromObject(parentObj);
 
     switch (apparealType) {
         case "toit":
-            obj = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
+            let toit = yield call(loadModel, itemName, apparealValue);
+            yield call(setBoxCenter, toit, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
+
+            obj.add(toit);
             break;
         case "plancher":
-            obj = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, obj);
+            let plancher = yield call(loadModel, itemName, apparealValue);
+            yield call(setBoxCenter, plancher);
+            
+            obj.add(plancher);
             break;
         case "rideau":
-            obj = new THREE.Group();
-
             let rideau = yield call(loadModel, itemName, apparealValue);
             bb.setFromObject(rideau);
             rideau.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
@@ -122,8 +129,6 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(rideau);
             break;
         case "lestage":
-            obj = new THREE.Group();
-
             let lestage = yield call(loadModel, itemName, apparealValue);
             bb = new THREE.Box3();
             bb.setFromObject(lestage);
@@ -147,6 +152,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             yield call(setBoxCenter, obj);
     }
 
+    obj.applyMatrix(new THREE.Matrix4().getInverse(parentObj.matrixWorld));
     parentObj.add(obj);
 
     return obj.id;
