@@ -114,9 +114,11 @@ export function* compareApparel(scene, action) {
         const {apparel, itemName, uid} = action.payload;
         const object = scene.getObjectByName(uid);
 
-        const apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
-        if (apparelToDelete != null) {
+
+        let apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
+        while(apparelToDelete != null) {
             apparelToDelete.parent.remove(apparelToDelete);
+            apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
         }
 
         yield call(addAppareal, scene, itemName, object, apparel.type, apparel.value);

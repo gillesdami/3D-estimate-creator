@@ -38,6 +38,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
     switch (apparealType) {
         case "pignon":
             let pignon = yield call(loadModel, itemName, apparealValue);
+            pignon.name = "pignon";
             yield call(setBoxCenter, pignon, new THREE.Vector3(2.45, 0, parentBox.max.z - 1));
 
             obj.add(pignon);
@@ -45,6 +46,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
 
         case "croix de saint andre":
             let croixDeSaintAndre = yield call(loadModel, itemName, apparealValue);
+            croixDeSaintAndre.name = "croix de saint andre";
             yield call(setBoxCenter, croixDeSaintAndre,new THREE.Vector3(0, 5.1, parentBox.max.z - 3.40));
             obj.add(croixDeSaintAndre);
 
@@ -57,6 +59,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
 
         case "barre de pignon":
             let barreDePignon =  yield call(loadModel, itemName, apparealValue);
+            barreDePignon.name = "barre de pignon";
             yield call(setBoxCenter, barreDePignon, new THREE.Vector3(2.45, 0, parentBox.max.z - 2.48));
 
             obj.add(barreDePignon);
@@ -64,14 +67,15 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
 
         case "toitPagode":
             let toitPagode = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, toitPagode, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
             toitPagode.name = "toitPagode";
+            yield call(setBoxCenter, toitPagode, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
 
             obj.add(toitPagode);
             break;
 
         case "toitTravee":
             let toitTravee = yield call(loadModel, itemName, apparealValue);
+            toitTravee.name = "toitTravee";
             yield call(setBoxCenter, toitTravee, new THREE.Vector3(0, 0, parentBox.max.z - 1.03));
 
             obj.add(toitTravee);
@@ -79,18 +83,18 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
 
         case "plancher":
             let plancher = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, plancher);
             plancher.name = "plancher";
+            yield call(setBoxCenter, plancher);
 
             obj.add(plancher);
             break;
 
         case "rideau":
             let rideau = yield call(loadModel, itemName, apparealValue);
+            rideau.name = "rideau";
             bb.setFromObject(rideau);
             rideau.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
-            rideau.name = "rideau";
-            
+
             yield call(setBoxCenter, rideau, new THREE.Vector3(parentBox.min.x, 0, ((bb.max.z - bb.min.z)/2) + .1));
             obj.add(rideau);
 
@@ -112,9 +116,9 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
 
         case "lestage":
             let lestage = yield call(loadModel, itemName, apparealValue);
+            lestage.name = "lestage";
             bb = new THREE.Box3();
             bb.setFromObject(lestage);
-            lestage.name = "lestage";
 
             yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.min.x - .5, parentBox.min.y - .5, (bb.max.z - bb.min.z)/2));
             obj.add(lestage);
