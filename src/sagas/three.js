@@ -87,8 +87,6 @@ export function* mouseClick(scene, camera, renderer, action) {
             if (obj.parent && obj.parent.type === 'Scene') objectToFind = obj;
         });
 
-        console.log(objectToFind);
-
         yield put(actionCreator(SHOW_DETAILS_PANEL_FROM_SCENE, {uid: objectToFind.name,
             objectsDisplayed: action.payload.objectsDisplayed}));
     } else {
