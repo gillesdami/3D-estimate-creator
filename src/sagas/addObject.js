@@ -3,7 +3,7 @@ import { all, call } from 'redux-saga/effects';
 import loadModel from './util/colladaLoader';
 import setBoxCenter from './util/setBoxCenter';
 
-export default function* addObject(scene, action) {
+export function* addObject(scene, action) {
     const {itemName, item, uid} = action.payload;
 
     const obj = new THREE.Group();
@@ -39,19 +39,22 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
         case "toit":
             let toit = yield call(loadModel, itemName, apparealValue);
             yield call(setBoxCenter, toit, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
+            toit.name = "toit";
 
             obj.add(toit);
             break;
         case "plancher":
             let plancher = yield call(loadModel, itemName, apparealValue);
             yield call(setBoxCenter, plancher);
-            
+            plancher.name = "plancher";
+
             obj.add(plancher);
             break;
         case "rideau":
             let rideau = yield call(loadModel, itemName, apparealValue);
             bb.setFromObject(rideau);
             rideau.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
+            rideau.name = "rideau";
             
             yield call(setBoxCenter, rideau, new THREE.Vector3(parentBox.min.x, 0, ((bb.max.z - bb.min.z)/2) + .1));
             obj.add(rideau);
@@ -75,6 +78,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             let lestage = yield call(loadModel, itemName, apparealValue);
             bb = new THREE.Box3();
             bb.setFromObject(lestage);
+            lestage.name = "lestage";
 
             yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.min.x - .5, parentBox.min.y - .5, (bb.max.z - bb.min.z)/2));
             obj.add(lestage);

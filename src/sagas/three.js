@@ -1,19 +1,19 @@
 import * as THREE from 'three';
-import {all, fork, put, takeEvery} from 'redux-saga/effects';
+import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
-import addObject from './addObject';
+import { addAppareal, addObject } from './addObject';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
+    DBCLICKED_CANVAS,
     MOUSE_CLICK,
+    MOUSE_MOVE,
     RENDERER_CREATED,
     SET_RENDERER_SIZE,
     SETTING_CHANGED,
-    DBCLICKED_CANVAS,
     SHOW_DETAILS_PANEL_FROM_SCENE,
-    TOGGLE_CLICK_FROM_OBJECT,
-    MOUSE_MOVE
+    TOGGLE_CLICK_FROM_OBJECT
 } from '../actions';
 import moveObject from './moveObject';
 
@@ -55,7 +55,7 @@ export function* initThreeSaga() {
     yield takeEvery(ADD_OBJECT_DISPLAYED, addObject, scene);
     yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
     yield takeEvery(SETTING_CHANGED, compareSetting);
-    yield takeEvery(APPAREL_CHANGED, compareApparel);
+    yield takeEvery(APPAREL_CHANGED, compareApparel, scene);
     yield takeEvery(MOUSE_CLICK, mouseClick, scene, camera, renderer);
     yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, camera, scene);
     yield takeEvery(MOUSE_MOVE, moveObject, scene, camera, renderer);
@@ -77,7 +77,7 @@ export function* mouseClick(scene, camera, renderer, action) {
     const raycaster = new THREE.Raycaster();
 
     mouse.x = (action.payload.event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-    mouse.y = - (action.payload.event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+    mouse.y = -(action.payload.event.clientY / renderer.domElement.clientHeight) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
 
@@ -90,8 +90,10 @@ export function* mouseClick(scene, camera, renderer, action) {
             if (obj.parent && obj.parent.type === 'Scene') objectToFind = obj;
         });
 
-        yield put(actionCreator(SHOW_DETAILS_PANEL_FROM_SCENE, {uid: objectToFind.name,
-            objectsDisplayed: action.payload.objectsDisplayed}));
+        yield put(actionCreator(SHOW_DETAILS_PANEL_FROM_SCENE, {
+            uid: objectToFind.name,
+            objectsDisplayed: action.payload.objectsDisplayed
+        }));
     } else {
         yield put(actionCreator(TOGGLE_CLICK_FROM_OBJECT));
     }
@@ -101,21 +103,18 @@ export function* compareSetting(action) {
 
 }
 
-export function* compareApparel(action) {
-    /*const {apparel, itemName} = action.payload;
-    const objectsDisplayed = $select(objectsDisplayed);
+export function* compareApparel(scene, action) {
+    const {apparel, itemName, uid} = action.payload;
+    const object = scene.getObjectByName(uid);
 
-    objectsDisplayed.forEach(obj => {
-        if (obj.name === itemName) {
-            obj.apparels.forEach(objApparel => {
-                if (objApparel.type === apparel.type) {
-                    if (objApparel.value != apparel.value) {
+    const apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
+    apparelToDelete.parent.remove(apparelToDelete);
 
-                    }
-                }
-            });
-        }
-    })*/
+    console.log(apparel);
+    console.log(itemName);
+    console.log(uid);
+
+    yield call(addAppareal, scene, itemName, object, apparel.type, apparel.value);
 }
 
 export function* doubleClickSelection(camera, scene) {
