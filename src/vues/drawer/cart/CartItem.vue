@@ -36,7 +36,7 @@
                             } else {
                                 apValues.push({
                                     type: value,
-                                    qte: 1
+                                    qte: 0
                                 });
                             }
                         });

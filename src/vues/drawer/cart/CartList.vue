@@ -32,10 +32,14 @@
                 let isAlreadyIn = false;
 
                 this.objectsInCart.forEach((a) => {
-                    //TODO pour juju
-                    if (a.uid !== obj.uid && a.name === obj.name && a.price === obj.price && a.apparels === obj.apparels) {
-                        a.qte++;
+                    if (a.uid === obj.uid) {
                         isAlreadyIn = true;
+                    } else {
+                        if (a.name === obj.name &&
+                            a.price === objectsAvailable[obj.name].price['ILE DE FRANCE']) {
+                            a.qte = objsDisplayed.filter(obj => obj.name === a.name).length;
+                            isAlreadyIn = true;
+                        }
                     }
                 });
 
@@ -49,7 +53,7 @@
                     });
                 }
             });
-        },
+        }
     }
 </script>
 
