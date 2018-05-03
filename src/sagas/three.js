@@ -9,6 +9,7 @@ import {
     DBCLICKED_CANVAS,
     MOUSE_CLICK,
     MOUSE_MOVE,
+    MOUSE_UP,
     RENDERER_CREATED,
     SET_RENDERER_SIZE,
     SETTING_CHANGED,
@@ -25,7 +26,7 @@ export function* initThreeSaga() {
     camera.up = new THREE.Vector3(0, 0, 1);
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
+    scene.background = new THREE.Color(0xf0f0f0);
     window.THREE = THREE;//debug
     window.scene = scene;//debug
 
@@ -58,7 +59,12 @@ export function* initThreeSaga() {
     yield takeEvery(APPAREL_CHANGED, compareApparel, scene);
     yield takeEvery(MOUSE_CLICK, mouseClick, scene, camera, renderer);
     yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, camera, scene);
-    yield takeEvery(MOUSE_MOVE, moveObject, scene, camera, renderer);
+    yield takeEvery(MOUSE_MOVE, moveObject, scene, camera, renderer, controls);
+    yield takeEvery(MOUSE_UP, reactivateControls, controls)
+}
+
+export function* reactivateControls(controls) {
+    controls.enableRotate = true;
 }
 
 export function* drawFrame(scene, camera, renderer) {
@@ -104,47 +110,34 @@ export function* compareSetting(action) {
 }
 
 export function* compareApparel(scene, action) {
-    const {apparel, itemName, uid} = action.payload;
-    const object = scene.getObjectByName(uid);
+    if (action.payload != null) {
+        const {apparel, itemName, uid} = action.payload;
+        const object = scene.getObjectByName(uid);
 
-    const apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
-    apparelToDelete.parent.remove(apparelToDelete);
+        const apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
+        if (apparelToDelete != null) {
+            apparelToDelete.parent.remove(apparelToDelete);
+        }
 
-    console.log(apparel);
-    console.log(itemName);
-    console.log(uid);
-
-    yield call(addAppareal, scene, itemName, object, apparel.type, apparel.value);
+        yield call(addAppareal, scene, itemName, object, apparel.type, apparel.value);
+    }
 }
 
-export function* doubleClickSelection(camera, scene) {
+export function* doubleClickSelection(camera, scene, renderer, action) {
     console.log("welcome to saga doubleClickSelection");
 
-    // //your object to be clicked
-    // const object;
-    //
-    // //vector from camera to mouse
-    // const vectorMouse = new THREE.Vector3(
-    //     -(window.innerWidth / 2 - e.clientX) * 2 / window.innerWidth,
-    //     (window.innerHeight / 2 - e.clientY) * 2 / window.innerHeight,
-    //     -1 / Math.tan((cameraFrustum/2) * Math.PI / 180)
-    // );
-    //
-    // vectorMouse.applyQuaternion(camera.quaternion);
-    // vectorMouse.normalize();
-    //
-    // //vector from camera to object
-    // const vectorObject = new THREE.Vector3(
-    //     object.x - camera.position.x,
-    //     object.y - camera.position.y,
-    //     object.z - camera.position.z
-    // );
-    //
-    // vectorObject.normalize();
-    //
-    // if (vectorMouse.angleTo(vectorObject) * 180 / Math.PI < 1) {
-    //     //mouse's position is near object's position
-    //     console.log("ohh you touch my tralala");
-    // }
+    const mouse = new THREE.Vector2();
+    const raycaster = new THREE.Raycaster();
+
+    mouse.x = (action.payload.event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = -(action.payload.event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    console.log("touched me");
+    console.log(scene.children);
+    console.log(intersects);
+    // intersects[ 0 ].object.material.color.set( 0xff0000 );
 
 }

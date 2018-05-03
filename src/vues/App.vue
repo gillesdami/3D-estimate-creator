@@ -22,7 +22,7 @@
     import { $select } from '../sagas/vue';
     import { rootselector, rendererSelector, getDetailsState, objectsDisplayed } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
-    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS, MOUSE_MOVE} from '../actions'
+    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS, MOUSE_MOVE, MOUSE_UP} from '../actions'
 
     export default {
         name: 'app',
@@ -66,6 +66,8 @@
                 threeRoot.addEventListener('mouseup', e => {
                     clearTimeout(mouseTimer);
 
+                    this.$root.$emit('put', actionCreator(MOUSE_UP));
+
                     if (!hold) {
                         if (!document.getElementById('drawer').contains(e.target) &&
                             !document.getElementById('details').contains(e.target)){
@@ -90,7 +92,7 @@
             const threeRoot = document.getElementById('threeRoot');
             threeRoot.appendChild(renderer.domElement);
             threeRoot.addEventListener('contextmenu', event => event.preventDefault());
-            threeRoot.addEventListener('dblclick', () => this.$root.$emit('put', actionCreator(DBCLICKED_CANVAS)));
+            threeRoot.addEventListener('dblclick', e => this.$root.$emit('put', actionCreator(DBCLICKED_CANVAS, {event: e})));
 
             setTimeout(() => {
                 this.setRendererSize(renderer);

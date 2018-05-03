@@ -71,6 +71,8 @@ export const objectsDisplayed = (state = [], action) => {
                         })
                     }
                 }
+
+                return object;
             });
         default:
             return state;
