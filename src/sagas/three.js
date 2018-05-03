@@ -10,7 +10,9 @@ import {
     RENDERER_CREATED,
     SET_RENDERER_SIZE,
     SETTING_CHANGED,
-    DBCLICKED_CANVAS
+    DBCLICKED_CANVAS,
+    SHOW_DETAILS_PANEL_FROM_SCENE,
+    TOGGLE_CLICK_FROM_OBJECT
 } from '../actions';
 
 const cameraFrustum = 70;
@@ -187,12 +189,24 @@ export function* mouseClick(scene, camera, renderer, action) {
     mouse.x = (action.payload.event.clientX / renderer.domElement.clientWidth) * 2 - 1;
     mouse.y = - (action.payload.event.clientY / renderer.domElement.clientHeight) * 2 + 1;
 
-    raycaster.setFromCamera( mouse, camera );
+    raycaster.setFromCamera(mouse, camera);
 
-    const intersects = raycaster.intersectObjects(scene.children, true);
-    console.log(scene.children);
-    console.log(intersects);
-    // intersects[ 0 ].object.material.color.set( 0xff0000 );
+    const intersects = raycaster.intersectObjects(scene.children, true).filter(obj => obj.object instanceof THREE.Mesh);
+
+    if (intersects.length > 0) {
+        //Object before scene
+        let objectToFind;
+        intersects[0].object.traverseAncestors(obj => {
+            if (obj.parent && obj.parent.type === 'Scene') objectToFind = obj;
+        });
+
+        console.log(objectToFind);
+
+        yield put(actionCreator(SHOW_DETAILS_PANEL_FROM_SCENE, {uid: objectToFind.name,
+            objectsDisplayed: action.payload.objectsDisplayed}));
+    } else {
+        yield put(actionCreator(TOGGLE_CLICK_FROM_OBJECT));
+    }
 }
 
 export function* compareSetting(action) {
