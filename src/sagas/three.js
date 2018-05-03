@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import {all, call, fork, put, takeEvery} from 'redux-saga/effects';
+import {all, fork, put, takeEvery} from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
-import ColladaLoader from 'three-collada-loader';
+import addObject from './addObject';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
@@ -61,125 +61,6 @@ export function* drawFrame(scene, camera, renderer) {
         yield new Promise((resolve) => requestAnimationFrame(resolve));
         renderer.render(scene, camera);
     }
-}
-
-export function* addObject(scene, action) {
-    const {itemName, item, uid} = action.payload;
-
-    const obj = yield call(loadModel, itemName, itemName);
-    obj.name = uid;
-    console.log(obj.name);
-    const bb = new THREE.Box3();
-    bb.setFromObject(obj);
-    yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z) / 2));
-    scene.add(obj);
-    console.log(obj.name);
-    const calls = {};
-
-    item.apparels.forEach((appareal) => {
-        calls[appareal.type] = call(addAppareal, scene, itemName, obj, appareal.type, appareal.value || appareal.values[0]);
-    });
-
-    const apparealsIds = yield all(calls);
-}
-
-export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue) {
-    if (apparealValue === "aucun") return null;
-
-    let obj = new THREE.Group(), 
-        parentBox = new THREE.Box3(), 
-        bb = new THREE.Box3();
-
-    parentBox = parentBox.setFromObject(parentObj);
-
-    switch (apparealType) {
-        case "toit":
-            let toit = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, toit, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
-
-            obj.add(toit);
-            break;
-        case "plancher":
-            let plancher = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, plancher);
-            
-            obj.add(plancher);
-            break;
-        case "rideau":
-            let rideau = yield call(loadModel, itemName, apparealValue);
-            bb.setFromObject(rideau);
-            rideau.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
-            
-            yield call(setBoxCenter, rideau, new THREE.Vector3(parentBox.min.x, 0, ((bb.max.z - bb.min.z)/2) + .1));
-            obj.add(rideau);
-
-            rideau = rideau.clone();
-            rideau.rotateZ(Math.PI/2);
-            yield call(setBoxCenter, rideau, new THREE.Vector3(0, parentBox.min.y, ((bb.max.z - bb.min.z)/2) + .1));
-            obj.add(rideau);
-
-            rideau = rideau.clone();
-            rideau.rotateZ(Math.PI/2);
-            yield call(setBoxCenter, rideau, new THREE.Vector3(parentBox.max.x, 0, ((bb.max.z - bb.min.z)/2) + .1));
-            obj.add(rideau);
-
-            rideau = rideau.clone();
-            rideau.rotateZ(Math.PI/2);
-            yield call(setBoxCenter, rideau, new THREE.Vector3(0, parentBox.max.y, ((bb.max.z - bb.min.z)/2) + .1));
-            obj.add(rideau);
-            break;
-        case "lestage":
-            let lestage = yield call(loadModel, itemName, apparealValue);
-            bb = new THREE.Box3();
-            bb.setFromObject(lestage);
-
-            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.min.x - .5, parentBox.min.y - .5, (bb.max.z - bb.min.z)/2));
-            obj.add(lestage);
-
-            lestage = lestage.clone();
-            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x + .5, parentBox.max.y + .5, (bb.max.z - bb.min.z)/2));
-            obj.add(lestage);
-            
-            lestage = lestage.clone();
-            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.min.x - .5, parentBox.max.y + .5, (bb.max.z - bb.min.z)/2));
-            obj.add(lestage);
-            
-            lestage = lestage.clone();
-            yield call(setBoxCenter, lestage, new THREE.Vector3(parentBox.max.x + .5, parentBox.min.y - .5, (bb.max.z - bb.min.z)/2));
-            obj.add(lestage);
-            break;
-        default:
-            yield call(setBoxCenter, obj);
-    }
-
-    obj.applyMatrix(new THREE.Matrix4().getInverse(parentObj.matrixWorld));
-    parentObj.add(obj);
-
-    return obj.id;
-}
-
-export function loadModel(dir, name) {
-    return new Promise((resolve, reject) => {
-        const loader = new ColladaLoader();
-
-        loader.load(
-            `/models/${dir}/${name}.dae`,
-            (collada) => resolve(collada.scene),
-            () => {
-            }, //progress
-            reject
-        );
-    });
-}
-
-export function* setBoxCenter(obj, position = new THREE.Vector3()) {
-    const bb = new THREE.Box3();
-    const center = new THREE.Vector3();
-    bb.setFromObject(obj);
-    bb.getCenter(center);
-    obj.position.x += position.x - center.x;
-    obj.position.y += position.y - center.y;
-    obj.position.z += position.z - center.z;
 }
 
 export function* setRendererSize(action) {
