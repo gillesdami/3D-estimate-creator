@@ -12,14 +12,25 @@
         name: "object-item",
         methods: {
             clickedObjectItem: function () {
+                const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+                    /[xy]/g, 
+                    function (c) {
+                        const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                        return v.toString(16);
+                    });
+
+                const uid = generateUid();
+
                 this.$root.$emit('put', actionCreator(SHOW_DETAILS_PANEL, {
                     itemName: this.name,
-                    item: this.item
+                    item: this.item,
+                    uid
                 }));
 
                 this.$root.$emit('put', actionCreator(ADD_OBJECT_DISPLAYED, {
                     itemName: this.name,
-                    item: this.item
+                    item: this.item,
+                    uid
                 }));
             }
         },

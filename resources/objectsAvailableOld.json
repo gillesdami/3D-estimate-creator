@@ -1,6 +1,6 @@
 {
     "Tente de réception - 10m x [3]m": {
-        "activate": true,
+        "activated": true,
         "section": "Structure",
         "category": "Tente de réception",
         "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage ",
@@ -52,7 +52,7 @@
         ]
     },
     "Tente de réception - 15m x [3]m": {
-        "activate": true,
+        "activated": true,
         "section": "Structure",
         "category": "Tente de réception",
         "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage ",
@@ -97,7 +97,7 @@
         ]
     },
     "Tente de réception - 5m x [3]m": {
-        "activate": true,
+        "activated": true,
         "section": "Structure",
         "category": "Tente de réception",
         "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage 3.30m à 3.50m",
@@ -142,7 +142,7 @@
         ]
     },
     "Tente de réception - 5m x [5]m": {
-        "activate": true,
+        "activated": true,
         "section": "Structure2",
         "category": "Tente de réception",
         "description": "",
@@ -187,7 +187,7 @@
         ]
     },
     "Tente de réception - 6m x [3]m": {
-        "activate": true,
+        "activated": true,
         "section": "Structure",
         "category": "Tente de réception2",
         "description": "hauteur latérale 2.30m à 2.50m  |  hauteur au faitage 3.30m à 3.50m",

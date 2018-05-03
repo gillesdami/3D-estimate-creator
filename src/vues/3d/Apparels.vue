@@ -29,6 +29,7 @@
         methods: {
             handleChange: function(value, type) {
                 this.$root.$emit('put', actionCreator(APPAREL_CHANGED, {
+                    uid: this.detailsState().item.uid,
                     itemName: this.detailsState().itemName,
                     apparel: {
                         type,

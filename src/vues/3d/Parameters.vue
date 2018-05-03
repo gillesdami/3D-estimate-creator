@@ -61,6 +61,7 @@
 
                 // Event pour changer les settings dans le store
                 this.$root.$emit('put', actionCreator(SETTING_CHANGED, {
+                    uid: this.detailsState().item.uid,
                     itemName: this.detailsState().itemName,
                     setting: {
                         name,

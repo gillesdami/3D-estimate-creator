@@ -1,5 +1,4 @@
 import {
-    ADD_3D_OBJECT,
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
     DELETE_ALL,
@@ -7,8 +6,10 @@ import {
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL,
     HIDE_DETAILS_PANEL,
-    TOGGLE_HELPER_PANEL
+    TOGGLE_HELPER_PANEL, SHOW_DETAILS_PANEL_FROM_SCENE, TOGGLE_CLICK_FROM_OBJECT
 } from "../actions";
+
+import objectsAvailable from '../../resources/objectsAvailable.json'
 
 const defaultHelperState = {
     isDisplayed: false
@@ -16,6 +17,7 @@ const defaultHelperState = {
 
 const defaultDetailsState = {
     isDisplayed: false,
+    clickFromObject: false,
     itemName: null,
     item: null
 };
@@ -23,15 +25,10 @@ const defaultDetailsState = {
 export const objectsDisplayed = (state = [], action) => {
     switch (action.type) {
         case ADD_OBJECT_DISPLAYED:
-            const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-
             return [
                 ...state,
                 {
-                    uid: generateUid(),
+                    uid: action.payload.uid,
                     name: action.payload.itemName,
                     settings: action.payload.item.settings,
                     apparels: action.payload.item.apparels
@@ -39,7 +36,7 @@ export const objectsDisplayed = (state = [], action) => {
             ];
         case SETTING_CHANGED:
             return state.map(object => {
-                if (object.name === action.payload.itemName) {
+                if (object.uid === action.payload.uid) {
                     return {
                         ...object,
                         settings: object.settings.map(setting => {
@@ -59,7 +56,7 @@ export const objectsDisplayed = (state = [], action) => {
             });
         case APPAREL_CHANGED:
             return state.map(object => {
-                if (object.name === action.payload.itemName) {
+                if (object.uid === action.payload.uid) {
                     return {
                         ...object,
                         apparels: object.apparels.map(apparel => {
@@ -86,9 +83,44 @@ export const details = (state = defaultDetailsState, action) => {
             return {
                 ...state,
                 isDisplayed: true,
+                clickFromObject: false,
                 itemName: action.payload.itemName,
-                item: action.payload.item
+                item: {
+                    ...action.payload.item,
+                    uid: action.payload.uid
+                }
             };
+        case SHOW_DETAILS_PANEL_FROM_SCENE:
+            const objDisplayed = action.payload.objectsDisplayed.find(obj => obj.uid === action.payload.uid);
+
+            let objAvailable;
+            for(const key of Object.keys(objectsAvailable)) {
+                if (key === objDisplayed.name) {
+                    objAvailable = objectsAvailable[key];
+                }
+            }
+
+            return {
+                ...state,
+                isDisplayed: true,
+                clickFromObject: true,
+                itemName: objDisplayed.name,
+                item: {
+                    ...objAvailable,
+                    settings: objDisplayed.settings,
+                    apparels: objDisplayed.apparels,
+                    uid: action.payload.uid
+                }
+            };
+        case TOGGLE_CLICK_FROM_OBJECT:
+            if (state.clickFromObject) {
+                return {
+                    ...state,
+                    clickFromObject: !state.clickFromObject
+                };
+            } else {
+                return state;
+            }
         case HIDE_DETAILS_PANEL:
             return {
                 ...state,
@@ -123,33 +155,6 @@ export const renderer = (state = {}, action) => {
     switch (action.type) {
         case RENDERER_CREATED:
             return action.payload;
-        default:
-            return state;
-    }
-};
-
-/**
- * {
- *  uid: {
- *      appareals {
- *          [apparealName]: string
- *      }
- *      instance: Object3D (mutable)
- *  }
- * }
- *
- * uid is a string matching with an objectDisplayed uid or an [apparealName] value
- */
-export const objects3d = (state = {}, action) => {
-    switch (action.type) {
-        case ADD_3D_OBJECT:
-            return {
-                ...state,
-                [action.payload.uid]: {
-                    instance: action.payload.instance,
-                    appareals: action.payload.appareals
-                }
-            };
         default:
             return state;
     }
