@@ -2,15 +2,14 @@ import * as THREE from 'three';
 import { getDetailsState } from '../selectors';
 import { select } from 'redux-saga/effects';
 
-export default function* moveObject(scene, camera, renderer, action) {
+export default function* moveObject(scene, camera, renderer, orbitControls, action) {
     if(action.payload.event.buttons !== 1) return;
-
+    
     const selectedObject = yield select(getDetailsState);
-
     if(!selectedObject.item) return;
 
     const selectedObject3D = scene.getObjectByName(selectedObject.item.uid);
-    if(!selectedObject3D) throw new Error('Could not find corresponding 3D object');
+    if(!selectedObject3D) return;
 
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
@@ -26,8 +25,10 @@ export default function* moveObject(scene, camera, renderer, action) {
 
     const intersectObjectPoint = new THREE.Vector3();
     raycaster.ray.intersectBox(collisionBox, intersectObjectPoint);
-
     if(intersectObjectPoint.z === 0) return;
+
+    //stop the camera
+    orbitControls.enableRotate = false;
 
     raycaster.ray.intersectPlane(new THREE.Plane(camera.up), mouseProjection);
 

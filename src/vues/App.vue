@@ -22,7 +22,7 @@
     import { $select } from '../sagas/vue';
     import { rootselector, rendererSelector, getDetailsState, objectsDisplayed } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
-    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS, MOUSE_MOVE} from '../actions'
+    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS, MOUSE_MOVE, MOUSE_UP} from '../actions'
 
     export default {
         name: 'app',
@@ -65,6 +65,8 @@
 
                 threeRoot.addEventListener('mouseup', e => {
                     clearTimeout(mouseTimer);
+
+                    this.$root.$emit('put', actionCreator(MOUSE_UP));
 
                     if (!hold) {
                         if (!document.getElementById('drawer').contains(e.target) &&

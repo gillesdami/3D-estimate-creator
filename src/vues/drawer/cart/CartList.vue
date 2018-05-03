@@ -23,21 +23,23 @@
         data() {
             return {
                 objectsInCart: [],
+                objsDisplayed: []
             }
         },
         updated() {
-            const objsDisplayed = $select(objectsDisplayed);
+            this.objsDisplayed = $select(objectsDisplayed);
 
-            objsDisplayed.forEach((obj) => {
+            this.objsDisplayed.forEach((obj) => {
                 let isAlreadyIn = false;
 
                 this.objectsInCart.forEach((a) => {
                     if (a.uid === obj.uid) {
+                        a.apparels = obj.apparels;
                         isAlreadyIn = true;
                     } else {
                         if (a.name === obj.name &&
                             a.price === objectsAvailable[obj.name].price['ILE DE FRANCE']) {
-                            a.qte = objsDisplayed.filter(obj => obj.name === a.name).length;
+                            a.qte = this.objsDisplayed.filter(obj => obj.name === a.name).length;
                             isAlreadyIn = true;
                         }
                     }

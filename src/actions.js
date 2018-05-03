@@ -45,4 +45,5 @@ export const RENDERER_CREATED = "RENDERER_CREATED";
 export const SET_RENDERER_SIZE = "SET_RENDERER_SIZE";
 export const MOUSE_CLICK = "MOUSE_CLICK";
 export const MOUSE_MOVE = "MOUSE_MOVE";
+export const MOUSE_UP = "MOUSE_UP";
 // endregion
