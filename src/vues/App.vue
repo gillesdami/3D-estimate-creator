@@ -20,9 +20,9 @@
     import Buttons from './3d/Buttons';
     import Details from './3d/Details';
     import { $select } from '../sagas/vue';
-    import { rootselector, rendererSelector, getDetailsState } from '../selectors';
+    import { rootselector, rendererSelector, getDetailsState, objectsDisplayed } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
-    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS} from '../actions'
+    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS, MOUSE_MOVE} from '../actions'
 
     export default {
         name: 'app',
@@ -39,6 +39,9 @@
             detailsState: function() {
                 return $select(getDetailsState);
             },
+            getObjectsDisplayed: function() {
+                return $select(objectsDisplayed)
+            },
             setRendererSize: function(renderer) {
                 const container = document.getElementById('v3D');
                 this.$root.$emit('put', actionCreator(SET_RENDERER_SIZE, {
@@ -53,7 +56,8 @@
 
                 threeRoot.addEventListener('mousedown', e => {
                     this.$root.$emit('put', actionCreator(MOUSE_CLICK, {
-                        event: e
+                        event: e,
+                        objectsDisplayed: this.getObjectsDisplayed()
                     }));
 
                     mouseTimer = setTimeout(() => hold = true, 500);
@@ -65,11 +69,19 @@
                     if (!hold) {
                         if (!document.getElementById('drawer').contains(e.target) &&
                             !document.getElementById('details').contains(e.target)){
-                            this.$root.$emit('put', actionCreator(HIDE_DETAILS_PANEL));
+                            if (!this.detailsState().clickFromObject && this.detailsState().isDisplayed) {
+                                this.$root.$emit('put', actionCreator(HIDE_DETAILS_PANEL));
+                            }
                         }
                     } else {
                         hold = false;
                     }
+                });
+
+                threeRoot.addEventListener('mousemove', e => {
+                    this.$root.$emit('put', actionCreator(MOUSE_MOVE, {
+                        event: e
+                    }));
                 });
             }
         },

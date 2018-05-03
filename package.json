@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "lodash": "^4.17.10",
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
     "three": "^0.91.0",

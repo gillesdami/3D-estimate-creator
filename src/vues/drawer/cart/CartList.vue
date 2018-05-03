@@ -1,10 +1,10 @@
 <template>
     <div>
-        <table>
+        <table class="cartTable">
             <tr>
-                <th>Produit</th>
-                <th>Quantité</th>
-                <th>Prix unitaire</th>
+                <th class="product">Produit</th>
+                <th class="qte tdItem">Qté</th>
+                <th class="price tdItem">Prix /u</th>
             </tr>
         </table>
         <cart-item v-for="obj in objectsInCart" :objInCart="obj"/>
@@ -29,24 +29,28 @@
             const objsDisplayed = $select(objectsDisplayed);
 
             objsDisplayed.forEach((obj) => {
-                const objTmp = {
-                    name: obj.name,
-                    price: objectsAvailable[obj.name].price['ILE DE FRANCE'],
-                    apparels: obj.apparels,
-                    qte: 1
-                };
-
-                // Si il y a deja un objectsInCart similaire
                 let isAlreadyIn = false;
+
                 this.objectsInCart.forEach((a) => {
-                    if (a.name === objTmp.name) {
-                        a.qte++;
+                    if (a.uid === obj.uid) {
                         isAlreadyIn = true;
+                    } else {
+                        if (a.name === obj.name &&
+                            a.price === objectsAvailable[obj.name].price['ILE DE FRANCE']) {
+                            a.qte = objsDisplayed.filter(obj => obj.name === a.name).length;
+                            isAlreadyIn = true;
+                        }
                     }
                 });
 
                 if (!isAlreadyIn) {
-                    this.objectsInCart.push(objTmp);
+                    this.objectsInCart.push({
+                        uid: obj.uid,
+                        name: obj.name,
+                        price: objectsAvailable[obj.name].price['ILE DE FRANCE'],
+                        apparels: obj.apparels,
+                        qte: 1
+                    });
                 }
             });
         }
@@ -58,7 +62,19 @@
         text-align: left;
     }
 
-    th, td {
-        padding: 1vw;
+    .tdItem {
+        text-align: right;
+    }
+
+    .product {
+        width: 20vw
+    }
+
+    .qte {
+        width: 5vw
+    }
+
+    .price {
+        width: 10vw
     }
 </style>

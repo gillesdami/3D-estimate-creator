@@ -23,7 +23,9 @@ export const TOGGLE_DETAILS_PANEL = "TOGGLE_DETAILS_PANEL";
 
 // region detailsPanel actions
 export const SHOW_DETAILS_PANEL = "SHOW_DETAILS_PANEL";
+export const SHOW_DETAILS_PANEL_FROM_SCENE = "SHOW_DETAILS_PANEL_FROM_SCENE";
 export const HIDE_DETAILS_PANEL = "HIDE_DETAILS_PANEL";
+export const TOGGLE_CLICK_FROM_OBJECT = "TOGGLE_CLICK_FROM_OBJECT";
 // endregion
 
 // region helperPanel actions
@@ -40,7 +42,7 @@ export const VIEW_CREATED = "VIEW_CREATED";
 
 // region three actions
 export const RENDERER_CREATED = "RENDERER_CREATED";
-export const ADD_3D_OBJECT = "ADD_3D_OBJECT";
 export const SET_RENDERER_SIZE = "SET_RENDERER_SIZE";
 export const MOUSE_CLICK = "MOUSE_CLICK";
+export const MOUSE_MOVE = "MOUSE_MOVE";
 // endregion

@@ -1,14 +1,17 @@
 <template>
-    <table>
+    <table class="cartTable">
         <tr>
-            <td>{{ objInCart.name }}</td>
-            <td class="tdItem">{{ objInCart.qte }}</td>
-            <td class="tdItem">{{ objInCart.price }} €</td>
+            <td class="product">{{ objInCart.name }}</td>
+            <td class="qte tdItem">{{ objInCart.qte }}</td>
+            <td class="price tdItem">{{ objInCart.price }} €</td>
         </tr>
-        <tr v-for="app in updateApparels()">
-            <td class="tdSubItem">{{ app.name }} - {{ app.value }}</td>
-            <td class="tdSubItem">{{ app.qte }}</td>
-        </tr>
+        <template v-for="app in updateApparels()">
+            <td class="tdSubItem">{{ app.type }}</td>
+            <tr class="tdSubItem" v-for="appDetails in app.values">
+                <td class="product">{{appDetails.type}}</td>
+                <td class="qte tdItem">{{appDetails.qte}}</td>
+            </tr>
+        </template>
     </table>
 </template>
 
@@ -21,24 +24,29 @@
                 const apparels = [];
 
                 this.objInCart.apparels.forEach((ap) => {
-                    let apTmp = {
-                        name: ap.name,
-                        value: ap.value,
-                        qte: 1
-                    };
+                    let apValues = [{
+                        type: ap.values[0],
+                        qte: this.objInCart.qte - 1,
+                    }];
 
-                    // Si il y a deja un apparels similaire
-                    let isAlreadyIn = false;
-                    apparels.forEach((a) => {
-                        if (a.name === apTmp.name) {
-                            a.qte++;
-                            isAlreadyIn = true;
-                        }
+                    ap.values.forEach(value => {
+                        apValues.forEach(v => {
+                            if (v.type === value) {
+                                v.qte += 1;
+                            } else {
+                                apValues.push({
+                                    type: value,
+                                    qte: 0
+                                });
+                            }
+                        });
+
                     });
 
-                    if (!isAlreadyIn) {
-                        apparels.push(apTmp);
-                    }
+                    apparels.push({
+                        type: ap.type,
+                        values: apValues,
+                    });
                 });
 
                 return apparels;
@@ -48,10 +56,6 @@
 </script>
 
 <style lang="css">
-    .tdItem {
-        text-align: right;
-    }
-
     .tdSubItem {
         font-style: italic;
         font-size: small;
