@@ -12,8 +12,10 @@ import {
     SETTING_CHANGED,
     DBCLICKED_CANVAS,
     SHOW_DETAILS_PANEL_FROM_SCENE,
-    TOGGLE_CLICK_FROM_OBJECT
+    TOGGLE_CLICK_FROM_OBJECT,
+    MOUSE_MOVE
 } from '../actions';
+import moveObject from './moveObject';
 
 const cameraFrustum = 70;
 
@@ -56,6 +58,7 @@ export function* initThreeSaga() {
     yield takeEvery(APPAREL_CHANGED, compareApparel);
     yield takeEvery(MOUSE_CLICK, mouseClick, scene, camera, renderer);
     yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, camera, scene);
+    yield takeEvery(MOUSE_MOVE, moveObject, scene, camera, renderer);
 }
 
 export function* drawFrame(scene, camera, renderer) {
