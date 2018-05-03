@@ -3,7 +3,7 @@
         <h2>Panier</h2>
         <cart-list/>
         <br/>
-        <span>Total : {{ total() }} €</span>
+        <h4>Total : {{ total() }} €</h4>
     </div>
 </template>
 
