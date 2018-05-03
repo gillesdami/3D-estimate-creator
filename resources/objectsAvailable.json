@@ -130,5 +130,76 @@
                 ]
             }
         ]
+    },
+    "Tente de réception - 10m x [5]m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 5,
+            "max": 300,
+            "step": 5,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
+        "apparels": [
+            {
+                "type": "barre de pignon",
+                "values": [
+                    "barre de pignon"
+                ]
+            },
+            {
+                "type": "croix de saint andre",
+                "values": [
+                    "croix de saint andre"
+                ]
+            }
+//            {
+//                "type": "pignon",
+//                "values": [
+//                    "pignon blanc",
+//                    "pignon cristal"
+//                ]
+//            }
+        //,
+//            {
+//                "type": "toit",
+//                "values": [
+//                    "toit blanc 3m",
+//                    "toit cristal 3m"
+//                ]
+//            },
+//            {
+//                "type": "rideau",
+//                "values": [
+//                    "rideau ouvert",
+//                    "rideau blanc",
+//                    "rideau fenêtre",
+//                    "rideau cristal"
+//                ]
+//            },
+//            {
+//                "type": "plancher",
+//                "values": [
+//                    "plancher",
+//                    "aucun"
+//                ]
+//            },
+//            {
+//                "type": "lestage",
+//                "values": [
+//                    "lestage pagode",
+//                    "aucun"
+//                ]
+//            }
+        ]
     }
 }

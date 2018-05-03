@@ -43,7 +43,7 @@ export function* initThreeSaga() {
     renderer.setSize(window.innerWidth * 0.65, window.innerHeight);
 
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.maxPolarAngle = Math.PI / 2.1;
+    // controls.maxPolarAngle = Math.PI / 2.1;
 
     yield put(actionCreator(RENDERER_CREATED, renderer));
     yield fork(drawFrame, scene, camera, renderer);
@@ -52,7 +52,7 @@ export function* initThreeSaga() {
     yield takeEvery(SETTING_CHANGED, compareSetting);
     yield takeEvery(APPAREL_CHANGED, compareApparel);
     yield takeEvery(MOUSE_CLICK, mouseClick, scene, camera, renderer);
-    yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, camera, scene);
+    yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, camera, scene, renderer);
 }
 
 export function* drawFrame(scene, camera, renderer) {
@@ -63,6 +63,7 @@ export function* drawFrame(scene, camera, renderer) {
 }
 
 export function* addObject(scene, action) {
+
     const {itemName, item, uid} = action.payload;
 
     const obj = yield call(loadModel, itemName, itemName);
@@ -78,6 +79,7 @@ export function* addObject(scene, action) {
         calls[appareal.type] = call(addAppareal, scene, itemName, obj, appareal.type, appareal.value || appareal.values[0]);
     });
 
+
     const apparealsIds = yield all(calls);
 
     yield put(actionCreator(ADD_3D_OBJECT, {
@@ -85,24 +87,61 @@ export function* addObject(scene, action) {
         instance: obj,
         apparels: apparealsIds
     }));
+    console.log("1.4");
+
 }
 
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue) {
+    console.log(1);
     if (apparealValue === "aucun") return null;
+    console.log(2);
 
     let obj, parentBox = new THREE.Box3(), bb = new THREE.Box3(), parentCenter;
     parentBox = parentBox.setFromObject(parentObj);
+    console.log(3);
 
     switch (apparealType) {
         case "toit":
-            obj = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, obj, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
+            obj = new THREE.Group();
+
+            let toit = yield call(loadModel, itemName, apparealValue);
+            yield call(setBoxCenter, toit, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
+            obj.add(toit);
             break;
+
+        case "barre de pignon":
+            obj = new THREE.Group();
+
+            let barreDePignon =  yield call(loadModel, itemName, apparealValue);
+            yield call(setBoxCenter, barreDePignon, new THREE.Vector3(2.45, 0, parentBox.max.z - 2.48));
+            obj.add(barreDePignon);
+            break;
+
+        case "croix de saint andre":
+            obj = new THREE.Group();
+
+            let croixDeSaintAndre = yield call(loadModel, itemName, apparealValue);
+            yield call(setBoxCenter, croixDeSaintAndre,new THREE.Vector3(0, 5, parentBox.max.z - 3.40));
+            obj.add(croixDeSaintAndre);
+            break;
+
+        case "pignon":
+            obj = new THREE.Group();
+
+            let pignon = yield call(loadModel, itemName, apparealValue);
+            yield call(setBoxCenter, pignon);
+            obj.add(pignon);
+            break;
+
         case "plancher":
-            obj = yield call(loadModel, itemName, apparealValue);
-            yield call(setBoxCenter, obj);
+            obj = new THREE.Group();
+
+            let plancher = yield call(loadModel, itemName, apparealValue);
+            yield call(setBoxCenter, plancher);
+            obj.add(plancher);
             break;
         case "rideau":
+
             obj = new THREE.Group();
 
             let rideau = yield call(loadModel, itemName, apparealValue);
@@ -128,6 +167,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(rideau);
             break;
         case "lestage":
+
             obj = new THREE.Group();
 
             let lestage = yield call(loadModel, itemName, apparealValue);
@@ -228,34 +268,21 @@ export function* compareApparel(action) {
     })*/
 }
 
-export function* doubleClickSelection(camera, scene) {
+export function* doubleClickSelection(camera, scene, renderer, action) {
     console.log("welcome to saga doubleClickSelection");
 
-    // //your object to be clicked
-    // const object;
-    //
-    // //vector from camera to mouse
-    // const vectorMouse = new THREE.Vector3(
-    //     -(window.innerWidth / 2 - e.clientX) * 2 / window.innerWidth,
-    //     (window.innerHeight / 2 - e.clientY) * 2 / window.innerHeight,
-    //     -1 / Math.tan((cameraFrustum/2) * Math.PI / 180)
-    // );
-    //
-    // vectorMouse.applyQuaternion(camera.quaternion);
-    // vectorMouse.normalize();
-    //
-    // //vector from camera to object
-    // const vectorObject = new THREE.Vector3(
-    //     object.x - camera.position.x,
-    //     object.y - camera.position.y,
-    //     object.z - camera.position.z
-    // );
-    //
-    // vectorObject.normalize();
-    //
-    // if (vectorMouse.angleTo(vectorObject) * 180 / Math.PI < 1) {
-    //     //mouse's position is near object's position
-    //     console.log("ohh you touch my tralala");
-    // }
+    const mouse = new THREE.Vector2();
+    const raycaster = new THREE.Raycaster();
+
+    mouse.x = (action.payload.event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = - (action.payload.event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+
+    raycaster.setFromCamera( mouse, camera );
+
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    console.log("touched me");
+    console.log(scene.children);
+    console.log(intersects);
+    // intersects[ 0 ].object.material.color.set( 0xff0000 );
 
 }

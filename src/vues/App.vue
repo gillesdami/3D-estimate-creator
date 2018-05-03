@@ -78,7 +78,7 @@
             const threeRoot = document.getElementById('threeRoot');
             threeRoot.appendChild(renderer.domElement);
             threeRoot.addEventListener('contextmenu', event => event.preventDefault());
-            threeRoot.addEventListener('dblclick', () => this.$root.$emit('put', actionCreator(DBCLICKED_CANVAS)));
+            threeRoot.addEventListener('dblclick', e => this.$root.$emit('put', actionCreator(DBCLICKED_CANVAS, {event: e})));
 
             setTimeout(() => {
                 this.setRendererSize(renderer);
