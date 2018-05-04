@@ -2,14 +2,21 @@
     <div>
         <div v-if="detailsState().item && detailsState().item.apparels.length>0">
             <p class="title">Habillage</p>
-            <div class="input-field" v-for="(apparel, index) in detailsState().item.apparels">
-                <select :value="apparel.value"
-                        @input="selectApparels[index] = $event.target.value"
-                        v-on:change="handleChange(selectApparels[index], apparel.type)">
-                    <option selected disabled :value="null">Faites votre choix</option>
-                    <option v-for="value in apparel.values"
-                            :value="`${value}`">{{value}}</option>
-                </select>
+            <div v-for="(apparel, index) in detailsState().item.apparels">
+                <div class="row"> <div class="col"><p>{{apparel.type}}</p></div>
+                </div>
+
+                <div class="row">
+                    <div class="col" style="width: 100%">
+                        <select :value="apparel.value"
+                                @input="selectApparels[index] = $event.target.value"
+                                v-on:change="handleChange(selectApparels[index], apparel.type)">
+                            <option selected disabled :value="null">Faites votre choix</option>
+                            <option v-for="value in apparel.values"
+                                    :value="`${value}`">{{value}}</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
