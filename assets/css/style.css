@@ -1,7 +1,212 @@
+/* region --------------------  FOLDER VUES  -------------------- */
+
+/* region --------------------  App.VUE  -------------------- */
+
+/* Sans ça les select sont en display none */
+select {
+    display: block;
+}
+/*
+Couleur de site de tentingo
+ */
+html {
+    background-color: #F6F7F8;
+}
+
+h3 {
+    margin: 8px;
+}
+
+.first-div {
+    margin-bottom: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%;
+}
+
+#v3D {
+    padding: 0;
+}
+
+#drawer {
+    overflow-y: scroll;
+    height: 100%;
+}
+
+#details {
+    position: absolute;
+    top: 0;
+}
+
+#buttonsPanel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0.5% 0 0 0.5%;
+}
+
+#helperPanel {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 25%;
+    background-color: #F6F7F8;
+    border: 1px solid white;
+    padding: 2vw;
+    margin: 2vw;
+}
+
+/*endregion app*/
+
+/* region --------------------  Total.VUE  -------------------- */
+
+.estimation {
+    margin-top: 0;
+    font-size: 0.5em;
+}
+
+.value {
+    margin-bottom: 0;
+}
+
+#total {
+    font-weight: bold;
+}
+
+/* endregion total*/
+
+/* region --------------------  SUBFOLDER 3D  -------------------- */
+/* region ----------  Apparels.vue, General.vue, Parameters.vue  ---------- */
+
 .title {
     font-size: 1.5em;
     font-weight: bold;
 }
+
+/*endregion apparels, general, parameters*/
+
+/* region ----------  Buttons.vue  ---------- */
+
+#questionMark {
+    height: 1.5vw;
+    width: 1.5vw;
+}
+
+#trash {
+    height: 1.5vw;
+    width: 1.5vw;
+}
+/* endregion buttons */
+
+/* region ----------  Details.vue  ---------- */
+
+.details-panel {
+    width: 15%;
+    text-align: center;
+    padding: 5px;
+    background-color: #F6F7F8;
+    border-radius: 15px;
+}
+
+/* endregion */
+
+/* region --------------------  SUBFOLDER HELPER PANEL  -------------------- */
+
+/*endregion subfolder helper panel*/
+
+/*endregion subfolder 3D*/
+
+/* region --------------------  SUBFOLDER DRAWER  -------------------- */
+
+/* region --------------------  Drawer.vue  -------------------- */
+
+#cart {
+    display: none;
+}
+
+#objects {
+    display: block;
+}
+
+.buttonTab {
+    display: inline-block;
+    width: 48%;
+    height: 2vw;
+    color: WHITE;
+    background-color: rgba(255, 58, 59, 0.8);
+    border: none;
+    border-radius: 10px 10px 0 0;
+}
+
+/* endregion drawer*/
+
+/* region --------------------  SUBFOLDER CART  -------------------- */
+
+/* region --------------------  CartItem.vue  -------------------- */
+
+.tdSubItem {
+    font-style: italic;
+    font-size: small;
+}
+
+/* endregion cartItem */
+
+/* region --------------------  CartList.vue  -------------------- */
+
+table {
+    text-align: left;
+}
+
+.tdItem {
+    text-align: right;
+}
+
+.product {
+    width: 20vw
+}
+
+.qte {
+    width: 5vw
+}
+
+.price {
+    width: 10vw
+}
+
+/* endregion cartList */
+
+
+/* endregion subfolder cart*/
+
+/* region --------------------  SUBFOLDER OBJECTS  -------------------- */
+
+/* region --------------------  ObjectsItem.vue  -------------------- */
+
+.objectItem {
+    width: 9vw;
+    height: 9vw;
+    overflow: hidden;
+    text-align: center;
+}
+
+.objectItemIcon {
+    width: 7vw;
+    height: 7vw;
+}
+
+.objectItemTitle {
+    color: black;
+    word-break: normal;
+}
+
+
+/* endregion objectsItem */
+
+/* endregion subfolder objects*/
+
+/* endregion subfolder drawer*/
+
+/*endregion folder vues*/
 
 .label {
     font-style: italic;

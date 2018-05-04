@@ -36,23 +36,3 @@
         }
     }
 </script>
-
-<style lang="css">
-    #cart {
-        display: none;
-    }
-
-    #objects {
-        display: block;
-    }
-
-    .buttonTab {
-        display: inline-block;
-        width: 48%;
-        height: 2vw;
-        color: WHITE;
-        background-color: rgba(255, 58, 59, 0.8);
-        border: none;
-        border-radius: 10px 10px 0 0;
-    }
-</style>

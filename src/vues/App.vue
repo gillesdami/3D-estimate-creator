@@ -26,7 +26,7 @@
     import Drawer from './drawer/Drawer.vue';
     import Total from './Total';
     import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS, MOUSE_MOVE, MOUSE_UP} from '../actions'
-    
+
     export default {
         name: 'app',
         components: {
@@ -123,72 +123,3 @@
         }
     }
 </script>
-
-<style lang="css">
-    /*
-    Sans ça les select sont en display none
-     */
-    select {
-        display: block;
-    }
-
-    /*
-    Couleur de site de tentingo
-     */
-    html {
-        background-color: #F6F7F8;
-    }
-
-    h3 {
-        margin: 8px;
-    }
-
-    .first-div {
-        margin-bottom: 0;
-        overflow-x: hidden;
-        overflow-y: hidden;
-        height: 100%;
-    }
-
-    #total {
-        position : absolute;
-        bottom: 0;
-        padding : 0.5vw;
-    }
-
-    #v3D {
-        padding: 0;
-    }
-
-    #drawer {
-        overflow-y: scroll;
-        height: 100%;
-    }
-
-    #details {
-        position: absolute;
-        top: 0;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        max-height: 100%;
-        padding-left: 12px;
-    }
-
-    #buttonsPanel {
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 0.5% 0 0 0.5%;
-    }
-
-    #helperPanel {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 90%;
-        border: solid 1px black;
-        background-color: #F6F7F8;
-        padding: 5%;
-        margin: 5%;
-    }
-</style>

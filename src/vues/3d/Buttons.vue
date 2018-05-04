@@ -25,16 +25,3 @@
         }
     }
 </script>
-
-<style lang=css>
-
-    #questionMark {
-        height: 1.5vw;
-        width: 1.5vw;
-    }
-
-    #trash {
-        height: 1.5vw;
-        width: 1.5vw;
-    }
-</style>
