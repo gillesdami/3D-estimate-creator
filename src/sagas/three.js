@@ -37,12 +37,12 @@ export function* initThreeSaga() {
     gridHelper.rotateX(Math.PI / 2);
     scene.add(gridHelper);
 
-    const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xccccff, 0.6);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
     directionalLight.castShadow = true;
-    directionalLight.position.set(10, 10, 10);
+    directionalLight.position.set(4, -10, 10);
     scene.add(directionalLight);
 
     const renderer = new THREE.WebGLRenderer({antialias: true});
