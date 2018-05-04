@@ -81,6 +81,23 @@ export const objectsDisplayed = (state = [], action) => {
 
 export const details = (state = defaultDetailsState, action) => {
     switch (action.type) {
+        case APPAREL_CHANGED:
+            return {
+                ...state,
+                item: {
+                    ...state.item,
+                    apparels: state.item.apparels.map(apparel => {
+                        if (apparel.type === action.payload.apparel.type) {
+                            return {
+                                ...apparel,
+                                value: action.payload.apparel.value
+                            }
+                        }
+
+                        return apparel;
+                    })
+                }
+            };
         case SHOW_DETAILS_PANEL:
             return {
                 ...state,
