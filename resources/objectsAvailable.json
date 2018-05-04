@@ -131,7 +131,7 @@
             }
         ]
     },
-    "Tente de reception - 10m x [5]m": {
+    "Tente de réception - 10m x [5]m": {
         "activated": true,
         "section": "Structure",
         "category": "Tente de réception",
