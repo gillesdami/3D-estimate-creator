@@ -3,7 +3,10 @@
         <div v-if="detailsState().item && detailsState().item.apparels.length>0">
             <p class="title">Habillage</p>
             <div v-for="(apparel, index) in detailsState().item.apparels">
-                <div class="row"> <div class="col"><p>{{apparel.type}}</p></div>
+                <div class="row" style="margin-bottom: 0;">
+                    <div class="col">
+                        <p class="label">{{apparel.type}} :</p>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -53,8 +56,4 @@
 </script>
 
 <style scoped>
-    .title {
-        font-size: 1.5em;
-        font-weight: bold;
-    }
 </style>
