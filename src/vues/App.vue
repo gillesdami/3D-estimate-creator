@@ -19,10 +19,18 @@
     import HelperPanel from './3d/helperPanel/HelperPanel';
     import Buttons from './3d/Buttons';
     import Details from './3d/Details';
-    import { $select } from '../sagas/vue';
-    import { rootselector, rendererSelector, getDetailsState, objectsDisplayed } from '../selectors';
+    import {$select} from '../sagas/vue';
+    import {getDetailsState, objectsDisplayed, rendererSelector, rootselector} from '../selectors';
     import Drawer from './drawer/Drawer.vue';
-    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS, MOUSE_MOVE, MOUSE_UP} from '../actions'
+    import {
+        actionCreator,
+        DBCLICKED_CANVAS,
+        HIDE_DETAILS_PANEL,
+        MOUSE_CLICK,
+        MOUSE_MOVE,
+        MOUSE_UP,
+        SET_RENDERER_SIZE
+    } from '../actions'
 
     export default {
         name: 'app',
@@ -37,10 +45,10 @@
                 return $select(rootselector);
             },
             saveStoreToLocalStorage: function() {
-                 setInterval(() => {
-                     const store = this.store();
-                     localStorage.setItem("store", JSON.stringify(store));
-                 }, 10000);
+                setInterval(() => {
+                    const store = this.store();
+                    localStorage.setItem("store", JSON.stringify(store));
+                }, 10000);
             },
             detailsState: function() {
                 return $select(getDetailsState);
