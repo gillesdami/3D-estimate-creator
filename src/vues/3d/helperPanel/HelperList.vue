@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="helperList">
         <helper-item v-for="item in items" :icon="item['icon']" :description="item['description']"/>
     </div>
 </template>
@@ -17,5 +17,8 @@
 </script>
 
 <style lang="css">
-
+.helperList {
+    display: flex;
+    flex-direction: column;
+}
 </style>
