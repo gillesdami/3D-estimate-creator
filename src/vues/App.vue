@@ -62,7 +62,11 @@
                     renderer,
                     width: container.clientWidth,
                     height: container.clientHeight
-                } ));
+                }));
+
+                const threeRoot = document.getElementById('threeRoot');
+                const detailsComp = document.getElementById('details');
+                detailsComp.style.left = (0.75*threeRoot.clientWidth).toString();
             },
             handleHideDetailsPanel: function (threeRoot) {
                 let mouseTimer;
@@ -110,8 +114,6 @@
 
             setTimeout(() => {
                 this.setRendererSize(renderer);
-                const detailsComp = document.getElementById('details');
-                detailsComp.style.left = (0.75*threeRoot.clientWidth).toString();
             }, 100);
 
             // Désactiver click droit sur la scene
