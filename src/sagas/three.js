@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import { call, fork, put, takeEvery } from 'redux-saga/effects';
+import {call, fork, put, takeEvery} from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
-import { addAppareal, addObject } from './addObject';
+import {addAppareal, addObject, reloadObjects} from './addObject';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
@@ -60,7 +60,8 @@ export function* initThreeSaga() {
     yield takeEvery(MOUSE_CLICK, mouseClick, scene, camera, renderer);
     yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, camera, scene);
     yield takeEvery(MOUSE_MOVE, moveObject, scene, camera, renderer, controls);
-    yield takeEvery(MOUSE_UP, reactivateControls, controls)
+    yield takeEvery(MOUSE_UP, reactivateControls, controls);
+    yield call(reloadObjects, scene)
 }
 
 export function* reactivateControls(controls) {

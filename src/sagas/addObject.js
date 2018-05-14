@@ -1,7 +1,34 @@
 import * as THREE from 'three';
-import { all, call } from 'redux-saga/effects';
+import { all, call, select } from 'redux-saga/effects';
+import { objectsDisplayed } from '../selectors';
+
 import loadModel from './util/colladaLoader';
 import setBoxCenter from './util/setBoxCenter';
+
+export function* reloadObjects(scene) {
+    const objectsFromStore = yield select(objectsDisplayed);
+
+    for (const objD of objectsFromStore) {
+        const obj = new THREE.Group();
+        const base = yield call(loadModel, objD.name, objD.name);
+        obj.name = objD.uid;
+
+        const bb = new THREE.Box3();
+        bb.setFromObject(base);
+        yield call(setBoxCenter, scene, base, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z) / 2));
+
+        obj.add(base);
+        scene.add(obj);
+
+        const calls = {};
+
+        objD.apparels.forEach((appareal) => {
+            calls[appareal.type] = call(addAppareal, scene, objD.name, base, appareal.type, appareal.value || appareal.values[0]);
+        });
+
+        const apparealsIds = yield all(calls);
+    }
+}
 
 export function* addObject(scene, action) {
     const {itemName, item, uid} = action.payload;
@@ -9,14 +36,14 @@ export function* addObject(scene, action) {
     const obj = new THREE.Group();
     const base = yield call(loadModel, itemName, itemName);
     obj.name = uid;
-    
+
     const bb = new THREE.Box3();
     bb.setFromObject(base);
     yield call(setBoxCenter, scene, base, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z) / 2));
 
     obj.add(base);
     scene.add(obj);
-    
+
     const calls = {};
 
     item.apparels.forEach((appareal) => {
@@ -29,8 +56,8 @@ export function* addObject(scene, action) {
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue) {
     if (apparealValue === "aucun") return null;
 
-    let obj = new THREE.Group(), 
-        parentBox = new THREE.Box3(), 
+    let obj = new THREE.Group(),
+        parentBox = new THREE.Box3(),
         bb = new THREE.Box3();
 
     parentBox = parentBox.setFromObject(parentObj);
@@ -126,11 +153,11 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             lestage = lestage.clone();
             yield call(setBoxCenter, obj, lestage, new THREE.Vector3(parentBox.max.x + .5, parentBox.max.y + .5, (bb.max.z - bb.min.z)/2));
             obj.add(lestage);
-            
+
             lestage = lestage.clone();
             yield call(setBoxCenter, obj, lestage, new THREE.Vector3(parentBox.min.x - .5, parentBox.max.y + .5, (bb.max.z - bb.min.z)/2));
             obj.add(lestage);
-            
+
             lestage = lestage.clone();
             yield call(setBoxCenter, obj, lestage, new THREE.Vector3(parentBox.max.x + .5, parentBox.min.y - .5, (bb.max.z - bb.min.z)/2));
             obj.add(lestage);

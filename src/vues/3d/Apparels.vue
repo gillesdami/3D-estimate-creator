@@ -9,7 +9,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" style="margin-bottom: 0;">
                     <div class="col" style="width: 100%">
                         <select :value="apparel.value"
                                 @input="selectApparels[index] = $event.target.value"
