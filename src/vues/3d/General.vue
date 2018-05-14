@@ -23,8 +23,4 @@
 </script>
 
 <style scoped>
-    .title {
-        font-size: 1.5em;
-        font-weight: bold;
-    }
 </style>
