@@ -1,21 +1,29 @@
 <template>
     <div id="total">
-        <p class="value"> Total : {{totalValue}} €* </p>
+        <p class="value"> Total : {{total()}} €* </p>
         <p class="estimation"> *estimation non contractuelle</p>
     </div>
 </template>
 
 <script>
+    import { $select } from '../sagas/vue';
+    import { totalSelector } from '../selectors';
+    import objectsAvailable from '../../resources/objectsAvailable.json';
+
     export default {
         name: "Total",
-        props: ['totalValue']
+        methods: {
+            total: function () {
+                return $select(totalSelector, objectsAvailable);
+            }
+        }
     }
 </script>
 
 <style scoped>
     .estimation {
         margin-top: 0;
-        font-size: 0.5em;
+        font-size: 0.8em;
     }
 
     .value {
