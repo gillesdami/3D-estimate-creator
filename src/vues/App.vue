@@ -36,6 +36,12 @@
             store: function() {
                 return $select(rootselector);
             },
+            saveStoreToLocalStorage: function() {
+                 setInterval(() => {
+                     const store = this.store();
+                     localStorage.setItem("store", JSON.stringify(store));
+                 }, 10000);
+            },
             detailsState: function() {
                 return $select(getDetailsState);
             },
@@ -106,6 +112,8 @@
             this.handleHideDetailsPanel(threeRoot);
 
             window.addEventListener('resize', () => this.setRendererSize(renderer));
+
+            this.saveStoreToLocalStorage();
         }
     }
 </script>
