@@ -166,6 +166,10 @@
     #details {
         position: absolute;
         top: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        max-height: 100%;
+        padding-left: 12px;
     }
 
     #buttonsPanel {
