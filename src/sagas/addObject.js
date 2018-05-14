@@ -36,7 +36,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
     parentBox = parentBox.setFromObject(parentObj);
 
     switch (apparealType) {
-        case "pignon":
+        case "Pignon":
             let pignon = yield call(loadModel, itemName, apparealValue);
             pignon.name = "pignon";
             yield call(setBoxCenter, pignon, new THREE.Vector3(2.45, 0, parentBox.max.z - 1));
@@ -44,7 +44,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(pignon);
             break;
 
-        case "croix de saint andre":
+        case "Croix de saint andre":
             let croixDeSaintAndre = yield call(loadModel, itemName, apparealValue);
             croixDeSaintAndre.name = "croix de saint andre";
             yield call(setBoxCenter, croixDeSaintAndre,new THREE.Vector3(0, 5.1, parentBox.max.z - 3.40));
@@ -57,7 +57,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
 
             break;
 
-        case "barre de pignon":
+        case "Barre de pignon":
             let barreDePignon =  yield call(loadModel, itemName, apparealValue);
             barreDePignon.name = "barre de pignon";
             yield call(setBoxCenter, barreDePignon, new THREE.Vector3(2.45, 0, parentBox.max.z - 2.48));
@@ -65,7 +65,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(barreDePignon);
             break;
 
-        case "toitPagode":
+        case "Toit pagode":
             let toitPagode = yield call(loadModel, itemName, apparealValue);
             toitPagode.name = "toitPagode";
             yield call(setBoxCenter, toitPagode, new THREE.Vector3(0, 0, -.75 + parentBox.max.z));
@@ -73,7 +73,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(toitPagode);
             break;
 
-        case "toitTravee":
+        case "Toit travee":
             let toitTravee = yield call(loadModel, itemName, apparealValue);
             toitTravee.name = "toitTravee";
             yield call(setBoxCenter, toitTravee, new THREE.Vector3(0, 0, parentBox.max.z - 1.03));
@@ -81,7 +81,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(toitTravee);
             break;
 
-        case "plancher":
+        case "Plancher":
             let plancher = yield call(loadModel, itemName, apparealValue);
             plancher.name = "plancher";
             yield call(setBoxCenter, plancher);
@@ -89,7 +89,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(plancher);
             break;
 
-        case "rideau":
+        case "Rideau":
             let rideau = yield call(loadModel, itemName, apparealValue);
             rideau.name = "rideau";
             bb.setFromObject(rideau);
@@ -114,7 +114,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(rideau);
             break;
 
-        case "lestage":
+        case "Lestage":
             let lestage = yield call(loadModel, itemName, apparealValue);
             lestage.name = "lestage";
             bb = new THREE.Box3();
