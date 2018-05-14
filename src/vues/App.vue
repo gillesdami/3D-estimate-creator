@@ -3,6 +3,8 @@
         <div id="v3D" class="col s9">
             <details-comp id="details" v-show="detailsState().isDisplayed"/>
 
+            <Total id="total"/>
+
             <div id="threeRoot"></div>
 
             <buttons id="buttonsPanel"/>
@@ -22,6 +24,7 @@
     import { $select } from '../sagas/vue';
     import { rootselector, rendererSelector, getDetailsState, objectsDisplayed } from '../selectors';
     import Drawer from './drawer/Drawer.vue';
+    import Total from './Total';
     import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS, MOUSE_MOVE, MOUSE_UP} from '../actions'
 
     export default {
@@ -30,7 +33,8 @@
             'buttons': Buttons,
             'details-comp': Details,
             'helper-panel': HelperPanel,
-            'drawer': Drawer
+            'drawer': Drawer,
+            Total,
         },
         methods: {
             store: function() {
@@ -142,6 +146,12 @@
         overflow-x: hidden;
         overflow-y: hidden;
         height: 100%;
+    }
+
+    #total {
+        position : absolute;
+        bottom: 0;
+        padding : 0.5vw;
     }
 
     #v3D {
