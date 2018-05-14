@@ -2,7 +2,7 @@
   "helperItems": [
     {
       "icon": "assets/helper/mouseLeftClick.png",
-      "description": "Modifier l'orientation ou sélectionner un objet"
+      "description": "Sélectionner un objet, garder enfoncé pour déplacer la caméra ou un objet"
     },
     {
       "icon": "assets/helper/mouseRightClick.png",
