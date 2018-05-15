@@ -1,9 +1,15 @@
 <template>
     <div id="drawer">
-        <span>
-            <button id="buttonObjects" class="buttonTab" v-on:click="changeTab">Objets</button>
-            <button id="buttonCart" class="buttonTab" v-on:click="changeTab">Panier</button>
-        </span>
+        <div class="row" style="margin-bottom: -30px">
+            <div class="col s6" style="padding: 0">
+                <button id="buttonObjects" class="buttonTab" v-on:click="changeTab">Objets</button>
+            </div>
+
+            <div class="col s6" style="padding: 0">
+                <button id="buttonCart" class="buttonTab" v-on:click="changeTab">Panier</button>
+            </div>
+        </div>
+
         <cart id="cart"/>
         <objects id="objects"/>
     </div>
@@ -23,16 +29,31 @@
             changeTab: function (event) {
                 if (event.target.id === "buttonCart") {
                     document.getElementById("cart").style.display = "block";
-                    document.getElementById("buttonCart").style.backgroundColor = "rgba(" + 255 + "," + 58 + "," + 59 + "," + 0.8 + ")";
                     document.getElementById("objects").style.display = "none";
-                    document.getElementById("buttonObjects").style.backgroundColor = "rgba(" + 255 + "," + 58 + "," + 59 + "," + 1 + ")";
+
+                    document.getElementById("buttonCart").style.backgroundColor = "#ff3a3b";
+                    document.getElementById("buttonObjects").style.backgroundColor = "#ff7575";
+
                 } else {
                     document.getElementById("cart").style.display = "none";
-                    document.getElementById("buttonCart").style.backgroundColor = "rgba(" + 255 + "," + 58 + "," + 59 + "," + 1 + ")";
                     document.getElementById("objects").style.display = "block";
-                    document.getElementById("buttonObjects").style.backgroundColor = "rgba(" + 255 + "," + 58 + "," + 59 + "," + 0.8 + ")";
+
+                    document.getElementById("buttonCart").style.backgroundColor = "#ff7575";
+                    document.getElementById("buttonObjects").style.backgroundColor = "#ff3a3b";
                 }
-            }
+            },
+        },
+        mounted: function() {
+            document.getElementById("buttonCart").addEventListener("focus", function() {
+                this.style.backgroundColor = "#ff3a3b";
+                document.getElementById("buttonObjects").style.backgroundColor = "#ff7575";
+            });
+
+            document.getElementById("buttonObjects").addEventListener("focus", function() {
+                this.style.backgroundColor = "#ff3a3b";
+                document.getElementById("buttonCart").style.backgroundColor = "#ff7575";
+            });
         }
+
     }
 </script>
