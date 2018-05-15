@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <img :src="icon"/> - {{description}}
+    <div class="helperItem">
+        <img class="helperIcon" :src="icon"/><p>{{description}}</p>
     </div>
 </template>
 
@@ -12,5 +12,14 @@
 </script>
 
 <style scoped>
+.helperIcon {
+    width: 100px;
+    height: 100px;
+}
 
+.helperItem {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
 </style>

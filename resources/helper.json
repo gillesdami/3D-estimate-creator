@@ -2,11 +2,15 @@
   "helperItems": [
     {
       "icon": "assets/helper/mouseLeftClick.png",
-      "description": "Clic gauche pour blablabla"
+      "description": "Sélectionner un objet, garder enfoncé pour déplacer la caméra ou un objet"
     },
     {
-      "icon": "assets/helper/mouseRightClick.jpg",
-      "description": "Clic droit pour blablabla"
+      "icon": "assets/helper/mouseRightClick.png",
+      "description": "Faire glisser la caméra"
+    },
+    {
+      "icon": "assets/helper/mouseMiddleClick.png",
+      "description": "Zoomer"
     }
   ]
 }

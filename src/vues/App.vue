@@ -183,12 +183,12 @@
 
     #helperPanel {
         position: absolute;
-        top: 15px;
+        top: 0;
         left: 0;
-        width: 25%;
+        width: 90%;
+        border: solid 1px black;
         background-color: #F6F7F8;
-        border: 1px solid white;
-        padding: 2vw;
-        margin: 2vw;
+        padding: 5%;
+        margin: 5%;
     }
 </style>
