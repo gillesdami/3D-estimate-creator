@@ -79,21 +79,21 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
         case "Rideau":
             bb = model.userData.bb;
             model.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
-            model.position.set((parentBox.min.x - parentBox.max.x)/2, 0, .1);
+            model.position.set((parentBox.min.x - parentBox.max.x)/2, 0, 0);
 
             let rideau = model.clone();
             rideau.rotateZ(Math.PI/2);
-            rideau.position.set(0, (parentBox.min.y - parentBox.max.y)/2, .1);
+            rideau.position.set(0, (parentBox.min.y - parentBox.max.y)/2, 0);
             obj.add(rideau);
 
             rideau = rideau.clone();
             rideau.rotateZ(Math.PI/2);
-            rideau.position.set((parentBox.max.x - parentBox.min.x)/2, 0, .1);
+            rideau.position.set((parentBox.max.x - parentBox.min.x)/2, 0, 0);
             obj.add(rideau);
 
             rideau = rideau.clone();
             rideau.rotateZ(Math.PI/2);
-            rideau.position.set(0, (parentBox.max.y - parentBox.min.y)/2, .1);
+            rideau.position.set(0, (parentBox.max.y - parentBox.min.y)/2, 0);
             obj.add(rideau);
             break;
         case "Lestage":
