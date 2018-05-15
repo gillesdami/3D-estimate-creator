@@ -35,10 +35,3 @@
         }
     }
 </script>
-
-<style lang="css">
-    .tdSubItem {
-        font-style: italic;
-        font-size: small;
-    }
-</style>

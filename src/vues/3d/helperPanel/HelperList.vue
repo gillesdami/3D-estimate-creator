@@ -15,10 +15,3 @@
         }
     }
 </script>
-
-<style lang="css">
-.helperList {
-    display: flex;
-    flex-direction: column;
-}
-</style>

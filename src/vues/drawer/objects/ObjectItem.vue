@@ -37,22 +37,3 @@
         props: ['name', 'item']
     }
 </script>
-
-<style lang=css>
-    .objectItem {
-        width: 9vw;
-        height: 9vw;
-        overflow: hidden;
-        text-align: center;
-    }
-
-    .objectItemIcon {
-        width: 7vw;
-        height: 7vw;
-    }
-
-    .objectItemTitle {
-        color: black;
-        word-break: none;
-    }
-</style>

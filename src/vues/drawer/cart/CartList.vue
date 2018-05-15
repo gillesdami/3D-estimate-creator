@@ -58,25 +58,3 @@
         }
     }
 </script>
-
-<style lang="css">
-    table {
-        text-align: left;
-    }
-
-    .tdItem {
-        text-align: right;
-    }
-
-    .product {
-        width: 20vw
-    }
-
-    .qte {
-        width: 5vw
-    }
-
-    .price {
-        width: 10vw
-    }
-</style>
