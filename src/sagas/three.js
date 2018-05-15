@@ -6,7 +6,7 @@ import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
-    DBCLICKED_CANVAS,
+    DBCLICKED_CANVAS, DELETE_OBJECT_DISPLAYED, HIDE_DETAILS_PANEL,
     MOUSE_CLICK,
     MOUSE_MOVE,
     MOUSE_UP,
@@ -22,7 +22,7 @@ const cameraFrustum = 70;
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(cameraFrustum, window.innerWidth / window.innerHeight, 0.01, 10000);
-    camera.position.set(0, -10, 10);
+    camera.position.set(0, -20, 20);
     camera.up = new THREE.Vector3(0, 0, 1);
 
     const scene = new THREE.Scene();
@@ -61,12 +61,24 @@ export function* initThreeSaga() {
     yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, camera, scene);
     yield takeEvery(MOUSE_MOVE, moveObject, scene, camera, renderer, controls);
     yield takeEvery(MOUSE_UP, reactivateControls, controls);
+    yield takeEvery(DELETE_OBJECT_DISPLAYED, deleteObjectFromScene, scene);
     yield call(reloadObjects, scene)
 }
 
 export function* reactivateControls(controls) {
     controls.enableRotate = true;
 }
+
+export function* deleteObjectFromScene(scene, action) {
+    const objectToDelete = scene.getObjectByName(action.payload.uid);
+
+    if (objectToDelete) {
+        objectToDelete.parent.remove(objectToDelete);
+    }
+
+    yield put(actionCreator(HIDE_DETAILS_PANEL));
+}
+
 
 export function* drawFrame(scene, camera, renderer) {
     while (1) {
