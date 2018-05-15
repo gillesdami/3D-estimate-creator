@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 class="objectCategory" v-on:click="clickedObjectCategory">{{ category }}</h3>
+        <h5 class="objectCategory" v-on:click="clickedObjectCategory">{{ category }}</h5>
         <div class="objectList" v-bind:class="{ expanded: categoryCollapsiblesStatus() }">
             <object-item 
                 v-for="(item, itemName) in items" 

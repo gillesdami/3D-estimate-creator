@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Catalogue</h2>
+        <h2 id="catalogueTitle" >Catalogue</h2>
         <object-section v-for="section in sections" :section="section"/>
     </div>
 </template>
