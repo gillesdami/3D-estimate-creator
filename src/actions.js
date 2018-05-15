@@ -15,6 +15,7 @@ export const DBCLICKED_CANVAS = "DBCLICKED_CANVAS";
 export const ADD_OBJECT_DISPLAYED = 'ADD_OBJECT_DISPLAYED';
 export const SETTING_CHANGED = "SETTING_CHANGED";
 export const APPAREL_CHANGED = "APPAREL_CHANGED";
+export const POSITION_CHANGED = "POSITION_CHANGED";
 // endregion
 
 // region detailsPanel actions

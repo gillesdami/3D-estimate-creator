@@ -17,6 +17,9 @@ export function* reloadObjects(scene) {
         bb.setFromObject(base);
         yield call(setBoxCenter, scene, base, new THREE.Vector3(0, 0, (bb.max.z - bb.min.z) / 2));
 
+        // obj.position.x = objD.position.x;
+        // obj.position.y = objD.position.y;
+
         obj.add(base);
         scene.add(obj);
 

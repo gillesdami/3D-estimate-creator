@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { getDetailsState } from '../selectors';
-import { select } from 'redux-saga/effects';
+import { select, put } from 'redux-saga/effects';
+import {actionCreator, POSITION_CHANGED} from '../actions'
+
 
 export default function* moveObject(scene, camera, renderer, orbitControls, action) {
     if(action.payload.event.buttons !== 1) return;
@@ -34,4 +36,10 @@ export default function* moveObject(scene, camera, renderer, orbitControls, acti
 
     selectedObject3D.position.x = Math.max(-25, Math.min(25, mouseProjection.x));
     selectedObject3D.position.y = Math.max(-25, Math.min(25, mouseProjection.y));
+
+    yield put(actionCreator(POSITION_CHANGED, {
+        uid: selectedObject.item.uid,
+        x: selectedObject3D.position.x,
+        y: selectedObject3D.position.y
+    }));
 }

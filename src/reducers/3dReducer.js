@@ -6,7 +6,8 @@ import {
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL,
     HIDE_DETAILS_PANEL,
-    TOGGLE_HELPER_PANEL, SHOW_DETAILS_PANEL_FROM_SCENE, TOGGLE_CLICK_FROM_OBJECT
+    TOGGLE_HELPER_PANEL, SHOW_DETAILS_PANEL_FROM_SCENE, TOGGLE_CLICK_FROM_OBJECT,
+    POSITION_CHANGED
 } from "../actions";
 
 import objectsAvailable from '../../resources/objectsAvailable.json'
@@ -69,6 +70,20 @@ export const objectsDisplayed = (state = [], action) => {
 
                             return apparel;
                         })
+                    }
+                }
+
+                return object;
+            });
+        case POSITION_CHANGED:
+            return state.map(object => {
+                if (object.uid === action.payload.uid) {
+                    return {
+                        ...object,
+                        position: {
+                            x: action.payload.x,
+                            y: action.payload.y
+                        }
                     }
                 }
 
