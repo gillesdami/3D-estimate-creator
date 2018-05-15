@@ -1,6 +1,5 @@
-export const rootselector = (state) => state;
-export const getSectionCollapsibleState = (store, section) => store.collapsiblesStatus[section] || {self: false};
-export const getCategoryCollapsibleState = (store, section, category) => getSectionCollapsibleState(store, section)[category] || false;
+export const rootselector = (store) => store;
+export const getCollapsibleState = (store, section, category = "") => store.collapsiblesStatus[section+category];
 export const rendererSelector = (store) => store.renderer;
 export const getDetailsState = store => store.details || {};
 export const objectsDisplayed = (store) => store.objectsDisplayed;

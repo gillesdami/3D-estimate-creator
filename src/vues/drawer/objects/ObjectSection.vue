@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3 class="objectSection" v-on:click="clickedObjectSection">{{ section }}</h3>
-        <div class="objectSectionList" v-bind:class="{ expanded: sectionCollapsiblesStatus().self }">
+        <div class="objectSectionList" v-bind:class="{ expanded: sectionCollapsiblesStatus() }">
             <object-category v-for="category in categories" :section="section" :category="category"/>
         </div>
     </div>
@@ -11,7 +11,7 @@
     import { actionCreator, CLICKED_COLLAPSIBLE } from '../../../actions';
     import ObjectCategory from './ObjectCategory';
     import { $select } from '../../../sagas/vue';
-    import { getSectionCollapsibleState } from '../../../selectors';
+    import { getCollapsibleState } from '../../../selectors';
     import objectsAvailable from '../../../../resources/objectsAvailable.json'
 
     export default {
@@ -23,7 +23,7 @@
                 }));
             },
             sectionCollapsiblesStatus: function() {
-                return $select(getSectionCollapsibleState, this.section);
+                return $select(getCollapsibleState, this.section);
             }
         },
         props: ['section'],
@@ -48,7 +48,12 @@
 </script>
 
 <style lang=css>
-    .expanded {
-        background-color: red;
+    .objectSectionList {
+        max-height: 0;
+        transition: 0.5s ease;
+        overflow: hidden;
+    }
+    .objectSectionList.expanded {
+        max-height: 2000px;
     }
 </style>

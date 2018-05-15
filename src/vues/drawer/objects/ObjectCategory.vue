@@ -14,7 +14,7 @@
     import { actionCreator, CLICKED_COLLAPSIBLE } from '../../../actions';
     import ObjectItem from './ObjectItem';
     import { $select } from '../../../sagas/vue';
-    import { getCategoryCollapsibleState } from '../../../selectors';
+    import { getCollapsibleState } from '../../../selectors';
     import objectsAvailable from '../../../../resources/objectsAvailable.json'
 
     export default {
@@ -27,7 +27,7 @@
                     }));
             },
             categoryCollapsiblesStatus: function() {
-                return $select(getCategoryCollapsibleState, this.section, this.category);
+                return $select(getCollapsibleState, this.section, this.category);
             }
         },
         computed: {
@@ -43,7 +43,12 @@
 </script>
 
 <style lang=css>
-    .expanded {
-        background-color: red;
+    .objectList {
+        max-height: 0;
+        transition: 0.5s ease;
+        overflow: hidden;
+    }
+    .objectList.expanded {
+        max-height: 2000px;
     }
 </style>
