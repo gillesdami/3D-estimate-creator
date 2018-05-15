@@ -7,7 +7,8 @@ import {
     SHOW_DETAILS_PANEL,
     HIDE_DETAILS_PANEL,
     TOGGLE_HELPER_PANEL, SHOW_DETAILS_PANEL_FROM_SCENE, TOGGLE_CLICK_FROM_OBJECT,
-    POSITION_CHANGED
+    POSITION_CHANGED,
+    DELETE_OBJECT_DISPLAYED
 } from "../actions";
 
 import objectsAvailable from '../../resources/objectsAvailable.json'
@@ -35,6 +36,8 @@ export const objectsDisplayed = (state = [], action) => {
                     apparels: action.payload.item.apparels
                 }
             ];
+        case DELETE_OBJECT_DISPLAYED:
+            return state.filter(obj => obj.uid !== action.payload.uid);
         case SETTING_CHANGED:
             return state.map(object => {
                 if (object.uid === action.payload.uid) {

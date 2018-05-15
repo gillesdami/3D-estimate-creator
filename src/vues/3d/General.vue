@@ -1,8 +1,7 @@
 <template>
     <div>
         <div v-if="detailsState().itemName && detailsState().item">
-            <p class="title">Informations générales</p>
-            <p> Nom : <span> {{detailsState().itemName}}</span></p>
+            <p class="title">{{detailsState().itemName}}</p>
             <p> Prix : <span> {{detailsState().item.price["ILE DE FRANCE"]}} €</span></p>
         </div>
     </div>
