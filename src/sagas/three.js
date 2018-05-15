@@ -55,7 +55,7 @@ export function* initThreeSaga() {
     yield fork(drawFrame, scene, camera, renderer);
     yield takeEvery(ADD_OBJECT_DISPLAYED, addObject, scene);
     yield takeEvery(SET_RENDERER_SIZE, setRendererSize);
-    yield takeEvery(SETTING_CHANGED, compareSetting);
+    yield takeEvery(SETTING_CHANGED, compareSetting, scene);
     yield takeEvery(APPAREL_CHANGED, compareApparel, scene);
     yield takeEvery(MOUSE_CLICK, mouseClick, scene, camera, renderer);
     yield takeEvery(DBCLICKED_CANVAS, doubleClickSelection, camera, scene);
@@ -106,8 +106,10 @@ export function* mouseClick(scene, camera, renderer, action) {
     }
 }
 
-export function* compareSetting(action) {
+export function* compareSetting(scene, action) {
+    if(action.payload != null) {
 
+    }
 }
 
 export function* compareApparel(scene, action) {
