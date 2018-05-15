@@ -48,3 +48,7 @@ export const MOUSE_CLICK = "MOUSE_CLICK";
 export const MOUSE_MOVE = "MOUSE_MOVE";
 export const MOUSE_UP = "MOUSE_UP";
 // endregion
+
+// region cart actions
+export const SEND_ESTIMATION = "SEND_ESTIMATION";
+// endregion

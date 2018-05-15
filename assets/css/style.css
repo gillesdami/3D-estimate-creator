@@ -6,12 +6,15 @@ html {
 input[type=range]::-webkit-slider-thumb {
     background-color: #ff3a3b;
 }
+
 input[type=range]::-moz-range-thumb {
     background-color: #ff3a3b;
 }
+
 input[type=range]::-ms-thumb {
     background-color: #ff3a3b;
 }
+
 /* endregion */
 
 /* region --------------------  FOLDER VUES  -------------------- */
@@ -22,6 +25,7 @@ input[type=range]::-ms-thumb {
 select {
     display: block;
 }
+
 /*
 Couleur de site de tentingo
  */
@@ -87,9 +91,9 @@ h3 {
 
 #total {
     font-weight: bold;
-    position : absolute;
+    position: absolute;
     bottom: 0;
-    padding : 0.5vw;
+    padding: 0.5vw;
 }
 
 /* endregion total*/
@@ -123,6 +127,7 @@ h3 {
     height: 1.5vw;
     width: 1.5vw;
 }
+
 /* endregion buttons */
 
 /* region ----------  Details.vue  ---------- */
@@ -203,8 +208,21 @@ h3 {
     font-size: medium;
 }
 
-/* endregion cartItem */
+#buttonEstimation {
+    background-color: #ff3a3b;
+    display: inline-block;
+    width: 100%;
+    height: 2vw;
+    color: WHITE;
+    border: none;
+    margin-bottom : 1vw;
+}
 
+#buttonEstimation:hover {
+    background-color: #ff7575;
+}
+
+/* endregion cartItem */
 
 /* region --------------------  CartItem.vue  -------------------- */
 
@@ -239,7 +257,6 @@ table {
 
 /* endregion cartList */
 
-
 /* endregion subfolder cart*/
 
 /* region --------------------  SUBFOLDER OBJECTS  -------------------- */
@@ -263,7 +280,6 @@ table {
     word-break: normal;
 }
 
-
 /* endregion objectsItem */
 
 /* region --------------------  ObjectCategory.vue  -------------------- */
@@ -273,10 +289,10 @@ table {
     transition: 0.5s ease;
     overflow: hidden;
 }
+
 .objectList.expanded {
     max-height: 2000px;
 }
-
 
 /* endregion objectCategory */
 
