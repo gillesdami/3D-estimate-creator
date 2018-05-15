@@ -44,7 +44,7 @@
                 setInterval(() => {
                     const store = this.store();
                     localStorage.setItem("store", JSON.stringify(store));
-                }, 10000);
+                }, 3000);
             },
             detailsState: function() {
                 return $select(getDetailsState);
