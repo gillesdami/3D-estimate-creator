@@ -16,10 +16,3 @@
         name: "cart",
     }
 </script>
-
-<style lang="css">
-    #totalCart {
-        position: center;
-        font-size: medium;
-    }
-</style>

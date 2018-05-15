@@ -19,18 +19,3 @@
         }
     }
 </script>
-
-<style scoped>
-    .estimation {
-        margin-top: 0;
-        font-size: 0.8em;
-    }
-
-    .value {
-        margin-bottom: 0;
-    }
-
-    #total {
-        font-weight: bold;
-    }
-</style>

@@ -68,7 +68,7 @@ h3 {
 
 .estimation {
     margin-top: 0;
-    font-size: 0.5em;
+    font-size: 0.8em;
 }
 
 .value {
@@ -77,16 +77,27 @@ h3 {
 
 #total {
     font-weight: bold;
+    position : absolute;
+    bottom: 0;
+    padding : 0.5vw;
 }
 
 /* endregion total*/
 
 /* region --------------------  SUBFOLDER 3D  -------------------- */
+
 /* region ----------  Apparels.vue, General.vue, Parameters.vue  ---------- */
 
 .title {
     font-size: 1.5em;
     font-weight: bold;
+}
+
+.label {
+    font-style: italic;
+    color: #8a8a8a;
+    font-weight: bold;
+    margin-bottom: 2px;
 }
 
 /*endregion apparels, general, parameters*/
@@ -118,6 +129,30 @@ h3 {
 
 /* region --------------------  SUBFOLDER HELPER PANEL  -------------------- */
 
+/* region ----------  HelperItem.vue  ---------- */
+
+.helperIcon {
+    width: 100px;
+    height: 100px;
+}
+
+.helperItem {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* endregion HelperItem*/
+
+/* region ----------  HelperList.vue  ---------- */
+
+.helperList {
+    display: flex;
+    flex-direction: column;
+}
+
+/* endregion HelperList */
+
 /*endregion subfolder helper panel*/
 
 /*endregion subfolder 3D*/
@@ -147,6 +182,16 @@ h3 {
 /* endregion drawer*/
 
 /* region --------------------  SUBFOLDER CART  -------------------- */
+
+/* region --------------------  Cart.vue  -------------------- */
+
+#totalCart {
+    position: center;
+    font-size: medium;
+}
+
+/* endregion cartItem */
+
 
 /* region --------------------  CartItem.vue  -------------------- */
 
@@ -213,10 +258,3 @@ table {
 /* endregion subfolder drawer*/
 
 /*endregion folder vues*/
-
-.label {
-    font-style: italic;
-    color: #8a8a8a;
-    font-weight: bold;
-    margin-bottom: 2px;
-}
