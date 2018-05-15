@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="categoryBlock">
         <h5 class="objectCategory" v-on:click="clickedObjectCategory">{{ category }}</h5>
         <div class="objectList" v-bind:class="{ expanded: categoryCollapsiblesStatus() }">
             <object-item 

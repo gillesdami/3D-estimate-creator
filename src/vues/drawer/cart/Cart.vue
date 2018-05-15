@@ -1,10 +1,9 @@
 <template>
     <div>
-        <h2>Panier</h2>
         <cart-list/>
         <br/>
         <Total id="totalCart"/>
-        <div class="col s6" style="padding: 0">
+        <div class="col s6 offset-s6" style="padding: 0">
             <button id="buttonEstimation" v-on:click="sendEstimation">Envoyer une estimation</button>
         </div>
     </div>

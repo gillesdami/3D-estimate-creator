@@ -79,12 +79,13 @@ input[type=range]::-ms-thumb {
 
 .estimation {
     margin-top: 0;
-    font-size: 1.3em !important;
+    font-size: 0.9em !important;
+
 }
 
 .value {
     margin-bottom: 0;
-    font-size: 2em !important;
+    font-size: 1.6em !important;
 
 }
 
@@ -93,6 +94,7 @@ input[type=range]::-ms-thumb {
     position: absolute;
     bottom: 0;
     padding: 0.5vw;
+    pointer-events: none;
 }
 
 /* endregion total*/
@@ -188,8 +190,13 @@ input[type=range]::-ms-thumb {
     display: block;
 }
 
-#buttonObjects {
+#buttonObjects, #buttonCart {
     background-color: #ff3a3b;
+    font-size: 2em;
+}
+
+#buttonCart:hover, #buttonObjects:hover {
+    font-size: 2.1em;
 }
 
 .buttonTab {
@@ -219,11 +226,12 @@ input[type=range]::-ms-thumb {
     height: 2vw;
     color: WHITE;
     border: none;
-    margin-bottom : 1vw;
+    margin-bottom: 1vw;
 }
 
 #buttonEstimation:hover, #deleteObjectButton:hover {
     background-color: #ff7575;
+    cursor: pointer;
 }
 
 /* endregion cartItem */
@@ -267,31 +275,42 @@ table {
 
 /* region --------------------  ObjectsItem.vue  -------------------- */
 
-
 .objectItem {
     width: 9vw;
     height: 9vw;
     overflow: hidden;
     text-align: center;
+    cursor: pointer;
+    display: inline-block;
 }
 
 .objectItemIcon {
     width: 7vw;
     height: 7vw;
+    cursor: pointer;
 }
 
 .objectItemTitle {
     color: black;
     word-break: normal;
+    cursor: pointer;
+    line-height: 1.4;
 }
 
 /* endregion objectsItem */
 
 /* region --------------------  ObjectCategory.vue  -------------------- */
 
-.objectCategory{
+.categoryBlock {
+    display: inline-block;
+    margin: 15px;
+}
+
+.objectCategory {
     margin-left: 15px;
-    margin-top: 0px;
+    margin-top: 0;
+    cursor: pointer;
+    display: inline-block;
 }
 
 .objectList {
@@ -304,9 +323,10 @@ table {
     max-height: 2800px;
 }
 
-.objectSection{
+.objectSection {
     font-weight: bold;
 }
+
 .objectSectionList {
     max-height: 2800px;
     background-color: #FFFFFF;
@@ -314,12 +334,7 @@ table {
 
 /* endregion objectCategory */
 
-
 /* region --------------------  Objects.vue  -------------------- */
-
-.catalogueTitle {
-
-}
 
 /* endregion Objects */
 
