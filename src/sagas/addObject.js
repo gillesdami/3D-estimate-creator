@@ -70,7 +70,6 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             break;
         case "Toit pagode":
             model.position.set(0, 0, 2.56);
-            console.log(model);
             break;
         case "Toit travee":
             model.position.set(0, 0, parentBox.max.z - 1.03);
