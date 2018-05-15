@@ -46,14 +46,3 @@
         }
     }
 </script>
-
-<style lang=css>
-    .objectSectionList {
-        max-height: 0;
-        transition: 0.5s ease;
-        overflow: hidden;
-    }
-    .objectSectionList.expanded {
-        max-height: 2000px;
-    }
-</style>

@@ -253,6 +253,20 @@ table {
 
 /* endregion objectsItem */
 
+/* region --------------------  ObjectCategory.vue  -------------------- */
+
+.objectList {
+    max-height: 0;
+    transition: 0.5s ease;
+    overflow: hidden;
+}
+.objectList.expanded {
+    max-height: 2000px;
+}
+
+
+/* endregion objectCategory */
+
 /* endregion subfolder objects*/
 
 /* endregion subfolder drawer*/

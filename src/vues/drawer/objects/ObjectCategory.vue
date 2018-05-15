@@ -41,14 +41,3 @@
         },
     }
 </script>
-
-<style lang=css>
-    .objectList {
-        max-height: 0;
-        transition: 0.5s ease;
-        overflow: hidden;
-    }
-    .objectList.expanded {
-        max-height: 2000px;
-    }
-</style>
