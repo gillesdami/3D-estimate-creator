@@ -1,5 +1,256 @@
 {
+    "Chapiteau bambou ovale - 15m x [5]": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Chapiteau",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 5,
+            "max": 500,
+            "step": 5,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
+        "apparels": [
+            {
+                "type": "Travee",
+                "values": [
+                    "travee centrale",
+                    "travee exterieur droite"
+                ]
+            }
+        ]
+    },
+    "Chapiteau bambou rectangle - 15m x [5]": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Chapiteau",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 5,
+            "max": 500,
+            "step": 5,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
+        "apparels": [
+            {
+                "type": "Travee",
+                "values": [
+                    "travee centrale",
+                    "travee exterieur droite"
+                ]
+            }
+        ]
+    },
+    "Dome 7m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Dome",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Mange debout": {
+        "activated": true,
+        "section": "Mobilier",
+        "category": "Mange debout",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
     "Pagode - 3m x 3m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "Toit pagode",
+                "values": [
+                    "toit blanc 3m",
+                    "toit cristal 3m"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenêtre",
+                    "rideau cristal",
+                    "rideau blanc"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage pagode",
+                    "lestage",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Pagode - 4m x 4m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "Toit pagode",
+                "values": [
+                    "toit blanc 3m",
+                    "toit cristal 3m"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenêtre",
+                    "rideau cristal",
+                    "rideau blanc"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "lestage",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage pagode",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Pagode - 5m x 5m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "Toit pagode",
+                "values": [
+                    "toit blanc 3m",
+                    "toit cristal 3m"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenêtre",
+                    "rideau cristal",
+                    "rideau blanc"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "lestage",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage pagode",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Table buffet": {
+        "activated": true,
+        "section": "Mobilier",
+        "category": "Table",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Table rectangle 90 x 220 - 8 personnes chaises napoleon": {
+        "activated": true,
+        "section": "Mobilier",
+        "category": "Table",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Table ronde 150 - 8 personnes chaises a lattes": {
+        "activated": true,
+        "section": "Mobilier",
+        "category": "Table",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Table ronde 150 - 10 personnes chaises napoleon": {
+        "activated": true,
+        "section": "Mobilier",
+        "category": "Table",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Tente de reception - 3m x [3]m": {
         "activated": true,
         "section": "Structure",
         "category": "Tente de réception",
@@ -19,31 +270,62 @@
         }],
         "apparels": [
             {
-                "type": "Toit pagode",
+                "type": "Armature exterieur",
                 "values": [
-                    "toit blanc 3m",
-                    "toit cristal 3m"
+                    "armature exterieur",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Barre de pignon",
+                "values": [
+                    "barre de pignon"
+                ]
+            },
+            {
+                "type": "Croix de saint andre",
+                "values": [
+                    "croix de saint andre"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Pignon",
+                "values": [
+                    "pignon blanc",
+                    "pignon cristal"
+                ]
+            },
+            {
+                "type": "Toit travee",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
                 ]
             },
             {
                 "type": "Rideau",
                 "values": [
+                    "rideau blanc",
+                    "rideau blanc pignon",
                     "rideau ouvert",
+                    "rideau ouvert pignon",
                     "rideau fenêtre",
-                    "rideau cristal"
+                    "rideau fenêtre pignon",
+                    "rideau cristal",
+                    "rideau cristal pignon"
                 ]
             },
             {
                 "type": "Plancher",
                 "values": [
                     "plancher",
-                    "aucun"
-                ]
-            },
-            {
-                "type": "Lestage",
-                "values": [
-                    "lestage pagode",
                     "aucun"
                 ]
             }
@@ -60,8 +342,332 @@
         "settings": [{
             "name": "Longueur",
             "type": "slider",
-            "min": 5,
+            "min": 3,
             "max": 300,
+            "step": 3,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
+        "apparels": [
+            {
+                "type": "Armature exterieur",
+                "values": [
+                    "armature exterieur",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Barre de pignon",
+                "values": [
+                    "barre de pignon"
+                ]
+            },
+            {
+                "type": "Croix de saint andre",
+                "values": [
+                    "croix de saint andre"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Pignon",
+                "values": [
+                    "pignon blanc",
+                    "pignon cristal"
+                ]
+            },
+            {
+                "type": "Toit travee",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau blanc",
+                    "rideau blanc pignon",
+                    "rideau ouvert",
+                    "rideau ouvert pignon",
+                    "rideau fenêtre",
+                    "rideau fenêtre pignon",
+                    "rideau cristal",
+                    "rideau cristal pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente de reception - 6m x [3]m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 3,
+            "max": 300,
+            "step": 3,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
+        "apparels": [
+            {
+                "type": "Armature exterieur",
+                "values": [
+                    "armature exterieur",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Barre de pignon",
+                "values": [
+                    "barre de pignon"
+                ]
+            },
+            {
+                "type": "Croix de saint andre",
+                "values": [
+                    "croix de saint andre"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Pignon",
+                "values": [
+                    "pignon blanc",
+                    "pignon cristal"
+                ]
+            },
+            {
+                "type": "Toit travee",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau blanc",
+                    "rideau blanc pignon",
+                    "rideau ouvert",
+                    "rideau ouvert pignon",
+                    "rideau fenêtre",
+                    "rideau fenêtre pignon",
+                    "rideau cristal",
+                    "rideau cristal pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente de reception - 8m x [3]m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 3,
+            "max": 300,
+            "step": 3,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
+        "apparels": [
+            {
+                "type": "Armature exterieur",
+                "values": [
+                    "armature exterieur",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Barre de pignon",
+                "values": [
+                    "barre de pignon"
+                ]
+            },
+            {
+                "type": "Croix de saint andre",
+                "values": [
+                    "croix de saint andre"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Pignon",
+                "values": [
+                    "pignon blanc",
+                    "pignon cristal"
+                ]
+            },
+            {
+                "type": "Toit travee",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau blanc",
+                    "rideau blanc pignon",
+                    "rideau ouvert",
+                    "rideau ouvert pignon",
+                    "rideau fenêtre",
+                    "rideau fenêtre pignon",
+                    "rideau cristal",
+                    "rideau cristal pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente de reception - 10m x [3]m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 3,
+            "max": 300,
+            "step": 3,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
+        "apparels": [
+            {
+                "type": "Armature exterieur",
+                "values": [
+                    "armature exterieur",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Barre de pignon",
+                "values": [
+                    "barre de pignon"
+                ]
+            },
+            {
+                "type": "Croix de saint andre",
+                "values": [
+                    "croix de saint andre"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Pignon",
+                "values": [
+                    "pignon blanc",
+                    "pignon cristal"
+                ]
+            },
+            {
+                "type": "Toit travee",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau blanc",
+                    "rideau blanc pignon",
+                    "rideau ouvert",
+                    "rideau ouvert pignon",
+                    "rideau fenêtre",
+                    "rideau fenêtre pignon",
+                    "rideau cristal",
+                    "rideau cristal pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente de reception - 10m x [5]m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 5,
+            "max": 500,
             "step": 5,
             "effect": {
                 "type": "repeat-y"
@@ -112,9 +718,13 @@
                 "type": "Rideau",
                 "values": [
                     "rideau blanc",
+                    "rideau blanc pignon",
                     "rideau ouvert",
+                    "rideau ouvert pignon",
                     "rideau fenêtre",
-                    "rideau cristal"
+                    "rideau fenêtre pignon",
+                    "rideau cristal",
+                    "rideau cristal pignon"
                 ]
             },
             {
@@ -126,170 +736,10 @@
             }
         ]
     },
-    "Dome 7m": {
+    "Tente de reception - 12m x [3]m": {
         "activated": true,
         "section": "Structure",
-        "category": "Dome",
-        "price": {
-            "ILE DE FRANCE": 10,
-            "PACA": 11
-        },
-        "settings": [{
-            "name": "Longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
-            }
-        }],
-        "apparels": []
-    },
-    "Mange debout": {
-        "activated": true,
-        "section": "Mobilier",
-        "category": "Mange debout",
-        "price": {
-            "ILE DE FRANCE": 10,
-            "PACA": 11
-        },
-        "settings": [{
-            "name": "Longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
-            }
-        }],
-        "apparels": []
-    },
-    "Voute en bois": {
-        "activated": true,
-        "section": "Structure",
-        "category": "Voute",
-        "price": {
-            "ILE DE FRANCE": 10,
-            "PACA": 11
-        },
-        "settings": [{
-            "name": "Longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
-            }
-        }],
-        "apparels": []
-    },
-    "Tente stretch - 10m x 12m": {
-        "activated": true,
-        "section": "Structure",
-        "category": "Tente stretch",
-        "price": {
-            "ILE DE FRANCE": 10,
-            "PACA": 11
-        },
-        "settings": [{
-            "name": "Longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
-            }
-        }],
-        "apparels": []
-    },
-    "Table buffet": {
-        "activated": true,
-        "section": "Mobilier",
-        "category": "Table",
-        "price": {
-            "ILE DE FRANCE": 10,
-            "PACA": 11
-        },
-        "settings": [{
-            "name": "Longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
-            }
-        }],
-        "apparels": []
-    },
-    "Table ronde 150 - 10 personnes chaises napoleon": {
-        "activated": true,
-        "section": "Mobilier",
-        "category": "Table",
-        "price": {
-            "ILE DE FRANCE": 10,
-            "PACA": 11
-        },
-        "settings": [{
-            "name": "Longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
-            }
-        }],
-        "apparels": []
-    },
-    "Table ronde 150 - 8 personnes chaises a lattes": {
-        "activated": true,
-        "section": "Mobilier",
-        "category": "Table",
-        "price": {
-            "ILE DE FRANCE": 10,
-            "PACA": 11
-        },
-        "settings": [{
-            "name": "Longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
-            }
-        }],
-        "apparels": []
-    },
-    "Table rectangle 90 x 220 - 8 personnes chaises napoleon": {
-        "activated": true,
-        "section": "Mobilier",
-        "category": "Table",
-        "price": {
-            "ILE DE FRANCE": 10,
-            "PACA": 11
-        },
-        "settings": [{
-            "name": "Longueur",
-            "type": "slider",
-            "min": 3,
-            "max": 300,
-            "step": 3,
-            "effect": {
-                "type": "repeat-y"
-            }
-        }],
-        "apparels": []
-    },
-    "Chapiteau bambou rectangle - 15m x [5]": {
-        "activated": true,
-        "section": "Structure",
-        "category": "Chapiteau",
+        "category": "Tente de réception",
         "price": {
             "ILE DE FRANCE": 10,
             "PACA": 11
@@ -306,12 +756,385 @@
         }],
         "apparels": [
             {
-                "type": "Travee",
+                "type": "Armature exterieur",
                 "values": [
-                    "travee centrale",
-                    "travee exterieur droite"
+                    "armature exterieur",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Barre de pignon",
+                "values": [
+                    "barre de pignon"
+                ]
+            },
+            {
+                "type": "Croix de saint andre",
+                "values": [
+                    "croix de saint andre"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Pignon",
+                "values": [
+                    "pignon blanc",
+                    "pignon cristal"
+                ]
+            },
+            {
+                "type": "Toit travee",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau blanc",
+                    "rideau blanc pignon",
+                    "rideau ouvert",
+                    "rideau ouvert pignon",
+                    "rideau fenêtre",
+                    "rideau fenêtre pignon",
+                    "rideau cristal",
+                    "rideau cristal pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
                 ]
             }
         ]
+    },
+    "Tente de reception - 15m x [3]m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 3,
+            "max": 300,
+            "step": 3,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
+        "apparels": [
+            {
+                "type": "Armature exterieur",
+                "values": [
+                    "armature exterieur",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Barre de pignon",
+                "values": [
+                    "barre de pignon"
+                ]
+            },
+            {
+                "type": "Croix de saint andre",
+                "values": [
+                    "croix de saint andre"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Pignon",
+                "values": [
+                    "pignon blanc",
+                    "pignon cristal"
+                ]
+            },
+            {
+                "type": "Toit travee",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau blanc",
+                    "rideau blanc pignon",
+                    "rideau ouvert",
+                    "rideau ouvert pignon",
+                    "rideau fenêtre",
+                    "rideau fenêtre pignon",
+                    "rideau cristal",
+                    "rideau cristal pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente de reception - 20m x [5]m h-2.5m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 5,
+            "max": 500,
+            "step": 5,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
+        "apparels": [
+            {
+                "type": "Armature exterieur",
+                "values": [
+                    "armature exterieur",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Barre de pignon",
+                "values": [
+                    "barre de pignon"
+                ]
+            },
+            {
+                "type": "Croix de saint andre",
+                "values": [
+                    "croix de saint andre"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Pignon",
+                "values": [
+                    "pignon blanc",
+                    "pignon cristal"
+                ]
+            },
+            {
+                "type": "Toit travee",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau blanc",
+                    "rideau blanc pignon",
+                    "rideau ouvert",
+                    "rideau ouvert pignon",
+                    "rideau fenêtre",
+                    "rideau fenêtre pignon",
+                    "rideau cristal",
+                    "rideau cristal pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente de reception - 20m x [5]m h-3m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de réception",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [{
+            "name": "Longueur",
+            "type": "slider",
+            "min": 5,
+            "max": 500,
+            "step": 5,
+            "effect": {
+                "type": "repeat-y"
+            }
+        }],
+        "apparels": [
+            {
+                "type": "Armature exterieur",
+                "values": [
+                    "armature exterieur",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Barre de pignon",
+                "values": [
+                    "barre de pignon"
+                ]
+            },
+            {
+                "type": "Croix de saint andre",
+                "values": [
+                    "croix de saint andre"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Pignon",
+                "values": [
+                    "pignon blanc",
+                    "pignon cristal"
+                ]
+            },
+            {
+                "type": "Toit travee",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau blanc",
+                    "rideau blanc pignon",
+                    "rideau ouvert",
+                    "rideau ouvert pignon",
+                    "rideau fenêtre",
+                    "rideau fenêtre pignon",
+                    "rideau cristal",
+                    "rideau cristal pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Voute en bois": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Voute",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Tente stretch - 6m x 6m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente stretch",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Tente stretch - 6m x 12m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente stretch",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Tente stretch - 8m x 6m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente stretch",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Tente stretch - 10m x 10m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente stretch",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Tente stretch - 10m x 12m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente stretch",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Tente stretch - 10m x 15m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente stretch",
+        "price": {
+            "ILE DE FRANCE": 10,
+            "PACA": 11
+        },
+        "settings": [],
+        "apparels": []
     }
 }
