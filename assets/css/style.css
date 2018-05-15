@@ -7,6 +7,15 @@ html {
     font-family: 'Raleway', sans-serif !important;
 }
 
+/* Sans ça les select sont en display none */
+select {
+    display: block;
+}
+
+h3 {
+    margin: 8px;
+}
+
 input[type=range]::-webkit-slider-thumb {
     background-color: #ff3a3b;
 }
@@ -24,22 +33,6 @@ input[type=range]::-ms-thumb {
 /* region --------------------  FOLDER VUES  -------------------- */
 
 /* region --------------------  App.VUE  -------------------- */
-
-/* Sans ça les select sont en display none */
-select {
-    display: block;
-}
-
-/*
-Couleur de site de tentingo
- */
-html {
-    background-color: #F6F7F8;
-}
-
-h3 {
-    margin: 8px;
-}
 
 .first-div {
     margin-bottom: 0;
@@ -86,11 +79,13 @@ h3 {
 
 .estimation {
     margin-top: 0;
-    font-size: 0.8em;
+    font-size: 1.3em !important;
 }
 
 .value {
     margin-bottom: 0;
+    font-size: 2em !important;
+
 }
 
 #total {
@@ -289,6 +284,11 @@ table {
 
 /* region --------------------  ObjectCategory.vue  -------------------- */
 
+.objectCategory{
+    margin-left: 15px;
+    margin-top: 0px;
+}
+
 .objectList {
     max-height: 0;
     transition: 0.5s ease;
@@ -302,7 +302,7 @@ table {
 .objectSection{
     font-weight: bold;
 }
-.objectSectionList.expanded {
+.objectSectionList {
     max-height: 2800px;
     background-color: #FFFFFF;
 }
