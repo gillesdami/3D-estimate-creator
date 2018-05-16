@@ -57,6 +57,10 @@ input[type=range]::-ms-thumb {
 #details {
     position: absolute;
     top: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 100%;
+    padding-left: 12px;
 }
 
 #settingsPanel {
@@ -210,13 +214,13 @@ input[type=range]::-ms-thumb {
     display: block;
 }
 
-#buttonObjects, #buttonCart {
+#buttonObjects {
     background-color: #ff3a3b;
-    font-size: 2em;
+    font-size: 1.5vw;
 }
 
-#buttonCart:hover, #buttonObjects:hover {
-    font-size: 2.1em;
+#buttonCart {
+    font-size: 1.5vw;
 }
 
 .buttonTab {

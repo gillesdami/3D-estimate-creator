@@ -19,7 +19,7 @@
                 this.$root.$emit('put', actionCreator(TOGGLE_HELPER_PANEL));
             },
             deleteAll: function () {
-                if (confirm('Are you REALLY sure to delete all ? This action is irreversible !')) {
+                if (confirm('Êtes-vous sûr de vouloir tout supprimer ? Cette action est irréversible !')) {
                     this.$root.$emit('put', actionCreator(DELETE_ALL));
                 }
             },
