@@ -141,7 +141,7 @@ export function* compareApparel(scene, action) {
 }
 
 export function* doubleClickSelection(camera, scene, renderer, action) {
-    console.log("welcome to saga doubleClickSelection");
+    /*console.log("welcome to saga doubleClickSelection");
 
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
@@ -154,7 +154,7 @@ export function* doubleClickSelection(camera, scene, renderer, action) {
     const intersects = raycaster.intersectObjects(scene.children, true);
     console.log("touched me");
     console.log(scene.children);
-    console.log(intersects);
+    console.log(intersects);*/
     // intersects[ 0 ].object.material.color.set( 0xff0000 );
 
 }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button id="closeButton" v-on:click="closeHelper">X</button>
+        <button class="closeButton" v-on:click="closeHelper">X</button>
         <helper-list :items="HelperItems['helperItems']"/>
     </div>
 </template>

@@ -10,6 +10,10 @@
             <buttons id="buttonsPanel"/>
             <helper-panel id="helperPanel"
                           v-show="store().helper.isDisplayed"/>
+
+            <settings-panel id="settingsPanel"
+                            v-show="store().settings.isDisplayed"/>
+
         </div>
 
         <drawer id="drawer" class="col s3"
@@ -19,6 +23,7 @@
 
 <script>
     import HelperPanel from './3d/helperPanel/HelperPanel';
+    import SettingsPanel from './3d/SettingsPanel';
     import Buttons from './3d/Buttons';
     import Details from './3d/Details';
     import {$select} from '../sagas/vue';
@@ -30,10 +35,12 @@
     export default {
         name: 'app',
         components: {
+            SettingsPanel,
             'buttons': Buttons,
             'details-comp': Details,
             'helper-panel': HelperPanel,
             'drawer': Drawer,
+            'settings-panel' : SettingsPanel,
             Total,
         },
         methods: {

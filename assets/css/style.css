@@ -34,6 +34,10 @@ input[type=range]::-ms-thumb {
 
 /* region --------------------  App.VUE  -------------------- */
 
+.closeButton {
+    right: 0;
+}
+
 .first-div {
     margin-bottom: 0;
     overflow-x: hidden;
@@ -53,6 +57,17 @@ input[type=range]::-ms-thumb {
 #details {
     position: absolute;
     top: 0;
+}
+
+#settingsPanel {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 25%;
+    background-color: #F6F7F8;
+    border: 1px solid white;
+    padding: 2vw;
+    margin: 2vw;
 }
 
 #buttonsPanel {
@@ -123,6 +138,11 @@ input[type=range]::-ms-thumb {
 /*endregion apparels, general, parameters*/
 
 /* region ----------  Buttons.vue  ---------- */
+
+#settings {
+    height: 1.5vw;
+    width: 1.5vw;
+}
 
 #questionMark {
     height: 1.5vw;

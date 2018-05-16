@@ -8,12 +8,16 @@ import {
     HIDE_DETAILS_PANEL,
     TOGGLE_HELPER_PANEL, SHOW_DETAILS_PANEL_FROM_SCENE, TOGGLE_CLICK_FROM_OBJECT,
     POSITION_CHANGED,
-    DELETE_OBJECT_DISPLAYED
+    DELETE_OBJECT_DISPLAYED, TOGGLE_SETTINGS_PANEL
 } from "../actions";
 
 import objectsAvailable from '../../resources/objectsAvailable.json'
 
 const defaultHelperState = {
+    isDisplayed: false
+};
+
+const defaultSettingsState = {
     isDisplayed: false
 };
 
@@ -171,6 +175,15 @@ export const details = (state = defaultDetailsState, action) => {
 export const helper = (state = defaultHelperState, action) => {
     switch (action.type) {
         case TOGGLE_HELPER_PANEL:
+            return Object.assign(state, {['isDisplayed']: !state['isDisplayed']});
+        default:
+            return state;
+    }
+};
+
+export const settings = (state = defaultSettingsState, action) => {
+    switch (action.type) {
+        case TOGGLE_SETTINGS_PANEL:
             return Object.assign(state, {['isDisplayed']: !state['isDisplayed']});
         default:
             return state;
