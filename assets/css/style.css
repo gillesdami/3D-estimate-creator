@@ -241,21 +241,24 @@ input[type=range]::-ms-thumb {
 }
 
 #buttonObjects {
-    background-color: #ff3a3b;
-    font-size: 1.5vw;
+    backgroundColor = "white";
+    color = "#ff7575";
+    borderBottom = "1.5px solid #ff7575";
+    font-size: 1vw;
 }
 
 #buttonCart {
-    font-size: 1.5vw;
+    font-size: 1vw;
 }
 
 .buttonTab {
     display: inline-block;
     width: 100%;
-    height: 2vw;
-    color: WHITE;
-    background-color: #ff7575;
-    border: none;
+    height: 3.5vw;
+    border : none;
+    color: #ff7575;
+    background-color: white;
+    border-bottom: 1.5px solid silver;
 }
 
 .square-check {
