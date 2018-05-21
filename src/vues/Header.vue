@@ -11,7 +11,7 @@
 
 <script>
     import Buttons from './3d/Buttons';
-    import Total from './Total';
+    import Total from './TotalMainPage';
 
     export default {
         name: "header",

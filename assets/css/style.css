@@ -53,6 +53,7 @@ input[type=range]::-ms-thumb {
 #drawer {
     overflow-y: scroll;
     height: 100%;
+    background-color: white;
 }
 
 #details {
@@ -118,7 +119,7 @@ input[type=range]::-ms-thumb {
 }
 
 #buttonsPanel {
-    margin: 0.5vw 0 0.5vw 0;
+    margin: 0.5vw 0 0 0;
 }
 
 /* endregion header*/
@@ -257,15 +258,27 @@ input[type=range]::-ms-thumb {
     border: none;
 }
 
+.square-check {
+    margin: auto;
+    height : 1.3vw;
+    width: 3vw;
+}
+
+.circle-plus {
+    margin: auto;
+    height : 1.3vw;
+}
+
 /* endregion drawer*/
 
 /* region --------------------  SUBFOLDER CART  -------------------- */
 
 /* region --------------------  Cart.vue  -------------------- */
 
-#totalCart {
+#totalCartPage {
     position: center;
-    font-size: medium;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 #buttonEstimation, #deleteObjectButton {
@@ -274,13 +287,23 @@ input[type=range]::-ms-thumb {
     height: 2vw;
     color: WHITE;
     border: none;
-    margin-bottom: 1vw;
+    margin: 1vw 0 1vw 0;
     font-size: 0.8em;;
 }
 
 #buttonEstimation:hover, #deleteObjectButton:hover {
     background-color: #ff7575;
     cursor: pointer;
+}
+
+.elemCartPage {
+    text-align: center;
+}
+
+#estimationCartPage {
+    text-align: center;
+    font-size: 0.7em;
+    color: gray;
 }
 
 /* endregion cartItem */
@@ -325,12 +348,11 @@ table {
 /* region --------------------  ObjectsItem.vue  -------------------- */
 
 .objectItem {
-    width: 9vw;
     height: 9vw;
     overflow: hidden;
     text-align: center;
     cursor: pointer;
-    display: inline-block;
+    display: flex;
 }
 
 .objectItemIcon {
@@ -344,6 +366,12 @@ table {
     word-break: normal;
     cursor: pointer;
     line-height: 1.4;
+    margin: auto;
+}
+
+.objectItemTitle p {
+    font-size: 0.8em;
+    color: gray;
 }
 
 /* endregion objectsItem */
@@ -356,16 +384,21 @@ table {
 }
 
 .objectCategory {
-    margin-left: 15px;
-    margin-top: 0;
+    width: 75%;
+    margin: 0 0 0 15%;
     cursor: pointer;
-    display: inline-block;
+    display: flex;
+    font-size: 1.2em;
+    border-bottom: 1.5px solid silver;
+    padding: 0.3em;
 }
 
 .objectList {
     max-height: 0;
     transition: 0.5s ease;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .objectList.expanded {
@@ -373,10 +406,17 @@ table {
 }
 
 .objectSection {
+    width: 100%;
     font-weight: bold;
+    font-size: 1.5em;
+    display: flex;
+    border-bottom: 2.5px solid silver;
+    padding: 0.3em;
 }
 
 .objectSectionList {
+    display: flex;
+    flex-direction: column;
     max-height: 2800px;
     background-color: #FFFFFF;
 }

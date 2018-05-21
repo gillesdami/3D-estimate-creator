@@ -1,8 +1,8 @@
 <template>
     <div>
-        <img v-on:click="settings" id="settings" src="../../../assets/settings.svg"/>
-        <img v-on:click="help" id="questionMark" src="../../../assets/help.svg"/>
-        <img v-on:click="deleteAll" id="trash" src="../../../assets/delete.svg"/>
+        <img v-on:click="settings" id="settings" src="../../../assets/buttons/settings.svg"/>
+        <img v-on:click="help" id="questionMark" src="../../../assets/buttons/help.svg"/>
+        <img v-on:click="deleteAll" id="trash" src="../../../assets/buttons/delete.svg"/>
     </div>
 </template>
 
