@@ -2,11 +2,11 @@
     <div id="drawer">
         <div class="row" style="margin-bottom: -30px">
             <div class="col s6" style="padding: 0">
-                <button id="buttonObjects" class="buttonTab" v-on:click="changeTab">Catalogue</button>
+                <button id="buttonObjects" class="buttonTab" v-on:click="changeTab">CATALOGUE</button>
             </div>
 
             <div class="col s6" style="padding: 0">
-                <button id="buttonCart" class="buttonTab" v-on:click="changeTab">Panier</button>
+                <button id="buttonCart" class="buttonTab" v-on:click="changeTab">COMMANDE</button>
             </div>
         </div>
         <br/>

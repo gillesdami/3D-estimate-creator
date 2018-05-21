@@ -1,6 +1,6 @@
 <template>
-    <div id="total">
-        <p class="value"> Total : {{total()}} €* </p>
+    <div>
+        <p class="value"> Estimation : {{total()}} € TTC* </p>
         <p class="estimation"> *estimation non contractuelle</p>
     </div>
 </template>

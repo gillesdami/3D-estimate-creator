@@ -22,7 +22,7 @@ const cameraFrustum = 70;
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(cameraFrustum, window.innerWidth / window.innerHeight, 0.01, 10000);
-    camera.position.set(0, -20, 20);
+    camera.position.set(0, -15, 15);
     camera.up = new THREE.Vector3(0, 0, 1);
 
     const scene = new THREE.Scene();

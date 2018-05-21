@@ -3,8 +3,8 @@
         <cart-list/>
         <br/>
         <Total id="totalCart"/>
-        <div class="col s6 offset-s6" style="padding: 0">
-            <button id="buttonEstimation" v-on:click="sendEstimation">Envoyer une estimation</button>
+        <div class="offset-s2 col s8 offset-s2" style="padding: 0">
+            <button id="buttonEstimation" v-on:click="sendEstimation">ENVOYER MA DEMANDE A L'EQUIPE ATAWA</button>
         </div>
     </div>
 </template>
