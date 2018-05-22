@@ -54,6 +54,7 @@ input[type=range]::-ms-thumb {
     overflow-y: scroll;
     height: 100%;
     background-color: white;
+    padding: 0;
 }
 
 #details {
@@ -273,13 +274,21 @@ input[type=range]::-ms-thumb {
 
 .square-check {
     margin: auto;
-    height : 1.3vw;
-    width: 3vw;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 15px;
 }
 
 .circle-plus {
     margin: auto;
-    height : 1.3vw;
+    margin-right: 0;
+    width: 15px;
+}
+
+.circle-minus {
+    margin: auto;
+    margin-right: 0;
+    width: 15px;
 }
 
 /* endregion drawer*/
@@ -361,30 +370,35 @@ table {
 /* region --------------------  ObjectsItem.vue  -------------------- */
 
 .objectItem {
-    height: 9vw;
     overflow: hidden;
     text-align: center;
     cursor: pointer;
     display: flex;
+    padding: 10px;
+    padding-bottom: 0;
 }
 
 .objectItemIcon {
-    width: 7vw;
-    height: 7vw;
+    width: 8vw;
+    height: 4.5vw;
     cursor: pointer;
 }
 
 .objectItemTitle {
+    font-size: 0.9em;
     color: black;
     word-break: normal;
     cursor: pointer;
     line-height: 1.4;
-    margin: auto;
+    margin-left: 5px;
+    text-align: left;
 }
 
 .objectItemTitle p {
     font-size: 0.8em;
     color: gray;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
 
 /* endregion objectsItem */
@@ -393,17 +407,16 @@ table {
 
 .categoryBlock {
     display: inline-block;
-    margin: 15px;
+    margin: 0px;
 }
 
 .objectCategory {
-    width: 75%;
-    margin: 0 0 0 15%;
+    margin: 0 0 10px 40px;
     cursor: pointer;
     display: flex;
     font-size: 1.2em;
-    border-bottom: 1.5px solid silver;
-    padding: 0.3em;
+    border-bottom: 1px solid silver;
+    padding: 3px;
 }
 
 .objectList {
@@ -424,7 +437,7 @@ table {
     font-size: 1.5em;
     display: flex;
     border-bottom: 2.5px solid silver;
-    padding: 0.3em;
+    padding: 3px;
 }
 
 .objectSectionList {
