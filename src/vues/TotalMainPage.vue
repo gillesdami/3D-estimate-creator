@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span class="value"> Estimation : {{total()}} € TTC* </span>
+        <span class="value"> Estimation : {{ total().toFixed(2) }} € TTC* </span>
         <br>
         <span class="estimation"> *estimation non contractuelle</span>
     </div>

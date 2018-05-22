@@ -65,6 +65,7 @@ input[type=range]::-ms-thumb {
     overflow-x: hidden;
     max-height: 90%;
     width: 15%;
+    min-width: 150px;
     text-align: center;
     background-color: white;
 }
@@ -110,6 +111,7 @@ input[type=range]::-ms-thumb {
     white-space: nowrap;
     overflow: hidden;
     min-width: 190px;
+    min-height: 14px;
 }
 
 /*endregion app*/
@@ -149,17 +151,20 @@ input[type=range]::-ms-thumb {
 .estimation {
     margin-top: 0;
     font-size: 0.9em !important;
+    user-select: none;
 }
 
 .value {
     margin-bottom: 0;
     font-size: 1.2em !important;
     color: gray;
+    user-select: none;
 }
 
 #total {
     font-weight: bold;
     pointer-events: none;
+    user-select: none;
 }
 
 /* endregion total*/
@@ -252,6 +257,11 @@ input[type=range]::-ms-thumb {
 
 /* region --------------------  Drawer.vue  -------------------- */
 
+#drawer > .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 #cart {
     display: none;
 }
@@ -318,19 +328,20 @@ input[type=range]::-ms-thumb {
 /* region --------------------  Cart.vue  -------------------- */
 
 #totalCartPage {
-    position: center;
-    font-size: 1.2em;
     font-weight: bold;
 }
 
 #buttonEstimation, #deleteObjectButton {
     background-color: #ff3a3b;
     display: inline-block;
-    height: 2vw;
+    min-height: 2vw;
     color: WHITE;
     border: none;
     margin: 1vw 0 1vw 0;
-    font-size: 0.8em;;
+    font-size: 0.8em;
+    white-space: nowrap;
+    overflow: hidden;
+    min-height: 14px;
 }
 
 #buttonEstimation:hover, #deleteObjectButton:hover {
@@ -363,6 +374,11 @@ input[type=range]::-ms-thumb {
 
 table {
     text-align: left;
+    font-size: 0.9em;
+}
+
+tr {
+    border: none !important;
 }
 
 .tdItem {
@@ -399,8 +415,10 @@ table {
 }
 
 .objectItemIcon {
-    width: 8vw;
-    height: 4.5vw;
+    min-width: 8vw;
+    min-height: 4.5vw;
+    max-width: 8vw;
+    max-height: 4.5vw;
     cursor: pointer;
 }
 
@@ -463,8 +481,13 @@ table {
 .objectSectionList {
     display: flex;
     flex-direction: column;
-    max-height: 2800px;
+    max-height: 0;
     background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+.objectSectionList.expanded {
+    max-height: 2800px;
 }
 
 /* endregion objectCategory */
