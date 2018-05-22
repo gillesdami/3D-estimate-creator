@@ -34,6 +34,10 @@ input[type=range]::-ms-thumb {
 
 /* region --------------------  App.VUE  -------------------- */
 
+.closeButton {
+    right: 0;
+}
+
 .first-div {
     margin-bottom: 0;
     overflow-x: hidden;
@@ -43,11 +47,13 @@ input[type=range]::-ms-thumb {
 
 #v3D {
     padding: 0;
+    background-color: #f0f0f0;
 }
 
 #drawer {
     overflow-y: scroll;
     height: 100%;
+    background-color: white;
 }
 
 #details {
@@ -59,11 +65,22 @@ input[type=range]::-ms-thumb {
     padding-left: 12px;
 }
 
-#buttonsPanel {
-    position: absolute;
+#header {
     top: 0;
     left: 0;
-    margin: 0.5% 0 0 0.5%;
+    padding: 1vw 1vw 0 1vw;
+    background-color: #f0f0f0;
+}
+
+#settingsPanel {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 25%;
+    background-color: #F6F7F8;
+    border: 1px solid white;
+    padding: 2vw;
+    margin: 2vw;
 }
 
 #helperPanel {
@@ -77,27 +94,51 @@ input[type=range]::-ms-thumb {
     margin: 2vw;
 }
 
+.buttonEstimation {
+    position: absolute;
+    bottom: 1vw;
+    left: 1vw;
+    width: 10vw;
+}
+
 /*endregion app*/
+
+/* region --------------------  Header.VUE  -------------------- */
+
+#parentHeader {
+    display: flex;
+}
+
+#logoAtawa {
+    height: 3.5vw;
+    width: 15vw;
+}
+
+#tel {
+    margin: auto 0 auto 3vw;
+}
+
+#buttonsPanel {
+    margin: 0.5vw 0 0 0;
+}
+
+/* endregion header*/
 
 /* region --------------------  Total.VUE  -------------------- */
 
 .estimation {
     margin-top: 0;
     font-size: 0.9em !important;
-
 }
 
 .value {
     margin-bottom: 0;
-    font-size: 1.6em !important;
-
+    font-size: 1.2em !important;
+    color: gray;
 }
 
 #total {
     font-weight: bold;
-    position: absolute;
-    bottom: 0;
-    padding: 0.5vw;
     pointer-events: none;
 }
 
@@ -127,6 +168,11 @@ input[type=range]::-ms-thumb {
 /*endregion apparels, general, parameters*/
 
 /* region ----------  Buttons.vue  ---------- */
+
+#settings {
+    height: 1.5vw;
+    width: 1.5vw;
+}
 
 #questionMark {
     height: 1.5vw;
@@ -195,21 +241,35 @@ input[type=range]::-ms-thumb {
 }
 
 #buttonObjects {
-    background-color: #ff3a3b;
-    font-size: 1.5vw;
+    backgroundColor = "white";
+    color = "#ff7575";
+    borderBottom = "1.5px solid #ff7575";
+    font-size: 1vw;
 }
 
 #buttonCart {
-    font-size: 1.5vw;
+    font-size: 1vw;
 }
 
 .buttonTab {
     display: inline-block;
     width: 100%;
-    height: 2vw;
-    color: WHITE;
-    background-color: #ff7575;
-    border: none;
+    height: 3.5vw;
+    border : none;
+    color: #ff7575;
+    background-color: white;
+    border-bottom: 1.5px solid silver;
+}
+
+.square-check {
+    margin: auto;
+    height : 1.3vw;
+    width: 3vw;
+}
+
+.circle-plus {
+    margin: auto;
+    height : 1.3vw;
 }
 
 /* endregion drawer*/
@@ -218,24 +278,35 @@ input[type=range]::-ms-thumb {
 
 /* region --------------------  Cart.vue  -------------------- */
 
-#totalCart {
+#totalCartPage {
     position: center;
-    font-size: medium;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 #buttonEstimation, #deleteObjectButton {
     background-color: #ff3a3b;
     display: inline-block;
-    width: 100%;
     height: 2vw;
     color: WHITE;
     border: none;
-    margin-bottom: 1vw;
+    margin: 1vw 0 1vw 0;
+    font-size: 0.8em;;
 }
 
 #buttonEstimation:hover, #deleteObjectButton:hover {
     background-color: #ff7575;
     cursor: pointer;
+}
+
+.elemCartPage {
+    text-align: center;
+}
+
+#estimationCartPage {
+    text-align: center;
+    font-size: 0.7em;
+    color: gray;
 }
 
 /* endregion cartItem */
@@ -280,12 +351,11 @@ table {
 /* region --------------------  ObjectsItem.vue  -------------------- */
 
 .objectItem {
-    width: 9vw;
     height: 9vw;
     overflow: hidden;
     text-align: center;
     cursor: pointer;
-    display: inline-block;
+    display: flex;
 }
 
 .objectItemIcon {
@@ -299,6 +369,12 @@ table {
     word-break: normal;
     cursor: pointer;
     line-height: 1.4;
+    margin: auto;
+}
+
+.objectItemTitle p {
+    font-size: 0.8em;
+    color: gray;
 }
 
 /* endregion objectsItem */
@@ -311,16 +387,21 @@ table {
 }
 
 .objectCategory {
-    margin-left: 15px;
-    margin-top: 0;
+    width: 75%;
+    margin: 0 0 0 15%;
     cursor: pointer;
-    display: inline-block;
+    display: flex;
+    font-size: 1.2em;
+    border-bottom: 1.5px solid silver;
+    padding: 0.3em;
 }
 
 .objectList {
     max-height: 0;
     transition: 0.5s ease;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .objectList.expanded {
@@ -328,10 +409,17 @@ table {
 }
 
 .objectSection {
+    width: 100%;
     font-weight: bold;
+    font-size: 1.5em;
+    display: flex;
+    border-bottom: 2.5px solid silver;
+    padding: 0.3em;
 }
 
 .objectSectionList {
+    display: flex;
+    flex-direction: column;
     max-height: 2800px;
     background-color: #FFFFFF;
 }

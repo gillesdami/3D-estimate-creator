@@ -1,7 +1,10 @@
 <template>
     <div>
-        <br/>
-        <h4 class="objectSection" v-on:click="clickedObjectSection">{{ section }}</h4>
+        <p class="objectSection" v-on:click="clickedObjectSection">
+            <img class="square-check" src="../../../../assets/listElements/square-check.svg"/>
+            {{ section }}
+            <img class="circle-plus" src="../../../../assets/listElements/circle-plus.svg"/>
+        </p>
         <div class="objectSectionList" v-bind:class="{ expanded: sectionCollapsiblesStatus() }">
             <object-category v-for="category in categories" :section="section" :category="category"/>
         </div>

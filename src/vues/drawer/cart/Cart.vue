@@ -2,20 +2,20 @@
     <div>
         <cart-list/>
         <br/>
-        <Total id="totalCart"/>
-        <div class="col s6 offset-s6" style="padding: 0">
-            <button id="buttonEstimation" v-on:click="sendEstimation">Envoyer une estimation</button>
+        <TotalCartPage id="totalCartPage"/>
+        <div class="offset-s2 col s10 offset-s1" style="padding: 0">
+            <button id="buttonEstimation" v-on:click="sendEstimation">ENVOYER MA DEMANDE A L'EQUIPE ATAWA</button>
         </div>
     </div>
 </template>
 
 <script>
     import CartList from "./CartList";
-    import Total from '../../Total';
+    import TotalCartPage from '../../TotalCartPage';
     import { actionCreator, SEND_ESTIMATION } from '../../../actions'
 
     export default {
-        components: {CartList, Total},
+        components: {CartList, TotalCartPage},
         name: "cart",
         methods: {
             sendEstimation: function () {

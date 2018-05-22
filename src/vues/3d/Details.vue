@@ -1,8 +1,8 @@
 <template>
     <div class="details-panel">
-        <general></general>
-        <parameters></parameters>
-        <apparels></apparels>
+        <general/>
+        <parameters/>
+        <apparels/>
 
         <div id="deleteButtonRow" class="row" v-if="detailsState().itemName && detailsState().item">
             <div class="col s12">

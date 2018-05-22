@@ -32,6 +32,7 @@ export const TOGGLE_CLICK_FROM_OBJECT = "TOGGLE_CLICK_FROM_OBJECT";
 
 // region helperPanel actions
 export const TOGGLE_HELPER_PANEL = "TOGGLE_HELPER_PANEL";
+export const TOGGLE_SETTINGS_PANEL = "TOGGLE_SETTINGS_PANEL";
 // endregion
 
 // region deleteAll actions

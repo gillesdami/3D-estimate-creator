@@ -1,15 +1,22 @@
 <template>
     <div class="row first-div">
         <div id="v3D" class="col s9">
-            <details-comp id="details" v-show="detailsState().isDisplayed"/>
+            <header-atawa id="header"/>
 
-            <Total id="total"/>
+            <details-comp id="details" v-show="detailsState().isDisplayed"/>
 
             <div id="threeRoot"></div>
 
-            <buttons id="buttonsPanel"/>
             <helper-panel id="helperPanel"
                           v-show="store().helper.isDisplayed"/>
+
+            <settings-panel id="settingsPanel"
+                            v-show="store().settings.isDisplayed"/>
+
+            <div class="col s6 offset-s6" style="padding: 0">
+                <button id="buttonEstimation" class="buttonEstimation" v-on:click="sendEstimation">ENVOYER MA DEMANDE</button>
+            </div>
+
         </div>
 
         <drawer id="drawer" class="col s3"
@@ -19,40 +26,49 @@
 
 <script>
     import HelperPanel from './3d/helperPanel/HelperPanel';
-    import Buttons from './3d/Buttons';
+    import SettingsPanel from './3d/SettingsPanel';
     import Details from './3d/Details';
-    import {$select} from '../sagas/vue';
-    import {getDetailsState, objectsDisplayed, rendererSelector, rootselector} from '../selectors';
     import Drawer from './drawer/Drawer.vue';
-    import Total from './Total';
-    import {actionCreator, SET_RENDERER_SIZE, HIDE_DETAILS_PANEL, MOUSE_CLICK, DBCLICKED_CANVAS, MOUSE_MOVE, MOUSE_UP} from '../actions'
+    import Header from './Header';
+    import { $select } from '../sagas/vue';
+    import { getDetailsState, objectsDisplayed, rendererSelector, rootselector } from '../selectors';
+    import {
+        actionCreator,
+        SET_RENDERER_SIZE,
+        HIDE_DETAILS_PANEL,
+        MOUSE_CLICK,
+        DBCLICKED_CANVAS,
+        MOUSE_MOVE,
+        MOUSE_UP
+    } from '../actions'
 
     export default {
         name: 'app',
         components: {
-            'buttons': Buttons,
+            SettingsPanel,
             'details-comp': Details,
             'helper-panel': HelperPanel,
             'drawer': Drawer,
-            Total,
+            'settings-panel': SettingsPanel,
+            'header-atawa': Header,
         },
         methods: {
-            store: function() {
+            store: function () {
                 return $select(rootselector);
             },
-            saveStoreToLocalStorage: function() {
+            saveStoreToLocalStorage: function () {
                 setInterval(() => {
                     const store = this.store();
                     localStorage.setItem("store", JSON.stringify(store));
                 }, 3000);
             },
-            detailsState: function() {
+            detailsState: function () {
                 return $select(getDetailsState);
             },
-            getObjectsDisplayed: function() {
+            getObjectsDisplayed: function () {
                 return $select(objectsDisplayed)
             },
-            setRendererSize: function(renderer) {
+            setRendererSize: function (renderer) {
                 const container = document.getElementById('v3D');
                 this.$root.$emit('put', actionCreator(SET_RENDERER_SIZE, {
                     renderer,
@@ -62,7 +78,7 @@
 
                 const threeRoot = document.getElementById('threeRoot');
                 const detailsComp = document.getElementById('details');
-                detailsComp.style.left = (0.75*threeRoot.clientWidth).toString();
+                detailsComp.style.left = (0.75 * threeRoot.clientWidth).toString();
             },
             handleHideDetailsPanel: function (threeRoot) {
                 let mouseTimer;
@@ -84,7 +100,7 @@
 
                     if (!hold) {
                         if (!document.getElementById('drawer').contains(e.target) &&
-                            !document.getElementById('details').contains(e.target)){
+                            !document.getElementById('details').contains(e.target)) {
                             if (!this.detailsState().clickFromObject && this.detailsState().isDisplayed) {
                                 this.$root.$emit('put', actionCreator(HIDE_DETAILS_PANEL));
                             }
@@ -99,9 +115,12 @@
                         event: e
                     }));
                 });
-            }
+            },
+            sendEstimation: function () {
+                this.$root.$emit('put', actionCreator(SEND_ESTIMATION));
+            },
         },
-        mounted: function() {
+        mounted: function () {
             const renderer = $select(rendererSelector);
             const threeRoot = document.getElementById('threeRoot');
             threeRoot.appendChild(renderer.domElement);

@@ -22,7 +22,7 @@ const cameraFrustum = 70;
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(cameraFrustum, window.innerWidth / window.innerHeight, 0.01, 10000);
-    camera.position.set(0, -20, 20);
+    camera.position.set(0, -15, 15);
     camera.up = new THREE.Vector3(0, 0, 1);
 
     const scene = new THREE.Scene();
@@ -141,7 +141,7 @@ export function* compareApparel(scene, action) {
 }
 
 export function* doubleClickSelection(camera, scene, renderer, action) {
-    console.log("welcome to saga doubleClickSelection");
+    /*console.log("welcome to saga doubleClickSelection");
 
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
@@ -154,7 +154,7 @@ export function* doubleClickSelection(camera, scene, renderer, action) {
     const intersects = raycaster.intersectObjects(scene.children, true);
     console.log("touched me");
     console.log(scene.children);
-    console.log(intersects);
+    console.log(intersects);*/
     // intersects[ 0 ].object.material.color.set( 0xff0000 );
 
 }
