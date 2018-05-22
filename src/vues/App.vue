@@ -1,6 +1,9 @@
 <template>
+
     <div class="row first-div">
+
         <div id="v3D" class="col s9">
+
             <header-atawa id="header"/>
 
             <details-comp id="details" v-show="detailsState().isDisplayed"/>

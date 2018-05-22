@@ -107,6 +107,9 @@ input[type=range]::-ms-thumb {
     bottom: 1vw;
     left: 1vw;
     width: 10vw;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 190px;
 }
 
 /*endregion app*/
@@ -115,15 +118,24 @@ input[type=range]::-ms-thumb {
 
 #parentHeader {
     display: flex;
+    pointer-events: none;
+    user-select: none;
 }
 
 #logoAtawa {
     height: 3.5vw;
     width: 15vw;
+    pointer-events: none;
+    user-select: none;
+
 }
 
 #tel {
     margin: auto 0 auto 3vw;
+    pointer-events: none;
+    user-select: none;
+
+
 }
 
 #buttonsPanel {
