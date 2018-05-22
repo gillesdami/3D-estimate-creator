@@ -54,6 +54,7 @@
             },
         },
         mounted: function() {
+            
             document.getElementById("buttonCart").addEventListener("focus", function() {
                 this.style.backgroundColor = "white";
                 this.style.color = "#ff7575";
@@ -64,7 +65,7 @@
                 document.getElementById("buttonObjects").style.borderBottom = "1.5px solid silver";
             });
 
-            document.getElementById("buttonObjects").addEventListener("focus", function() {
+            function onObjectsFocus() {
                 this.style.backgroundColor = "white";
                 this.style.color = "#ff7575";
                 this.style.borderBottom = "1.5px solid #ff7575";
@@ -72,7 +73,10 @@
                 document.getElementById("buttonCart").style.backgroundColor = "#e5e5e5";
                 document.getElementById("buttonCart").style.color = "silver";
                 document.getElementById("buttonCart").style.borderBottom = "1.5px solid silver";
-            });
+            }
+
+            document.getElementById("buttonObjects").addEventListener("focus", onObjectsFocus);
+            onObjectsFocus.bind(document.getElementById("buttonObjects"))();
         }
 
     }
