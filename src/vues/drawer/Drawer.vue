@@ -2,16 +2,20 @@
     <div id="drawer">
         <div class="row" style="margin-bottom: -30px">
             <div class="col s6" style="padding: 0">
-                <button id="buttonObjects" class="buttonTab" v-on:click="changeTab">CATALOGUE</button>
+                <button id="buttonObjects" class="buttonObjects buttonTab" :class="{'buttonTabSelected': buttonObjectsActivated,
+                'buttonTabNotSelected': !buttonObjectsActivated}"
+                        v-on:click="changeTab">CATALOGUE</button>
             </div>
 
             <div class="col s6" style="padding: 0">
-                <button id="buttonCart" class="buttonTab" v-on:click="changeTab">COMMANDE</button>
+                <button id="buttonCart" class="buttonCart buttonTab" :class="{'buttonTabSelected': buttonCartActivated,
+                'buttonTabNotSelected': !buttonCartActivated}"
+                        v-on:click="changeTab">COMMANDE</button>
             </div>
         </div>
         <br/>
-        <cart id="cart"/>
-        <objects id="objects"/>
+        <cart id="cart" :style="{'display': cartDisplayValue}"/>
+        <objects id="objects" :style="{'display': objectsDisplayValue}"/>
     </div>
 </template>
 
@@ -25,36 +29,32 @@
             'cart': Cart,
         },
         name: "drawer",
+        data() {
+            return {
+                buttonObjectsActivated: true,
+                buttonCartActivated: false,
+                objectsDisplayValue: 'block',
+                cartDisplayValue: 'none'
+            }
+        },
         methods: {
             changeTab: function (event) {
                 if (event.target.id === "buttonCart") {
-                    document.getElementById("cart").style.display = "block";
-                    document.getElementById("objects").style.display = "none";
+                    this.buttonObjectsActivated = false;
+                    this.buttonCartActivated = true;
 
-                    document.getElementById("buttonCart").style.backgroundColor = "white";
-                    document.getElementById("buttonCart").style.color = "#ff7575";
-                    document.getElementById("buttonCart").style.borderBottom = "1.5px solid #ff7575";
-
-                    document.getElementById("buttonObjects").style.backgroundColor = "#e5e5e5";
-                    document.getElementById("buttonObjects").style.color = "silver";
-                    document.getElementById("buttonObjects").style.borderBottom = "1.5px solid silver";
-
+                    this.objectsDisplayValue = "none";
+                    this.cartDisplayValue = "block";
                 } else {
-                    document.getElementById("cart").style.display = "none";
-                    document.getElementById("objects").style.display = "block";
+                    this.buttonObjectsActivated = true;
+                    this.buttonCartActivated = false;
 
-                    document.getElementById("buttonObjects").style.backgroundColor = "white";
-                    document.getElementById("buttonObjects").style.color = "#ff7575";
-                    document.getElementById("buttonObjects").style.borderBottom = "1.5px solid #ff7575";
-
-                    document.getElementById("buttonCart").style.backgroundColor = "#e5e5e5";
-                    document.getElementById("buttonCart").style.color = "silver";
-                    document.getElementById("buttonCart").style.borderBottom = "1.5px solid silver";
+                    this.objectsDisplayValue = "block";
+                    this.cartDisplayValue = "none";
                 }
-            },
+            }
         },
-        mounted: function() {
-            
+        mounted:function() {
             document.getElementById("buttonCart").addEventListener("focus", function() {
                 this.style.backgroundColor = "white";
                 this.style.color = "#ff7575";
@@ -78,6 +78,5 @@
             document.getElementById("buttonObjects").addEventListener("focus", onObjectsFocus);
             onObjectsFocus.bind(document.getElementById("buttonObjects"))();
         }
-
     }
 </script>

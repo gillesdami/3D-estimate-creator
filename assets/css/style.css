@@ -248,15 +248,25 @@ input[type=range]::-ms-thumb {
     display: block;
 }
 
-#buttonObjects {
+.buttonObjects {
     background-color: white;
     color: #ff7575;
     border-bottom: 1.5px solid #ff7575;
-    font-size: 1vw;
 }
 
-#buttonCart {
-    font-size: 1vw;
+.buttonCart {
+    background-color: #e5e5e5;
+    color: silver;
+    border-bottom: 1.5px solid silver;
+}
+
+.buttonTabSelected {
+    background-color: white;
+    color: #ff7575;
+    border-bottom: 1.5px solid #ff7575;
+}
+
+.buttonTabNotSelected {
     background-color: #e5e5e5;
     color: silver;
     border-bottom: 1.5px solid silver;
@@ -265,11 +275,9 @@ input[type=range]::-ms-thumb {
 .buttonTab {
     display: inline-block;
     width: 100%;
+    font-size: 1vw;
     height: 3.5vw;
     border : none;
-    color: #ff7575;
-    background-color: white;
-    border-bottom: 1.5px solid silver;
 }
 
 .square-check {
