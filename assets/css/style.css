@@ -110,6 +110,7 @@ input[type=range]::-ms-thumb {
     white-space: nowrap;
     overflow: hidden;
     min-width: 190px;
+    min-height: 14px;
 }
 
 /*endregion app*/
@@ -149,17 +150,20 @@ input[type=range]::-ms-thumb {
 .estimation {
     margin-top: 0;
     font-size: 0.9em !important;
+    user-select: none;
 }
 
 .value {
     margin-bottom: 0;
     font-size: 1.2em !important;
     color: gray;
+    user-select: none;
 }
 
 #total {
     font-weight: bold;
     pointer-events: none;
+    user-select: none;
 }
 
 /* endregion total*/
@@ -330,7 +334,11 @@ input[type=range]::-ms-thumb {
     color: WHITE;
     border: none;
     margin: 1vw 0 1vw 0;
-    font-size: 0.8em;;
+    font-size: 0.8em;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 190px;
+    min-height: 14px;
 }
 
 #buttonEstimation:hover, #deleteObjectButton:hover {
