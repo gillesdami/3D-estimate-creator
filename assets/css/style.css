@@ -256,6 +256,11 @@ input[type=range]::-ms-thumb {
 
 /* region --------------------  Drawer.vue  -------------------- */
 
+#drawer > .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 #cart {
     display: none;
 }
@@ -322,8 +327,6 @@ input[type=range]::-ms-thumb {
 /* region --------------------  Cart.vue  -------------------- */
 
 #totalCartPage {
-    position: center;
-    font-size: 1.2em;
     font-weight: bold;
 }
 
@@ -371,6 +374,11 @@ input[type=range]::-ms-thumb {
 
 table {
     text-align: left;
+    font-size: 0.9em;
+}
+
+tr {
+    border: none !important;
 }
 
 .tdItem {
@@ -471,8 +479,13 @@ table {
 .objectSectionList {
     display: flex;
     flex-direction: column;
-    max-height: 2800px;
+    max-height: 0;
     background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+.objectSectionList.expanded {
+    max-height: 2800px;
 }
 
 /* endregion objectCategory */
