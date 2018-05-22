@@ -26,6 +26,13 @@
 
                 const uid = generateUid();
 
+                this.item.apparels =  this.item.apparels.map(apparel => {
+                    return {
+                        ...apparel,
+                        value: apparel.values[0]
+                    }
+                });
+
                 this.$root.$emit('put', actionCreator(SHOW_DETAILS_PANEL, {
                     itemName: this.name,
                     item: this.item,

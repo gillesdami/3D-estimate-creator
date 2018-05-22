@@ -12,7 +12,6 @@
                     <select :value="apparel.value"
                             @input="selectApparels[index] = $event.target.value"
                             v-on:change="handleChange(selectApparels[index], apparel.type)">
-                        <option selected disabled :value="null">Faites votre choix</option>
                         <option v-for="value in apparel.values"
                                 :value="`${value}`">{{value}}</option>
                     </select>
