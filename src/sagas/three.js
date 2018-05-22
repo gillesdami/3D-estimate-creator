@@ -30,6 +30,13 @@ export function* initThreeSaga() {
     window.THREE = THREE;//debug
     window.scene = scene;//debug
 
+    const grassGeometry = new THREE.BoxGeometry(50, 50, 0);
+    const grassMaterial = new THREE.MeshBasicMaterial({color: 0x009000});
+    const grassMesh = new THREE.Mesh(grassGeometry, grassMaterial);
+    grassMesh.position.z = -0.51;
+    grassMesh.userData.unclickable = true;
+    scene.add(grassMesh);
+
     const axes = new THREE.AxesHelper(2);
     scene.add(axes);
 
@@ -94,13 +101,13 @@ export function* setRendererSize(action) {
 export function* mouseClick(scene, camera, renderer, action) {
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
-
-    mouse.x = (action.payload.event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-    mouse.y = -(action.payload.event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+    
+    mouse.x = (action.payload.event.layerX / renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = -(action.payload.event.layerY / renderer.domElement.clientHeight) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
 
-    const intersects = raycaster.intersectObjects(scene.children, true).filter(obj => obj.object instanceof THREE.Mesh);
+    const intersects = raycaster.intersectObjects(scene.children, true).filter(obj => obj.object instanceof THREE.Mesh && !obj.object.userData.unclickable);
 
     if (intersects.length > 0) {
         //Object before scene

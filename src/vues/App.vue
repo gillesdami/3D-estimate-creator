@@ -69,21 +69,19 @@
                 return $select(objectsDisplayed)
             },
             setRendererSize: function (renderer) {
-                const container = document.getElementById('v3D');
+                const container = document.getElementById('threeRoot');
                 this.$root.$emit('put', actionCreator(SET_RENDERER_SIZE, {
                     renderer,
                     width: container.clientWidth,
                     height: container.clientHeight
                 }));
-
-                const threeRoot = document.getElementById('threeRoot');
-                const detailsComp = document.getElementById('details');
-                detailsComp.style.left = (0.75 * threeRoot.clientWidth).toString();
             },
-            handleHideDetailsPanel: function (threeRoot) {
+            handleHideDetailsPanel: function () {
+                const threeRoot = document.getElementById('threeRoot');
+                 
                 let mouseTimer;
                 let hold = false;
-
+                
                 threeRoot.addEventListener('mousedown', e => {
                     this.$root.$emit('put', actionCreator(MOUSE_CLICK, {
                         event: e,
@@ -134,7 +132,7 @@
             // Désactiver click droit sur la scene
             threeRoot.addEventListener('contextmenu', event => event.preventDefault());
 
-            this.handleHideDetailsPanel(threeRoot);
+            this.handleHideDetailsPanel();
 
             window.addEventListener('resize', () => this.setRendererSize(renderer));
 
