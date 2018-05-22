@@ -1,24 +1,21 @@
 <template>
-    <div>
-        <div v-if="detailsState().item && detailsState().item.apparels.length>0">
-            <p class="title">Habillage</p>
-            <div v-for="(apparel, index) in detailsState().item.apparels">
-                <div class="row" style="margin-bottom: 0;">
-                    <div class="col">
-                        <p class="label">{{apparel.type}} :</p>
-                    </div>
+    <div v-if="detailsState().item && detailsState().item.apparels.length>0">
+        <div v-for="(apparel, index) in detailsState().item.apparels">
+            <div class="row" style="margin-bottom: 0;">
+                <div class="col">
+                    <p class="label">{{apparel.type}}</p>
                 </div>
+            </div>
 
-                <div class="row" style="margin-bottom: 0;">
-                    <div class="col" style="width: 100%">
-                        <select :value="apparel.value"
-                                @input="selectApparels[index] = $event.target.value"
-                                v-on:change="handleChange(selectApparels[index], apparel.type)">
-                            <option selected disabled :value="null">Faites votre choix</option>
-                            <option v-for="value in apparel.values"
-                                    :value="`${value}`">{{value}}</option>
-                        </select>
-                    </div>
+            <div class="row" style="margin-bottom: 0;">
+                <div class="col" style="width: 100%">
+                    <select :value="apparel.value"
+                            @input="selectApparels[index] = $event.target.value"
+                            v-on:change="handleChange(selectApparels[index], apparel.type)">
+                        <option selected disabled :value="null">Faites votre choix</option>
+                        <option v-for="value in apparel.values"
+                                :value="`${value}`">{{value}}</option>
+                    </select>
                 </div>
             </div>
         </div>
