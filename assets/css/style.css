@@ -63,6 +63,13 @@ input[type=range]::-ms-thumb {
     overflow-y: scroll;
     overflow-x: hidden;
     max-height: 100%;
+    width: 15%;
+    text-align: center;
+    background-color: white;
+}
+
+#details::-webkit-scrollbar {
+    display: none;
 }
 
 #header {
@@ -147,6 +154,10 @@ input[type=range]::-ms-thumb {
 /* region --------------------  SUBFOLDER 3D  -------------------- */
 
 /* region ----------  Apparels.vue, General.vue, Parameters.vue, Details.vue  ---------- */
+.apparels-box {
+    padding: 0 1.5em 0;
+}
+
 .details-price {
     color: #979797;
 }
@@ -192,13 +203,6 @@ input[type=range]::-ms-thumb {
 /* endregion buttons */
 
 /* region ----------  Details.vue  ---------- */
-
-.details-panel {
-    width: 15%;
-    text-align: center;
-    padding: 5px;
-    background-color: white;
-}
 
 /* endregion */
 
