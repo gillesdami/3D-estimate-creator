@@ -1,7 +1,7 @@
 <template>
     <div>
         <p class="elemCartPage"> > Estimation de votre budget :</p>
-        <p class="elemCartPage">entre {{totalMinus10()}} € et {{totalPlus10()}} €</p>
+        <p class="elemCartPage">entre {{ totalMinus10().toFixed(2) }} € et {{ totalPlus10().toFixed(2) }} €</p>
         <p id="estimationCartPage">estimation non contractuelle</p>
     </div>
 </template>
