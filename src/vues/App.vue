@@ -69,7 +69,7 @@
                 return $select(objectsDisplayed)
             },
             setRendererSize: function (renderer) {
-                const container = document.getElementById('v3D');
+                const container = document.getElementById('threeRoot');
                 this.$root.$emit('put', actionCreator(SET_RENDERER_SIZE, {
                     renderer,
                     width: container.clientWidth,
@@ -77,8 +77,6 @@
                 }));
 
                 const threeRoot = document.getElementById('threeRoot');
-                const detailsComp = document.getElementById('details');
-                detailsComp.style.left = (0.75 * threeRoot.clientWidth).toString();
             },
             handleHideDetailsPanel: function (threeRoot) {
                 let mouseTimer;
