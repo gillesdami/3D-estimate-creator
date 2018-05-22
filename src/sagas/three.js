@@ -26,7 +26,7 @@ export function* initThreeSaga() {
     camera.up = new THREE.Vector3(0, 0, 1);
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf0f0f0);
+    scene.background = new THREE.Color(0x008000);
     window.THREE = THREE;//debug
     window.scene = scene;//debug
 
