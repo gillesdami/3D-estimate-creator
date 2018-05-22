@@ -60,16 +60,16 @@ input[type=range]::-ms-thumb {
     position: absolute;
     top: 5%;
     left: 57%;
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow-x: hidden;
-    max-height: 100%;
+    max-height: 90%;
     width: 15%;
     text-align: center;
     background-color: white;
 }
 
-#details::-webkit-scrollbar {
-    display: none;
+#details:hover {
+    overflow-y: scroll;
 }
 
 #header {
@@ -203,7 +203,6 @@ input[type=range]::-ms-thumb {
 /* endregion buttons */
 
 /* region ----------  Details.vue  ---------- */
-
 /* endregion */
 
 /* region --------------------  SUBFOLDER HELPER PANEL  -------------------- */

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="details-panel">
         <general/>
         <parameters/>
         <apparels/>
