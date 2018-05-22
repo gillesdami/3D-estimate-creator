@@ -101,9 +101,9 @@ export function* setRendererSize(action) {
 export function* mouseClick(scene, camera, renderer, action) {
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
-
-    mouse.x = (action.payload.event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-    mouse.y = -(action.payload.event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+    
+    mouse.x = (action.payload.event.layerX / renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = -(action.payload.event.layerY / renderer.domElement.clientHeight) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
 

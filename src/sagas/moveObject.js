@@ -17,8 +17,8 @@ export default function* moveObject(scene, camera, renderer, orbitControls, acti
     const raycaster = new THREE.Raycaster();
     const mouseProjection = new THREE.Vector3();
 
-    mouse.x = (action.payload.event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-    mouse.y = - (action.payload.event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+    mouse.x = (action.payload.event.layerX / renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = - (action.payload.event.layerY / renderer.domElement.clientHeight) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
 

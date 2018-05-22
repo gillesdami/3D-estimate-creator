@@ -75,13 +75,13 @@
                     width: container.clientWidth,
                     height: container.clientHeight
                 }));
-
-                const threeRoot = document.getElementById('threeRoot');
             },
-            handleHideDetailsPanel: function (threeRoot) {
+            handleHideDetailsPanel: function () {
+                const threeRoot = document.getElementById('threeRoot');
+                 
                 let mouseTimer;
                 let hold = false;
-
+                
                 threeRoot.addEventListener('mousedown', e => {
                     this.$root.$emit('put', actionCreator(MOUSE_CLICK, {
                         event: e,
@@ -132,7 +132,7 @@
             // Désactiver click droit sur la scene
             threeRoot.addEventListener('contextmenu', event => event.preventDefault());
 
-            this.handleHideDetailsPanel(threeRoot);
+            this.handleHideDetailsPanel();
 
             window.addEventListener('resize', () => this.setRendererSize(renderer));
 
