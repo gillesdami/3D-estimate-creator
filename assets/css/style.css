@@ -65,6 +65,7 @@ input[type=range]::-ms-thumb {
     overflow-x: hidden;
     max-height: 90%;
     width: 15%;
+    min-width: 150px;
     text-align: center;
     background-color: white;
 }
@@ -333,14 +334,13 @@ input[type=range]::-ms-thumb {
 #buttonEstimation, #deleteObjectButton {
     background-color: #ff3a3b;
     display: inline-block;
-    height: 2vw;
+    min-height: 2vw;
     color: WHITE;
     border: none;
     margin: 1vw 0 1vw 0;
     font-size: 0.8em;
     white-space: nowrap;
     overflow: hidden;
-    min-width: 190px;
     min-height: 14px;
 }
 
