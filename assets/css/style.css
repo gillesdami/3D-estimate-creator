@@ -415,8 +415,10 @@ tr {
 }
 
 .objectItemIcon {
-    width: 8vw;
-    height: 4.5vw;
+    min-width: 8vw;
+    min-height: 4.5vw;
+    max-width: 8vw;
+    max-height: 4.5vw;
     cursor: pointer;
 }
 
