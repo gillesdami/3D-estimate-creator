@@ -1,5 +1,5 @@
 <template>
-    <div v-if="detailsState().item && detailsState().item.apparels.length>0">
+    <div v-if="detailsState().item && detailsState().item.apparels.length>0" class="apparels-box">
         <div v-for="(apparel, index) in detailsState().item.apparels">
             <div class="row" style="margin-bottom: 0;">
                 <div class="col">
