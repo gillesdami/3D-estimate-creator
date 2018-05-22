@@ -6,7 +6,7 @@
 
         <div id="deleteButtonRow" class="row" v-if="detailsState().itemName && detailsState().item">
             <div class="col s12">
-                <button id="deleteObjectButton" v-on:click="deleteObjectDisplayed">Supprimer l'objet</button>
+                <button id="deleteObjectButton" v-on:click="deleteObjectDisplayed">SUPPRIMER L'OBJET</button>
             </div>
         </div>
     </div>

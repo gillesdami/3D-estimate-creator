@@ -58,11 +58,11 @@ input[type=range]::-ms-thumb {
 
 #details {
     position: absolute;
-    top: 0;
+    top: 5%;
+    left: 57%;
     overflow-y: scroll;
     overflow-x: hidden;
     max-height: 100%;
-    padding-left: 12px;
 }
 
 #header {
@@ -147,21 +147,26 @@ input[type=range]::-ms-thumb {
 /* region --------------------  SUBFOLDER 3D  -------------------- */
 
 /* region ----------  Apparels.vue, General.vue, Parameters.vue, Details.vue  ---------- */
+.details-price {
+    color: #979797;
+}
 
 .title {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
 .label {
-    font-style: italic;
-    color: #8a8a8a;
+    color: black;
     font-weight: bold;
     margin-bottom: 2px;
 }
 
+.general-header {
+    border-bottom: 1px solid red;
+}
+
 #deleteButtonRow {
-    margin-top: 20px;
     margin-bottom: 0;
 }
 
@@ -192,8 +197,7 @@ input[type=range]::-ms-thumb {
     width: 15%;
     text-align: center;
     padding: 5px;
-    background-color: #F6F7F8;
-    border-radius: 15px;
+    background-color: white;
 }
 
 /* endregion */
@@ -241,14 +245,17 @@ input[type=range]::-ms-thumb {
 }
 
 #buttonObjects {
-    backgroundColor = "white";
-    color = "#ff7575";
-    borderBottom = "1.5px solid #ff7575";
+    background-color: white;
+    color: #ff7575;
+    border-bottom: 1.5px solid #ff7575;
     font-size: 1vw;
 }
 
 #buttonCart {
     font-size: 1vw;
+    background-color: #e5e5e5;
+    color: silver;
+    border-bottom: 1.5px solid silver;
 }
 
 .buttonTab {
