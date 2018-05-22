@@ -3,7 +3,9 @@
         <p class="objectSection" v-on:click="clickedObjectSection">
             <img class="square-check" src="../../../../assets/listElements/square-check.svg"/>
             {{ section }}
-            <img class="circle-plus" src="../../../../assets/listElements/circle-plus.svg"/>
+            <img v-if="!sectionCollapsiblesStatus()" class="circle-plus" src="../../../../assets/listElements/circle-plus.svg"/>
+            <img v-else class="circle-minus" src="../../../../assets/listElements/circle-minus.svg"/>
+            
         </p>
         <div class="objectSectionList" v-bind:class="{ expanded: sectionCollapsiblesStatus() }">
             <object-category v-for="category in categories" :section="section" :category="category"/>

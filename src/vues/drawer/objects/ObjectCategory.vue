@@ -2,7 +2,9 @@
     <div class="categoryBlock">
         <p class="objectCategory" v-on:click="clickedObjectCategory">
             {{ category }}
-            <img class="circle-plus" src="../../../../assets/listElements/circle-plus.svg"/>
+            <img v-if="!categoryCollapsiblesStatus()" class="circle-plus" src="../../../../assets/listElements/circle-plus.svg"/>
+            <img v-else class="circle-minus" src="../../../../assets/listElements/circle-minus.svg"/>
+            
         </p>
         <div class="objectList" v-bind:class="{ expanded: categoryCollapsiblesStatus() }">
             <object-item
