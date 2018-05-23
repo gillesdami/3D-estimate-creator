@@ -339,7 +339,6 @@ input[type=range]::-ms-thumb {
     border: none;
     margin: 1vw 0 1vw 0;
     font-size: 0.8em;
-    white-space: nowrap;
     overflow: hidden;
 }
 
