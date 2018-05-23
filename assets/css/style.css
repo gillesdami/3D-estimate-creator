@@ -484,6 +484,7 @@ tr {
     max-height: 0;
     background-color: #FFFFFF;
     overflow: hidden;
+    transition: 0.5s ease;
 }
 
 .objectSectionList.expanded {

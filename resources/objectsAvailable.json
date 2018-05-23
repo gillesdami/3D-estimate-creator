@@ -63,21 +63,20 @@
             }
         ]
     },
-    "Pagode - 4m x 4m": {
+    "Tente de reception - 10m x 5m": {
         "activated": true,
         "section": "Structure",
         "category": "Tente de réception",
         "price": {
-            "ILE DE FRANCE": 300,
-            "PACA": 260
+            "ILE DE FRANCE": 600
         },
         "settings": [],
         "apparels": [
             {
-                "type": "Toit pagode",
+                "type": "Toit travee",
                 "values": [
-                    "toit blanc 3m",
-                    "toit cristal 3m"
+                    "toit blanc",
+                    "toit cristal"
                 ]
             },
             {
@@ -93,33 +92,25 @@
                 "type": "Plancher",
                 "values": [
                     "plancher",
-                    "aucun"
-                ]
-            },
-            {
-                "type": "Lestage",
-                "values": [
-                    "lestage",
                     "aucun"
                 ]
             }
         ]
     },
-    "Pagode - 5m x 5m": {
+    "Tente de reception - 10m x 10m": {
         "activated": true,
         "section": "Structure",
         "category": "Tente de réception",
         "price": {
-            "ILE DE FRANCE": 350,
-            "PACA": 350
+            "ILE DE FRANCE": 1200
         },
         "settings": [],
         "apparels": [
             {
-                "type": "Toit pagode",
+                "type": "Toit travee",
                 "values": [
-                    "toit blanc 3m",
-                    "toit cristal 3m"
+                    "toit blanc",
+                    "toit cristal"
                 ]
             },
             {
@@ -135,13 +126,6 @@
                 "type": "Plancher",
                 "values": [
                     "plancher",
-                    "aucun"
-                ]
-            },
-            {
-                "type": "Lestage",
-                "values": [
-                    "lestage",
                     "aucun"
                 ]
             }
