@@ -31,7 +31,7 @@ export function* initThreeSaga() {
     window.scene = scene;//debug
 
     const grassGeometry = new THREE.BoxGeometry(50, 50, 0);
-    const grassMaterial = new THREE.MeshBasicMaterial({color: 0x009000});
+    const grassMaterial = new THREE.MeshBasicMaterial({color: 0x008000});
     const grassMesh = new THREE.Mesh(grassGeometry, grassMaterial);
     grassMesh.position.z = -0.51;
     grassMesh.userData.unclickable = true;
