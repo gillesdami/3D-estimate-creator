@@ -35,7 +35,7 @@ input[type=range]::-ms-thumb {
 /* region --------------------  App.VUE  -------------------- */
 
 .closeButton {
-    right: 0;
+    width: 100%;
 }
 
 .first-div {
@@ -96,9 +96,8 @@ input[type=range]::-ms-thumb {
     position: absolute;
     top: 15px;
     left: 0;
-    width: 25%;
-    background-color: #F6F7F8;
-    border: 1px solid white;
+    width: 500px;
+    background-color: white;
     padding: 2vw;
     margin: 2vw;
 }
@@ -228,8 +227,9 @@ input[type=range]::-ms-thumb {
 /* region ----------  HelperItem.vue  ---------- */
 
 .helperIcon {
-    width: 100px;
-    height: 100px;
+    width: 32px;
+    height: 48px;
+    margin-right: 10px;
 }
 
 .helperItem {

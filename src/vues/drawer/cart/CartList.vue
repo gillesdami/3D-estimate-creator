@@ -7,7 +7,7 @@
             <img v-else class="circle-minus" src="../../../../assets/listElements/circle-minus.svg"/>
         </p>
         <div class="objectSectionList" v-bind:class="{ expanded: cartCollapsiblesStatus('structure') }">
-            <cart-item v-for="obj in structObjectsInCart" :obj-in-cart="obj"/>
+            <cart-item v-for="obj in objs.structObjectsInCart" :obj-in-cart="obj"/>
         </div>
 
         <p class="objectSection" v-on:click="clickedMobilierCartSection">
@@ -17,7 +17,7 @@
             <img v-else class="circle-minus" src="../../../../assets/listElements/circle-minus.svg"/>
         </p>
         <div class="objectSectionList" v-bind:class="{ expanded: cartCollapsiblesStatus('mobilier') }">
-            <cart-item v-for="obj in mobObjectsInCart" :obj-in-cart="obj"/>
+            <cart-item v-for="obj in objs.mobObjectsInCart" :obj-in-cart="obj"/>
         </div>
     </div>
 </template>
@@ -35,11 +35,13 @@
         name: "cart-list",
         data() {
             return {
-                structObjectsInCart: [],
-                mobObjectsInCart: [],
+                objs: {
+                    structObjectsInCart: [],
+                    mobObjectsInCart: [],
+                }
             }
         },
-        mounted() {
+        updated() {
             const objsDisplayed = $select(objectsDisplayed);
 
             const objects = objsDisplayed.map((obj) => ({
@@ -64,8 +66,17 @@
                 }
             }, []);
 
-            this.structObjectsInCart = objectsGrouped.filter((obj) => obj.section !== "Mobilier");
-            this.mobObjectsInCart = objectsGrouped.filter((obj) => obj.section === "Mobilier");
+            const structObjectsInCart = objectsGrouped.filter((obj) => obj.section !== "Mobilier");
+            const mobObjectsInCart= objectsGrouped.filter((obj) => obj.section === "Mobilier");
+
+            const objs = {
+                structObjectsInCart,
+                mobObjectsInCart
+            }
+
+            if (JSON.stringify(this.objs) !== JSON.stringify(objs)) {
+                this.objs = objs;
+            }
         },
         methods: {
             clickedStructureCartSection: function () {

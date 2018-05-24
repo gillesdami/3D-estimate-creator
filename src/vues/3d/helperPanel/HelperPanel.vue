@@ -1,7 +1,7 @@
 <template>
     <div>
-        <button class="closeButton" v-on:click="closeHelper">X</button>
         <helper-list :items="HelperItems['helperItems']"/>
+        <button v-on:click="closeHelper" id="buttonEstimation" class="closeButton">Ok</button>
     </div>
 </template>
 
