@@ -21,9 +21,6 @@ export const POSITION_CHANGED = "POSITION_CHANGED";
 
 // region detailsPanel actions
 export const TOGGLE_DETAILS_PANEL = "TOGGLE_DETAILS_PANEL";
-// endregion
-
-// region detailsPanel actions
 export const SHOW_DETAILS_PANEL = "SHOW_DETAILS_PANEL";
 export const SHOW_DETAILS_PANEL_FROM_SCENE = "SHOW_DETAILS_PANEL_FROM_SCENE";
 export const HIDE_DETAILS_PANEL = "HIDE_DETAILS_PANEL";
@@ -32,8 +29,13 @@ export const TOGGLE_CLICK_FROM_OBJECT = "TOGGLE_CLICK_FROM_OBJECT";
 
 // region helperPanel actions
 export const TOGGLE_HELPER_PANEL = "TOGGLE_HELPER_PANEL";
-export const TOGGLE_SETTINGS_PANEL = "TOGGLE_SETTINGS_PANEL";
 // endregion
+
+// region settingsPanel actions
+export const TOGGLE_SETTINGS_PANEL = "TOGGLE_SETTINGS_PANEL";
+export const DISPLAY_GRID = "DISPLAY_GRID";
+// endregion
+
 
 // region deleteAll actions
 export const DELETE_ALL = "DELETE_ALL";

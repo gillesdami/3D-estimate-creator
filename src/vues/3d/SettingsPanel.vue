@@ -1,31 +1,33 @@
 <template>
     <div>
         <button class="closeButton" v-on:click="closeSettings">X</button>
-        <br>
 
-        <div>
+        <div class="switch">
             <label>
-                <input type="checkbox" class="filled-in" checked="checked"/>
-                <span>Afficher la grille </span>
+                Afficher la grille
+                <input id="checkboxGrid" v-on:click="displayGrid" type="checkbox" checked>
+                <span class="lever"></span>
             </label>
         </div>
+
     </div>
 </template>
 
 <script>
-    import { actionCreator, TOGGLE_SETTINGS_PANEL } from "../../actions";
+    import { actionCreator, DISPLAY_GRID, TOGGLE_SETTINGS_PANEL } from "../../actions";
 
     export default {
         name: "settings-panel",
         components: {},
-        data() {
-            return {
-                displayGrid : true,
-            }
-        },
         methods: {
             closeSettings: function () {
                 this.$root.$emit('put', actionCreator(TOGGLE_SETTINGS_PANEL));
+            },
+            displayGrid: function () {
+                this.$root.$emit('put', actionCreator(DISPLAY_GRID, {
+                        displayGrid: document.getElementById("checkboxGrid").checked
+                    })
+                );
             }
         },
     }

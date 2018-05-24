@@ -6,7 +6,7 @@ import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
-    DBCLICKED_CANVAS, DELETE_OBJECT_DISPLAYED, HIDE_DETAILS_PANEL,
+    DBCLICKED_CANVAS, DELETE_OBJECT_DISPLAYED, DISPLAY_GRID, HIDE_DETAILS_PANEL,
     MOUSE_CLICK,
     MOUSE_MOVE,
     MOUSE_UP,
@@ -38,10 +38,12 @@ export function* initThreeSaga() {
     scene.add(grassMesh);
 
     const axes = new THREE.AxesHelper(2);
+    axes.name = "axes";
     scene.add(axes);
 
     const gridHelper = new THREE.GridHelper(50, 50);
     gridHelper.rotateX(Math.PI / 2);
+    gridHelper.name = "gridHelper";
     scene.add(gridHelper);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
@@ -69,6 +71,7 @@ export function* initThreeSaga() {
     yield takeEvery(MOUSE_MOVE, moveObject, scene, camera, renderer, controls);
     yield takeEvery(MOUSE_UP, reactivateControls, controls);
     yield takeEvery(DELETE_OBJECT_DISPLAYED, deleteObjectFromScene, scene);
+    yield takeEvery(DISPLAY_GRID, displayGrid, scene);
     yield call(reloadObjects, scene)
 }
 
@@ -144,6 +147,22 @@ export function* compareApparel(scene, action) {
         }
 
         yield call(addAppareal, scene, itemName, object, apparel.type, apparel.value);
+    }
+}
+
+export function* displayGrid(scene, action) {
+    if(action.payload.displayGrid) {
+        const axes = new THREE.AxesHelper(2);
+        axes.name = "axes";
+        scene.add(axes);
+
+        const newGridHelper = new THREE.GridHelper(50, 50);
+        newGridHelper.rotateX(Math.PI / 2);
+        newGridHelper.name = "gridHelper";
+        scene.add(newGridHelper);
+    } else {
+        scene.remove(scene.getObjectByName("axes"));
+        scene.remove(scene.getObjectByName("gridHelper"));
     }
 }
 
