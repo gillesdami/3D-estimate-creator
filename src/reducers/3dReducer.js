@@ -6,7 +6,7 @@ import {
     DISPLAY_GRID,
     HIDE_DETAILS_PANEL,
     POSITION_CHANGED,
-    RENDERER_CREATED,
+    RENDERER_CREATED, RESIZE_GRID,
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL,
     SHOW_DETAILS_PANEL_FROM_SCENE,
@@ -24,6 +24,7 @@ const defaultHelperState = {
 const defaultSettingsState = {
     isDisplayed: false,
     displayGrid: true,
+    sizeGrid: 50
 };
 
 const defaultDetailsState = {
@@ -197,6 +198,11 @@ export const settings = (state = defaultSettingsState, action) => {
             return {
                 ...state,
                 displayGrid: action.payload.displayGrid
+            };
+        case RESIZE_GRID:
+            return {
+                ...state,
+                sizeGrid: action.payload.sizeGrid
             };
         default:
             return state;

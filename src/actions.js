@@ -34,6 +34,7 @@ export const TOGGLE_HELPER_PANEL = "TOGGLE_HELPER_PANEL";
 // region settingsPanel actions
 export const TOGGLE_SETTINGS_PANEL = "TOGGLE_SETTINGS_PANEL";
 export const DISPLAY_GRID = "DISPLAY_GRID";
+export const RESIZE_GRID = "RESIZE_GRID";
 // endregion
 
 

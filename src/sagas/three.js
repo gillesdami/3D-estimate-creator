@@ -1,7 +1,8 @@
 import * as THREE from 'three';
-import {call, fork, put, takeEvery} from 'redux-saga/effects';
+import {call, fork, put, takeEvery, select} from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
 import {addAppareal, addObject, reloadObjects} from './addObject';
+import { getSettingsState } from '../selectors';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
@@ -14,7 +15,8 @@ import {
     SET_RENDERER_SIZE,
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL_FROM_SCENE,
-    TOGGLE_CLICK_FROM_OBJECT
+    TOGGLE_CLICK_FROM_OBJECT,
+    RESIZE_GRID
 } from '../actions';
 import moveObject from './moveObject';
 
@@ -35,6 +37,7 @@ export function* initThreeSaga() {
     const grassMesh = new THREE.Mesh(grassGeometry, grassMaterial);
     grassMesh.position.z = -0.51;
     grassMesh.userData.unclickable = true;
+    grassMesh.name = "grassMesh";
     scene.add(grassMesh);
 
     const axes = new THREE.AxesHelper(2);
@@ -72,6 +75,7 @@ export function* initThreeSaga() {
     yield takeEvery(MOUSE_UP, reactivateControls, controls);
     yield takeEvery(DELETE_OBJECT_DISPLAYED, deleteObjectFromScene, scene);
     yield takeEvery(DISPLAY_GRID, displayGrid, scene);
+    yield takeEvery(RESIZE_GRID, resizeGrid, scene);
     yield call(reloadObjects, scene)
 }
 
@@ -156,7 +160,10 @@ export function* displayGrid(scene, action) {
         axes.name = "axes";
         scene.add(axes);
 
-        const newGridHelper = new THREE.GridHelper(50, 50);
+        const sizeGrid = yield select(getSettingsState);
+        if (!sizeGrid) return;
+
+        const newGridHelper = new THREE.GridHelper(sizeGrid.sizeGrid, sizeGrid.sizeGrid);
         newGridHelper.rotateX(Math.PI / 2);
         newGridHelper.name = "gridHelper";
         scene.add(newGridHelper);
@@ -164,6 +171,24 @@ export function* displayGrid(scene, action) {
         scene.remove(scene.getObjectByName("axes"));
         scene.remove(scene.getObjectByName("gridHelper"));
     }
+}
+
+export function* resizeGrid(scene, action) {
+    scene.remove(scene.getObjectByName("gridHelper"));
+    scene.remove(scene.getObjectByName("grassMesh"));
+
+    const newGridHelper = new THREE.GridHelper(action.payload.sizeGrid, action.payload.sizeGrid);
+    newGridHelper.rotateX(Math.PI / 2);
+    newGridHelper.name = "gridHelper";
+    scene.add(newGridHelper);
+
+    const grassGeometry = new THREE.BoxGeometry(action.payload.sizeGrid, action.payload.sizeGrid, 0);
+    const grassMaterial = new THREE.MeshBasicMaterial({color: 0x008000});
+    const grassMesh = new THREE.Mesh(grassGeometry, grassMaterial);
+    grassMesh.position.z = -0.51;
+    grassMesh.userData.unclickable = true;
+    grassMesh.name = "grassMesh";
+    scene.add(grassMesh);
 }
 
 export function* doubleClickSelection(camera, scene, renderer, action) {

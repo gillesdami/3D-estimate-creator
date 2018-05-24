@@ -220,7 +220,12 @@ input[type=range]::-ms-thumb {
 
 /* endregion buttons */
 
-/* region ----------  Details.vue  ---------- */
+/* region ----------  Settings.vue  ---------- */
+
+.elemSetting {
+    display: inline-block;
+}
+
 /* endregion */
 
 /* region --------------------  SUBFOLDER HELPER PANEL  -------------------- */
