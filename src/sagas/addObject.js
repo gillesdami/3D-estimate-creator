@@ -10,8 +10,8 @@ export function* reloadObjects(scene) {
 
     for (const objD of objectsFromStore) {
         const base = yield call(
-            addObject, 
-            scene, 
+            addObject,
+            scene,
             {
                 payload: {
                     itemName: objD.name,
@@ -20,7 +20,7 @@ export function* reloadObjects(scene) {
                 }
             });
 
-        if(objD.position) base.position.set(objD.position.x, objD.position.y, base.position.z);
+        if (objD.position) base.position.set(objD.position.x, objD.position.y, base.position.z);
     }
 }
 
@@ -78,44 +78,48 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             break;
         case "Rideau":
             bb = model.userData.bb;
-            model.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
-            model.position.set((parentBox.min.x - parentBox.max.x)/2, 0, 0);
+            model.traverse((o) => {
+                if (o.material) o.material.side = THREE.DoubleSide;
+            });
+            if (itemName.includes("Tente de reception"))
+                model.rotateZ(Math.PI / 2);
+            model.position.set((parentBox.min.x - parentBox.max.x) / 2, 0, 0);
 
             let rideau = model.clone();
-            rideau.rotateZ(Math.PI/2);
-            rideau.position.set(0, (parentBox.min.y - parentBox.max.y)/2, 0);
+            rideau.rotateZ(Math.PI / 2);
+            rideau.position.set(0, (parentBox.min.y - parentBox.max.y) / 2, 0);
             obj.add(rideau);
 
             rideau = rideau.clone();
-            rideau.rotateZ(Math.PI/2);
-            rideau.position.set((parentBox.max.x - parentBox.min.x)/2, 0, 0);
+            rideau.rotateZ(Math.PI / 2);
+            rideau.position.set((parentBox.max.x - parentBox.min.x) / 2, 0, 0);
             obj.add(rideau);
 
             rideau = rideau.clone();
-            rideau.rotateZ(Math.PI/2);
-            rideau.position.set(0, (parentBox.max.y - parentBox.min.y)/2, 0);
+            rideau.rotateZ(Math.PI / 2);
+            rideau.position.set(0, (parentBox.max.y - parentBox.min.y) / 2, 0);
             obj.add(rideau);
             break;
         case "Lestage":
             bb = model.userData.bb;
-            model.position.set((parentBox.min.x - parentBox.max.x)/2 - .5, (parentBox.min.y - parentBox.max.y)/2 - .5, 0);
+            model.position.set((parentBox.min.x - parentBox.max.x) / 2 - .5, (parentBox.min.y - parentBox.max.y) / 2 - .5, 0);
 
             let lestage = model.clone();
-            lestage.position.set((parentBox.max.x - parentBox.min.x)/2 + .5, (parentBox.min.y - parentBox.max.y)/2 - .5, 0);
+            lestage.position.set((parentBox.max.x - parentBox.min.x) / 2 + .5, (parentBox.min.y - parentBox.max.y) / 2 - .5, 0);
             obj.add(lestage);
 
             lestage = lestage.clone();
-            lestage.position.set((parentBox.max.x - parentBox.min.x)/2 + .5, (parentBox.max.y - parentBox.min.y)/2 + .5, 0);
+            lestage.position.set((parentBox.max.x - parentBox.min.x) / 2 + .5, (parentBox.max.y - parentBox.min.y) / 2 + .5, 0);
             obj.add(lestage);
 
             lestage = lestage.clone();
-            lestage.position.set((parentBox.min.x - parentBox.max.x)/2 - .5, (parentBox.max.y - parentBox.min.y)/2 + .5, 0);
+            lestage.position.set((parentBox.min.x - parentBox.max.x) / 2 - .5, (parentBox.max.y - parentBox.min.y) / 2 + .5, 0);
             obj.add(lestage);
             break;
         default:
             yield call(setBoxCenter, obj, obj);
     }
-    
+
     obj.add(model);
     parentObj.add(obj);
 }
