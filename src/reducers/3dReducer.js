@@ -12,7 +12,7 @@ import {
     SHOW_DETAILS_PANEL_FROM_SCENE,
     TOGGLE_CLICK_FROM_OBJECT,
     TOGGLE_HELPER_PANEL,
-    TOGGLE_SETTINGS_PANEL
+    TOGGLE_SETTINGS_PANEL, UPDATE_BACKGROUND
 } from "../actions";
 
 import objectsAvailable from '../../resources/objectsAvailable.json'
@@ -24,7 +24,8 @@ const defaultHelperState = {
 const defaultSettingsState = {
     isDisplayed: false,
     displayGrid: true,
-    sizeGrid: 50
+    sizeGrid: 50,
+    background: "Aucun"
 };
 
 const defaultDetailsState = {
@@ -203,6 +204,11 @@ export const settings = (state = defaultSettingsState, action) => {
             return {
                 ...state,
                 sizeGrid: action.payload.sizeGrid
+            };
+        case UPDATE_BACKGROUND:
+            return {
+                ...state,
+                background: action.payload.background
             };
         default:
             return state;

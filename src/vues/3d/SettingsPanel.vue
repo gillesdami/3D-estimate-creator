@@ -19,18 +19,32 @@
                        :step="5">
             </label>
         </div>
+        <div class="elemSettings">
+            <label>
+                <span>Choix du décor</span>
+                <select v-on:change="changeBackground($event)">
+                    <option disabled selected value="">Faites votre choix</option>
+                    <option v-for="value in backgrounds">{{value}}</option>
+                </select>
+            </label>
+        </div>
 
     </div>
 </template>
 
 <script>
-    import { actionCreator, DISPLAY_GRID, RESIZE_GRID, TOGGLE_SETTINGS_PANEL } from "../../actions";
+    import { actionCreator, DISPLAY_GRID, RESIZE_GRID, TOGGLE_SETTINGS_PANEL, UPDATE_BACKGROUND } from "../../actions";
     import { $select } from '../../sagas/vue';
     import { getSettingsState } from "../../selectors";
 
     export default {
         name: "settings-panel",
         components: {},
+        data() {
+            return {
+                backgrounds: ["Aucun", "Herbe"]
+            }
+        },
         methods: {
             settingsState: function () {
                 return $select(getSettingsState);
@@ -47,6 +61,12 @@
             sizeGrid: function (event) {
                 this.$root.$emit('put', actionCreator(RESIZE_GRID, {
                         sizeGrid: event.target.value
+                    })
+                );
+            },
+            changeBackground: function(event) {
+                this.$root.$emit('put', actionCreator(UPDATE_BACKGROUND, {
+                        background: event.target.value
                     })
                 );
             }

@@ -1,22 +1,26 @@
 import * as THREE from 'three';
-import {call, fork, put, takeEvery, select} from 'redux-saga/effects';
+import { call, fork, put, takeEvery, select } from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
-import {addAppareal, addObject, reloadObjects} from './addObject';
 import { getSettingsState } from '../selectors';
+import { addAppareal, addObject, reloadObjects } from './addObject';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
-    DBCLICKED_CANVAS, DELETE_OBJECT_DISPLAYED, DISPLAY_GRID, HIDE_DETAILS_PANEL,
+    DBCLICKED_CANVAS,
+    DELETE_OBJECT_DISPLAYED,
+    DISPLAY_GRID,
+    HIDE_DETAILS_PANEL,
     MOUSE_CLICK,
     MOUSE_MOVE,
     MOUSE_UP,
     RENDERER_CREATED,
+    RESIZE_GRID,
     SET_RENDERER_SIZE,
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL_FROM_SCENE,
     TOGGLE_CLICK_FROM_OBJECT,
-    RESIZE_GRID
+    UPDATE_BACKGROUND
 } from '../actions';
 import moveObject from './moveObject';
 
@@ -32,12 +36,8 @@ export function* initThreeSaga() {
     window.THREE = THREE;//debug
     window.scene = scene;//debug
 
-    const grassGeometry = new THREE.BoxGeometry(50, 50, 0);
-    const grassMaterial = new THREE.MeshBasicMaterial({color: 0x008000});
-    const grassMesh = new THREE.Mesh(grassGeometry, grassMaterial);
-    grassMesh.position.z = -0.51;
-    grassMesh.userData.unclickable = true;
-    grassMesh.name = "grassMesh";
+    const grassMesh = createGrassMesh(50);
+    grassMesh.visible = false;
     scene.add(grassMesh);
 
     const axes = new THREE.AxesHelper(2);
@@ -74,8 +74,9 @@ export function* initThreeSaga() {
     yield takeEvery(MOUSE_MOVE, moveObject, scene, camera, renderer, controls);
     yield takeEvery(MOUSE_UP, reactivateControls, controls);
     yield takeEvery(DELETE_OBJECT_DISPLAYED, deleteObjectFromScene, scene);
-    yield takeEvery(DISPLAY_GRID, displayGrid, scene);
+    yield takeEvery(DISPLAY_GRID, displayGrid, scene, axes);
     yield takeEvery(RESIZE_GRID, resizeGrid, scene);
+    yield takeEvery(UPDATE_BACKGROUND, updateBackground, scene);
     yield call(reloadObjects, scene)
 }
 
@@ -108,7 +109,7 @@ export function* setRendererSize(action) {
 export function* mouseClick(scene, camera, renderer, action) {
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
-    
+
     mouse.x = (action.payload.event.layerX / renderer.domElement.clientWidth) * 2 - 1;
     mouse.y = -(action.payload.event.layerY / renderer.domElement.clientHeight) * 2 + 1;
 
@@ -133,7 +134,7 @@ export function* mouseClick(scene, camera, renderer, action) {
 }
 
 export function* compareSetting(scene, action) {
-    if(action.payload != null) {
+    if (action.payload != null) {
 
     }
 }
@@ -143,9 +144,8 @@ export function* compareApparel(scene, action) {
         const {apparel, itemName, uid} = action.payload;
         const object = scene.getObjectByName(uid);
 
-
         let apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
-        while(apparelToDelete != null) {
+        while (apparelToDelete != null) {
             apparelToDelete.parent.remove(apparelToDelete);
             apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
         }
@@ -154,41 +154,69 @@ export function* compareApparel(scene, action) {
     }
 }
 
-export function* displayGrid(scene, action) {
-    if(action.payload.displayGrid) {
-        const axes = new THREE.AxesHelper(2);
-        axes.name = "axes";
-        scene.add(axes);
+export function* displayGrid(scene, axes, action) {
+    const gridHelper = scene.getObjectByName("gridHelper");
 
-        const sizeGrid = yield select(getSettingsState);
-        if (!sizeGrid) return;
-
-        const newGridHelper = new THREE.GridHelper(sizeGrid.sizeGrid, sizeGrid.sizeGrid);
-        newGridHelper.rotateX(Math.PI / 2);
-        newGridHelper.name = "gridHelper";
-        scene.add(newGridHelper);
-    } else {
-        scene.remove(scene.getObjectByName("axes"));
-        scene.remove(scene.getObjectByName("gridHelper"));
-    }
+    gridHelper.visible = action.payload.displayGrid;
+    axes.visible = action.payload.displayGrid;
 }
 
 export function* resizeGrid(scene, action) {
     scene.remove(scene.getObjectByName("gridHelper"));
-    scene.remove(scene.getObjectByName("grassMesh"));
 
     const newGridHelper = new THREE.GridHelper(action.payload.sizeGrid, action.payload.sizeGrid);
     newGridHelper.rotateX(Math.PI / 2);
     newGridHelper.name = "gridHelper";
     scene.add(newGridHelper);
 
-    const grassGeometry = new THREE.BoxGeometry(action.payload.sizeGrid, action.payload.sizeGrid, 0);
+    const settingsState = yield select(getSettingsState);
+    if(!settingsState) return;
+
+    const background = settingsState.background;
+    switch (background) {
+        case "Herbe":
+            scene.remove(scene.getObjectByName("background_grass"));
+            const mesh = createGrassMesh(action.payload.sizeGrid);
+            scene.add(mesh);
+            break;
+        default:
+    }
+}
+
+function createGrassMesh(size) {
+    const grassGeometry = new THREE.BoxGeometry(size, size, 0);
     const grassMaterial = new THREE.MeshBasicMaterial({color: 0x008000});
     const grassMesh = new THREE.Mesh(grassGeometry, grassMaterial);
     grassMesh.position.z = -0.51;
     grassMesh.userData.unclickable = true;
-    grassMesh.name = "grassMesh";
-    scene.add(grassMesh);
+    grassMesh.name = "background_grass";
+
+    return grassMesh;
+}
+
+export function* updateBackground(scene, action) {
+    const background_grass = scene.getObjectByName("background_grass");
+
+    if (!background_grass) return;
+
+    switch (action.payload.background) {
+        case "Aucun":
+            background_grass.visible = false;
+            break;
+        case "Herbe":
+            background_grass.visible = true;
+
+            // Pas ouf a changer, pour que le sol se resize bien si on change juste le sol et qu'on redimensionne pas la grille
+            const settingsState = yield select(getSettingsState);
+            if(!settingsState) return;
+
+            yield put(actionCreator(RESIZE_GRID, {
+                sizeGrid: settingsState.sizeGrid
+            }));
+            break;
+        default:
+            background_grass.visible = false;
+    }
 }
 
 export function* doubleClickSelection(camera, scene, renderer, action) {

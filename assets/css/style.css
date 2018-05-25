@@ -222,8 +222,8 @@ input[type=range]::-ms-thumb {
 
 /* region ----------  Settings.vue  ---------- */
 
-.elemSetting {
-    display: inline-block;
+.elemSettings {
+    display: block;
 }
 
 /* endregion */
