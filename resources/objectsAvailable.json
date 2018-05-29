@@ -1,30 +1,8 @@
 {
-    "Dome 7m": {
-        "activated": true,
-        "section": "Structure",
-        "category": "Dome",
-        "price": {
-            "ILE DE FRANCE": 0,
-            "PACA": 0
-        },
-        "settings": [],
-        "apparels": []
-    },
-    "Mange debout": {
-        "activated": true,
-        "section": "Mobilier",
-        "category": "Mange debout",
-        "price": {
-            "ILE DE FRANCE": 30,
-            "PACA": 30
-        },
-        "settings": [],
-        "apparels": []
-    },
     "Pagode - 3m x 3m": {
         "activated": true,
         "section": "Structure",
-        "category": "Tente de réception",
+        "category": "Tente Pagode/Garden",
         "price": {
             "ILE DE FRANCE": 250,
             "PACA": 220
@@ -42,7 +20,7 @@
                 "type": "Rideau",
                 "values": [
                     "rideau ouvert",
-                    "rideau fenêtre",
+                    "rideau fenetre",
                     "rideau cristal",
                     "rideau blanc"
                 ]
@@ -63,46 +41,349 @@
             }
         ]
     },
-    "Table buffet": {
+    "Pagode - 4m x 4m": {
         "activated": true,
-        "section": "Mobilier",
-        "category": "Table",
+        "section": "Structure",
+        "category": "Tente Pagode/Garden",
         "price": {
-            "ILE DE FRANCE": 0,
-            "PACA": 0
+            "ILE DE FRANCE": 300,
+            "PACA": 260
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "Toit pagode",
+                "values": [
+                    "toit blanc 3m",
+                    "toit cristal 3m"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenetre",
+                    "rideau cristal",
+                    "rideau blanc"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Pagode - 5m x 5m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente Pagode/Garden",
+        "price": {
+            "ILE DE FRANCE": 350,
+            "PACA": 350
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "Toit pagode",
+                "values": [
+                    "toit blanc 3m",
+                    "toit cristal 3m"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenetre",
+                    "rideau cristal",
+                    "rideau blanc"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente de reception - 10m x 3m - 30m2": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de reception - 10m",
+        "price": {
+            "ILE DE FRANCE": 300,
+            "PACA": 300
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "Toit pagode",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenetre",
+                    "rideau cristal",
+                    "rideau blanc",
+                    "rideau ouvert pignon",
+                    "rideau fenetre pignon",
+                    "rideau cristal pignon",
+                    "rideau blanc pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente de reception - 10m x 6m - 60m2": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de reception - 10m",
+        "price": {
+            "ILE DE FRANCE": 600,
+            "PACA": 600
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "Toit pagode",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenetre",
+                    "rideau cristal",
+                    "rideau blanc",
+                    "rideau ouvert pignon",
+                    "rideau fenetre pignon",
+                    "rideau cristal pignon",
+                    "rideau blanc pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente de reception - 10m x 9m - 90m2": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de reception - 10m",
+        "price": {
+            "ILE DE FRANCE": 900,
+            "PACA": 900
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "Toit pagode",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenetre",
+                    "rideau cristal",
+                    "rideau blanc",
+                    "rideau ouvert pignon",
+                    "rideau fenetre pignon",
+                    "rideau cristal pignon",
+                    "rideau blanc pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente de reception - 10m x 5m - 50m2": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de reception - 10m",
+        "price": {
+            "ILE DE FRANCE": 600,
+            "PACA": 900
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "Toit pagode",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenetre",
+                    "rideau cristal",
+                    "rideau blanc",
+                    "rideau ouvert pignon",
+                    "rideau fenetre pignon",
+                    "rideau cristal pignon",
+                    "rideau blanc pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente de reception - 10m x 10m - 100m2": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente de reception - 10m",
+        "price": {
+            "ILE DE FRANCE": 1200,
+            "PACA": 900
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "Toit pagode",
+                "values": [
+                    "toit blanc",
+                    "toit cristal"
+                ]
+            },
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau ouvert",
+                    "rideau fenetre",
+                    "rideau cristal",
+                    "rideau blanc",
+                    "rideau ouvert pignon",
+                    "rideau fenetre pignon",
+                    "rideau cristal pignon",
+                    "rideau blanc pignon"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    "lestage",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Tente stretch - 7.5m x 20m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente stretch",
+        "price": {
+            "ILE DE FRANCE": 3000,
+            "PACA": 20
         },
         "settings": [],
         "apparels": []
     },
-    "Table rectangle 90 x 220 - 8 personnes chaises napoleon": {
+    "Tente stretch - 10m x 20m": {
         "activated": true,
-        "section": "Mobilier",
-        "category": "Table",
+        "section": "Structure",
+        "category": "Tente stretch",
         "price": {
-            "ILE DE FRANCE": 0,
-            "PACA": 0
+            "ILE DE FRANCE": 4000,
+            "PACA": 20
         },
         "settings": [],
         "apparels": []
     },
-    "Table ronde 150 - 8 personnes chaises a lattes": {
+    "Tente stretch - 15m x 18m": {
         "activated": true,
-        "section": "Mobilier",
-        "category": "Table",
+        "section": "Structure",
+        "category": "Tente stretch",
         "price": {
-            "ILE DE FRANCE": 0,
-            "PACA": 0
-        },
-        "settings": [],
-        "apparels": []
-    },
-    "Table ronde 150 - 10 personnes chaises napoleon": {
-        "activated": true,
-        "section": "Mobilier",
-        "category": "Table",
-        "price": {
-            "ILE DE FRANCE": 0,
-            "PACA": 0
+            "ILE DE FRANCE": 5400,
+            "PACA": 20
         },
         "settings": [],
         "apparels": []
@@ -112,7 +393,7 @@
         "section": "Structure",
         "category": "Tente stretch",
         "price": {
-            "ILE DE FRANCE": 20,
+            "ILE DE FRANCE": 720,
             "PACA": 20
         },
         "settings": [],
@@ -123,7 +404,7 @@
         "section": "Structure",
         "category": "Tente stretch",
         "price": {
-            "ILE DE FRANCE": 20,
+            "ILE DE FRANCE": 1440,
             "PACA": 20
         },
         "settings": [],
@@ -134,7 +415,7 @@
         "section": "Structure",
         "category": "Tente stretch",
         "price": {
-            "ILE DE FRANCE": 20,
+            "ILE DE FRANCE": 960,
             "PACA": 20
         },
         "settings": [],
@@ -145,7 +426,7 @@
         "section": "Structure",
         "category": "Tente stretch",
         "price": {
-            "ILE DE FRANCE": 20,
+            "ILE DE FRANCE": 2000,
             "PACA": 20
         },
         "settings": [],
@@ -156,7 +437,7 @@
         "section": "Structure",
         "category": "Tente stretch",
         "price": {
-            "ILE DE FRANCE": 20,
+            "ILE DE FRANCE": 2400,
             "PACA": 20
         },
         "settings": [],
@@ -167,7 +448,55 @@
         "section": "Structure",
         "category": "Tente stretch",
         "price": {
-            "ILE DE FRANCE": 20,
+            "ILE DE FRANCE": 3000,
+            "PACA": 20
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Tente stretch - 12m x 15m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente stretch",
+        "price": {
+            "ILE DE FRANCE": 3600,
+            "PACA": 20
+        },
+        "settings": [],
+        "apparels": []
+    },
+    "Tente stretch - octogonale - 21.7m x 21.7m": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Tente stretch",
+        "price": {
+            "ILE DE FRANCE": 6840,
+            "PACA": 20
+        },
+        "settings": [],
+        "apparels": [
+            {
+                "type": "Rideau",
+                "values": [
+                    "rideau cristal",
+                    "aucun"
+                ]
+            },
+            {
+                "type": "Plancher",
+                "values": [
+                    "plancher",
+                    "aucun"
+                ]
+            }
+        ]
+    },
+    "Voûte en bois": {
+        "activated": true,
+        "section": "Structure",
+        "category": "Voûte en bois",
+        "price": {
+            "ILE DE FRANCE": 4500,
             "PACA": 20
         },
         "settings": [],

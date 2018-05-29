@@ -79,6 +79,8 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
         case "Rideau":
             bb = model.userData.bb;
             model.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
+            if(itemName.includes("Tente de reception"))
+                model.rotateZ(Math.PI / 2);
             model.position.set((parentBox.min.x - parentBox.max.x)/2, 0, 0);
 
             let rideau = model.clone();

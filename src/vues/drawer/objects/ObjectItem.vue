@@ -1,6 +1,6 @@
 <template>
     <div class="objectItem" v-on:click="clickedObjectItem">
-        <img class="objectItemIcon" :src="`assets/objectIcons/${ name }.jpg`"/>
+        <img class="objectItemIcon" :src="`models/${ name }/image.jpg`"/>
         <div class="objectItemTitle">
             {{ name }}
             <p>
