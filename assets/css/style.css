@@ -128,15 +128,12 @@ input[type=range]::-ms-thumb {
     width: 15vw;
     pointer-events: none;
     user-select: none;
-
 }
 
 #tel {
     margin: auto 0 auto 3vw;
     pointer-events: none;
     user-select: none;
-
-
 }
 
 #buttonsPanel {
@@ -156,11 +153,12 @@ input[type=range]::-ms-thumb {
 .value {
     margin-bottom: 0;
     font-size: 1.2em !important;
-    color: gray;
+    color: #ff3a3b;
     user-select: none;
 }
 
 #total {
+    margin: auto 0 auto auto;
     font-weight: bold;
     pointer-events: none;
     user-select: none;
@@ -328,6 +326,7 @@ input[type=range]::-ms-thumb {
 /* region --------------------  Cart.vue  -------------------- */
 
 #totalCartPage {
+    color: #ff3a3b;
     font-weight: bold;
 }
 

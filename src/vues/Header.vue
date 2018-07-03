@@ -3,9 +3,9 @@
         <div id="parentHeader">
             <img id="logoAtawa" src="../../assets/logo_atawa.svg"/>
             <span id="tel">01 40 50 19 42</span>
+            <total id="total"></total>
         </div>
         <buttons id="buttonsPanel"></buttons>
-        <total id="total"></total>
     </div>
 </template>
 
