@@ -34,7 +34,7 @@ export function* addObject(scene, action) {
     const calls = {};
 
     item.apparels.forEach((appareal) => {
-        calls[appareal.type] = call(addAppareal, scene, itemName, base, appareal.type, appareal.value || appareal.values[0]);
+        calls[appareal.type] = call(addAppareal, scene, itemName, base, appareal.type, appareal.value || appareal.values[0], item.settings);
     });
 
     yield all(calls);
@@ -42,9 +42,9 @@ export function* addObject(scene, action) {
     return base;
 }
 
-export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue) {
+export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue, settings) {
     if (apparealValue === "aucun") return null;
-
+    
     const obj = new THREE.Group();
     const parentBox = parentObj.userData.bb;
     const model = yield call(loadModel, itemName, apparealValue);
@@ -69,7 +69,8 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             model.position.set(2.45, 0, parentBox.max.z - 2.48);
             break;
         case "Toit pagode":
-            model.position.set(0, 0, 2.56);
+            model.position.set(0, 0, 
+                settings.find((e) => e.type === "hmin" && e.value['Toit pagode']).value['Toit pagode']);
             break;
         case "Toit travee":
             model.position.set(0, 0, parentBox.max.z - 1.03);

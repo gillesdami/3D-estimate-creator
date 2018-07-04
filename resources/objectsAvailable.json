@@ -7,7 +7,10 @@
             "ILE DE FRANCE": 250,
             "PACA": 220
         },
-        "settings": [],
+        "settings": [{
+            "type": "hmin",
+            "value": {"Toit pagode": 2.25}
+        }],
         "apparels": [
             {
                 "type": "Toit pagode",
@@ -49,13 +52,16 @@
             "ILE DE FRANCE": 300,
             "PACA": 260
         },
-        "settings": [],
+        "settings": [{
+            "type": "hmin",
+            "value": {"Toit pagode": 2.3}
+        }],
         "apparels": [
             {
                 "type": "Toit pagode",
                 "values": [
-                    "toit blanc 3m",
-                    "toit cristal 3m"
+                    "toit blanc",
+                    "toit cristal"
                 ]
             },
             {
@@ -91,13 +97,16 @@
             "ILE DE FRANCE": 350,
             "PACA": 350
         },
-        "settings": [],
+        "settings": [{
+            "type": "hmin",
+            "value": {"Toit pagode": 2.3}
+        }],
         "apparels": [
             {
                 "type": "Toit pagode",
                 "values": [
-                    "toit blanc 3m",
-                    "toit cristal 3m"
+                    "toit blanc",
+                    "toit cristal"
                 ]
             },
             {
