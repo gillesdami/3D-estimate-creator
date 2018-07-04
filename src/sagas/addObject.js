@@ -1,9 +1,10 @@
 import * as THREE from 'three';
-import { all, call, select } from 'redux-saga/effects';
+import { all, call, select, put } from 'redux-saga/effects';
 import { objectsDisplayed } from '../selectors';
 
 import loadModel from './util/colladaLoader';
 import setBoxCenter from './util/setBoxCenter';
+import { ADDED_OBJECT_DISPLAYED, actionCreator } from '../actions';
 
 export function* reloadObjects(scene) {
     const objectsFromStore = yield select(objectsDisplayed);
@@ -38,6 +39,7 @@ export function* addObject(scene, action) {
     });
 
     yield all(calls);
+    yield put(actionCreator(ADDED_OBJECT_DISPLAYED));
 
     return base;
 }

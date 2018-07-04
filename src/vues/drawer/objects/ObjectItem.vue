@@ -33,13 +33,13 @@
                     }
                 });
 
-                this.$root.$emit('put', actionCreator(SHOW_DETAILS_PANEL, {
+                this.$root.$emit('put', actionCreator(ADD_OBJECT_DISPLAYED, {
                     itemName: this.name,
                     item: this.item,
                     uid
                 }));
 
-                this.$root.$emit('put', actionCreator(ADD_OBJECT_DISPLAYED, {
+                this.$root.$emit('put', actionCreator(SHOW_DETAILS_PANEL, {
                     itemName: this.name,
                     item: this.item,
                     uid

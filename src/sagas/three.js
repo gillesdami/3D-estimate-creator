@@ -17,6 +17,7 @@ import {
     TOGGLE_CLICK_FROM_OBJECT
 } from '../actions';
 import moveObject from './moveObject';
+import initShowObjectBox from './showObjectBox';
 
 const cameraFrustum = 70;
 
@@ -70,6 +71,7 @@ export function* initThreeSaga() {
     yield takeEvery(MOUSE_UP, reactivateControls, controls);
     yield takeEvery(DELETE_OBJECT_DISPLAYED, deleteObjectFromScene, scene);
     yield call(reloadObjects, scene)
+    yield fork(initShowObjectBox, scene);
 }
 
 export function* reactivateControls(controls) {
