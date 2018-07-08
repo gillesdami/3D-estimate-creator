@@ -209,7 +209,6 @@ input[type=range]::-ms-thumb {
 
 #deleteButtonRow {
     display: flex;
-    justify-content: space-around;
     margin-bottom: 0;
 }
 
@@ -219,7 +218,7 @@ input[type=range]::-ms-thumb {
     min-height: 2vw;
     color: WHITE;
     border: none;
-    margin: 1vw 0 1vw 2vw;
+    margin: 1vw auto 1vw auto;
     font-size: 0.8em;
     overflow: hidden;
 }
@@ -227,6 +226,17 @@ input[type=range]::-ms-thumb {
 #validateButton:hover {
     opacity: 0.7;
     cursor: pointer;
+}
+
+#trashDetails {
+    height: 2vw;
+    width: 2vw;
+    margin: 1vw auto 1vw auto;
+    cursor: pointer;
+}
+
+#trashDetails:hover {
+    opacity: 0.7;
 }
 
 /*endregion apparels, general, parameters*/

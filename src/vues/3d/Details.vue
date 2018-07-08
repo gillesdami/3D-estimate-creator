@@ -1,13 +1,13 @@
 <template>
     <div class="details-panel">
-        <general/>
-        <parameters/>
-        <apparels/>
+
+        <general></general>
+        <parameters></parameters>
+        <apparels></apparels>
 
         <div id="deleteButtonRow" class="row" v-if="detailsState().itemName && detailsState().item">
             <button id="validateButton" v-on:click="validateAndHideDetails">VALIDER</button>
-            <button id="deleteObjectButton" v-on:click="deleteObjectDisplayed">SUPPRIMER</button>
-            <!--<img v-on:click="deleteObjectDisplayed" id="trash" src="../../../assets/buttons/delete.svg"/>-->
+            <img v-on:click="deleteObjectDisplayed" id="trashDetails" src="../../../assets/buttons/delete.svg"/>
         </div>
 
     </div>
