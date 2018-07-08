@@ -5,6 +5,11 @@
             <td class="qte tdItem">x{{ objInCart.qte }}</td>
             <td class="price tdItem">{{ objInCart.price.toFixed(2) }} €</td>
         </tr>
+        <tr v-for="apparel in objInCart.apparels">
+            <td class="apparelValue">{{apparel.value}}</td>
+            <td class="apparelValue">{{apparel.type}}</td>
+            <td class="apparelValue">{{apparel.values}}</td>
+        </tr>
     </table>
 </template>
 

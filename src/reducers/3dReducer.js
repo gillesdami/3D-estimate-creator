@@ -1,16 +1,22 @@
 import {
     ADD_OBJECT_DISPLAYED,
-    OBJECT_DISPLAYED_LOADING,
-    OBJECT_DISPLAYED_LOADED,
     APPAREL_CHANGED,
     DELETE_ALL,
+    DELETE_OBJECT_DISPLAYED,
+    HIDE_DETAILS_PANEL,
+    OBJECT_DISPLAYED_LOADED,
+    OBJECT_DISPLAYED_LOADING,
+    POSITION_CHANGED,
     RENDERER_CREATED,
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL,
-    HIDE_DETAILS_PANEL,
-    TOGGLE_HELPER_PANEL, SHOW_DETAILS_PANEL_FROM_SCENE, TOGGLE_CLICK_FROM_OBJECT,
-    POSITION_CHANGED,
-    DELETE_OBJECT_DISPLAYED, TOGGLE_SETTINGS_PANEL
+    SHOW_DETAILS_PANEL_FROM_SCENE,
+    TOGGLE_CLICK_FROM_OBJECT,
+    TOGGLE_HELPER_PANEL,
+    TOGGLE_RECAP_PANEL_FORM,
+    TOGGLE_RECAP_PANEL_MAIN,
+    TOGGLE_RECAP_PANEL_RECAP,
+    TOGGLE_SETTINGS_PANEL
 } from "../actions";
 
 import objectsAvailable from '../../resources/objectsAvailable.json'
@@ -21,6 +27,12 @@ const defaultHelperState = {
 
 const defaultSettingsState = {
     isDisplayed: false
+};
+
+const defaultRecapOrderState = {
+    isMainDisplayed: false,
+    isRecapDisplayed: false,
+    isFormDisplayed: false
 };
 
 const defaultDetailsState = {
@@ -110,13 +122,13 @@ export const details = (state = defaultDetailsState, action) => {
             return {
                 ...state,
                 isDisplayed: false,
-                objectLoaded : false
+                objectLoaded: false
             };
         case OBJECT_DISPLAYED_LOADED:
             return {
                 ...state,
                 isDisplayed: true,
-                objectLoaded : true
+                objectLoaded: true
             };
         case APPAREL_CHANGED:
             return {
@@ -149,7 +161,7 @@ export const details = (state = defaultDetailsState, action) => {
             const objDisplayed = action.payload.objectsDisplayed.find(obj => obj.uid === action.payload.uid);
 
             let objAvailable;
-            for(const key of Object.keys(objectsAvailable)) {
+            for (const key of Object.keys(objectsAvailable)) {
                 if (key === objDisplayed.name) {
                     objAvailable = objectsAvailable[key];
                 }
@@ -190,6 +202,31 @@ export const helper = (state = defaultHelperState, action) => {
     switch (action.type) {
         case TOGGLE_HELPER_PANEL:
             return Object.assign(state, {['isDisplayed']: !state['isDisplayed']});
+        default:
+            return state;
+    }
+};
+
+export const recapOrder = (state = defaultRecapOrderState, action) => {
+    switch (action.type) {
+        case TOGGLE_RECAP_PANEL_MAIN:
+            return {
+                isMainDisplayed: !state['isMainDisplayed'],
+                isRecapDisplayed: true,
+                isFormDisplayed: false
+            };
+        case TOGGLE_RECAP_PANEL_RECAP:
+            return {
+                ...state,
+                isRecapDisplayed: true,
+                isFormDisplayed: false
+            };
+        case TOGGLE_RECAP_PANEL_FORM:
+            return {
+                ...state,
+                isRecapDisplayed: false,
+                isFormDisplayed: true
+            };
         default:
             return state;
     }

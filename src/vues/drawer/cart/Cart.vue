@@ -12,14 +12,14 @@
 <script>
     import CartList from "./CartList";
     import TotalCartPage from '../../TotalCartPage';
-    import { actionCreator, SEND_ESTIMATION } from '../../../actions'
+    import { actionCreator, TOGGLE_RECAP_PANEL_MAIN } from '../../../actions'
 
     export default {
         components: {CartList, TotalCartPage},
         name: "cart",
         methods: {
             sendEstimation: function () {
-                this.$root.$emit('put', actionCreator(SEND_ESTIMATION));
+                this.$root.$emit('put', actionCreator(TOGGLE_RECAP_PANEL_MAIN));
             },
         }
     }

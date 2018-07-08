@@ -33,6 +33,23 @@ input[type=range]::-ms-thumb {
 /* region --------------------  FOLDER VUES  -------------------- */
 
 /* region --------------------  App.VUE  -------------------- */
+
+.ATAWAButton {
+    background-color: #ff3a3b;
+    display: inline-block;
+    min-height: 2vw;
+    color: WHITE;
+    border: none;
+    margin: 1vw 0 1vw 0;
+    font-size: 0.8em;
+    overflow: hidden;
+}
+
+.ATAWAButton:hover {
+    background-color: #ff7575;
+    cursor: pointer;
+}
+
 .spinner {
     position: absolute;
     top: 50vh;
@@ -40,9 +57,9 @@ input[type=range]::-ms-thumb {
 }
 
 .v-spinner .v-clip {
-    height: 75px!important;
-    width: 75px!important;
-    border-width: 4px!important;
+    height: 75px !important;
+    width: 75px !important;
+    border-width: 4px !important;
 }
 
 .objectLoading {
@@ -129,6 +146,23 @@ input[type=range]::-ms-thumb {
 }
 
 /*endregion app*/
+
+/* region ----------  RecapOrder.vue  ---------- */
+
+#recapOrderPanel {
+    position: absolute;
+    top: 15px;
+    background-color: white;
+    padding: 1vw;
+    margin-top: 2vw;
+    margin-left: 25vw;
+}
+
+.buttonsRecapOrderPanel {
+    display: inline-block;
+}
+
+/* endregion HelperList */
 
 /* region --------------------  Header.VUE  -------------------- */
 
@@ -237,6 +271,7 @@ input[type=range]::-ms-thumb {
 
 #trashDetails:hover {
     opacity: 0.7;
+    cursor: pointer;
 }
 
 /*endregion apparels, general, parameters*/
@@ -435,6 +470,10 @@ tr {
 
 .price {
     width: 10vw
+}
+
+.apparelValue {
+    margin-left: 2vw;
 }
 
 /* endregion cartList */

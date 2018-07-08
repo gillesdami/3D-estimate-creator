@@ -3,4 +3,5 @@ export const getCollapsibleState = (store, section, category = "") => store.coll
 export const rendererSelector = (store) => store.renderer;
 export const getDetailsState = store => store.details || {};
 export const objectsDisplayed = (store) => store.objectsDisplayed;
+export const getRecapOrder = (store) => store.recapOrder;
 export const totalSelector = (store, objectsAvailable) => objectsDisplayed(store).map(e => objectsAvailable[e.name].price).reduce((acc, val) => acc + val["ILE DE FRANCE"], 0);

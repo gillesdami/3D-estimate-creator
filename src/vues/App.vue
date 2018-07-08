@@ -13,12 +13,15 @@
             <settings-panel id="settingsPanel"
                             v-show="store().settings.isDisplayed"/>
 
+            <recap-order-panel id="recapOrderPanel"
+                    v-show="store().recapOrder.isMainDisplayed"/>
+
             <div class="col s6 offset-s6" style="padding: 0">
                 <button id="buttonEstimation" class="buttonEstimation" v-on:click="sendEstimation">ENVOYER MA DEMANDE
                 </button>
             </div>
         </div>
-    
+
         <clip-loader class="spinner"
                      :loading="!detailsState().objectLoaded"
                      :color="color"></clip-loader>
@@ -32,11 +35,20 @@
     import HelperPanel from './3d/helperPanel/HelperPanel';
     import SettingsPanel from './3d/SettingsPanel';
     import Details from './3d/Details';
+    import RecapOrder from './3d/recapOrder/RecapOrder';
     import Drawer from './drawer/Drawer.vue';
     import Header from './Header';
     import { $select } from '../sagas/vue';
     import { getDetailsState, objectsDisplayed, rendererSelector, rootselector } from '../selectors';
-    import { actionCreator, DBCLICKED_CANVAS, MOUSE_CLICK, MOUSE_MOVE, MOUSE_UP, SET_RENDERER_SIZE } from '../actions';
+    import {
+        actionCreator,
+        DBCLICKED_CANVAS,
+        MOUSE_CLICK,
+        MOUSE_MOVE,
+        MOUSE_UP,
+        SET_RENDERER_SIZE,
+        TOGGLE_RECAP_PANEL_MAIN
+    } from '../actions';
     import ClipLoader from 'vue-spinner/src/ClipLoader'
 
     export default {
@@ -47,9 +59,10 @@
             'drawer': Drawer,
             'settings-panel': SettingsPanel,
             'header-atawa': Header,
+            'recap-order-panel': RecapOrder,
             ClipLoader
         },
-        data () {
+        data() {
             return {
                 color: "#ff3a3b"
             }
@@ -106,7 +119,7 @@
                 });
             },
             sendEstimation: function () {
-                this.$root.$emit('put', actionCreator(SEND_ESTIMATION));
+                this.$root.$emit('put', actionCreator(TOGGLE_RECAP_PANEL_MAIN));
             },
         },
         mounted: function () {

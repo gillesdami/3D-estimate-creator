@@ -46,6 +46,12 @@ export const DELETE_ALL = "DELETE_ALL";
 export const VIEW_CREATED = "VIEW_CREATED";
 // endregion
 
+// region recapOrder actions
+export const TOGGLE_RECAP_PANEL_MAIN = "TOGGLE_RECAP_PANEL_MAIN";
+export const TOGGLE_RECAP_PANEL_RECAP = "TOGGLE_RECAP_PANEL_RECAP";
+export const TOGGLE_RECAP_PANEL_FORM = "TOGGLE_RECAP_PANEL_FORM";
+// endregion
+
 // region three actions
 export const RENDERER_CREATED = "RENDERER_CREATED";
 export const SET_RENDERER_SIZE = "SET_RENDERER_SIZE";
