@@ -37,7 +37,7 @@ export function* addObject(scene, action) {
     const calls = {};
 
     item.apparels.forEach((appareal) => {
-        calls[appareal.type] = call(addAppareal, scene, itemName, base, appareal.type, appareal.value || appareal.values[0], item.settings);
+        calls[appareal.type] = call(addAppareal, scene, itemName, base, appareal.type, appareal.value || appareal.values[0], item.settings); // TODO change appareal.value in object: {name: "toit cristal", price: "137"}
     });
 
     yield all(calls);
@@ -47,7 +47,7 @@ export function* addObject(scene, action) {
 }
 
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue, settings) {
-    if (apparealValue === "aucun") return null;
+    if (apparealValue === "aucun") return null; // TODO change appareal.value in object: {name: "toit cristal", price: "137"}
     
     const obj = new THREE.Group();
     const parentBox = parentObj.userData.bb;

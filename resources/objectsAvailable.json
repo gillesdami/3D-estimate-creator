@@ -4,8 +4,18 @@
         "section": "Structure",
         "category": "Tente Pagode/Garden",
         "price": {
-            "ILE DE FRANCE": 250,
-            "PACA": 220
+            "ILE DE FRANCE": "250",
+            "PACA": "220",
+            "OCCITANIE": "220",
+            "GRAND EST": "220",
+            "AUVERGNE RHONE ALPES": "220",
+            "PAYS DE LA LOIRE": "180",
+            "CENTRE VAL DE LOIRE": "180",
+            "NOUVELLE AQUITAINE": "200",
+            "BOURGOGNE FRANCHE COMPTE": "200",
+            "NORMANDIE": "180",
+            "HAUTS DE FRANCE": "180",
+            "BRETAGNE": "180"
         },
         "settings": [{
             "type": "hmin",
@@ -49,8 +59,18 @@
         "section": "Structure",
         "category": "Tente Pagode/Garden",
         "price": {
-            "ILE DE FRANCE": 300,
-            "PACA": 260
+            "ILE DE FRANCE":"300",
+            "PACA":"260",
+            "OCCITANIE":"260",
+            "GRAND EST":"260",
+            "AUVERGNE RHONE ALPES":"260",
+            "PAYS DE LA LOIRE":"220",
+            "CENTRE VAL DE LOIRE":"220",
+            "NOUVELLE AQUITAINE":"260",
+            "BOURGOGNE FRANCHE COMPTE":"260",
+            "NORMANDIE":"260",
+            "HAUTS DE FRANCE":"220",
+            "BRETAGNE":"220"
         },
         "settings": [{
             "type": "hmin",
@@ -94,8 +114,18 @@
         "section": "Structure",
         "category": "Tente Pagode/Garden",
         "price": {
-            "ILE DE FRANCE": 350,
-            "PACA": 350
+            "ILE DE FRANCE":"350",
+            "PACA":"350",
+            "OCCITANIE":"350",
+            "GRAND EST":"320",
+            "AUVERGNE RHONE ALPES":"320",
+            "PAYS DE LA LOIRE":"300",
+            "CENTRE VAL DE LOIRE":"300",
+            "NOUVELLE AQUITAINE":"300",
+            "BOURGOGNE FRANCHE COMPTE":"300",
+            "NORMANDIE":"300",
+            "HAUTS DE FRANCE":"300",
+            "BRETAGNE":"250"
         },
         "settings": [{
             "type": "hmin",
