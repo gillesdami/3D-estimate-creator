@@ -4,7 +4,7 @@ import { objectsDisplayed } from '../selectors';
 
 import loadModel from './util/colladaLoader';
 import setBoxCenter from './util/setBoxCenter';
-import { ADDED_OBJECT_DISPLAYED, actionCreator } from '../actions';
+import {ADDED_OBJECT_DISPLAYED, actionCreator, OBJECT_DISPLAYED_LOADING} from '../actions';
 
 export function* reloadObjects(scene) {
     const objectsFromStore = yield select(objectsDisplayed);
@@ -26,6 +26,8 @@ export function* reloadObjects(scene) {
 }
 
 export function* addObject(scene, action) {
+    yield put(actionCreator(OBJECT_DISPLAYED_LOADING));
+
     const {itemName, item, uid} = action.payload;
 
     const base = yield call(loadModel, itemName, itemName);

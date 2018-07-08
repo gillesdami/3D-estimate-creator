@@ -1,5 +1,7 @@
 import {
     ADD_OBJECT_DISPLAYED,
+    OBJECT_DISPLAYED_LOADING,
+    OBJECT_DISPLAYED_LOADED,
     APPAREL_CHANGED,
     DELETE_ALL,
     RENDERER_CREATED,
@@ -24,6 +26,7 @@ const defaultSettingsState = {
 const defaultDetailsState = {
     isDisplayed: false,
     clickFromObject: false,
+    objectLoaded: true,
     itemName: null,
     item: null
 };
@@ -103,6 +106,18 @@ export const objectsDisplayed = (state = [], action) => {
 
 export const details = (state = defaultDetailsState, action) => {
     switch (action.type) {
+        case OBJECT_DISPLAYED_LOADING:
+            return {
+                ...state,
+                isDisplayed: false,
+                objectLoaded : false
+            };
+        case OBJECT_DISPLAYED_LOADED:
+            return {
+                ...state,
+                isDisplayed: true,
+                objectLoaded : true
+            };
         case APPAREL_CHANGED:
             return {
                 ...state,
@@ -123,7 +138,6 @@ export const details = (state = defaultDetailsState, action) => {
         case SHOW_DETAILS_PANEL:
             return {
                 ...state,
-                isDisplayed: true,
                 clickFromObject: false,
                 itemName: action.payload.itemName,
                 item: {

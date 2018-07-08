@@ -33,6 +33,21 @@ input[type=range]::-ms-thumb {
 /* region --------------------  FOLDER VUES  -------------------- */
 
 /* region --------------------  App.VUE  -------------------- */
+.spinner {
+    position: absolute;
+    top: 50vh;
+    left: 35vw;
+}
+
+.v-spinner .v-clip {
+    height: 75px!important;
+    width: 75px!important;
+    border-width: 4px!important;
+}
+
+.objectLoading {
+    opacity: 0.5;
+}
 
 .closeButton {
     width: 100%;
@@ -59,7 +74,7 @@ input[type=range]::-ms-thumb {
 
 #details {
     position: absolute;
-    top: 5%;
+    top: 10%;
     left: 57%;
     overflow-y: hidden;
     overflow-x: hidden;

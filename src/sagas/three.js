@@ -4,9 +4,9 @@ import OrbitControls from 'three-orbitcontrols';
 import {addAppareal, addObject, reloadObjects} from './addObject';
 import {
     actionCreator,
-    ADD_OBJECT_DISPLAYED,
+    ADD_OBJECT_DISPLAYED, ADDED_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
-    DBCLICKED_CANVAS, DELETE_OBJECT_DISPLAYED, HIDE_DETAILS_PANEL,
+    DBCLICKED_CANVAS, DELETE_OBJECT_DISPLAYED, HIDE_DETAILS_PANEL, OBJECT_DISPLAYED_LOADED,
     MOUSE_CLICK,
     MOUSE_MOVE,
     MOUSE_UP,
@@ -70,6 +70,7 @@ export function* initThreeSaga() {
     yield takeEvery(MOUSE_MOVE, moveObject, scene, camera, renderer, controls);
     yield takeEvery(MOUSE_UP, reactivateControls, controls);
     yield takeEvery(DELETE_OBJECT_DISPLAYED, deleteObjectFromScene, scene);
+    yield takeEvery(ADDED_OBJECT_DISPLAYED, objectLoaded);
     yield call(reloadObjects, scene);
     yield fork(initShowObjectBox, scene);
 }
@@ -86,6 +87,10 @@ export function* deleteObjectFromScene(scene, action) {
     }
 
     yield put(actionCreator(HIDE_DETAILS_PANEL));
+}
+
+export function* objectLoaded() {
+    yield put(actionCreator(OBJECT_DISPLAYED_LOADED));
 }
 
 

@@ -1,9 +1,6 @@
 <template>
-
     <div class="row first-div">
-
-        <div id="v3D" class="col s9">
-
+        <div id="v3D" class="col s9" :class="{'objectLoading': !detailsState().objectLoaded}">
             <header-atawa id="header"/>
 
             <details-comp id="details" v-show="detailsState().isDisplayed"/>
@@ -20,8 +17,11 @@
                 <button id="buttonEstimation" class="buttonEstimation" v-on:click="sendEstimation">ENVOYER MA DEMANDE
                 </button>
             </div>
-
         </div>
+    
+        <clip-loader class="spinner"
+                     :loading="!detailsState().objectLoaded"
+                     :color="color"></clip-loader>
 
         <drawer id="drawer" class="col s3"
                 :store="store()"/>
@@ -36,17 +36,23 @@
     import Header from './Header';
     import { $select } from '../sagas/vue';
     import { getDetailsState, objectsDisplayed, rendererSelector, rootselector } from '../selectors';
-    import { actionCreator, DBCLICKED_CANVAS, MOUSE_CLICK, MOUSE_MOVE, MOUSE_UP, SET_RENDERER_SIZE } from '../actions'
+    import { actionCreator, DBCLICKED_CANVAS, MOUSE_CLICK, MOUSE_MOVE, MOUSE_UP, SET_RENDERER_SIZE } from '../actions';
+    import ClipLoader from 'vue-spinner/src/ClipLoader'
 
     export default {
         name: 'app',
         components: {
-            SettingsPanel,
             'details-comp': Details,
             'helper-panel': HelperPanel,
             'drawer': Drawer,
             'settings-panel': SettingsPanel,
             'header-atawa': Header,
+            ClipLoader
+        },
+        data () {
+            return {
+                color: "#ff3a3b"
+            }
         },
         methods: {
             store: function () {
