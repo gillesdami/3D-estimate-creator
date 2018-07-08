@@ -41,7 +41,8 @@
                     apparel: {
                         type,
                         value
-                    }
+                    },
+                    settings: this.detailsState().item.settings
                 }));
             },
             detailsState: function() {

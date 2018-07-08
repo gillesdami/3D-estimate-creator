@@ -140,7 +140,7 @@ export function* compareSetting(scene, action) {
 
 export function* compareApparel(scene, action) {
     if (action.payload != null) {
-        const {apparel, itemName, uid} = action.payload;
+        const {apparel, itemName, uid, settings} = action.payload;
         const object = scene.getObjectByName(uid);
 
 
@@ -150,7 +150,7 @@ export function* compareApparel(scene, action) {
             apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
         }
 
-        yield call(addAppareal, scene, itemName, object, apparel.type, apparel.value);
+        yield call(addAppareal, scene, itemName, object, apparel.type, apparel.value, settings);
     }
 }
 
