@@ -473,7 +473,7 @@ tr {
 }
 
 .apparelValue {
-    margin-left: 2vw;
+    font-style: italic;
 }
 
 /* endregion cartList */
