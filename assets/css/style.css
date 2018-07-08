@@ -193,7 +193,25 @@ input[type=range]::-ms-thumb {
 }
 
 #deleteButtonRow {
+    display: flex;
+    justify-content: space-around;
     margin-bottom: 0;
+}
+
+#validateButton {
+    background-color: forestgreen;
+    display: inline-block;
+    min-height: 2vw;
+    color: WHITE;
+    border: none;
+    margin: 1vw 0 1vw 2vw;
+    font-size: 0.8em;
+    overflow: hidden;
+}
+
+#validateButton:hover {
+    opacity: 0.7;
+    cursor: pointer;
 }
 
 /*endregion apparels, general, parameters*/
@@ -297,7 +315,7 @@ input[type=range]::-ms-thumb {
     width: 100%;
     font-size: 1vw;
     height: 3.5vw;
-    border : none;
+    border: none;
 }
 
 .square-check {

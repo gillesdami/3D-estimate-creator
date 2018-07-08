@@ -17,7 +17,8 @@
                             v-show="store().settings.isDisplayed"/>
 
             <div class="col s6 offset-s6" style="padding: 0">
-                <button id="buttonEstimation" class="buttonEstimation" v-on:click="sendEstimation">ENVOYER MA DEMANDE</button>
+                <button id="buttonEstimation" class="buttonEstimation" v-on:click="sendEstimation">ENVOYER MA DEMANDE
+                </button>
             </div>
 
         </div>
@@ -35,15 +36,7 @@
     import Header from './Header';
     import { $select } from '../sagas/vue';
     import { getDetailsState, objectsDisplayed, rendererSelector, rootselector } from '../selectors';
-    import {
-        actionCreator,
-        SET_RENDERER_SIZE,
-        HIDE_DETAILS_PANEL,
-        MOUSE_CLICK,
-        DBCLICKED_CANVAS,
-        MOUSE_MOVE,
-        MOUSE_UP
-    } from '../actions'
+    import { actionCreator, DBCLICKED_CANVAS, MOUSE_CLICK, MOUSE_MOVE, MOUSE_UP, SET_RENDERER_SIZE } from '../actions'
 
     export default {
         name: 'app',
@@ -81,10 +74,10 @@
             },
             handleHideDetailsPanel: function () {
                 const threeRoot = document.getElementById('threeRoot');
-                 
+
                 let mouseTimer;
                 let hold = false;
-                
+
                 threeRoot.addEventListener('mousedown', e => {
                     this.$root.$emit('put', actionCreator(MOUSE_CLICK, {
                         event: e,
@@ -96,19 +89,8 @@
 
                 threeRoot.addEventListener('mouseup', e => {
                     clearTimeout(mouseTimer);
-
                     this.$root.$emit('put', actionCreator(MOUSE_UP));
-
-                    if (!hold) {
-                        if (!document.getElementById('drawer').contains(e.target) &&
-                            !document.getElementById('details').contains(e.target)) {
-                            if (!this.detailsState().clickFromObject && this.detailsState().isDisplayed) {
-                                this.$root.$emit('put', actionCreator(HIDE_DETAILS_PANEL));
-                            }
-                        }
-                    } else {
-                        hold = false;
-                    }
+                    hold = false;
                 });
 
                 threeRoot.addEventListener('mousemove', e => {

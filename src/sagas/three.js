@@ -70,7 +70,7 @@ export function* initThreeSaga() {
     yield takeEvery(MOUSE_MOVE, moveObject, scene, camera, renderer, controls);
     yield takeEvery(MOUSE_UP, reactivateControls, controls);
     yield takeEvery(DELETE_OBJECT_DISPLAYED, deleteObjectFromScene, scene);
-    yield call(reloadObjects, scene)
+    yield call(reloadObjects, scene);
     yield fork(initShowObjectBox, scene);
 }
 
