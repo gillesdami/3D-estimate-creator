@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h5 style="color: #ff3a3b">Récapitulatif de votre commande :</h5>
+        <h5 style="color: #ff3a3b">Récapitulatif de votre commande</h5>
 
         <recap-order-cart v-show="orderState().isRecapDisplayed"/>
         <recap-order-form v-show="orderState().isFormDisplayed"/>

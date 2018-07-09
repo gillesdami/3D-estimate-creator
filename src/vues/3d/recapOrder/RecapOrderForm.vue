@@ -1,33 +1,29 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
     <div>
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s6">
-                    <input placeholder="Nom" id="last_name" type="text" class="validate">
-                    <label for="last_name">Nom</label>
+                    <input placeholder="Nom" id="last_name" type="text">
                 </div>
                 <div class="input-field col s6">
-                    <input placeholder="Prénom" id="first_name" type="text" class="validate">
-                    <label for="first_name">Prénom</label>
+                    <input placeholder="Prénom" id="first_name" type="text">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input placeholder="Email" id="email" type="email" class="validate">
-                    <label for="email">Email</label>
+                    <input placeholder="Email" id="email" type="email">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <textarea id="commentary" class="materialize-textarea"></textarea>
-                    <label for="commentary">Commantaire (optionel)</label>
+                    <textarea placeholder="Commmentaire (optionel)" id="commentary" rows="10" cols="50"></textarea>
                 </div>
             </div>
         </form>
 
         <div class="buttonsRecapOrderPanel">
             <button class="ATAWAButton" v-on:click="displayRecap">RETOUR</button>
-            <button class="ATAWAButton" v-on:click="sendEstimation">ENVOYER</button>
+            <button id="sendEstimation" class="ATAWAButton" v-on:click="sendEstimation">ENVOYER</button>
         </div>
     </div>
 </template>

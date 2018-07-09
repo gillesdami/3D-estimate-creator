@@ -28,6 +28,15 @@ input[type=range]::-ms-thumb {
     background-color: #ff3a3b;
 }
 
+.input-field input:focus + label {
+    color: #ff3a3b !important;
+}
+/* label underline focus color */
+.row .input-field input:focus {
+    border-bottom: 1px solid #ff3a3b !important;
+    box-shadow: 0 1px 0 0 #ff3a3b !important
+}
+
 /* endregion */
 
 /* region --------------------  FOLDER VUES  -------------------- */
@@ -40,7 +49,7 @@ input[type=range]::-ms-thumb {
     min-height: 2vw;
     color: WHITE;
     border: none;
-    margin: 1vw 0 1vw 0;
+    margin: 1vw 0 0 0;
     font-size: 0.8em;
     overflow: hidden;
 }
@@ -159,7 +168,10 @@ input[type=range]::-ms-thumb {
 }
 
 .buttonsRecapOrderPanel {
-    display: inline-block;
+}
+
+#sendEstimation {
+    margin-left: 20vw;
 }
 
 /* endregion HelperList */
@@ -461,7 +473,7 @@ tr {
 }
 
 .product {
-    width: 20vw
+    width: 15vw
 }
 
 .qte {
@@ -473,7 +485,13 @@ tr {
 }
 
 .apparelValue {
+    padding: 0.25vw 0 0.25vw 2vw;
     font-style: italic;
+}
+
+#recapOrderCart {
+    max-height: 30vw;
+    overflow-y: scroll;
 }
 
 /* endregion cartList */

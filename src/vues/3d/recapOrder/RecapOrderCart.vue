@@ -1,6 +1,8 @@
 <template>
     <div>
-        <cart-item v-for="obj in objs.structObjectsInCart" :obj-in-cart="obj"/>
+        <div id="recapOrderCart">
+            <cart-item v-for="obj in objs.structObjectsInCart" :obj-in-cart="obj"/>
+        </div>
         <button class="ATAWAButton" v-on:click="displayForm">SUIVANT</button>
     </div>
 </template>
