@@ -31,6 +31,7 @@ input[type=range]::-ms-thumb {
 .input-field input:focus + label {
     color: #ff3a3b !important;
 }
+
 /* label underline focus color */
 .row .input-field input:focus {
     border-bottom: 1px solid #ff3a3b !important;
@@ -172,6 +173,11 @@ input[type=range]::-ms-thumb {
 
 #sendEstimation {
     margin-left: 20vw;
+}
+
+.warnForm {
+    font-size: smaller;
+    color: red;
 }
 
 /* endregion HelperList */
