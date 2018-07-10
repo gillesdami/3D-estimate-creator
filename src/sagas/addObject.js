@@ -73,6 +73,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             model.position.set(2.45, 0, parentBox.max.z - 2.48);
             break;
         case "Toit pagode":
+        console.log(settings);
             model.position.set(0, 0, 
                 settings.find((e) => e.type === "hmin" && e.value['Toit pagode']).value['Toit pagode']);
             break;
@@ -102,6 +103,26 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             rideau.rotateZ(Math.PI/2);
             rideau.position.set(0, (parentBox.max.y - parentBox.min.y)/2, 0);
             obj.add(rideau);
+            break;
+        case "Rideau Longueur":
+            bb = model.userData.bb;
+            model.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
+            model.position.set(0, (parentBox.min.y - parentBox.max.y)/2, 0);
+
+            let rideauLongueur = model.clone();
+            rideauLongueur.rotateZ(Math.PI);
+            rideauLongueur.position.set(0, (parentBox.max.y - parentBox.min.y)/2, 0);
+            obj.add(rideauLongueur);
+            break;
+        case "Rideau Largeur":
+            bb = model.userData.bb;
+            model.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
+            model.position.set((parentBox.min.x - parentBox.max.x)/2, 0, 0);
+
+            let rideauLargeur = model.clone();
+            rideauLargeur.rotateZ(Math.PI);
+            rideauLargeur.position.set((parentBox.max.x - parentBox.min.x)/2, 0, 0);
+            obj.add(rideauLargeur);
             break;
         case "Lestage":
             bb = model.userData.bb;

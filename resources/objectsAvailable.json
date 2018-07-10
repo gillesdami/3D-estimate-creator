@@ -142,7 +142,10 @@
             "ILE DE FRANCE": 300,
             "PACA": 300
         },
-        "settings": [],
+        "settings": [{
+            "type": "hmin",
+            "value": {"Toit pagode": 2.125}
+        }],
         "apparels": [
             {
                 "type": "Toit pagode",
@@ -152,12 +155,17 @@
                 ]
             },
             {
-                "type": "Rideau",
+                "type": "Rideau Longueur",
                 "values": [
                     "rideau ouvert",
                     "rideau fenetre",
                     "rideau cristal",
-                    "rideau blanc",
+                    "rideau blanc"
+                ]
+            },
+            {
+                "type": "Rideau Largeur",
+                "values": [
                     "rideau ouvert pignon",
                     "rideau fenetre pignon",
                     "rideau cristal pignon",
@@ -188,7 +196,10 @@
             "ILE DE FRANCE": 600,
             "PACA": 600
         },
-        "settings": [],
+        "settings": [{
+            "type": "hmin",
+            "value": {"Toit pagode": 2.125}
+        }],
         "apparels": [
             {
                 "type": "Toit pagode",
@@ -198,12 +209,17 @@
                 ]
             },
             {
-                "type": "Rideau",
+                "type": "Rideau Longueur",
                 "values": [
                     "rideau ouvert",
                     "rideau fenetre",
                     "rideau cristal",
-                    "rideau blanc",
+                    "rideau blanc"
+                ]
+            },
+            {
+                "type": "Rideau Largeur",
+                "values": [
                     "rideau ouvert pignon",
                     "rideau fenetre pignon",
                     "rideau cristal pignon",
@@ -234,7 +250,10 @@
             "ILE DE FRANCE": 900,
             "PACA": 900
         },
-        "settings": [],
+        "settings": [{
+            "type": "hmin",
+            "value": {"Toit pagode": 2.125}
+        }],
         "apparels": [
             {
                 "type": "Toit pagode",
@@ -244,12 +263,17 @@
                 ]
             },
             {
-                "type": "Rideau",
+                "type": "Rideau Longueur",
                 "values": [
                     "rideau ouvert",
                     "rideau fenetre",
                     "rideau cristal",
-                    "rideau blanc",
+                    "rideau blanc"
+                ]
+            },
+            {
+                "type": "Rideau Largeur",
+                "values": [
                     "rideau ouvert pignon",
                     "rideau fenetre pignon",
                     "rideau cristal pignon",
@@ -280,7 +304,10 @@
             "ILE DE FRANCE": 600,
             "PACA": 900
         },
-        "settings": [],
+        "settings": [{
+            "type": "hmin",
+            "value": {"Toit pagode": 2.75}
+        }],
         "apparels": [
             {
                 "type": "Toit pagode",
@@ -290,14 +317,17 @@
                 ]
             },
             {
-                "type": "Rideau",
+                "type": "Rideau Longueur",
                 "values": [
                     "rideau ouvert",
                     "rideau fenetre",
                     "rideau cristal",
-                    "rideau blanc",
-                    "rideau ouvert pignon",
-                    "rideau fenetre pignon",
+                    "rideau blanc"
+                ]
+            },
+            {
+                "type": "Rideau Largeur",
+                "values": [
                     "rideau cristal pignon",
                     "rideau blanc pignon"
                 ]
@@ -306,13 +336,6 @@
                 "type": "Plancher",
                 "values": [
                     "plancher",
-                    "aucun"
-                ]
-            },
-            {
-                "type": "Lestage",
-                "values": [
-                    "lestage",
                     "aucun"
                 ]
             }
@@ -326,7 +349,10 @@
             "ILE DE FRANCE": 1200,
             "PACA": 900
         },
-        "settings": [],
+        "settings": [{
+            "type": "hmin",
+            "value": {"Toit pagode": 2.75}
+        }],
         "apparels": [
             {
                 "type": "Toit pagode",
@@ -336,14 +362,17 @@
                 ]
             },
             {
-                "type": "Rideau",
+                "type": "Rideau Longueur",
                 "values": [
                     "rideau ouvert",
                     "rideau fenetre",
                     "rideau cristal",
-                    "rideau blanc",
-                    "rideau ouvert pignon",
-                    "rideau fenetre pignon",
+                    "rideau blanc"
+                ]
+            },
+            {
+                "type": "Rideau Largeur",
+                "values": [
                     "rideau cristal pignon",
                     "rideau blanc pignon"
                 ]
@@ -352,13 +381,6 @@
                 "type": "Plancher",
                 "values": [
                     "plancher",
-                    "aucun"
-                ]
-            },
-            {
-                "type": "Lestage",
-                "values": [
-                    "lestage",
                     "aucun"
                 ]
             }
