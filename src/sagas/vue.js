@@ -1,9 +1,9 @@
-import { call,  put, takeEvery, select, take } from 'redux-saga/effects';
+import { call, put, select, take, takeEvery } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { rootselector } from '../selectors';
 import Vue from 'vue';
 import App from '../vues/App.vue';
-import { actionCreator, VIEW_CREATED, RENDERER_CREATED } from '../actions';
+import { actionCreator, RENDERER_CREATED, VIEW_CREATED } from '../actions';
 
 export function* initVueSaga() {
     const store = yield select(rootselector);
@@ -18,7 +18,7 @@ export function* initVueSaga() {
                 resolve(this);
             },
             methods: {
-                select: function(selector, ...args)  {
+                select: function (selector, ...args) {
                     return selector(store, ...args);
                 }
             }
@@ -37,8 +37,7 @@ export function* dispatchSaga(action) {
 export function* updateVue(vue) {
     vue.$forceUpdate();
 
-    for(let child in vue.$children)
-    {
+    for (let child in vue.$children) {
         yield call(updateVue, vue.$children[child]);
     }
 }
@@ -52,7 +51,8 @@ function domChannel(vue) {
         vue.$on('put', emitter);
 
         // The subscriber must return an unsubscribe function
-        return () => {}
+        return () => {
+        }
     })
 }
 

@@ -38,6 +38,8 @@
 
 <script>
     import { actionCreator, SEND_ESTIMATION, TOGGLE_RECAP_PANEL_RECAP } from '../../../actions';
+    import { $select } from '../../../sagas/vue';
+    import { getRecapObjects } from '../../../selectors';
 
     export default {
         name: "RecapOrderForm",
@@ -57,8 +59,13 @@
             },
             sendEstimation: function () {
                 if (this.checkForm()) {
-                    alert("Succes");
-                    this.$root.$emit('put', actionCreator(SEND_ESTIMATION));
+                    this.$root.$emit('put', actionCreator(SEND_ESTIMATION, {
+                        firstname: this.firstname,
+                        lastname: this.lastname,
+                        email: this.email,
+                        commentary: this.commentary,
+                        objects: $select(getRecapObjects)
+                }));
                 }
             },
             checkForm: function () {

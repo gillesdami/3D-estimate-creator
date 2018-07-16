@@ -1,16 +1,21 @@
 import * as THREE from 'three';
-import {call, fork, put, takeEvery} from 'redux-saga/effects';
+import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
-import {addAppareal, addObject, reloadObjects} from './addObject';
+import { addAppareal, addObject, reloadObjects } from './addObject';
 import {
     actionCreator,
-    ADD_OBJECT_DISPLAYED, ADDED_OBJECT_DISPLAYED,
+    ADD_OBJECT_DISPLAYED,
+    ADDED_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
-    DBCLICKED_CANVAS, DELETE_OBJECT_DISPLAYED, HIDE_DETAILS_PANEL, OBJECT_DISPLAYED_LOADED,
+    DBCLICKED_CANVAS,
+    DELETE_OBJECT_DISPLAYED,
+    HIDE_DETAILS_PANEL,
     MOUSE_CLICK,
     MOUSE_MOVE,
     MOUSE_UP,
+    OBJECT_DISPLAYED_LOADED,
     RENDERER_CREATED,
+    SEND_ESTIMATION,
     SET_RENDERER_SIZE,
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL_FROM_SCENE,
@@ -71,6 +76,7 @@ export function* initThreeSaga() {
     yield takeEvery(MOUSE_UP, reactivateControls, controls);
     yield takeEvery(DELETE_OBJECT_DISPLAYED, deleteObjectFromScene, scene);
     yield takeEvery(ADDED_OBJECT_DISPLAYED, objectLoaded);
+    yield takeEvery(SEND_ESTIMATION, sendEstimation);
     yield call(reloadObjects, scene);
     yield fork(initShowObjectBox, scene);
 }
@@ -108,7 +114,7 @@ export function* setRendererSize(action) {
 export function* mouseClick(scene, camera, renderer, action) {
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
-    
+
     mouse.x = (action.payload.event.layerX / renderer.domElement.clientWidth) * 2 - 1;
     mouse.y = -(action.payload.event.layerY / renderer.domElement.clientHeight) * 2 + 1;
 
@@ -133,7 +139,7 @@ export function* mouseClick(scene, camera, renderer, action) {
 }
 
 export function* compareSetting(scene, action) {
-    if(action.payload != null) {
+    if (action.payload != null) {
 
     }
 }
@@ -145,7 +151,7 @@ export function* compareApparel(scene, action) {
 
 
         let apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
-        while(apparelToDelete != null) {
+        while (apparelToDelete != null) {
             apparelToDelete.parent.remove(apparelToDelete);
             apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
         }
@@ -171,4 +177,46 @@ export function* doubleClickSelection(camera, scene, renderer, action) {
     console.log(intersects);*/
     // intersects[ 0 ].object.material.color.set( 0xff0000 );
 
+}
+
+export function* sendEstimation(action) {
+
+    let detailContent = "";
+
+    action.payload.objects.forEach(obj => {
+        detailContent += obj.name + "\t (qte : " + obj.qte + ")\n" +
+            obj.apparels.map(ap => {
+                return "\t" + ap.value + "\n";
+            }) + "\n\n";
+    });
+
+    const content = "Bonjour l'équipe ATAWA !\n\n" +
+        "Je souhaiterai avoir une estimation du prix de mon panier :\n" +
+        +detailContent + "\n\n" +
+        "Bonne journée.\n\n" +
+        "Cordialement,\n\n" +
+        action.payload.firstname + " " + action.payload.lastname;
+
+    postRequest('https://api.sendinblue.com/v2.0',
+        {
+            'to': "alex.vacheret@free.fr", //admin@atawa.com
+            'from': action.payload.email,
+            'subject': "Demande d'estimation - " + action.payload.firstname + " " + action.payload.firstname,
+            'html': content
+        })
+        .then(data => console.log(data))
+}
+
+function postRequest(url, data) {
+    return fetch(url, {
+        credentials: 'same-origin', // 'include', default: 'omit'
+        method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
+        body: data, // Coordinate the body type with 'Content-Type'
+        headers: new Headers({
+            'Content-type' : 'text/html',
+            'api-key': ''
+        }),
+    })
+        .then(response => console.log(response))
+        .catch(error => console.error(error))
 }

@@ -8,6 +8,7 @@ import {
     OBJECT_DISPLAYED_LOADING,
     POSITION_CHANGED,
     RENDERER_CREATED,
+    SAVE_OBJECTS_IN_RECAP,
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL,
     SHOW_DETAILS_PANEL_FROM_SCENE,
@@ -32,7 +33,8 @@ const defaultSettingsState = {
 const defaultRecapOrderState = {
     isMainDisplayed: false,
     isRecapDisplayed: false,
-    isFormDisplayed: false
+    isFormDisplayed: false,
+    objectsInRecap: null
 };
 
 const defaultDetailsState = {
@@ -226,6 +228,11 @@ export const recapOrder = (state = defaultRecapOrderState, action) => {
                 ...state,
                 isRecapDisplayed: false,
                 isFormDisplayed: true
+            };
+        case SAVE_OBJECTS_IN_RECAP :
+            return {
+                ...state,
+                objectsInRecap: action.payload.objectsInRecap
             };
         default:
             return state;

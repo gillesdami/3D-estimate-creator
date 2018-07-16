@@ -12,14 +12,16 @@
     import { objectsDisplayed } from '../../../selectors';
     import objectsAvailable from '../../../../resources/objectsAvailable.json';
     import CartItem from './../../drawer/cart/CartItem';
-    import { actionCreator, TOGGLE_RECAP_PANEL_FORM } from '../../../actions';
+    import { actionCreator, SAVE_OBJECTS_IN_RECAP, TOGGLE_RECAP_PANEL_FORM } from '../../../actions';
 
     export default {
         name: "RecapOrderCart",
         components: {
             "cart-item": CartItem
         },
-        data: () => ({}),
+        data: () => ({
+            objectsInRecap: null
+        }),
         updated() {
             const objsDisplayed = $select(objectsDisplayed);
 
@@ -50,9 +52,15 @@
             if (JSON.stringify(this.objs) !== JSON.stringify(objs)) {
                 this.objs = objs;
             }
+
+            this.objectsInRecap = objs.structObjectsInCart;
         },
         methods: {
             displayForm: function () {
+                this.$root.$emit('put', actionCreator(SAVE_OBJECTS_IN_RECAP, {
+                        objectsInRecap: this.objectsInRecap
+                    }
+                ));
                 this.$root.$emit('put', actionCreator(TOGGLE_RECAP_PANEL_FORM));
             }
         }
