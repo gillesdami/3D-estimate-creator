@@ -1,18 +1,18 @@
 import * as THREE from 'three';
-import { all, call, select, put } from 'redux-saga/effects';
-import { objectsDisplayed } from '../selectors';
+import { all, call, put, select } from 'redux-saga/effects';
+import { getDetailsState, objectsDisplayed } from '../selectors';
 
 import loadModel from './util/colladaLoader';
 import setBoxCenter from './util/setBoxCenter';
-import {ADDED_OBJECT_DISPLAYED, actionCreator, OBJECT_DISPLAYED_LOADING} from '../actions';
+import { actionCreator, ADDED_OBJECT_DISPLAYED, OBJECT_DISPLAYED_LOADING } from '../actions';
 
 export function* reloadObjects(scene) {
     const objectsFromStore = yield select(objectsDisplayed);
 
     for (const objD of objectsFromStore) {
         const base = yield call(
-            addObject, 
-            scene, 
+            addObject,
+            scene,
             {
                 payload: {
                     itemName: objD.name,
@@ -21,34 +21,43 @@ export function* reloadObjects(scene) {
                 }
             });
 
-        if(objD.position) base.position.set(objD.position.x, objD.position.y, base.position.z);
+        if (objD.position) base.position.set(objD.position.x, objD.position.y, base.position.z);
     }
 }
 
 export function* addObject(scene, action) {
-    yield put(actionCreator(OBJECT_DISPLAYED_LOADING));
+    const detailsState = yield select(getDetailsState);
 
-    const {itemName, item, uid} = action.payload;
+    if (!detailsState.isDisplayed) {
+        yield put(actionCreator(OBJECT_DISPLAYED_LOADING));
 
-    const base = yield call(loadModel, itemName, itemName);
-    base.name = uid;
-    scene.add(base);
+        const {itemName, item, uid} = action.payload;
 
-    const calls = {};
+        const base = yield call(loadModel, itemName, itemName);
+        base.name = uid;
+        scene.add(base);
 
-    item.apparels.forEach((appareal) => {
-        calls[appareal.type] = call(addAppareal, scene, itemName, base, appareal.type, appareal.value || appareal.values[0].name, item.settings); // TODO appareal.value to understand apareal.values[0] changed to apareal.values[0].name
-    });
+        const calls = {};
 
-    yield all(calls);
-    yield put(actionCreator(ADDED_OBJECT_DISPLAYED));
+        item.apparels.forEach((appareal) => {
+            calls[appareal.type] = call(addAppareal, scene, itemName, base, appareal.type, appareal.value || appareal.values[0].name, item.settings); // TODO appareal.value to understand apareal.values[0] changed to apareal.values[0].name
+        });
 
-    return base;
+        yield all(calls);
+        yield put(actionCreator(ADDED_OBJECT_DISPLAYED));
+
+        return base;
+    } else {
+
+        setTimeout( function ( ) { alert("Merci de bien vouloir valider ou supprimer l'objet\n" +
+            "actuellement selectionné avant d'en ajouter un autre :)"); }, 5000 );
+
+    }
 }
 
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue, settings) {
     if (apparealValue === "aucun") return null; // TODO appareal.value in object: {name: "toit cristal", price: "137"}
-    
+
     const obj = new THREE.Group();
     const parentBox = parentObj.userData.bb;
     const model = yield call(loadModel, itemName, apparealValue);
@@ -73,8 +82,8 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             model.position.set(2.45, 0, parentBox.max.z - 2.48);
             break;
         case "Toit pagode":
-        console.log(settings);
-            model.position.set(0, 0, 
+            console.log(settings);
+            model.position.set(0, 0,
                 settings.find((e) => e.type === "hmin" && e.value['Toit pagode']).value['Toit pagode']);
             break;
         case "Toit travee":
@@ -84,66 +93,72 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             break;
         case "Rideau":
             bb = model.userData.bb;
-            model.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
-            if(itemName.includes("Tente de reception"))
+            model.traverse((o) => {
+                if (o.material) o.material.side = THREE.DoubleSide;
+            });
+            if (itemName.includes("Tente de reception"))
                 model.rotateZ(Math.PI / 2);
-            model.position.set((parentBox.min.x - parentBox.max.x)/2, 0, 0);
+            model.position.set((parentBox.min.x - parentBox.max.x) / 2, 0, 0);
 
             let rideau = model.clone();
-            rideau.rotateZ(Math.PI/2);
-            rideau.position.set(0, (parentBox.min.y - parentBox.max.y)/2, 0);
+            rideau.rotateZ(Math.PI / 2);
+            rideau.position.set(0, (parentBox.min.y - parentBox.max.y) / 2, 0);
             obj.add(rideau);
 
             rideau = rideau.clone();
-            rideau.rotateZ(Math.PI/2);
-            rideau.position.set((parentBox.max.x - parentBox.min.x)/2, 0, 0);
+            rideau.rotateZ(Math.PI / 2);
+            rideau.position.set((parentBox.max.x - parentBox.min.x) / 2, 0, 0);
             obj.add(rideau);
 
             rideau = rideau.clone();
-            rideau.rotateZ(Math.PI/2);
-            rideau.position.set(0, (parentBox.max.y - parentBox.min.y)/2, 0);
+            rideau.rotateZ(Math.PI / 2);
+            rideau.position.set(0, (parentBox.max.y - parentBox.min.y) / 2, 0);
             obj.add(rideau);
             break;
         case "Rideau Longueur":
             bb = model.userData.bb;
-            model.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
-            model.position.set(0, (parentBox.min.y - parentBox.max.y)/2, 0);
+            model.traverse((o) => {
+                if (o.material) o.material.side = THREE.DoubleSide;
+            });
+            model.position.set(0, (parentBox.min.y - parentBox.max.y) / 2, 0);
 
             let rideauLongueur = model.clone();
             rideauLongueur.rotateZ(Math.PI);
-            rideauLongueur.position.set(0, (parentBox.max.y - parentBox.min.y)/2, 0);
+            rideauLongueur.position.set(0, (parentBox.max.y - parentBox.min.y) / 2, 0);
             obj.add(rideauLongueur);
             break;
         case "Rideau Largeur":
             bb = model.userData.bb;
-            model.traverse((o) => {if(o.material) o.material.side = THREE.DoubleSide;});
-            model.position.set((parentBox.min.x - parentBox.max.x)/2, 0, 0);
+            model.traverse((o) => {
+                if (o.material) o.material.side = THREE.DoubleSide;
+            });
+            model.position.set((parentBox.min.x - parentBox.max.x) / 2, 0, 0);
 
             let rideauLargeur = model.clone();
             rideauLargeur.rotateZ(Math.PI);
-            rideauLargeur.position.set((parentBox.max.x - parentBox.min.x)/2, 0, 0);
+            rideauLargeur.position.set((parentBox.max.x - parentBox.min.x) / 2, 0, 0);
             obj.add(rideauLargeur);
             break;
         case "Lestage":
             bb = model.userData.bb;
-            model.position.set((parentBox.min.x - parentBox.max.x)/2 - .5, (parentBox.min.y - parentBox.max.y)/2 - .5, 0);
+            model.position.set((parentBox.min.x - parentBox.max.x) / 2 - .5, (parentBox.min.y - parentBox.max.y) / 2 - .5, 0);
 
             let lestage = model.clone();
-            lestage.position.set((parentBox.max.x - parentBox.min.x)/2 + .5, (parentBox.min.y - parentBox.max.y)/2 - .5, 0);
+            lestage.position.set((parentBox.max.x - parentBox.min.x) / 2 + .5, (parentBox.min.y - parentBox.max.y) / 2 - .5, 0);
             obj.add(lestage);
 
             lestage = lestage.clone();
-            lestage.position.set((parentBox.max.x - parentBox.min.x)/2 + .5, (parentBox.max.y - parentBox.min.y)/2 + .5, 0);
+            lestage.position.set((parentBox.max.x - parentBox.min.x) / 2 + .5, (parentBox.max.y - parentBox.min.y) / 2 + .5, 0);
             obj.add(lestage);
 
             lestage = lestage.clone();
-            lestage.position.set((parentBox.min.x - parentBox.max.x)/2 - .5, (parentBox.max.y - parentBox.min.y)/2 + .5, 0);
+            lestage.position.set((parentBox.min.x - parentBox.max.x) / 2 - .5, (parentBox.max.y - parentBox.min.y) / 2 + .5, 0);
             obj.add(lestage);
             break;
         default:
             yield call(setBoxCenter, obj, obj);
     }
-    
+
     obj.add(model);
     parentObj.add(obj);
 }
