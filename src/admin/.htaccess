@@ -1,0 +1,4 @@
+AuthUserFile /var/www/html/admin/.users
+AuthName "Accès sécurisé a la platforme admin"
+AuthType Basic
+Require valid-user
