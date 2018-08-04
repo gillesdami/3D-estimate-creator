@@ -4,7 +4,7 @@ import {APPAREL_CHANGED, POSITION_CHANGED, SHOW_DETAILS_PANEL_FROM_SCENE, SHOW_D
 
 class SelectedBoxHelper extends THREE.BoxHelper {
     constructor(object) {
-        super(object, 0xff00ff);
+        super(object, 0xff3a3b);
     }
 }
 
