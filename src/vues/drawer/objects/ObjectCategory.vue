@@ -24,6 +24,11 @@
 
     export default {
         name: "object-category",
+        data() {
+            return {
+                clicked: false
+            }
+        },
         methods: {
             clickedObjectCategory: function () {
                 this.$root.$emit('put', actionCreator(CLICKED_COLLAPSIBLE, {
@@ -38,6 +43,12 @@
         computed: {
             items: function () {
                 return objectsAvailable;
+            }
+        },
+        updated: function() {
+            if (!this.clicked && !this.categoryCollapsiblesStatus()) {
+                this.clickedObjectCategory();
+                this.clicked = true;
             }
         },
         props: ['section', 'category'],

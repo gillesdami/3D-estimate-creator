@@ -33,6 +33,11 @@
             }
         },
         props: ['section'],
+        data() {
+          return {
+              clicked: false
+          }
+        },
         computed: {
             categories: function() {
                 const categories = [];
@@ -43,8 +48,14 @@
                         categories.push(objectsAvailable[key].category);
                     }
                 });
-
+                
                 return categories;
+            }
+        },
+        updated: function() {
+            if (!this.clicked && !this.sectionCollapsiblesStatus()) {
+                this.clickedObjectSection();
+                this.clicked = true;
             }
         },
         components : {

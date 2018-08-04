@@ -365,14 +365,14 @@ input[type=range]::-ms-thumb {
 }
 
 .buttonObjects {
-    position: fixed;
+    /*position: fixed;*/
     background-color: white;
     color: #ff7575;
     border-bottom: 1.5px solid #ff7575;
 }
 
 .buttonCart {
-    position: fixed;
+    /*position: fixed;*/
     background-color: #e5e5e5;
     color: silver;
     border-bottom: 1.5px solid silver;
