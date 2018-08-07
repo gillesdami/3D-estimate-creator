@@ -49,8 +49,6 @@
                     }
                 });
 
-                console.log(this.isAllValidate());
-
                 if (this.isAllValidate()) {
                     this.$root.$emit('put', actionCreator(ADD_OBJECT_DISPLAYED, {
                         itemName: this.name,
