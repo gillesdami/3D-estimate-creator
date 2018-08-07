@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { call, fork, put, takeEvery } from 'redux-saga/effects';
+import { call, fork, put, select, takeEvery } from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
 import { addAppareal, addObject, reloadObjects } from './addObject';
 import {
@@ -23,6 +23,7 @@ import {
 } from '../actions';
 import moveObject from './moveObject';
 import initShowObjectBox from './showObjectBox';
+import { objectsDisplayed } from "../selectors";
 
 const cameraFrustum = 70;
 
@@ -122,7 +123,10 @@ export function* mouseClick(scene, camera, renderer, action) {
 
     const intersects = raycaster.intersectObjects(scene.children, true).filter(obj => obj.object instanceof THREE.Mesh && !obj.object.userData.unclickable);
 
-    if (intersects.length > 0) {
+    // Pour empecher le clic si un objet qui vient d'être ajouté n'a pas été validé
+    const objDisplay = yield select(objectsDisplayed);
+
+    if (intersects.length > 0 && isAllItemsValidated(objDisplay)) {
         //Object before scene
         let objectToFind;
         intersects[0].object.traverseAncestors(obj => {
@@ -134,8 +138,21 @@ export function* mouseClick(scene, camera, renderer, action) {
             objectsDisplayed: action.payload.objectsDisplayed
         }));
     } else {
+        if (isAllItemsValidated(objDisplay))
+            yield put(actionCreator(HIDE_DETAILS_PANEL));
+
         yield put(actionCreator(TOGGLE_CLICK_FROM_OBJECT));
     }
+}
+
+function isAllItemsValidated(objDisplay) {
+    let isOneNotValidated = false;
+
+    objDisplay.forEach(obj => {
+        if (obj.isValidated === false) isOneNotValidated = true;
+    });
+
+    return !isOneNotValidated;
 }
 
 export function* compareSetting(scene, action) {
@@ -213,7 +230,7 @@ function postRequest(url, data) {
         method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
         body: data, // Coordinate the body type with 'Content-Type'
         headers: new Headers({
-            'Content-type' : 'text/html',
+            'Content-type': 'text/html',
             'api-key': ''
         }),
     })

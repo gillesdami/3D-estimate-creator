@@ -17,7 +17,7 @@ import {
     TOGGLE_RECAP_PANEL_FORM,
     TOGGLE_RECAP_PANEL_MAIN,
     TOGGLE_RECAP_PANEL_RECAP,
-    TOGGLE_SETTINGS_PANEL
+    TOGGLE_SETTINGS_PANEL, VALIDATE_OBJECT_DISPLAYED
 } from "../actions";
 
 import objectsAvailable from '../../resources/objectsAvailable.json'
@@ -54,9 +54,20 @@ export const objectsDisplayed = (state = [], action) => {
                     uid: action.payload.uid,
                     name: action.payload.itemName,
                     settings: action.payload.item.settings,
-                    apparels: action.payload.item.apparels
+                    apparels: action.payload.item.apparels,
+                    isValidated: action.payload.isValidated
                 }
             ];
+        case VALIDATE_OBJECT_DISPLAYED:
+            return state.map(object => {
+                if(object.uid === action.payload.uid) {
+                    return {
+                        ...object,
+                        isValidated: action.payload.isValidated
+                    }
+                }
+                return object
+            });
         case DELETE_OBJECT_DISPLAYED:
             return state.filter(obj => obj.uid !== action.payload.uid);
         case SETTING_CHANGED:

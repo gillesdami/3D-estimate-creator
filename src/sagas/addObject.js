@@ -26,9 +26,13 @@ export function* reloadObjects(scene) {
 }
 
 export function* addObject(scene, action) {
-    const detailsState = yield select(getDetailsState);
+    const objDisplay = yield select(objectsDisplayed);
+    const detailState = yield select(getDetailsState);
 
-    if (!detailsState.isDisplayed) {
+    if (!isAllItemsValidated(objDisplay) && detailState.isDisplayed) {
+        alert("Merci de bien vouloir valider ou supprimer l'objet\n" +
+            "actuellement selectionné avant d'en ajouter un autre :)");
+    } else {
         yield put(actionCreator(OBJECT_DISPLAYED_LOADING));
 
         const {itemName, item, uid} = action.payload;
@@ -47,12 +51,17 @@ export function* addObject(scene, action) {
         yield put(actionCreator(ADDED_OBJECT_DISPLAYED));
 
         return base;
-    } else {
-
-        setTimeout( function ( ) { alert("Merci de bien vouloir valider ou supprimer l'objet\n" +
-            "actuellement selectionné avant d'en ajouter un autre :)"); }, 5000 );
-
     }
+}
+
+function isAllItemsValidated(objDisplay) {
+    let isOneNotValidated = false;
+
+    objDisplay.forEach(obj => {
+        if (obj.isValidated === false) isOneNotValidated = true;
+    });
+
+    return !isOneNotValidated;
 }
 
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue, settings) {

@@ -11,14 +11,14 @@
 </template>
 
 <script>
-    import {actionCreator, ADD_OBJECT_DISPLAYED, SHOW_DETAILS_PANEL} from '../../../actions';
+    import { actionCreator, ADD_OBJECT_DISPLAYED, SHOW_DETAILS_PANEL } from '../../../actions';
 
     export default {
         name: "object-item",
         methods: {
             clickedObjectItem: function () {
                 const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
-                    /[xy]/g, 
+                    /[xy]/g,
                     function (c) {
                         const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
                         return v.toString(16);
@@ -26,7 +26,7 @@
 
                 const uid = generateUid();
 
-                this.item.apparels =  this.item.apparels.map(apparel => {
+                this.item.apparels = this.item.apparels.map(apparel => {
                     return {
                         ...apparel,
                         value: apparel.values[0]
@@ -36,7 +36,8 @@
                 this.$root.$emit('put', actionCreator(ADD_OBJECT_DISPLAYED, {
                     itemName: this.name,
                     item: this.item,
-                    uid
+                    uid,
+                    isValidated: false
                 }));
 
                 this.$root.$emit('put', actionCreator(SHOW_DETAILS_PANEL, {
