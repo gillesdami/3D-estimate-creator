@@ -12,10 +12,26 @@
 
 <script>
     import { actionCreator, ADD_OBJECT_DISPLAYED, SHOW_DETAILS_PANEL } from '../../../actions';
+    import { $select } from '../../../sagas/vue';
+    import { objectsDisplayed } from '../../../selectors';
+
 
     export default {
         name: "object-item",
         methods: {
+            objectsDisplayed: function () {
+                return $select(objectsDisplayed);
+            },
+            isAllValidate: function () {
+                let isOneNotValidated = false;
+
+                this.objectsDisplayed().forEach(obj => {
+                    if (obj.isValidated === false)
+                        isOneNotValidated = true;
+                });
+
+                return !isOneNotValidated;
+            },
             clickedObjectItem: function () {
                 const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
                     /[xy]/g,
@@ -33,18 +49,25 @@
                     }
                 });
 
-                this.$root.$emit('put', actionCreator(ADD_OBJECT_DISPLAYED, {
-                    itemName: this.name,
-                    item: this.item,
-                    uid,
-                    isValidated: false
-                }));
+                console.log(this.isAllValidate());
 
-                this.$root.$emit('put', actionCreator(SHOW_DETAILS_PANEL, {
-                    itemName: this.name,
-                    item: this.item,
-                    uid
-                }));
+                if (this.isAllValidate()) {
+                    this.$root.$emit('put', actionCreator(ADD_OBJECT_DISPLAYED, {
+                        itemName: this.name,
+                        item: this.item,
+                        uid,
+                        isValidated: false
+                    }));
+
+                    this.$root.$emit('put', actionCreator(SHOW_DETAILS_PANEL, {
+                        itemName: this.name,
+                        item: this.item,
+                        uid
+                    }));
+                } else {
+                    alert("Merci de bien vouloir valider ou supprimer l'objet\n" +
+                        "actuellement selectionné avant d'en ajouter un autre :)");
+                }
             }
         },
         props: ['name', 'item']

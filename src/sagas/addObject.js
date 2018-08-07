@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { all, call, put, select } from 'redux-saga/effects';
-import { getDetailsState, objectsDisplayed } from '../selectors';
+import { objectsDisplayed } from '../selectors';
 
 import loadModel from './util/colladaLoader';
 import setBoxCenter from './util/setBoxCenter';
@@ -26,42 +26,25 @@ export function* reloadObjects(scene) {
 }
 
 export function* addObject(scene, action) {
-    const objDisplay = yield select(objectsDisplayed);
-    const detailState = yield select(getDetailsState);
 
-    if (!isAllItemsValidated(objDisplay) && detailState.isDisplayed) {
-        alert("Merci de bien vouloir valider ou supprimer l'objet\n" +
-            "actuellement selectionné avant d'en ajouter un autre :)");
-    } else {
-        yield put(actionCreator(OBJECT_DISPLAYED_LOADING));
+    yield put(actionCreator(OBJECT_DISPLAYED_LOADING));
 
-        const {itemName, item, uid} = action.payload;
+    const {itemName, item, uid} = action.payload;
 
-        const base = yield call(loadModel, itemName, itemName);
-        base.name = uid;
-        scene.add(base);
+    const base = yield call(loadModel, itemName, itemName);
+    base.name = uid;
+    scene.add(base);
 
-        const calls = {};
+    const calls = {};
 
-        item.apparels.forEach((appareal) => {
-            calls[appareal.type] = call(addAppareal, scene, itemName, base, appareal.type, appareal.value || appareal.values[0].name, item.settings); // TODO appareal.value to understand apareal.values[0] changed to apareal.values[0].name
-        });
-
-        yield all(calls);
-        yield put(actionCreator(ADDED_OBJECT_DISPLAYED));
-
-        return base;
-    }
-}
-
-function isAllItemsValidated(objDisplay) {
-    let isOneNotValidated = false;
-
-    objDisplay.forEach(obj => {
-        if (obj.isValidated === false) isOneNotValidated = true;
+    item.apparels.forEach((appareal) => {
+        calls[appareal.type] = call(addAppareal, scene, itemName, base, appareal.type, appareal.value || appareal.values[0].name, item.settings); // TODO appareal.value to understand apareal.values[0] changed to apareal.values[0].name
     });
 
-    return !isOneNotValidated;
+    yield all(calls);
+    yield put(actionCreator(ADDED_OBJECT_DISPLAYED));
+
+    return base;
 }
 
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue, settings) {

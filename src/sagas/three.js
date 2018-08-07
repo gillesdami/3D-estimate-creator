@@ -147,9 +147,9 @@ export function* mouseClick(scene, camera, renderer, action) {
 
 function isAllItemsValidated(objDisplay) {
     let isOneNotValidated = false;
-
     objDisplay.forEach(obj => {
-        if (obj.isValidated === false) isOneNotValidated = true;
+        if (obj.isValidated === false)
+            isOneNotValidated = true;
     });
 
     return !isOneNotValidated;
