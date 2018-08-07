@@ -46,7 +46,7 @@
             }
         },
         updated: function() {
-            if (!this.clicked && !this.categoryCollapsiblesStatus()) {
+            if (!this.clicked && this.categoryCollapsiblesStatus()) {
                 this.clickedObjectCategory();
                 this.clicked = true;
             }
