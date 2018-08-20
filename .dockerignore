@@ -1,0 +1,6 @@
+.cache
+.history
+assets
+dist
+node_modules
+test

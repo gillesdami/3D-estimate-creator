@@ -15,7 +15,7 @@ For development purposes run the server with:
 ```bash
 cd ../..
 docker build -t 3ecadmin .  # run this every time the default objectsAvailable.json changes or models directory strucutre changes
-docker run -it --rm -v $(pwd)/src/admin:/var/www/html/admin -p 80:80 3ecadmin
+docker run -it --rm -v ${pwd}/src/admin:/var/www/html/admin -p 80:80 3ecadmin
 ```
 
 Le serveur est accessible à l'adresse localhost/admin
