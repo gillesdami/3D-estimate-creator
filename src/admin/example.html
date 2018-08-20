@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="postObjectsAvailable.php" method="POST" enctype="multipart/form-data">
+    postObjectsAvailable
+    <input type="file" name="objectsAvailable" id="objectsAvailable">
+    <input type="submit" value="post json" name="submit">
+</form>
+<br>
+
+<form action="postModel.php" method="POST" enctype="multipart/form-data">
+    postModel
+    <input type="text" name="fileName" id="fileName">
+    <input type="file" name="model" id="model">
+    <input type="submit" value="upload model" name="submit">
+</form>
+<br>
+
+<form action="deleteModel.php" method="POST" enctype="multipart/form-data">
+    deleteModel
+    <input type="text" name="fileName" id="fileName">
+    <input type="submit" value="delete model" name="submit">
+</form>
+<br>
+
+<a href="getModelList.php">getModelList</a>
+</body>
+</html>
