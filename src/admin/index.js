@@ -25,8 +25,66 @@ const checkUniqueApparel = root => {
     return res;
 };
 
+const handleFiles = (root, modelList) => {
+    root.forEach(e => {
+        modelList.forEach(model => {
+            if (e.files.indexOf(model) === -1 && model.includes(e.name)) {
+                e.files.push(model);
+            }
+        })
+    });
+
+    console.log(root);
+};
+
+const deleteModel = () => {
+    (async () => {
+        const rawResponse = await fetch('deleteModel.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain'
+            },
+            body: ('fileName=') //TODO fileName
+        });
+        const content = await rawResponse.json();
+
+        console.log(content);
+    })();
+};
+
+const postModel = () => {
+    (async () => {
+        const rawResponse = await fetch('postModel.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain'
+            },
+            body: ('fileName=') //TODO fileName
+        });
+        const content = await rawResponse.json();
+
+        console.log(content);
+    })();
+};
+
+const uploadJSON = file => {
+    (async () => {
+        const rawResponse = await fetch('postObjectsAvailable.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: file
+        });
+        const content = await rawResponse.json();
+
+        console.log(content);
+    })();
+};
+
 (async function () {
     const initialState = await (await fetch('/objectsAvailable.json')).json();
+    const modelList = await (await fetch('getModelList.php')).json();
 
     const JSONEditorOptions = {
         schema: {
@@ -134,10 +192,10 @@ const checkUniqueApparel = root => {
                     files: {
                         type: "array",
                         items: {
-                            type: "string",//file...
-                            rel: "attachement",
+                            type: "string"
+                            /*rel: "attachement",
                             href: "/models/{{self}}",//TODO requires getModelList.php
-                            download: true
+                            download: true*/
                         }
                     }
                 }
@@ -147,13 +205,19 @@ const checkUniqueApparel = root => {
         no_additional_properties: true,
         required_by_default: true,
         disable_array_delete_last_row: true,
+        disable_properties: true,
     };
 
     const jsonDOM = document.querySelector("json");
     const editor = new JSONEditor(jsonDOM, JSONEditorOptions);
 
     editor.on('change', function () {
+        handleFiles(editor.getValue(), modelList);
+
+        // Pour checker qu'il n'y a pas d'erreur
         let errors = editor.validate();
+
+        // Pour vérifier que chaque apparels d'un element est unique
         const elementWithNoUniqueApparels = checkUniqueApparel(editor.getValue());
 
         if (elementWithNoUniqueApparels != null) {
@@ -165,10 +229,8 @@ const checkUniqueApparel = root => {
             })
         }
 
+        // Traitement des erreurs
         if (errors.length) {
-            // errors is an array of objects, each with a `path`, `property`, and `message` parameter
-            // `property` is the schema keyword that triggered the validation error (e.g. "minLength")
-            // `path` is a dot separated path into the JSON object (e.g. "root.path.to.field")
             console.log(errors);
             document.getElementById("save").disabled = true;
         } else {
