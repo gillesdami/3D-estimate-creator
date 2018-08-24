@@ -6,14 +6,17 @@ if($_SERVER['REQUEST_METHOD'] !== "POST") {
     echo "bad method ".$_SERVER['REQUEST_METHOD']." instead of POST";
     exit;
 }
-if(!isset($_POST["fileName"])) {
+
+$entityBody = json_decode(file_get_contents( 'php://input' ), true );
+
+if(!isset($entityBody) && !isset($entityBody['fileName'])) {
     http_response_code(400);
     echo "the field 'fileName' is required";
     exit;
 }
 
 // archive one previous version
-if(file_exists("/var/www/html/models/".$_POST["fileName"].".old"))
-    unlink("/var/www/html/models/".$_POST["fileName"].".old");
-if(file_exists("/var/www/html/models/".$_POST["fileName"]))
-    rename("/var/www/html/models/".$_POST["fileName"], "/var/www/html/models/".$_POST["fileName"].".old");
+if(file_exists("/var/www/html/models/".$entityBody['fileName'].".old"))
+    unlink("/var/www/html/models/".$entityBody['fileName'].".old");
+if(file_exists("/var/www/html/models/".$entityBody['fileName']))
+    rename("/var/www/html/models/".$entityBody['fileName'], "/var/www/html/models/".$entityBody['fileName'].".old");

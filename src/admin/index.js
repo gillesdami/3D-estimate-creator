@@ -27,28 +27,29 @@ const checkUniqueApparel = root => {
 
 const handleFiles = (root, modelList) => {
     root.forEach(e => {
+        e['files'] = [];
         modelList.forEach(model => {
             if (e.files.indexOf(model) === -1 && model.includes(e.name)) {
-                e.files.push(model);
+                const fileName = model.split("models/")[1];
+                e.files.push(fileName);
             }
         })
     });
 
-    console.log(root);
+    // console.log(root);
 };
 
-const deleteModel = () => {
+const deleteModel = (fileName) => {
     (async () => {
         const rawResponse = await fetch('deleteModel.php', {
             method: 'POST',
             headers: {
-                'Content-Type': 'text/plain'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
-            body: ('fileName=') //TODO fileName
+            body: JSON.stringify({fileName})
         });
-        const content = await rawResponse.json();
-
-        console.log(content);
+        // const content = await rawResponse.json();
     })();
 };
 
@@ -82,9 +83,29 @@ const uploadJSON = file => {
     })();
 };
 
+const findDeletedFile = (root, initialRoot) => {
+    let deletedFile = null;
+    root.forEach(obj => {
+        const initialObj = initialRoot.find(initialObj => initialObj.name === obj.name && initialObj.category === obj.category);
+        if (initialObj) {
+            initialObj.files.forEach(initialFile => {
+                const fileInRoot = obj.files.find(file => file === initialFile);
+                if (!fileInRoot) {
+                   deletedFile = initialFile;
+                }
+            });
+        }
+    });
+
+    return deletedFile;
+};
+
 (async function () {
     const initialState = await (await fetch('/objectsAvailable.json')).json();
     const modelList = await (await fetch('getModelList.php')).json();
+
+    let initialStateArray = toArray(initialState);
+    handleFiles(initialStateArray, modelList);
 
     const JSONEditorOptions = {
         schema: {
@@ -212,7 +233,13 @@ const uploadJSON = file => {
     const editor = new JSONEditor(jsonDOM, JSONEditorOptions);
 
     editor.on('change', function () {
-        handleFiles(editor.getValue(), modelList);
+        // Trouver le fichier supprimé
+        const deletedFile = findDeletedFile(editor.getValue(), initialStateArray);
+        initialStateArray = editor.getValue();
+        if (deletedFile) {
+            console.log("deletedFile :: ",deletedFile);
+            deleteModel(deletedFile);
+        }
 
         // Pour checker qu'il n'y a pas d'erreur
         let errors = editor.validate();
