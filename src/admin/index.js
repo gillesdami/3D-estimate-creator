@@ -35,13 +35,73 @@ const handleFiles = (root, modelList) => {
             }
         })
     });
+};
 
-    // console.log(root);
+const handleButtonsFiles = (editor) => {
+    let i = 0;
+
+    editor.getValue().forEach(e => {
+        let currentFiles = editor.getEditor('root.' + i + '.files');
+        if (currentFiles) {
+            let filesDiv = currentFiles.container.childNodes[2].childNodes[0];
+
+            if (filesDiv.hasChildNodes()) {
+                for (let currentChild = 0; currentChild < filesDiv.childNodes.length; currentChild++) {
+                    let inputTextFile = filesDiv.childNodes[currentChild].childNodes[0].childNodes[1];
+                    let buttonsDiv = filesDiv.childNodes[currentChild].childNodes[2];
+
+                    if (buttonsDiv.childNodes.length < 4) {
+
+                        let inputSelectFile = document.createElement("input");
+                        inputSelectFile.type = "file";
+                        buttonsDiv.appendChild(inputSelectFile);
+
+                        let uploadButton = document.createElement("button");
+                        let textButton = document.createTextNode("upload");
+                        uploadButton.appendChild(textButton);
+                        buttonsDiv.appendChild(uploadButton);
+
+                        uploadButton.addEventListener("click", () => {
+                            postModel(inputTextFile, inputSelectFile)
+                        })
+                    }
+                }
+            }
+        }
+        i++;
+    });
+};
+
+const postModel = (inputTextFile, input) => {
+    if (inputTextFile.value === "") {
+        alert("Merci de remplir le champs de texte [nom item]/[nom du fichier].dae");
+        return;
+    } else if(typeof  input.files[0] === 'undefined') {
+        alert("Fichier manquant, merci de selectionner un fichier avant d'upload !");
+        return;
+    }
+
+    console.log(input.files[0]);
+
+    let data = new FormData();
+    data.append('fileName', inputTextFile.value);
+    data.append('model', input.files[0], inputTextFile.value);
+
+    fetch('postModel.php', {
+        method: 'POST',
+        body: data
+    }).then(value => {
+        if (value.status === 200) {
+            alert("Fichier upload avec succes !");
+        }
+    }, error => {
+        console.log(error);
+    });
 };
 
 const deleteModel = (fileName) => {
     (async () => {
-        const rawResponse = await fetch('deleteModel.php', {
+        await fetch('deleteModel.php', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -49,22 +109,6 @@ const deleteModel = (fileName) => {
             },
             body: JSON.stringify({fileName})
         });
-        // const content = await rawResponse.json();
-    })();
-};
-
-const postModel = () => {
-    (async () => {
-        const rawResponse = await fetch('postModel.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'text/plain'
-            },
-            body: ('fileName=') //TODO fileName
-        });
-        const content = await rawResponse.json();
-
-        console.log(content);
     })();
 };
 
@@ -79,7 +123,6 @@ const uploadJSON = file => {
         });
         const content = await rawResponse.json();
 
-        console.log(content);
     })();
 };
 
@@ -91,7 +134,7 @@ const findDeletedFile = (root, initialRoot) => {
             initialObj.files.forEach(initialFile => {
                 const fileInRoot = obj.files.find(file => file === initialFile);
                 if (!fileInRoot) {
-                   deletedFile = initialFile;
+                    deletedFile = initialFile;
                 }
             });
         }
@@ -253,11 +296,14 @@ const findDeletedFile = (root, initialRoot) => {
     const editor = new JSONEditor(jsonDOM, JSONEditorOptions);
 
     editor.on('change', function () {
+        // Pour ajouter les boutons select file et upload file
+        handleButtonsFiles(editor);
+
         // Trouver le fichier supprimé
         const deletedFile = findDeletedFile(editor.getValue(), initialStateArray);
         initialStateArray = editor.getValue();
         if (deletedFile) {
-            console.log("deletedFile :: ",deletedFile);
+            console.log("deletedFile :: ", deletedFile);
             deleteModel(deletedFile);
         }
 
