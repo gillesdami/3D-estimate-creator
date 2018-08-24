@@ -95,10 +95,12 @@ const uploadJSON = file => {
                 type: "object",
                 properties: {
                     activated: {
+                        propertyOrder: 4,
                         type: "boolean",
                         format: "checkbox"
                     },
                     apparels: {
+                        propertyOrder: 5,
                         type: "array",
                         items: {
                             type: "object",
@@ -110,7 +112,9 @@ const uploadJSON = file => {
                                 },
                                 values: {
                                     type: "array",
+                                    headerTemplate: "options (doit correspondre au nom du fichier)",
                                     items: {
+                                        headerTemplate: " ",
                                         type: "string",
                                         minLength: 1
                                     }
@@ -122,10 +126,12 @@ const uploadJSON = file => {
                         }
                     },
                     category: {
+                        propertyOrder: 3,
                         type: "string",
                         minLength: 1
                     },
                     name: {
+                        propertyOrder: 1,
                         type: "string",
                         links: [{
                             rel: "image",
@@ -135,6 +141,7 @@ const uploadJSON = file => {
                         minLenght: 1
                     },
                     price: {
+                        propertyOrder: 7,
                         type: "object",
                         properties: {
                             "ILE DE FRANCE": {type: "number"},
@@ -155,10 +162,12 @@ const uploadJSON = file => {
                         },
                     },
                     section: {
+                        propertyOrder: 2,
                         type: "string",
                         minLength: 1
                     },
                     settings: {
+                        propertyOrder: 8,
                         type: "array",
                         items: {
                             type: "object",
@@ -187,18 +196,28 @@ const uploadJSON = file => {
                             options: {
                                 "collapsed": true
                             },
-                        }
+                        },
+                        options: {
+                            "collapsed": true
+                        },
                     },
                     files: {
+                        propertyOrder: 6,
                         type: "array",
                         items: {
                             type: "string"
                             /*rel: "attachement",
                             href: "/models/{{self}}",//TODO requires getModelList.php
                             download: true*/
-                        }
+                        },
+                        options: {
+                            "collapsed": true
+                        },
                     }
-                }
+                },
+                options: {
+                    "collapsed": true
+                },
             }
         },
         startval: toArray(initialState),
@@ -206,6 +225,7 @@ const uploadJSON = file => {
         required_by_default: true,
         disable_array_delete_last_row: true,
         disable_properties: true,
+        disable_edit_json: true
     };
 
     const jsonDOM = document.querySelector("json");
