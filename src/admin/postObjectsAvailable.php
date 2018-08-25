@@ -8,12 +8,12 @@ if($_SERVER['REQUEST_METHOD'] !== "POST") {
 }
 
 // archive one previous version
-if(file_exists("/var/www/html/objectsAvailable.json.old"))
-    unlink("/var/www/html/objectsAvailable.json.old");
-if(file_exists("/var/www/html/objectsAvailable.json"))
-    rename("/var/www/html/objectsAvailable.json", "/var/www/html/objectsAvailable.json.old");
+if(file_exists(__DIR__."/../objectsAvailable.json.old"))
+    unlink(__DIR__."/../objectsAvailable.json.old");
+if(file_exists(__DIR__."/../objectsAvailable.json"))
+    rename(__DIR__."/../objectsAvailable.json", __DIR__."/../objectsAvailable.json.old");
     
-if (move_uploaded_file($_FILES['objectsAvailable']['tmp_name'], "/var/www/html/objectsAvailable.json")) {
+if (move_uploaded_file($_FILES['objectsAvailable']['tmp_name'], __DIR__."/../objectsAvailable.json")) {
     print_r($_FILES);
 } else {
     http_response_code(500);

@@ -23,6 +23,6 @@ function getDirContents($dir, &$results = array()){
 
 header('Content-type:application/json;charset=utf-8');
 
-echo json_encode(array_values(array_filter(getDirContents("../models"), function($v) {
+echo json_encode(array_values(array_filter(getDirContents(__DIR__."/../models"), function($v) {
     return !preg_match('/.*\.old/', $v);
 })));

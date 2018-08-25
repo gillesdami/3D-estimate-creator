@@ -332,16 +332,26 @@ const findDeletedFile = (root, initialRoot) => {
     });
 
     document.getElementById("save").addEventListener("click", () => {
-        const json = toMap(editor.getValue());
-
-        Object.values(json).map(obj => {
-            obj.files.filter(() => false/*isModified*/).forEach(f => {
-                //upload file
-            });
-
+        const json = toMap(editor.getValue().map(obj => {
             delete obj.files;
-        });
+            return obj;
+        }));
 
         console.log(json);
+        const jsonFile = new File([JSON.stringify(json)], "objectsAvailable.json", {type: "application/json"})
+
+        let data = new FormData();
+        data.append('objectsAvailable', jsonFile);
+
+        fetch('postObjectsAvailable.php', {
+            method: 'POST',
+            body: data
+        }).then(value => {
+            if (value.status === 200) {
+                alert("Fichier upload avec succes !");
+            }
+        }, error => {
+            alert(error);
+        });
     });
 })();

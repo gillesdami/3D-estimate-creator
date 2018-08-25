@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] !== "POST") {
     exit;
 }
 
-$entityBody = json_decode(file_get_contents( 'php://input' ), true );
+$entityBody = json_decode(file_get_contents('php://input'), true);
 
 if(!isset($entityBody) && !isset($entityBody['fileName'])) {
     http_response_code(400);
@@ -16,7 +16,7 @@ if(!isset($entityBody) && !isset($entityBody['fileName'])) {
 }
 
 // archive one previous version
-if(file_exists("/var/www/html/models/".$entityBody['fileName'].".old"))
-    unlink("/var/www/html/models/".$entityBody['fileName'].".old");
-if(file_exists("/var/www/html/models/".$entityBody['fileName']))
-    rename("/var/www/html/models/".$entityBody['fileName'], "/var/www/html/models/".$entityBody['fileName'].".old");
+if(file_exists(__DIR__."/../models/".$entityBody['fileName'].".old"))
+    unlink(__DIR__."/../models/".$entityBody['fileName'].".old");
+if(file_exists(__DIR__."/../models/".$entityBody['fileName']))
+    rename(__DIR__."/../models/".$entityBody['fileName'], __DIR__."/../models/".$entityBody['fileName'].".old");

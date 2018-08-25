@@ -13,16 +13,16 @@ if(!isset($_POST["fileName"])) {
     exit;
 }
 
-if (!file_exists('/var/www/html/models/'.explode("/", $_POST["fileName"])[0])) {
-    mkdir('/var/www/html/models/'.explode("/", $_POST["fileName"])[0], 0755, true);
+if (!file_exists(__DIR__.'/../models/'.explode("/", $_POST["fileName"])[0])) {
+    mkdir(__DIR__.'/../models/'.explode("/", $_POST["fileName"])[0], 0755, true);
 }
 // archive one previous version
-if(file_exists("/var/www/html/models/".$_POST["fileName"].".old"))
-    unlink("/var/www/html/models/".$_POST["fileName"].".old");
-if(file_exists("/var/www/html/models/".$_POST["fileName"]))
-    rename("/var/www/html/models/".$_POST["fileName"], "/var/www/html/models/".$_POST["fileName"].".old");
+if(file_exists(__DIR__."/../models/".$_POST["fileName"].".old"))
+    unlink(__DIR__."/../models/".$_POST["fileName"].".old");
+if(file_exists(__DIR__."/../models/".$_POST["fileName"]))
+    rename(__DIR__."/../models/".$_POST["fileName"], __DIR__."/../models/".$_POST["fileName"].".old");
     
-if (move_uploaded_file($_FILES['model']['tmp_name'], "/var/www/html/models/".$_POST["fileName"])) {
+if (move_uploaded_file($_FILES['model']['tmp_name'], __DIR__."/../models/".$_POST["fileName"])) {
     echo "uploaded file ".$_POST["fileName"];
 } else {
     http_response_code(500);
