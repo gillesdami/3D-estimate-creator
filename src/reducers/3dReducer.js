@@ -20,8 +20,6 @@ import {
     TOGGLE_SETTINGS_PANEL, VALIDATE_OBJECT_DISPLAYED
 } from "../actions";
 
-import objectsAvailable from '../../resources/objectsAvailable.json'
-
 const defaultHelperState = {
     isDisplayed: false
 };
@@ -174,9 +172,9 @@ export const details = (state = defaultDetailsState, action) => {
             const objDisplayed = action.payload.objectsDisplayed.find(obj => obj.uid === action.payload.uid);
 
             let objAvailable;
-            for (const key of Object.keys(objectsAvailable)) {
+            for (const key of Object.keys(window.objectsAvailable)) {
                 if (key === objDisplayed.name) {
-                    objAvailable = objectsAvailable[key];
+                    objAvailable = window.objectsAvailable[key];
                 }
             }
 

@@ -18,8 +18,7 @@
     import ObjectCategory from './ObjectCategory';
     import { $select } from '../../../sagas/vue';
     import { getCollapsibleState } from '../../../selectors';
-    import objectsAvailable from '../../../../resources/objectsAvailable.json'
-
+    
     export default {
         name: "object-section",
         methods: {
@@ -40,6 +39,7 @@
         },
         computed: {
             categories: function() {
+                const objectsAvailable = window.objectsAvailable;
                 const categories = [];
 
                 Object.keys(objectsAvailable).forEach((key) => {

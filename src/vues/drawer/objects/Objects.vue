@@ -6,7 +6,6 @@
 
 <script>
     import ObjectSection from './ObjectSection';
-    import objectsAvailable from '../../../../resources/objectsAvailable.json'
 
     export default {
         name: "objects",
@@ -14,6 +13,7 @@
         computed: {
             sections: function() {
                 const sections = [];
+                const objectsAvailable = window.objectsAvailable;
 
                 Object.keys(objectsAvailable).forEach(function(key) {
                     if(!sections.includes(objectsAvailable[key].section)) {

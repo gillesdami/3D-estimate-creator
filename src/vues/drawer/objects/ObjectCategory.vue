@@ -20,7 +20,6 @@
     import ObjectItem from './ObjectItem';
     import { $select } from '../../../sagas/vue';
     import { getCollapsibleState } from '../../../selectors';
-    import objectsAvailable from '../../../../resources/objectsAvailable.json'
 
     export default {
         name: "object-category",
@@ -42,7 +41,7 @@
         },
         computed: {
             items: function () {
-                return objectsAvailable;
+                return window.objectsAvailable;
             }
         },
         updated: function() {

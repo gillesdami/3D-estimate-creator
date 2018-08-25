@@ -9,13 +9,12 @@
 <script>
     import { $select } from '../sagas/vue';
     import { totalSelector } from '../selectors';
-    import objectsAvailable from '../../resources/objectsAvailable.json';
 
     export default {
         name: "Total",
         methods: {
             total: function () {
-                return $select(totalSelector, objectsAvailable);
+                return $select(totalSelector, window.objectsAvailable);
             },
             totalMinus10: function() {
                 return this.total() - (this.total() * 0.1);

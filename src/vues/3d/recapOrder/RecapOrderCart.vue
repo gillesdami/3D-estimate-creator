@@ -10,7 +10,6 @@
 <script>
     import { $select } from '../../../sagas/vue';
     import { objectsDisplayed } from '../../../selectors';
-    import objectsAvailable from '../../../../resources/objectsAvailable.json';
     import CartItem from './../../drawer/cart/CartItem';
     import { actionCreator, SAVE_OBJECTS_IN_RECAP, TOGGLE_RECAP_PANEL_FORM } from '../../../actions';
 
@@ -24,6 +23,7 @@
         }),
         updated() {
             const objsDisplayed = $select(objectsDisplayed);
+            const objectsAvailable = window.objectsAvailable;
 
             const objects = objsDisplayed.map((obj) => ({
                 uid: obj.uid,

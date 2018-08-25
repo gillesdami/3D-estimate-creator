@@ -29,7 +29,6 @@
     import { actionCreator, CLICKED_COLLAPSIBLE } from '../../../actions';
     import { $select } from '../../../sagas/vue';
     import { getCollapsibleState, objectsDisplayed } from '../../../selectors';
-    import objectsAvailable from '../../../../resources/objectsAvailable.json';
 
     export default {
         components: {CartItem},
@@ -46,6 +45,7 @@
         },
         updated() {
             const objsDisplayed = $select(objectsDisplayed);
+            const objectsAvailable = window.objectsAvailable;
 
             const objects = objsDisplayed.map((obj) => ({
                 uid: obj.uid,
