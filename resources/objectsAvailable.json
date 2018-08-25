@@ -80,14 +80,8 @@
             {
                 "type": "Toit pagode",
                 "values": [
-                    {
-                      "name": "toit blanc",
-                      "price": "0"
-                    },
-                    {
-                      "name": "toit cristal",
-                      "price": "13"
-                    }
+                    "toit blanc",
+                    "toit cristal"
                   ]
             },
             {
