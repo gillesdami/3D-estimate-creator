@@ -19,7 +19,8 @@ import {
     SET_RENDERER_SIZE,
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL_FROM_SCENE,
-    TOGGLE_CLICK_FROM_OBJECT
+    TOGGLE_CLICK_FROM_OBJECT,
+    TOGGLE_RECAP_PANEL_MAIN
 } from '../actions';
 import moveObject from './moveObject';
 import initShowObjectBox from './showObjectBox';
@@ -199,6 +200,7 @@ export function* doubleClickSelection(camera, scene, renderer, action) {
 export function* sendEstimation(action) {
 
     let detailContent = "";
+    const clientName = action.payload.firstname + " " + action.payload.lastname;
 
     action.payload.objects.forEach(obj => {
         detailContent += obj.name + "\t (qte : " + obj.qte + ")\n" +
@@ -207,33 +209,39 @@ export function* sendEstimation(action) {
             }) + "\n\n";
     });
 
-    const content = "Bonjour l'équipe ATAWA !\n\n" +
-        "Je souhaiterai avoir une estimation du prix de mon panier :\n" +
-        +detailContent + "\n\n" +
-        "Bonne journée.\n\n" +
-        "Cordialement,\n\n" +
-        action.payload.firstname + " " + action.payload.lastname;
+    const content = "Demande d'estimation : " + clientName + "\n\n"
+        + detailContent + "\n\n"
+        + "Commentaire client : " + action.payload.commentary;
 
-    postRequest('https://api.sendinblue.com/v2.0',
-        {
-            'to': "alex.vacheret@free.fr", //admin@atawa.com
-            'from': action.payload.email,
-            'subject': "Demande d'estimation - " + action.payload.firstname + " " + action.payload.firstname,
-            'html': content
-        })
-        .then(data => console.log(data))
+     postRequest("https://api.sendinblue.com/v3/smtp/email",
+         {
+             "to": [{"email": "alex.vacheret@free.fr", "name": "Alex"}], //admin@atawa.com
+             "sender": {"name": clientName , "email": action.payload.email},
+             "subject": "Demande d\'estimation - " + clientName,
+             "htmlContent": content,
+             "replyTo": {"email": action.payload.email, "name": clientName},
+             "tags": ["atawa", "estimation"]
+         })
+         .then(data => console.log(data))
 }
 
 function postRequest(url, data) {
     return fetch(url, {
         credentials: 'same-origin', // 'include', default: 'omit'
         method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
-        body: data, // Coordinate the body type with 'Content-Type'
+        body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
         headers: new Headers({
-            'Content-type': 'text/html',
-            'api-key': ''
+            'Content-Type': 'application/json',
+            'api-key': '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'
         }),
     })
-        .then(response => console.log(response))
+        .then(response => {
+            if(response.status === 201) {
+                alert("Email envoyé !");
+            } else {
+                alert("Email non envoyé ...");
+                console.log(response);
+            }
+        })
         .catch(error => console.error(error))
 }
