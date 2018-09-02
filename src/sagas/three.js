@@ -232,7 +232,7 @@ function postRequest(url, data) {
         body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
         headers: new Headers({
             'Content-Type': 'application/json',
-            'api-key': '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'
+            'api-key': ''
         }),
     })
         .then(response => {
