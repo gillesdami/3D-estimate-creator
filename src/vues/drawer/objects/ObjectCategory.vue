@@ -9,7 +9,7 @@
         <div class="objectList" v-bind:class="{ expanded: categoryCollapsiblesStatus() }">
             <object-item
                     v-for="(item, itemName) in items"
-                    v-if="item.section === section && item.category === category"
+                    v-if="item.section === section && item.category === category && item.activated"
                     :item="item" :name="itemName"/>
         </div>
     </div>

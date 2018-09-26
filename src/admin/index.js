@@ -50,20 +50,18 @@ const handleButtonsFiles = (editor) => {
                     let inputTextFile = filesDiv.childNodes[currentChild].childNodes[0].childNodes[1];
                     let buttonsDiv = filesDiv.childNodes[currentChild].childNodes[2];
 
-                    if (buttonsDiv.childNodes.length < 4) {
+                    if (buttonsDiv.childNodes.length < 2) {
 
                         let inputSelectFile = document.createElement("input");
                         inputSelectFile.type = "file";
+
+                        inputSelectFile.addEventListener("change", () => {
+                            if (inputSelectFile.files) {
+                                postModel(inputTextFile, inputSelectFile);
+                            }
+                        });
+
                         buttonsDiv.appendChild(inputSelectFile);
-
-                        let uploadButton = document.createElement("button");
-                        let textButton = document.createTextNode("upload");
-                        uploadButton.appendChild(textButton);
-                        buttonsDiv.appendChild(uploadButton);
-
-                        uploadButton.addEventListener("click", () => {
-                            postModel(inputTextFile, inputSelectFile)
-                        })
                     }
                 }
             }
@@ -181,12 +179,18 @@ const findDeletedFile = (root, initialRoot) => {
                                         headerTemplate: " ",
                                         type: "string",
                                         minLength: 1
+                                    },
+                                    options: {
+                                        "disable_array_reorder": true
                                     }
                                 }
                             },
                             options: {
                                 "collapsed": true
                             },
+                        },
+                        options: {
+                            "disable_array_reorder": true
                         }
                     },
                     category: {
@@ -222,7 +226,8 @@ const findDeletedFile = (root, initialRoot) => {
                             "BRETAGNE": {type: "number"}
                         },
                         options: {
-                            "collapsed": true
+                            "collapsed": true,
+                            "disable_array_reorder": true
                         },
                     },
                     section: {
@@ -258,11 +263,13 @@ const findDeletedFile = (root, initialRoot) => {
                                 }
                             },
                             options: {
-                                "collapsed": true
+                                "collapsed": true,
+                                "disable_array_reorder": true
                             },
                         },
                         options: {
-                            "collapsed": true
+                            "collapsed": true,
+                            "disable_array_reorder": true
                         },
                     },
                     files: {
@@ -275,7 +282,8 @@ const findDeletedFile = (root, initialRoot) => {
                             download: true*/
                         },
                         options: {
-                            "collapsed": true
+                            "collapsed": true,
+                            "disable_array_reorder": true
                         },
                     }
                 },
