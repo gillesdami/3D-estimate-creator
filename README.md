@@ -3,7 +3,9 @@
 Drag and drop objects in a 3d scene and estimate their cost
 
 ## Build & Run
+Be sure to make a copy of the file objectsAvailable.json in the 'dist' folder if you run it locally
 
+docker
 You can use docker (or not):
 
 ```bash
