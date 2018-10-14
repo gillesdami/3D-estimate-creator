@@ -14,7 +14,7 @@
     import Total from './TotalMainPage';
 
     export default {
-        name: "header",
+        name: "header-atawa",
         components: {
             'buttons': Buttons,
             'total': Total,

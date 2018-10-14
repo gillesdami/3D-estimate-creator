@@ -23,9 +23,7 @@
         name: "object-section",
         methods: {
             clickedObjectSection: function () {
-                this.$root.$emit('put', actionCreator(CLICKED_COLLAPSIBLE, {
-                    section: this.section
-                }));
+                this.$root.$emit('put', actionCreator(CLICKED_COLLAPSIBLE, {section: this.section}));
             },
             sectionCollapsiblesStatus: function() {
                 return $select(getCollapsibleState, this.section);

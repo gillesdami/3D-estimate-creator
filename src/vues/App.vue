@@ -37,7 +37,7 @@
     import Details from './3d/Details';
     import RecapOrder from './3d/recapOrder/RecapOrder';
     import Drawer from './drawer/Drawer.vue';
-    import Header from './Header';
+    import HeaderAtawa from './Header';
     import { $select } from '../sagas/vue';
     import { getDetailsState, objectsDisplayed, rendererSelector, rootselector } from '../selectors';
     import {
@@ -58,7 +58,7 @@
             'helper-panel': HelperPanel,
             'drawer': Drawer,
             'settings-panel': SettingsPanel,
-            'header-atawa': Header,
+            'header-atawa': HeaderAtawa,
             'recap-order-panel': RecapOrder,
             ClipLoader
         },
