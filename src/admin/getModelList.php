@@ -6,15 +6,15 @@ if($_SERVER['REQUEST_METHOD'] !== "GET") {
     exit;
 }
 
-function getDirContents($dir, &$results = array()){
+function getDirContents($dir, $rootLength, &$results = array()){
     $files = scandir($dir);
 
     foreach($files as $key => $value){
         $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
         if(!is_dir($path)) {
-            $results[] = $path;
+            $results[] = substr($path, $rootLength);
         } else if($value !== "." && $value !== "..") {
-            getDirContents($path, $results);
+            getDirContents($path, $rootLength, $results);
         }
     }
 
@@ -23,6 +23,6 @@ function getDirContents($dir, &$results = array()){
 
 header('Content-type:application/json;charset=utf-8');
 
-echo json_encode(array_values(array_filter(getDirContents(__DIR__."/../models"), function($v) {
+echo json_encode(array_values(array_filter(getDirContents(__DIR__."/../models", 1+ strlen(realpath(__DIR__."/../models"))), function($v) {
     return !preg_match('/.*\.old/', $v);
 })));

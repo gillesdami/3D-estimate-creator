@@ -13,7 +13,7 @@
 ‣ Prix de l'apparel logique directe --> renseigne le prix à la main et valable pour toutes les régions
 ∘ Settings avec to*/
 (async function() {
-    const modelList = document.querySelector("ul#model-list");
+    const modelListElement = document.querySelector("ul#model-list");
     const popover = document.querySelector("div#popover");
     const objectsAvailble = await (await fetch('/objectsAvailable.json')).json();
     const modelList = await (await fetch('getModelList.php')).json();
@@ -21,7 +21,7 @@
     async function railway(objectEditedName = null) {
         const o = objectsAvailble[objectEditedName];
 
-        loadPopover("section_category");
+        await loadPopover("section_category");
         const sectionInput = document.querySelector("input[name=section]");
         const categoryInput = document.querySelector("input[name=category]");
         const activatedCheckbox = document.querySelector("input[name=activated]");
@@ -35,22 +35,22 @@
         o.category = categoryInput.value;
         o.activated = activatedCheckbox.checked;
 
-        loadPopover("importdae");
+        await loadPopover("importdae");
         const importdaeInput = document.querySelector("input[name=importdae]");
-        const loaderIcon = document.querySelector("src#loader_icon");
+        let loaderIcon = document.querySelector("img#loader_icon");
         if(!modelList.includes(`${objectEditedName}/${objectEditedName}.dae`)) {
             await inputFileAccepted(importdaeInput, `${objectEditedName}/${objectEditedName}.dae`, loaderIcon);
         }
-        importdaeInput.disabled = false;
+        document.querySelector("input[name=next]").disabled = false;
         await clickNext();
 
-        loadPopover("importimg");
-        const importdaeInput = document.querySelector("input[name=importimg]");
-        const loaderIcon = document.querySelector("src#loader_icon");
+        await loadPopover("importimg");
+        const importimgInput = document.querySelector("input[name=importimg]");
+        loaderIcon = document.querySelector("img#loader_icon");
         if(!modelList.includes(`${objectEditedName}/image.jpg`)) {
-            await inputFileAccepted(importdaeInput, `${objectEditedName}/image.jpg`, loaderIcon);
+            await inputFileAccepted(importimgInput, `${objectEditedName}/image.jpg`, loaderIcon);
         }
-        importdaeInput.disabled = false;
+        document.querySelector("input[name=next]").disabled = false;
         await clickNext();
     }
 
@@ -66,12 +66,13 @@
     };
 
     async function inputFileAccepted(input, fileName, loaderIcon) {
-        new Promise(r => {
-            const handler = function() {
+        return new Promise(r => {
+            const handler = async function() {
                 try {
                     loaderIcon.style.display = "";
-                    uploadModel(input, fileName);
+                    await uploadModel(input, fileName);
                     input.removeEventListener("changed", handler);
+                    loaderIcon.style.display = "none";
                     r();
                 } catch (e) {
                     loaderIcon.style.display = "none";
@@ -79,7 +80,7 @@
                 }
             };
 
-            input.addEventListener("changed", handler);
+            input.addEventListener("change", handler);
         });
     }
 
@@ -90,11 +91,11 @@
     }
 
     function list(prop) {
-        return Object.values(objectsAvailble).map(o => o[prop]).join(", ");
+        return Array.from(new Set(Object.values(objectsAvailble).map(o => o[prop]))).join(", ") + ".";
     }
 
     async function loadPopover(template) {
-        popover.innerHTML = await (await fetch('templates/${template}.html')).text();
+        popover.innerHTML = await (await fetch(`templates/${template}.html`)).text();
     }
 
     function remove(objectToRemove) {
@@ -107,9 +108,9 @@
 
     function generateModelList() {
         //clear list
-        while (modelList.firstChild) { modelList.removeChild(modelList.firstChild); }
+        while (modelListElement.firstChild) { modelListElement.removeChild(modelListElement.firstChild); }
 
-        for(object in objectsAvailble) {
+        for(let object in objectsAvailble) {
             const text = document.createElement("p");
             text.innerText = object;
 
@@ -126,7 +127,7 @@
             li.appendChild(updateButton);
             li.appendChild(removeButton);
             
-            modelList.appendChild(li);
+            modelListElement.appendChild(li);
         }
     }
 
@@ -140,7 +141,7 @@
             const resp = await fetch('postObjectsAvailable.php', { method: 'POST', body: data });
 
             if (resp.status === 200) {
-                alert("Fichier upload avec succes !");
+                alert("Modifications sauvegardés !");
             } else {
                 throw resp.status;
             }
