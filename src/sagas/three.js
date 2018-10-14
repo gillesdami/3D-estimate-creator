@@ -198,10 +198,8 @@ export function* doubleClickSelection(camera, scene, renderer, action) {
 }
 
 export function* sendEstimation(action) {
-
+    //body
     let detailContent = "";
-    const clientName = action.payload.firstname + " " + action.payload.lastname;
-
     action.payload.objects.forEach(obj => {
         detailContent += obj.name + "\t (qte : " + obj.qte + ")\n" +
             obj.apparels.map(ap => {
@@ -209,39 +207,21 @@ export function* sendEstimation(action) {
             }) + "\n\n";
     });
 
+    const clientName = action.payload.firstname + " " + action.payload.lastname;
+    const clientEmail = action.payload.email
+
     const content = "Demande d'estimation : " + clientName + "\n\n"
         + detailContent + "\n\n"
         + "Commentaire client : " + action.payload.commentary;
 
-     postRequest("https://api.sendinblue.com/v3/smtp/email",
-         {
-             "to": [{"email": "alex.vacheret@free.fr", "name": "Alex"}], //admin@atawa.com
-             "sender": {"name": clientName , "email": action.payload.email},
-             "subject": "Demande d\'estimation - " + clientName,
-             "htmlContent": content,
-             "replyTo": {"email": action.payload.email, "name": clientName},
-             "tags": ["atawa", "estimation"]
-         })
-         .then(data => console.log(data))
-}
-
-function postRequest(url, data) {
-    return fetch(url, {
-        credentials: 'same-origin', // 'include', default: 'omit'
-        method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
-        body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
-        headers: new Headers({
-            'Content-Type': 'application/json',
-            'api-key': ''
-        }),
-    })
-        .then(response => {
-            if(response.status === 201) {
-                alert("Email envoyé !");
-            } else {
-                alert("Email non envoyé ...");
-                console.log(response);
-            }
+    fetch('admin/sendMail.php', { 
+        method: 'POST', 
+        body: JSON.stringify({content, clientName, clientEmail}),
+        headers: {'Content-Type': 'application/json'}
         })
-        .catch(error => console.error(error))
+        .then(r => r.json(), () => alert("Une erreur s'est produite :/"))
+        .then(r => {
+            if (r === true) alert("Demande d'estimation envoyée !");
+            else alert("Une erreur s'est produite, verifiez votre addresse mail.");
+        });
 }
