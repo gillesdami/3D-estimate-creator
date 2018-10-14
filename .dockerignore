@@ -1,6 +1,5 @@
 .cache
 .history
-assets
-dist
+dist/models
 node_modules
 test
