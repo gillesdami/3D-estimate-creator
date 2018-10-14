@@ -1,7 +1,7 @@
 <?php
 // send estimation mail
-$apiKey = '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'; //sendinblue api key DO NOT LET IN THE CODE
-$to = 'damien.gilles.pro@gmail.com'; //target mail address DO NOT LET IN THE CODE
+$apiKey = ''; //sendinblue api key DO NOT LET IN THE CODE
+$to = ''; //target mail address DO NOT LET IN THE CODE
 
 $data = json_decode(file_get_contents('php://input'), true);
 

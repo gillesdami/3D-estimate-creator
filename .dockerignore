@@ -1,5 +1,6 @@
 .cache
 .history
 dist/models
+!dist/models/Pagode - 3m x 3m
 node_modules
 test

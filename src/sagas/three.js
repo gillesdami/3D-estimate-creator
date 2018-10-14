@@ -203,7 +203,7 @@ export function* sendEstimation(action) {
     action.payload.objects.forEach(obj => {
         detailContent += obj.name + "\t (qte : " + obj.qte + ")\n" +
             obj.apparels.map(ap => {
-                return "\t" + ap.value + "\n";
+                return "\t" + ap.value.name || ap.value + "\n";
             }) + "\n\n";
     });
 
@@ -221,7 +221,11 @@ export function* sendEstimation(action) {
         })
         .then(r => r.json(), () => alert("Une erreur s'est produite :/"))
         .then(r => {
-            if (r === true) alert("Demande d'estimation envoyée !");
+            if (r === true) {
+                alert("Demande d'estimation envoyée !");
+            }
             else alert("Une erreur s'est produite, verifiez votre addresse mail.");
         });
+    
+    yield put(actionCreator(TOGGLE_RECAP_PANEL_MAIN));
 }
