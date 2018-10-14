@@ -19,6 +19,7 @@
             "cart-item": CartItem
         },
         data: () => ({
+            objs: {},
             objectsInRecap: null
         }),
         updated() {

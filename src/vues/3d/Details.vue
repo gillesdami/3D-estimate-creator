@@ -7,7 +7,7 @@
 
         <div id="deleteButtonRow" class="row" v-if="detailsState().itemName && detailsState().item">
             <button id="validateButton"
-                    v-if="!currentObj.isValidated"
+                    v-if="!detailsState().item.isValidated"
                     v-on:click="validateAndHideDetails">VALIDER
             </button>
             <img v-on:click="deleteObjectDisplayed" id="trashDetails" src="../../../assets/buttons/delete.svg"/>
@@ -37,9 +37,7 @@
             'apparels': Apparels
         },
         data() {
-            return {
-                currentObj: null
-            }
+            return {}
         },
         methods: {
             detailsState: function () {
@@ -57,15 +55,11 @@
             },
             validateAndHideDetails: function () {
                 this.$root.$emit('put', actionCreator(VALIDATE_OBJECT_DISPLAYED, {
-                    uid: this.currentObj.uid,
-                    isValidated: true
+                    uid: this.detailsState().item.uid,
+                    "isValidated": true
                 }));
                 this.$root.$emit('put', actionCreator(HIDE_DETAILS_PANEL));
             }
-        },
-        updated() {
-            let o = this.objectsDisplay().filter(obj => obj.uid === this.detailsState().item.uid);
-            this.currentObj = o.shift();
         }
     }
 </script>

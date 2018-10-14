@@ -81,7 +81,7 @@
             if (JSON.stringify(this.objs) !== JSON.stringify(objs)) {
                 this.objs = objs;
             }
-            
+
             if (!this.structureClicked && !this.cartCollapsiblesStatus("structure")) {
                 this.clickedStructureCartSection();
                 this.structureClicked = true;
