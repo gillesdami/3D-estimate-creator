@@ -30,7 +30,7 @@
                 {
                     uid: obj.uid,
                     name: obj.name,
-                    apparels: objectsAvailable[obj.name].apparels,
+                    apparels: obj.apparels,
                     price: objectsAvailable[obj.name].price['ILE DE FRANCE'],
                     qte: 1
                 }

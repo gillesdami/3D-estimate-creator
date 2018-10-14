@@ -53,14 +53,14 @@
                 description: objectsAvailable[obj.name].description,
                 section: objectsAvailable[obj.name].section,
                 category: objectsAvailable[obj.name].category,
-                apparels: objectsAvailable[obj.name].apparels,
+                apparels: obj.apparels,
                 price: objectsAvailable[obj.name].price['ILE DE FRANCE'],
                 qte: 1
             }));
 
             //increment qte
             const objectsGrouped = objects.reduce((acc, val) => {
-                const IndexInAcc = acc.findIndex(e => e.name === val.name);
+                const IndexInAcc = acc.findIndex(e => e.name === val.name && JSON.stringify(e.apparels) === JSON.stringify(val.apparels));
 
                 if (IndexInAcc !== -1) {
                     acc[IndexInAcc].qte++;
