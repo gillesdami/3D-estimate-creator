@@ -48,11 +48,11 @@ export function* addObject(scene, action) {
 }
 
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue, settings) {
-    if (apparealValue === "aucun") return null; // TODO appareal.value in object: {name: "toit cristal", price: "137"}
+    if (apparealValue.name === "aucun") return null; // TODO appareal.value in object: {name: "toit cristal", price: "137"}
 
     const obj = new THREE.Group();
     const parentBox = parentObj.userData.bb;
-    const model = yield call(loadModel, itemName, apparealValue);
+    const model = yield call(loadModel, itemName, apparealValue.name);
     let bb;
 
     model.name = apparealType;

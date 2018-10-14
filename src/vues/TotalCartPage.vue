@@ -8,18 +8,30 @@
 
 <script>
     import { $select } from '../sagas/vue';
-    import { totalSelector } from '../selectors';
+    import { objectsDisplayed, totalSelector } from '../selectors';
 
     export default {
         name: "Total",
         methods: {
             total: function () {
-                return $select(totalSelector, window.objectsAvailable);
+                let totalItems = $select(totalSelector, window.objectsAvailable);
+                const objDisplayed = $select(objectsDisplayed, window.objectsAvailable);
+
+                let totalApparels = 0;
+
+                objDisplayed.forEach(obj => {
+                    obj.apparels.forEach(ap => {
+                        if (!ap.value.name.includes("aucun"))
+                            totalApparels += ap.value.price["ILE DE FRANCE"];
+                    });
+                });
+
+                return totalItems + totalApparels;
             },
-            totalMinus10: function() {
+            totalMinus10: function () {
                 return this.total() - (this.total() * 0.1);
             },
-            totalPlus10: function() {
+            totalPlus10: function () {
                 return this.total() + (this.total() * 0.1);
             }
         }

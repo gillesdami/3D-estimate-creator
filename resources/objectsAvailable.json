@@ -17,39 +17,177 @@
             "HAUTS DE FRANCE": 180,
             "BRETAGNE": 180
         },
-        "settings": [{
-            "type": "hmin",
-            "value": {"Toit pagode": 2.25}
-        }],
+        "settings": [
+            {
+                "type": "hmin",
+                "value": {
+                    "Toit pagode": 2.25
+                }
+            }
+        ],
         "apparels": [
             {
                 "type": "Toit pagode",
                 "values": [
-                    "toit blanc 3m",
-                    "toit cristal 3m"
+                    {
+                        "name": "toit blanc 3m",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "toit cristal 3m",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau",
                 "values": [
-                    "rideau ouvert",
-                    "rideau fenetre",
-                    "rideau cristal",
-                    "rideau blanc"
+                    {
+                        "name": "rideau ouvert",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Plancher",
                 "values": [
-                    "plancher",
-                    "aucun"
+                    {
+                        "name": "plancher",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    }
                 ]
             },
             {
                 "type": "Lestage",
                 "values": [
-                    "aucun",
-                    "lestage"
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    },
+                    {
+                        "name": "lestage",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             }
         ]
@@ -59,52 +197,190 @@
         "section": "Structure",
         "category": "Tente Pagode/Garden",
         "price": {
-            "ILE DE FRANCE":300,
-            "PACA":260,
-            "OCCITANIE":260,
-            "GRAND EST":260,
-            "AUVERGNE RHONE ALPES":260,
-            "PAYS DE LA LOIRE":220,
-            "CENTRE VAL DE LOIRE":220,
-            "NOUVELLE AQUITAINE":260,
-            "BOURGOGNE FRANCHE COMPTE":260,
-            "NORMANDIE":260,
-            "HAUTS DE FRANCE":220,
-            "BRETAGNE":220
+            "ILE DE FRANCE": 300,
+            "PACA": 260,
+            "OCCITANIE": 260,
+            "GRAND EST": 260,
+            "AUVERGNE RHONE ALPES": 260,
+            "PAYS DE LA LOIRE": 220,
+            "CENTRE VAL DE LOIRE": 220,
+            "NOUVELLE AQUITAINE": 260,
+            "BOURGOGNE FRANCHE COMPTE": 260,
+            "NORMANDIE": 260,
+            "HAUTS DE FRANCE": 220,
+            "BRETAGNE": 220
         },
-        "settings": [{
-            "type": "hmin",
-            "value": {"Toit pagode": 2.3}
-        }],
+        "settings": [
+            {
+                "type": "hmin",
+                "value": {
+                    "Toit pagode": 2.3
+                }
+            }
+        ],
         "apparels": [
             {
                 "type": "Toit pagode",
                 "values": [
-                    "toit blanc",
-                    "toit cristal"
-                  ]
+                    {
+                        "name": "toit blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "toit cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
+                ]
             },
             {
                 "type": "Rideau",
                 "values": [
-                    "rideau ouvert",
-                    "rideau fenetre",
-                    "rideau cristal",
-                    "rideau blanc"
+                    {
+                        "name": "rideau ouvert",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Plancher",
                 "values": [
-                    "plancher",
-                    "aucun"
+                    {
+                        "name": "plancher",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    }
                 ]
             },
             {
                 "type": "Lestage",
                 "values": [
-                    "aucun",
-                    "lestage"
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    },
+                    {
+                        "name": "lestage",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             }
         ]
@@ -114,52 +390,190 @@
         "section": "Structure",
         "category": "Tente Pagode/Garden",
         "price": {
-            "ILE DE FRANCE":350,
-            "PACA":350,
-            "OCCITANIE":350,
-            "GRAND EST":320,
-            "AUVERGNE RHONE ALPES":320,
-            "PAYS DE LA LOIRE":300,
-            "CENTRE VAL DE LOIRE":300,
-            "NOUVELLE AQUITAINE":300,
-            "BOURGOGNE FRANCHE COMPTE":300,
-            "NORMANDIE":300,
-            "HAUTS DE FRANCE":300,
-            "BRETAGNE":250
+            "ILE DE FRANCE": 350,
+            "PACA": 350,
+            "OCCITANIE": 350,
+            "GRAND EST": 320,
+            "AUVERGNE RHONE ALPES": 320,
+            "PAYS DE LA LOIRE": 300,
+            "CENTRE VAL DE LOIRE": 300,
+            "NOUVELLE AQUITAINE": 300,
+            "BOURGOGNE FRANCHE COMPTE": 300,
+            "NORMANDIE": 300,
+            "HAUTS DE FRANCE": 300,
+            "BRETAGNE": 250
         },
-        "settings": [{
-            "type": "hmin",
-            "value": {"Toit pagode": 2.3}
-        }],
+        "settings": [
+            {
+                "type": "hmin",
+                "value": {
+                    "Toit pagode": 2.3
+                }
+            }
+        ],
         "apparels": [
             {
                 "type": "Toit pagode",
                 "values": [
-                    "toit blanc",
-                    "toit cristal"
+                    {
+                        "name": "toit blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "toit cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau",
                 "values": [
-                    "rideau ouvert",
-                    "rideau fenetre",
-                    "rideau cristal",
-                    "rideau blanc"
+                    {
+                        "name": "rideau ouvert",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Plancher",
                 "values": [
-                    "plancher",
-                    "aucun"
+                    {
+                        "name": "plancher",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    }
                 ]
             },
             {
                 "type": "Lestage",
                 "values": [
-                    "aucun",
-                    "lestage"
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    },
+                    {
+                        "name": "lestage",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             }
         ]
@@ -172,48 +586,250 @@
             "ILE DE FRANCE": 300,
             "PACA": 300
         },
-        "settings": [{
-            "type": "hmin",
-            "value": {"Toit pagode": 2.125}
-        }],
+        "settings": [
+            {
+                "type": "hmin",
+                "value": {
+                    "Toit pagode": 2.125
+                }
+            }
+        ],
         "apparels": [
             {
                 "type": "Toit pagode",
                 "values": [
-                    "toit blanc",
-                    "toit cristal"
+                    {
+                        "name": "toit blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "toit cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau Longueur",
                 "values": [
-                    "rideau ouvert",
-                    "rideau fenetre",
-                    "rideau cristal",
-                    "rideau blanc"
+                    {
+                        "name": "rideau ouvert",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau Largeur",
                 "values": [
-                    "rideau ouvert pignon",
-                    "rideau fenetre pignon",
-                    "rideau cristal pignon",
-                    "rideau blanc pignon"
+                    {
+                        "name": "rideau ouvert pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Plancher",
                 "values": [
-                    "plancher",
-                    "aucun"
+                    {
+                        "name": "plancher",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    }
                 ]
             },
             {
                 "type": "Lestage",
                 "values": [
-                    "aucun",
-                    "lestage"
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    },
+                    {
+                        "name": "lestage",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             }
         ]
@@ -226,48 +842,250 @@
             "ILE DE FRANCE": 600,
             "PACA": 600
         },
-        "settings": [{
-            "type": "hmin",
-            "value": {"Toit pagode": 2.125}
-        }],
+        "settings": [
+            {
+                "type": "hmin",
+                "value": {
+                    "Toit pagode": 2.125
+                }
+            }
+        ],
         "apparels": [
             {
                 "type": "Toit pagode",
                 "values": [
-                    "toit blanc",
-                    "toit cristal"
+                    {
+                        "name": "toit blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "toit cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau Longueur",
                 "values": [
-                    "rideau ouvert",
-                    "rideau fenetre",
-                    "rideau cristal",
-                    "rideau blanc"
+                    {
+                        "name": "rideau ouvert",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau Largeur",
                 "values": [
-                    "rideau ouvert pignon",
-                    "rideau fenetre pignon",
-                    "rideau cristal pignon",
-                    "rideau blanc pignon"
+                    {
+                        "name": "rideau ouvert pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Plancher",
                 "values": [
-                    "plancher",
-                    "aucun"
+                    {
+                        "name": "plancher",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    }
                 ]
             },
             {
                 "type": "Lestage",
                 "values": [
-                    "aucun",
-                    "lestage"
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    },
+                    {
+                        "name": "lestage",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             }
         ]
@@ -280,48 +1098,250 @@
             "ILE DE FRANCE": 900,
             "PACA": 900
         },
-        "settings": [{
-            "type": "hmin",
-            "value": {"Toit pagode": 2.125}
-        }],
+        "settings": [
+            {
+                "type": "hmin",
+                "value": {
+                    "Toit pagode": 2.125
+                }
+            }
+        ],
         "apparels": [
             {
                 "type": "Toit pagode",
                 "values": [
-                    "toit blanc",
-                    "toit cristal"
+                    {
+                        "name": "toit blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "toit cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau Longueur",
                 "values": [
-                    "rideau ouvert",
-                    "rideau fenetre",
-                    "rideau cristal",
-                    "rideau blanc"
+                    {
+                        "name": "rideau ouvert",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau Largeur",
                 "values": [
-                    "rideau ouvert pignon",
-                    "rideau fenetre pignon",
-                    "rideau cristal pignon",
-                    "rideau blanc pignon"
+                    {
+                        "name": "rideau ouvert pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Plancher",
                 "values": [
-                    "plancher",
-                    "aucun"
+                    {
+                        "name": "plancher",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    }
                 ]
             },
             {
                 "type": "Lestage",
                 "values": [
-                    "aucun",
-                    "lestage"
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    },
+                    {
+                        "name": "lestage",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             }
         ]
@@ -334,39 +1354,250 @@
             "ILE DE FRANCE": 600,
             "PACA": 900
         },
-        "settings": [{
-            "type": "hmin",
-            "value": {"Toit pagode": 2.75}
-        }],
+        "settings": [
+            {
+                "type": "hmin",
+                "value": {
+                    "Toit pagode": 2.75
+                }
+            }
+        ],
         "apparels": [
             {
                 "type": "Toit pagode",
                 "values": [
-                    "toit blanc",
-                    "toit cristal"
+                    {
+                        "name": "toit blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "toit cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau Longueur",
                 "values": [
-                    "rideau ouvert",
-                    "rideau fenetre",
-                    "rideau cristal",
-                    "rideau blanc"
+                    {
+                        "name": "rideau ouvert",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau Largeur",
                 "values": [
-                    "rideau cristal pignon",
-                    "rideau blanc pignon"
+                    {
+                        "name": "rideau ouvert pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Plancher",
                 "values": [
-                    "plancher",
-                    "aucun"
+                    {
+                        "name": "plancher",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    }
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    },
+                    {
+                        "name": "lestage",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             }
         ]
@@ -379,39 +1610,250 @@
             "ILE DE FRANCE": 1200,
             "PACA": 900
         },
-        "settings": [{
-            "type": "hmin",
-            "value": {"Toit pagode": 2.75}
-        }],
+        "settings": [
+            {
+                "type": "hmin",
+                "value": {
+                    "Toit pagode": 2.75
+                }
+            }
+        ],
         "apparels": [
             {
                 "type": "Toit pagode",
                 "values": [
-                    "toit blanc",
-                    "toit cristal"
+                    {
+                        "name": "toit blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "toit cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau Longueur",
                 "values": [
-                    "rideau ouvert",
-                    "rideau fenetre",
-                    "rideau cristal",
-                    "rideau blanc"
+                    {
+                        "name": "rideau ouvert",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Rideau Largeur",
                 "values": [
-                    "rideau cristal pignon",
-                    "rideau blanc pignon"
+                    {
+                        "name": "rideau ouvert pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau cristal pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau blanc pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             },
             {
                 "type": "Plancher",
                 "values": [
-                    "plancher",
-                    "aucun"
+                    {
+                        "name": "plancher",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    }
+                ]
+            },
+            {
+                "type": "Lestage",
+                "values": [
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    },
+                    {
+                        "name": "lestage",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
                 ]
             }
         ]

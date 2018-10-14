@@ -25,13 +25,15 @@
             const objsDisplayed = $select(objectsDisplayed);
             const objectsAvailable = window.objectsAvailable;
 
-            const objects = objsDisplayed.map((obj) => ({
-                uid: obj.uid,
-                name: obj.name,
-                apparels: objectsAvailable[obj.name].apparels,
-                price: objectsAvailable[obj.name].price['ILE DE FRANCE'],
-                qte: 1
-            }));
+            const objects = objsDisplayed.map((obj) => (
+                {
+                    uid: obj.uid,
+                    name: obj.name,
+                    apparels: objectsAvailable[obj.name].apparels,
+                    price: objectsAvailable[obj.name].price['ILE DE FRANCE'],
+                    qte: 1
+                }
+            ));
 
             //increment qte
             const objectsGrouped = objects.reduce((acc, val) => {

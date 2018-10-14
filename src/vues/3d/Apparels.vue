@@ -9,11 +9,12 @@
 
             <div class="row" style="margin-bottom: 0;">
                 <div class="col" style="width: 100%">
-                    <select :value="apparel.value"
+                    <select :value="apparel.value.name"
                             @input="selectApparels[index] = $event.target.value"
                             v-on:change="handleChange(selectApparels[index], apparel.type)">
                         <option v-for="value in apparel.values"
-                                :value="`${value}`">{{value}}</option>
+                                :value="`${value.name}`">{{value.name}}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -34,18 +35,28 @@
             }
         },
         methods: {
-            handleChange: function(value, type) {
+            handleChange: function (value, type) {
+                let valueToSend = null;
+
+                this.detailsState().item.apparels.forEach(ap => {
+                    ap.values.forEach(v => {
+                        if (v.name === value) valueToSend = v;
+                    })
+                });
+
+                console.log(valueToSend);
+
                 this.$root.$emit('put', actionCreator(APPAREL_CHANGED, {
                     uid: this.detailsState().item.uid,
                     itemName: this.detailsState().itemName,
                     apparel: {
                         type,
-                        value
+                        "value": valueToSend
                     },
                     settings: this.detailsState().item.settings
                 }));
             },
-            detailsState: function() {
+            detailsState: function () {
                 return $select(getDetailsState);
             }
         }

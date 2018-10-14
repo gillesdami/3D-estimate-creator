@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span class="value"> Estimation : {{ total().toFixed(2) }} € TTC* </span>
+        <span class="value"> Estimation : {{ total() }} € TTC* </span>
         <br>
         <span class="estimation"> *estimation non contractuelle</span>
     </div>
@@ -8,13 +8,25 @@
 
 <script>
     import { $select } from '../sagas/vue';
-    import { totalSelector } from '../selectors';
-    
+    import { objectsDisplayed, totalSelector } from '../selectors';
+
     export default {
         name: "Total",
         methods: {
             total: function () {
-                return $select(totalSelector, window.objectsAvailable);
+                let totalItems = $select(totalSelector, window.objectsAvailable);
+                const objDisplayed = $select(objectsDisplayed, window.objectsAvailable);
+
+                let totalApparels = 0;
+
+                objDisplayed.forEach(obj => {
+                    obj.apparels.forEach(ap => {
+                        if (!ap.value.name.includes("aucun"))
+                            totalApparels += ap.value.price["ILE DE FRANCE"];
+                    });
+                });
+
+                return totalItems + totalApparels;
             }
         }
     }
