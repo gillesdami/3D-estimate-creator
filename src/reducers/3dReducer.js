@@ -1,8 +1,8 @@
 import {
-    ADD_OBJECT_DISPLAYED,
+    ADD_OBJECT_DISPLAYED, ADD_SPAN,
     APPAREL_CHANGED,
     DELETE_ALL,
-    DELETE_OBJECT_DISPLAYED,
+    DELETE_OBJECT_DISPLAYED, DELETE_SPAN,
     HIDE_DETAILS_PANEL,
     OBJECT_DISPLAYED_LOADED,
     OBJECT_DISPLAYED_LOADING,
@@ -263,6 +263,62 @@ export const deleteAll = (state = {}, action) => {
             localStorage.clear();
             location.reload(true);
             return state;
+        default:
+            return state;
+    }
+};
+
+/*
+
+[
+    {
+        uid,
+        itemName,
+        spansNumber,
+        .
+        .
+        .
+    }
+]
+
+ */
+export const spans = (state = [], action) => {
+    switch (action.type) {
+        case ADD_SPAN:
+            const existingObj = state.find(obj => obj.uid === action.payload.uid);
+            if (existingObj) {
+                return state.map(obj => {
+                   if (obj.uid === action.payload.uid) {
+                       return {
+                           ...obj,
+                           spansNumber: ++obj.spansNumber
+                       }
+                   } else {
+                       return obj;
+                   }
+                });
+            } else {
+                return [
+                    ...state,
+                    {
+                        uid: action.payload.uid,
+                        itemName: action.payload.itemName,
+                        spansNumber: 1
+                    }
+                ];
+            }
+        case DELETE_SPAN:
+            const objToDelete = state.find(obj => obj.uid === action.payload.uid);
+            return state.map(obj => {
+               if (objToDelete && obj.spansNumber > 0) {
+                   return {
+                       ...obj,
+                       spansNumber: --obj.spansNumber
+                   }
+               } else {
+                   return obj;
+               }
+            });
         default:
             return state;
     }
