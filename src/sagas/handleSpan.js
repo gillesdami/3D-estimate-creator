@@ -37,9 +37,9 @@ export function* addSpan(scene, action) {
     const calls = {};
 
     item.apparels.forEach((appareal) => {
-        calls[appareal.type] = call(addAppareal, scene, itemName, baseToAdd, appareal.type, appareal.value || appareal.values[0].name, item.settings);
+        calls[appareal.type] = call(addApparealSpan, scene, itemName, baseToAdd, appareal.type, appareal.value || appareal.values[0].name, item.settings);
         if (appareal.type === "Rideau Largeur")
-            calls[appareal.type] = call(addAppareal, scene, itemName, base, "Rideau Largeur Start", appareal.value || appareal.values[0].name, item.settings);
+            calls["Rideau Largeur Start"] = call(addApparealSpan, scene, itemName, base, "Rideau Largeur Start", appareal.value || appareal.values[0].name, item.settings);
     });
 
     yield all(calls);
@@ -52,7 +52,7 @@ export function* addSpan(scene, action) {
     return base;
 }
 
-export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue, settings) {
+export function* addApparealSpan(scene, itemName, parentObj, apparealType, apparealValue, settings) {
     if (apparealValue.name === "aucun") return null;
 
     const obj = new THREE.Group();

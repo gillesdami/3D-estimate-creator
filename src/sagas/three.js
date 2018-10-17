@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { call, all, fork, put, select, takeEvery } from 'redux-saga/effects';
+import { all, call, fork, put, select, takeEvery } from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
 import { addAppareal, addObject, reloadObjects } from './addObject';
 import { addSpan, deleteSpan } from './handleSpan';
