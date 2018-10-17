@@ -1,15 +1,17 @@
 import * as THREE from 'three';
-import { call, fork, put, select, takeEvery } from 'redux-saga/effects';
+import { call, all, fork, put, select, takeEvery } from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
 import { addAppareal, addObject, reloadObjects } from './addObject';
-import { addSpan, deleteSpan} from './handleSpan';
+import { addSpan, deleteSpan } from './handleSpan';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
+    ADD_SPAN,
     ADDED_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
     DBCLICKED_CANVAS,
     DELETE_OBJECT_DISPLAYED,
+    DELETE_SPAN,
     HIDE_DETAILS_PANEL,
     MOUSE_CLICK,
     MOUSE_MOVE,
@@ -21,9 +23,7 @@ import {
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL_FROM_SCENE,
     TOGGLE_CLICK_FROM_OBJECT,
-    TOGGLE_RECAP_PANEL_MAIN,
-    ADD_SPAN,
-    DELETE_SPAN
+    TOGGLE_RECAP_PANEL_MAIN
 } from '../actions';
 import moveObject from './moveObject';
 import initShowObjectBox from './showObjectBox';
@@ -179,7 +179,16 @@ export function* compareApparel(scene, action) {
             apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
         }
 
-        yield call(addAppareal, scene, itemName, object, apparel.type, apparel.value, settings);
+        const calls = {};
+
+        object.children.forEach(c => {
+            if (c.type === "Object3D") {
+                calls[c.name] = call(addAppareal, scene, itemName, c, apparel.type, apparel.value, settings);
+            }
+        });
+
+        calls[object.name] = call(addAppareal, scene, itemName, object, apparel.type, apparel.value, settings);
+        yield all(calls);
     }
 }
 
@@ -219,11 +228,11 @@ export function* sendEstimation(action) {
         + detailContent + "\n\n"
         + "Commentaire client : " + action.payload.commentary;
 
-    fetch('admin/sendMail.php', { 
-        method: 'POST', 
+    fetch('admin/sendMail.php', {
+        method: 'POST',
         body: JSON.stringify({content, clientName, clientEmail}),
         headers: {'Content-Type': 'application/json'}
-        })
+    })
         .then(r => r.json(), () => alert("Une erreur s'est produite :/"))
         .then(r => {
             if (r === true) {
@@ -231,6 +240,6 @@ export function* sendEstimation(action) {
             }
             else alert("Une erreur s'est produite, verifiez votre addresse mail.");
         });
-    
+
     yield put(actionCreator(TOGGLE_RECAP_PANEL_MAIN));
 }

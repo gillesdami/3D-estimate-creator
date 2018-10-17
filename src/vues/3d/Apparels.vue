@@ -84,8 +84,6 @@
                     })
                 });
 
-                console.log(valueToSend);
-
                 this.$root.$emit('put', actionCreator(APPAREL_CHANGED, {
                     uid: this.detailsState().item.uid,
                     itemName: this.detailsState().itemName,
