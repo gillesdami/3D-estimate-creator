@@ -1,11 +1,11 @@
 <template>
     <div v-if="detailsState().item && detailsState().item.apparels.length" class="apparels-box">
         <!-- Travées -->
-        <div class="travees">
+        <div v-if="detailsState().itemName.includes('Tente de reception')" class="travees">
             <p class="label">Ajouter/Suppimer une travée</p>
-            <button v-on:click="addSpan"> + </button>
-            <span> {{surface}} m²</span>
             <button v-on:click="deleteSpan"> - </button>
+            <span> {{surface}} m²</span>
+            <button v-on:click="addSpan"> + </button>
         </div>
 
         <!-- Liste des apparels -->
@@ -52,7 +52,8 @@
             addSpan: function () {
                 this.$root.$emit('put', actionCreator(ADD_SPAN, {
                     uid: this.detailsState().item.uid,
-                    itemName: this.detailsState().itemName
+                    itemName: this.detailsState().itemName,
+                    item : this.detailsState().item
                 }));
 
                 this.calculateSurface();
@@ -60,7 +61,8 @@
             deleteSpan: function () {
                 this.$root.$emit('put', actionCreator(DELETE_SPAN, {
                     uid: this.detailsState().item.uid,
-                    itemName: this.detailsState().itemName
+                    itemName: this.detailsState().itemName,
+                    item : this.detailsState().item
                 }));
 
                 this.calculateSurface();

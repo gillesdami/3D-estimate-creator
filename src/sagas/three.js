@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { call, fork, put, select, takeEvery } from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
 import { addAppareal, addObject, reloadObjects } from './addObject';
+import { addSpan, deleteSpan} from './handleSpan';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
@@ -20,7 +21,9 @@ import {
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL_FROM_SCENE,
     TOGGLE_CLICK_FROM_OBJECT,
-    TOGGLE_RECAP_PANEL_MAIN
+    TOGGLE_RECAP_PANEL_MAIN,
+    ADD_SPAN,
+    DELETE_SPAN
 } from '../actions';
 import moveObject from './moveObject';
 import initShowObjectBox from './showObjectBox';
@@ -79,6 +82,8 @@ export function* initThreeSaga() {
     yield takeEvery(DELETE_OBJECT_DISPLAYED, deleteObjectFromScene, scene);
     yield takeEvery(ADDED_OBJECT_DISPLAYED, objectLoaded);
     yield takeEvery(SEND_ESTIMATION, sendEstimation);
+    yield takeEvery(ADD_SPAN, addSpan, scene);
+    yield takeEvery(DELETE_SPAN, deleteSpan, scene);
     yield call(reloadObjects, scene);
     yield fork(initShowObjectBox, scene);
 }
