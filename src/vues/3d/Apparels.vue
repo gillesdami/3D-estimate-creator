@@ -62,7 +62,8 @@
                 this.$root.$emit('put', actionCreator(DELETE_SPAN, {
                     uid: this.detailsState().item.uid,
                     itemName: this.detailsState().itemName,
-                    item : this.detailsState().item
+                    item : this.detailsState().item,
+                    shouldIDeleteIt: true
                 }));
 
                 this.calculateSurface();

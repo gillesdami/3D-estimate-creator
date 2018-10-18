@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { all, call, put, select } from 'redux-saga/effects';
 import setBoxCenter from './util/setBoxCenter';
-import { getSpansState } from '../selectors';
+import { getSpansState, getDetailsState } from '../selectors';
 
 import loadModel from './util/colladaLoader';
 import { actionCreator, DELETE_LAST_SPAN_ADDED, DELETE_SPAN, LAST_SPAN_ADDED } from "../actions";
@@ -22,9 +22,24 @@ export function* addSpan(scene, action) {
     const spanState = yield select(getSpansState);
     const currentSpan = spanState.filter(span => span.uid === uid);
 
+    // Position de la tente mere + le nombre de travees * 3m + la future travees
+    // TODO Le 25 a changer quand on mettra une taille dynamique de la grille
+    if (base.position.x + 3 * currentSpan[0].spansNumber + 3 > 25) {
+        alert("La travée va sortir de la grille, impossible de l'ajouter");
+
+        yield put(actionCreator(DELETE_SPAN, {
+            uid: item.uid,
+            itemName: itemName,
+            item: item,
+            shouldIDeleteIt: false
+        }));
+
+        return null;
+    }
+
     const baseToAdd = yield call(loadModel, itemName, itemName);
     baseToAdd.name = generateUid();
-    baseToAdd.position.set((base.userData.bb.max.z - 0.85) * currentSpan[0].spansNumber, base.position.y, base.position.z);
+    baseToAdd.position.set((3 * currentSpan[0].spansNumber), 0, 0); // y:0 et z:0 car placement par rapport a la tente mere
     base.add(baseToAdd);
 
     // Delete rideaux pour les remettre mieux après
@@ -138,13 +153,14 @@ export function* addApparealSpan(scene, itemName, parentObj, apparealType, appar
 }
 
 export function* deleteSpan(scene, action) {
-    const {uid, itemName, item} = action.payload;
+    const {uid, itemName, item, shouldIDeleteIt} = action.payload;
+
+    // Si on ajoute une travee mais qu'elle sort de la grille cette sage est quand meme appellee
+    if(!shouldIDeleteIt) return null;
 
     const base = scene.getObjectByName(uid);
 
     const spanState = yield select(getSpansState);
-
-    console.log(spanState);
 
     const currentSpanItem = spanState.filter(span => span.uid === uid);
     const itemSpans = currentSpanItem[0].lastSpansAdded;
@@ -152,19 +168,21 @@ export function* deleteSpan(scene, action) {
     let spanToDelete = base.getObjectByName(itemSpans[itemSpans.length - 1]);
     const uidToDelete = spanToDelete.name;
 
-    spanToDelete.parent.remove(spanToDelete);
+    if (spanToDelete) {
+        spanToDelete.parent.remove(spanToDelete);
 
-    // Pour placer le rideau lageur de la fin
-    const calls = {};
-    item.apparels.forEach((appareal) => {
-        if (appareal.type === "Rideau Largueur")
-            calls[appareal.type] = call(addAppareal, scene, itemName, base, "Rideau Largeur", appareal.value || appareal.values[0].name, item.settings);
-    });
+        // Pour placer le rideau lageur de la fin
+        const calls = {};
+        item.apparels.forEach((appareal) => {
+            if (appareal.type === "Rideau Largueur")
+                calls[appareal.type] = call(addAppareal, scene, itemName, base, "Rideau Largeur", appareal.value || appareal.values[0].name, item.settings);
+        });
 
-    yield all(calls);
+        yield all(calls);
 
-    yield put(actionCreator(DELETE_LAST_SPAN_ADDED, {
-        uid: uid,
-        uidToDelete
-    }));
+        yield put(actionCreator(DELETE_LAST_SPAN_ADDED, {
+            uid: uid,
+            uidToDelete
+        }));
+    }
 }
