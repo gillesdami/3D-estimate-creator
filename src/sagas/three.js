@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { all, call, fork, put, select, takeEvery } from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
 import { addAppareal, addObject, reloadObjects } from './addObject';
-import { addSpan, deleteSpan } from './handleSpan';
+import { addApparealSpan, addSpan, deleteSpan } from './handleSpan';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
@@ -27,7 +27,7 @@ import {
 } from '../actions';
 import moveObject from './moveObject';
 import initShowObjectBox from './showObjectBox';
-import { objectsDisplayed } from "../selectors";
+import { getSpansState, objectsDisplayed } from "../selectors";
 
 const cameraFrustum = 70;
 
@@ -179,15 +179,34 @@ export function* compareApparel(scene, action) {
             apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
         }
 
+        // Pour récupérer la dernière travées et mettre un rideau largeur au bout
+        const spanState = yield select(getSpansState);
+        const lastSpansItem = spanState.filter(span => span.uid === uid);
+        let lastSpan = null;
+
+        if (lastSpansItem.length !== 0) {
+            const lastSpanTab = lastSpansItem[0].lastSpansAdded;
+            lastSpan = lastSpanTab[lastSpanTab.length - 1];
+        }
+
         const calls = {};
 
         object.children.forEach(c => {
-            if (c.type === "Object3D") {
+            if (c.type === "Object3D" && apparel.type !== "Rideau Largeur")
                 calls[c.name] = call(addAppareal, scene, itemName, c, apparel.type, apparel.value, settings);
-            }
         });
 
-        calls[object.name] = call(addAppareal, scene, itemName, object, apparel.type, apparel.value, settings);
+        // Pour gestion des rideau largeur pour ne pas en mettre à l'intérieur des travées
+        if (apparel.type === "Rideau Largeur") {
+            if (lastSpan !== null) {
+                calls["Rideau Largeur"] = call(addApparealSpan, scene, itemName, object.getObjectByName(lastSpan), apparel.type, apparel.value, settings);
+            } else {
+                calls["Rideau Largeur"] = call(addApparealSpan, scene, itemName, object, apparel.type, apparel.value, settings);
+            }
+            calls["Rideau Largeur Start"] = call(addApparealSpan, scene, itemName, object, "Rideau Largeur Start", apparel.value, settings);
+        } else {
+            calls[object.name] = call(addAppareal, scene, itemName, object, apparel.type, apparel.value, settings);
+        }
         yield all(calls);
     }
 }

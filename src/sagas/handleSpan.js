@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { all, call, put, select } from 'redux-saga/effects';
 import setBoxCenter from './util/setBoxCenter';
-import { getSpansState, getDetailsState } from '../selectors';
+import { getSpansState } from '../selectors';
 
 import loadModel from './util/colladaLoader';
 import { actionCreator, DELETE_LAST_SPAN_ADDED, DELETE_SPAN, LAST_SPAN_ADDED } from "../actions";
@@ -156,7 +156,7 @@ export function* deleteSpan(scene, action) {
     const {uid, itemName, item, shouldIDeleteIt} = action.payload;
 
     // Si on ajoute une travee mais qu'elle sort de la grille cette sage est quand meme appellee
-    if(!shouldIDeleteIt) return null;
+    if (!shouldIDeleteIt) return null;
 
     const base = scene.getObjectByName(uid);
 
@@ -171,11 +171,15 @@ export function* deleteSpan(scene, action) {
     if (spanToDelete) {
         spanToDelete.parent.remove(spanToDelete);
 
-        // Pour placer le rideau lageur de la fin
+        // Pour placer le rideau lageur de la fin, on l'ajoute a l'avant dernière travées (celle qui deviendra la dernière après que la dernière soit delete)
         const calls = {};
         item.apparels.forEach((appareal) => {
-            if (appareal.type === "Rideau Largueur")
-                calls[appareal.type] = call(addAppareal, scene, itemName, base, "Rideau Largeur", appareal.value || appareal.values[0].name, item.settings);
+            if (appareal.type === "Rideau Largeur") {
+                if (itemSpans.length === 1) {
+                    calls[appareal.type] = call(addApparealSpan, scene, itemName, base, appareal.type, appareal.value || appareal.values[0].name, item.settings);
+                } else
+                    calls[appareal.type] = call(addApparealSpan, scene, itemName, base.getObjectByName(itemSpans[itemSpans.length - 2]), appareal.type, appareal.value || appareal.values[0].name, item.settings);
+            }
         });
 
         yield all(calls);
