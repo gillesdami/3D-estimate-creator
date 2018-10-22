@@ -172,7 +172,6 @@ export function* compareApparel(scene, action) {
         const {apparel, itemName, uid, settings} = action.payload;
         const object = scene.getObjectByName(uid);
 
-
         let apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
         while (apparelToDelete != null) {
             apparelToDelete.parent.remove(apparelToDelete);
@@ -198,6 +197,11 @@ export function* compareApparel(scene, action) {
 
         // Pour gestion des rideau largeur pour ne pas en mettre à l'intérieur des travées
         if (apparel.type === "Rideau Largeur") {
+
+            //TODO [Rideau start] peut être pas opti, a voir pour changer ça
+            let rideauStartToDelete = scene.getObjectByName(uid).getObjectByName("Rideau Largeur Start");
+            rideauStartToDelete.parent.remove(rideauStartToDelete);
+
             if (lastSpan !== null) {
                 calls["Rideau Largeur"] = call(addApparealSpan, scene, itemName, object.getObjectByName(lastSpan), apparel.type, apparel.value, settings);
             } else {

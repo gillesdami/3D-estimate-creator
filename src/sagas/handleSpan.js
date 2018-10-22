@@ -2,11 +2,22 @@ import * as THREE from 'three';
 import { all, call, put, select } from 'redux-saga/effects';
 import setBoxCenter from './util/setBoxCenter';
 import { getSpansState } from '../selectors';
+import { updateSelectedBoxHelper } from './showObjectBox';
 
 import loadModel from './util/colladaLoader';
-import { actionCreator, DELETE_LAST_SPAN_ADDED, DELETE_SPAN, LAST_SPAN_ADDED } from "../actions";
+import {
+    actionCreator,
+    DELETE_LAST_SPAN_ADDED,
+    DELETE_SPAN,
+    LAST_SPAN_ADDED,
+    OBJECT_DISPLAYED_LOADING ,
+    OBJECT_DISPLAYED_LOADED
+} from "../actions";
 
 export function* addSpan(scene, action) {
+
+    yield put(actionCreator(OBJECT_DISPLAYED_LOADING));
+
     const generateUid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
         /[xy]/g,
         function (c) {
@@ -63,6 +74,10 @@ export function* addSpan(scene, action) {
         uid: uid,
         lastSpansAdded: baseToAdd.name
     }));
+
+    yield call(updateSelectedBoxHelper, scene);
+
+    yield put(actionCreator(OBJECT_DISPLAYED_LOADED));
 
     return base;
 }
@@ -153,6 +168,9 @@ export function* addApparealSpan(scene, itemName, parentObj, apparealType, appar
 }
 
 export function* deleteSpan(scene, action) {
+
+    yield put(actionCreator(OBJECT_DISPLAYED_LOADING));
+
     const {uid, itemName, item, shouldIDeleteIt} = action.payload;
 
     // Si on ajoute une travee mais qu'elle sort de la grille cette sage est quand meme appellee
@@ -189,4 +207,9 @@ export function* deleteSpan(scene, action) {
             uidToDelete
         }));
     }
+
+    yield call(updateSelectedBoxHelper, scene);
+
+    yield put(actionCreator(OBJECT_DISPLAYED_LOADED));
+
 }
