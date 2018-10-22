@@ -1,14 +1,17 @@
 import * as THREE from 'three';
-import { call, fork, put, select, takeEvery } from 'redux-saga/effects';
+import { all, call, fork, put, select, takeEvery } from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
 import { addAppareal, addObject, reloadObjects } from './addObject';
+import { addApparealSpan, addSpan, deleteSpan } from './handleSpan';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
+    ADD_SPAN,
     ADDED_OBJECT_DISPLAYED,
     APPAREL_CHANGED,
     DBCLICKED_CANVAS,
     DELETE_OBJECT_DISPLAYED,
+    DELETE_SPAN,
     HIDE_DETAILS_PANEL,
     MOUSE_CLICK,
     MOUSE_MOVE,
@@ -24,7 +27,7 @@ import {
 } from '../actions';
 import moveObject from './moveObject';
 import initShowObjectBox from './showObjectBox';
-import { objectsDisplayed } from "../selectors";
+import { getSpansState, objectsDisplayed } from "../selectors";
 
 const cameraFrustum = 70;
 
@@ -79,6 +82,8 @@ export function* initThreeSaga() {
     yield takeEvery(DELETE_OBJECT_DISPLAYED, deleteObjectFromScene, scene);
     yield takeEvery(ADDED_OBJECT_DISPLAYED, objectLoaded);
     yield takeEvery(SEND_ESTIMATION, sendEstimation);
+    yield takeEvery(ADD_SPAN, addSpan, scene);
+    yield takeEvery(DELETE_SPAN, deleteSpan, scene);
     yield call(reloadObjects, scene);
     yield fork(initShowObjectBox, scene);
 }
@@ -167,14 +172,46 @@ export function* compareApparel(scene, action) {
         const {apparel, itemName, uid, settings} = action.payload;
         const object = scene.getObjectByName(uid);
 
-
         let apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
         while (apparelToDelete != null) {
             apparelToDelete.parent.remove(apparelToDelete);
             apparelToDelete = scene.getObjectByName(uid).getObjectByName(apparel.type);
         }
 
-        yield call(addAppareal, scene, itemName, object, apparel.type, apparel.value, settings);
+        // Pour récupérer la dernière travées et mettre un rideau largeur au bout
+        const spanState = yield select(getSpansState);
+        const lastSpansItem = spanState.filter(span => span.uid === uid);
+        let lastSpan = null;
+
+        if (lastSpansItem.length !== 0) {
+            const lastSpanTab = lastSpansItem[0].lastSpansAdded;
+            lastSpan = lastSpanTab[lastSpanTab.length - 1];
+        }
+
+        const calls = {};
+
+        object.children.forEach(c => {
+            if (c.type === "Object3D" && apparel.type !== "Rideau Largeur")
+                calls[c.name] = call(addAppareal, scene, itemName, c, apparel.type, apparel.value, settings);
+        });
+
+        // Pour gestion des rideau largeur pour ne pas en mettre à l'intérieur des travées
+        if (apparel.type === "Rideau Largeur") {
+
+            //TODO [Rideau start] peut être pas opti, a voir pour changer ça
+            let rideauStartToDelete = scene.getObjectByName(uid).getObjectByName("Rideau Largeur Start");
+            rideauStartToDelete.parent.remove(rideauStartToDelete);
+
+            if (lastSpan !== null) {
+                calls["Rideau Largeur"] = call(addApparealSpan, scene, itemName, object.getObjectByName(lastSpan), apparel.type, apparel.value, settings);
+            } else {
+                calls["Rideau Largeur"] = call(addApparealSpan, scene, itemName, object, apparel.type, apparel.value, settings);
+            }
+            calls["Rideau Largeur Start"] = call(addApparealSpan, scene, itemName, object, "Rideau Largeur Start", apparel.value, settings);
+        } else {
+            calls[object.name] = call(addAppareal, scene, itemName, object, apparel.type, apparel.value, settings);
+        }
+        yield all(calls);
     }
 }
 
@@ -214,11 +251,11 @@ export function* sendEstimation(action) {
         + detailContent + "\n\n"
         + "Commentaire client : " + action.payload.commentary;
 
-    fetch('admin/sendMail.php', { 
-        method: 'POST', 
+    fetch('admin/sendMail.php', {
+        method: 'POST',
         body: JSON.stringify({content, clientName, clientEmail}),
         headers: {'Content-Type': 'application/json'}
-        })
+    })
         .then(r => r.json(), () => alert("Une erreur s'est produite :/"))
         .then(r => {
             if (r === true) {
@@ -226,6 +263,6 @@ export function* sendEstimation(action) {
             }
             else alert("Une erreur s'est produite, verifiez votre addresse mail.");
         });
-    
+
     yield put(actionCreator(TOGGLE_RECAP_PANEL_MAIN));
 }

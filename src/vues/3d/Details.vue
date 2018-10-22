@@ -7,7 +7,7 @@
 
         <div id="deleteButtonRow" class="row" v-if="detailsState().itemName && detailsState().item">
             <button id="validateButton"
-                    v-if="!detailsState().item.isValidated"
+                    v-if="objectsDisplay().filter(obj => obj.uid === detailsState().item.uid)[0] && !objectsDisplay().filter(obj => obj.uid === detailsState().item.uid)[0].isValidated"
                     v-on:click="validateAndHideDetails">VALIDER
             </button>
             <img v-on:click="deleteObjectDisplayed" id="trashDetails" src="../../../assets/buttons/delete.svg"/>

@@ -1,9 +1,12 @@
 import {
     ADD_OBJECT_DISPLAYED,
+    ADD_SPAN,
     APPAREL_CHANGED,
-    DELETE_ALL,
+    DELETE_ALL, DELETE_LAST_SPAN_ADDED,
     DELETE_OBJECT_DISPLAYED,
+    DELETE_SPAN,
     HIDE_DETAILS_PANEL,
+    LAST_SPAN_ADDED,
     OBJECT_DISPLAYED_LOADED,
     OBJECT_DISPLAYED_LOADING,
     POSITION_CHANGED,
@@ -17,7 +20,8 @@ import {
     TOGGLE_RECAP_PANEL_FORM,
     TOGGLE_RECAP_PANEL_MAIN,
     TOGGLE_RECAP_PANEL_RECAP,
-    TOGGLE_SETTINGS_PANEL, VALIDATE_OBJECT_DISPLAYED
+    TOGGLE_SETTINGS_PANEL,
+    VALIDATE_OBJECT_DISPLAYED
 } from "../actions";
 
 const defaultHelperState = {
@@ -58,7 +62,7 @@ export const objectsDisplayed = (state = [], action) => {
             ];
         case VALIDATE_OBJECT_DISPLAYED:
             return state.map(object => {
-                if(object.uid === action.payload.uid) {
+                if (object.uid === action.payload.uid) {
                     return {
                         ...object,
                         isValidated: action.payload.isValidated
@@ -263,6 +267,98 @@ export const deleteAll = (state = {}, action) => {
             localStorage.clear();
             location.reload(true);
             return state;
+        default:
+            return state;
+    }
+};
+
+/*
+
+[
+    {
+        uid,
+        itemName,
+        spansNumber,
+        .
+        .
+        .
+    }
+]
+
+ */
+export const spans = (state = [], action) => {
+    switch (action.type) {
+        case ADD_SPAN:
+            const existingObj = state.find(obj => obj.uid === action.payload.uid);
+            if (existingObj) {
+                return state.map(obj => {
+                    if (obj.uid === action.payload.uid) {
+                        return {
+                            ...obj,
+                            spansNumber: ++obj.spansNumber
+                        }
+                    } else {
+                        return obj;
+                    }
+                });
+            } else {
+                return [
+                    ...state,
+                    {
+                        uid: action.payload.uid,
+                        itemName: action.payload.itemName,
+                        spansNumber: 1,
+                        lastSpansAdded: []
+                    }
+                ];
+            }
+        case DELETE_SPAN:
+            const objToDelete = state.find(obj => obj.uid === action.payload.uid);
+            return state.map(obj => {
+                if (objToDelete && obj.spansNumber > 0) {
+                    return {
+                        ...obj,
+                        spansNumber: --obj.spansNumber
+                    }
+                } else {
+                    return obj;
+                }
+            });
+        case LAST_SPAN_ADDED:
+            const existingObjToAddSpan = state.find(obj => obj.uid === action.payload.uid);
+            if (existingObjToAddSpan) {
+                return state.map(obj => {
+                    if (obj.uid === action.payload.uid) {
+                        return {
+                            ...obj,
+                            lastSpansAdded: [
+                                ...obj.lastSpansAdded,
+                                action.payload.lastSpansAdded
+                            ]
+                        }
+                    } else {
+                        return obj;
+                    }
+                });
+            } else {
+                return state;
+            }
+        case DELETE_LAST_SPAN_ADDED:
+            const existingObjToDeleteSpan = state.find(obj => obj.uid === action.payload.uid);
+            if (existingObjToDeleteSpan) {
+                return state.map(obj => {
+                    if (obj.uid === action.payload.uid) {
+                        return {
+                            ...obj,
+                            lastSpansAdded: obj.lastSpansAdded.filter(span => span !== action.payload.uidToDelete)
+                        }
+                    } else {
+                        return obj;
+                    }
+                });
+            } else {
+                return state;
+            }
         default:
             return state;
     }

@@ -37,7 +37,7 @@ function* hideSelectedBoxHelper(scene) {
     scene.remove(helper);
 }
 
-function* updateSelectedBoxHelper(scene) {
+export function* updateSelectedBoxHelper(scene) {
     const helper = scene.children.find((o) => o instanceof SelectedBoxHelper);
 
     if(!helper) return;

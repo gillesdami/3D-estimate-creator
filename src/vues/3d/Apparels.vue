@@ -1,5 +1,14 @@
 <template>
-    <div v-if="detailsState().item && detailsState().item.apparels.length>0" class="apparels-box">
+    <div v-if="detailsState().item && detailsState().item.apparels.length" class="apparels-box">
+        <!-- Travées -->
+        <div v-if="detailsState().itemName.includes('Tente de reception')" class="travees">
+            <p class="label">Ajouter/Suppimer une travée</p>
+            <button v-on:click="deleteSpan"> - </button>
+            <span> {{surface}} m²</span>
+            <button v-on:click="addSpan"> + </button>
+        </div>
+
+        <!-- Liste des apparels -->
         <div v-for="(apparel, index) in detailsState().item.apparels">
             <div class="row" style="margin-bottom: 0;">
                 <div class="col">
@@ -23,18 +32,50 @@
 </template>
 
 <script>
-    import { actionCreator, APPAREL_CHANGED } from '../../actions';
+    import {actionCreator, ADD_SPAN, APPAREL_CHANGED, DELETE_SPAN} from '../../actions';
     import { $select } from '../../sagas/vue';
-    import { getDetailsState } from "../../selectors";
+    import { getDetailsState, getSpansState } from "../../selectors";
 
     export default {
         name: "Apparels",
         data() {
             return {
-                selectApparels: []
+                selectApparels: [],
+                surface: 0
             }
         },
+        mounted: function () {
+            if (this.detailsState().item) this.calculateSurface();
+        },
         methods: {
+            //SPAN = TRAVEE
+            addSpan: function () {
+                this.$root.$emit('put', actionCreator(ADD_SPAN, {
+                    uid: this.detailsState().item.uid,
+                    itemName: this.detailsState().itemName,
+                    item : this.detailsState().item
+                }));
+
+                this.calculateSurface();
+            },
+            deleteSpan: function () {
+                this.$root.$emit('put', actionCreator(DELETE_SPAN, {
+                    uid: this.detailsState().item.uid,
+                    itemName: this.detailsState().itemName,
+                    item : this.detailsState().item,
+                    shouldIDeleteIt: true
+                }));
+
+                this.calculateSurface();
+            },
+            calculateSurface: function () {
+                const spansObj = this.spansSate().find(obj => obj.uid === this.detailsState().item.uid);
+
+                if (spansObj) {
+                    // 5 = Random number
+                    this.surface = spansObj.spansNumber * 5;
+                }
+            },
             handleChange: function (value, type) {
                 let valueToSend = null;
 
@@ -43,8 +84,6 @@
                         if (v.name === value) valueToSend = v;
                     })
                 });
-
-                console.log(valueToSend);
 
                 this.$root.$emit('put', actionCreator(APPAREL_CHANGED, {
                     uid: this.detailsState().item.uid,
@@ -58,6 +97,9 @@
             },
             detailsState: function () {
                 return $select(getDetailsState);
+            },
+            spansSate: function () {
+                return $select(getSpansState)
             }
         }
     }

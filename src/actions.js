@@ -65,3 +65,10 @@ export const MOUSE_UP = "MOUSE_UP";
 // region cart actions
 export const SEND_ESTIMATION = "SEND_ESTIMATION";
 // endregion
+
+// region span
+export const ADD_SPAN = "ADD_SPAN";
+export const DELETE_SPAN = "DELETE_SPAN";
+export const LAST_SPAN_ADDED = "LAST_SPAN_ADDED";
+export const DELETE_LAST_SPAN_ADDED = "DELETE_LAST_SPAN_ADDED";
+//endregion
