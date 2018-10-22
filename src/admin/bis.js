@@ -20,7 +20,7 @@
     const modelList = await (await fetch('getModelList.php')).json();
     
     const apparelsTypes = ["Pignon","Croix de saint andre","Barre de pignon","Toit pagode","Toit travee","Plancher","Rideau","Rideau Longueur","Rideau Largeur","Lestage"];
-    const settingsMappings = {"Toit pagode": {name: "hmin", type: "number", description: "Hauteur en metre à la quel est placé le toit par rapport au point le plus bas du modele."}};
+    const settingsMappings = {"Toit pagode": {name: "hmin", type: "number", description: "Hauteur en metre à laquelle est placé le toit par rapport au sol."}};
     const regions = ["ILE DE FRANCE","PACA","OCCITANIE","GRAND EST","AUVERGNE RHONE ALPES","PAYS DE LA LOIRE","CENTRE VAL DE LOIRE","NOUVELLE AQUITAINE","BOURGOGNE FRANCHE COMPTE","NORMANDIE","HAUTS DE FRANCE","BRETAGNE"];
 
     async function railway(objectEditedName = null) {
@@ -124,7 +124,7 @@
     }
 
     function addApparealRow(type, dirName, apparealValue = {price: {}}, settings) {console.log(apparealValue)
-        const mainElement = document.querySelector("main");
+        const mainElement = document.querySelector("div#rows");
         const rowElement = document.createElement("div");
         rowElement.className = "row";
         rowElement.innerHTML = `
@@ -139,6 +139,14 @@
                 fichier dae: 
                 <input type="file" name="rowfile"><img src="loading.gif" style="display:none;">
             </label>
+            ${
+                settingsMappings[type] ? `
+            <label>${settingsMappings[type].description}
+                <input type="${settingsMappings[type].type}" name="rowsetting" id="${settingsMappings[type].name}" 
+                value="${(((settings || []).find(s => s.type === settingsMappings[type].type) || {}).value || {})[type] || 0}">
+            </label>
+                ` : ``
+            }
             <p>Indiquez les prix applicables en euro (ex: 100.50):</p>
             <label for="ILE DE FRANCE">
                 ILE DE FRANCE:
@@ -188,14 +196,6 @@
                 BRETAGNE:
                 <input name="BRETAGNE" type="number" value="${apparealValue.price["BRETAGNE"] || 0}"> €
             </label>
-            ${
-                settingsMappings[type] ? `
-            <label>${settingsMappings[type].description}
-                <input type="${settingsMappings[type].type}" name="rowsetting" id="${settingsMappings[type].name}" 
-                value="${(((settings || []).find(s => s.type === settingsMappings[type].type) || {}).value || {})[type] || ''}">
-            </label>
-                ` : ``
-            }
         `;
 
         //<input type="file" name="rowfile"><img src="loading.gif" style="display:none;">
@@ -205,10 +205,12 @@
         const deleteInput = rowElement.querySelector("input[name=delete]");
 
         deleteInput.addEventListener("click", () => mainElement.removeChild(rowElement));
+        rownameInput.addEventListener("input", () => fileinput.disabled = !rownameInput.value);
+        fileinput.disabled = !rownameInput.value;
 
-        inputFileAccepted(fileinput, `${dirName}/${rownameInput.value}.dae`, imgElement);
+        inputFileAccepted(fileinput, () => `${dirName}/${rownameInput.value}.dae`, imgElement);
 
-        mainElement.prepend(rowElement);
+        mainElement.append(rowElement);
     }
 
     async function uploadModel(input, fileName) {
@@ -222,15 +224,19 @@
         }
     };
 
-    async function inputFileAccepted(input, fileName, loaderIcon) {
+    async function inputFileAccepted(input, fileNameOrFn, loaderIcon) {
         return new Promise(r => {
             const handler = async function() {
                 try {
+                    let fileName = fileNameOrFn;
+                    if(typeof fileNameOrFn === "function") fileName = fileNameOrFn();
+
                     loaderIcon.style.display = "";
                     await uploadModel(input, fileName);
                     input.removeEventListener("changed", handler);
                     loaderIcon.style.display = "none";
                     r();
+                    alert("fichier uploadé");
                 } catch (e) {
                     loaderIcon.style.display = "none";
                     alert("Upload failed");
