@@ -45,6 +45,8 @@ export function* addSpan(scene, action) {
             shouldIDeleteIt: false
         }));
 
+        yield put(actionCreator(OBJECT_DISPLAYED_LOADED));
+
         return null;
     }
 
