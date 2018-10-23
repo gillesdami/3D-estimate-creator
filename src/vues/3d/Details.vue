@@ -24,7 +24,8 @@
         actionCreator,
         DELETE_OBJECT_DISPLAYED,
         HIDE_DETAILS_PANEL,
-        VALIDATE_OBJECT_DISPLAYED
+        VALIDATE_OBJECT_DISPLAYED,
+        RESET_ITEM_SPAN
     } from '../../actions';
     import { $select } from '../../sagas/vue';
     import { getDetailsState, objectsDisplayed } from "../../selectors";
@@ -49,6 +50,9 @@
             deleteObjectDisplayed: function () {
                 if (confirm('Êtes-vous sûr de vouloir supprimer cet objet ?')) {
                     this.$root.$emit('put', actionCreator(DELETE_OBJECT_DISPLAYED, {
+                        uid: this.detailsState().item.uid
+                    }));
+                    this.$root.$emit('put', actionCreator(RESET_ITEM_SPAN, {
                         uid: this.detailsState().item.uid
                     }));
                 }

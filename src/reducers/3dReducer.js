@@ -10,7 +10,7 @@ import {
     OBJECT_DISPLAYED_LOADED,
     OBJECT_DISPLAYED_LOADING,
     POSITION_CHANGED,
-    RENDERER_CREATED,
+    RENDERER_CREATED, RESET_ITEM_SPAN, RESET_NUMBER_SPANS,
     SAVE_OBJECTS_IN_RECAP,
     SETTING_CHANGED,
     SHOW_DETAILS_PANEL,
@@ -328,7 +328,8 @@ export const spans = (state = [], action) => {
             const existingObjToAddSpan = state.find(obj => obj.uid === action.payload.uid);
             if (existingObjToAddSpan) {
                 return state.map(obj => {
-                    if (obj.uid === action.payload.uid) {
+
+                    if (obj.uid === action.payload.uid && obj.lastSpansAdded.indexOf(action.payload.lastSpansAdded) === -1) {
                         return {
                             ...obj,
                             lastSpansAdded: [
@@ -359,6 +360,15 @@ export const spans = (state = [], action) => {
             } else {
                 return state;
             }
+        case RESET_NUMBER_SPANS :
+            return state.map(obj => {
+                return {
+                    ...obj,
+                    spansNumber: 0
+                }
+            });
+        case RESET_ITEM_SPAN :
+            return state.filter(obj => obj.uid !== action.payload.uid);
         default:
             return state;
     }

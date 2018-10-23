@@ -1,13 +1,16 @@
 import * as THREE from 'three';
 import { all, call, put, select } from 'redux-saga/effects';
-import { objectsDisplayed } from '../selectors';
+import { getSpansState, objectsDisplayed } from '../selectors';
 
 import loadModel from './util/colladaLoader';
 import setBoxCenter from './util/setBoxCenter';
-import { actionCreator, ADDED_OBJECT_DISPLAYED, OBJECT_DISPLAYED_LOADING } from '../actions';
+import { actionCreator, ADDED_OBJECT_DISPLAYED, OBJECT_DISPLAYED_LOADING, RESET_NUMBER_SPANS, ADD_SPAN } from '../actions';
 
 export function* reloadObjects(scene) {
     const objectsFromStore = yield select(objectsDisplayed);
+    const spanFromStore = yield select(getSpansState);
+
+    yield put(actionCreator(RESET_NUMBER_SPANS));
 
     for (const objD of objectsFromStore) {
         const base = yield call(
@@ -22,6 +25,23 @@ export function* reloadObjects(scene) {
             });
 
         if (objD.position) base.position.set(objD.position.x, objD.position.y, base.position.z);
+    }
+
+    if(spanFromStore) {
+        for (const span of spanFromStore) {
+            const itemTmp = objectsFromStore.filter(i => i.uid === span.uid)[0];
+
+            for (const s of span.lastSpansAdded) {
+                yield put(actionCreator(ADD_SPAN,
+                    {
+                        uid: span.uid,
+                        itemName: span.itemName,
+                        item: itemTmp,
+                        uidSpan: s
+                    })
+                );
+            }
+        }
     }
 }
 

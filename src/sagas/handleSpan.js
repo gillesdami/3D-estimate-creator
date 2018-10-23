@@ -25,7 +25,7 @@ export function* addSpan(scene, action) {
             return v.toString(16);
         });
 
-    const {uid, itemName, item} = action.payload;
+    const {uid, itemName, item, uidSpan} = action.payload;
 
     const base = scene.getObjectByName(uid);
 
@@ -51,7 +51,9 @@ export function* addSpan(scene, action) {
     }
 
     const baseToAdd = yield call(loadModel, itemName, itemName);
-    baseToAdd.name = generateUid();
+    if(uidSpan) {
+        baseToAdd.name = uidSpan;
+    } else baseToAdd.name = generateUid();
     baseToAdd.position.set((3 * currentSpan[0].spansNumber), 0, 0); // y:0 et z:0 car placement par rapport a la tente mere
     base.add(baseToAdd);
 
