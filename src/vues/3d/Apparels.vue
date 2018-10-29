@@ -3,9 +3,9 @@
         <!-- Travées -->
         <div v-if="detailsState().itemName.includes('Tente de reception')" class="travees">
             <p class="label">Ajouter/Suppimer une travée</p>
-            <button v-on:click="deleteSpan"> - </button>
+            <button id="deleteSpanButton" v-on:click="deleteSpan"> - </button>
             <span> {{surface}} m²</span>
-            <button v-on:click="addSpan"> + </button>
+            <button id="addSpanButton" v-on:click="addSpan"> + </button>
         </div>
 
         <!-- Liste des apparels -->
@@ -68,12 +68,17 @@
 
                 this.calculateSurface();
             },
+            getOneSpanSurface: function () {
+                const objName = this.detailsState().itemName;
+                const nameSplit = objName.split('- ');
+
+                return nameSplit[nameSplit.length-1].split("m")[0];
+            },
             calculateSurface: function () {
                 const spansObj = this.spansSate().find(obj => obj.uid === this.detailsState().item.uid);
 
                 if (spansObj) {
-                    // 5 = Random number
-                    this.surface = spansObj.spansNumber * 5;
+                    this.surface = (spansObj.spansNumber) * this.getOneSpanSurface();
                 }
             },
             handleChange: function (value, type) {

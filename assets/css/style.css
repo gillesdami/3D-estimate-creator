@@ -428,7 +428,7 @@ input[type=range]::-ms-thumb {
     font-weight: bold;
 }
 
-#buttonEstimation, #deleteObjectButton {
+#buttonEstimation, #deleteObjectButton, #addSpanButton, #deleteSpanButton{
     background-color: #ff3a3b;
     display: inline-block;
     min-height: 2vw;
@@ -439,7 +439,7 @@ input[type=range]::-ms-thumb {
     overflow: hidden;
 }
 
-#buttonEstimation:hover, #deleteObjectButton:hover {
+#buttonEstimation:hover, #deleteObjectButton:hover, #addSpanButton:hover, #deleteSpanButton:hover {
     background-color: #ff7575;
     cursor: pointer;
 }
