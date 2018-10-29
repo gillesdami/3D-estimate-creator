@@ -4,7 +4,13 @@ import { getSpansState, objectsDisplayed } from '../selectors';
 
 import loadModel from './util/colladaLoader';
 import setBoxCenter from './util/setBoxCenter';
-import { actionCreator, ADDED_OBJECT_DISPLAYED, OBJECT_DISPLAYED_LOADING, RESET_NUMBER_SPANS, ADD_SPAN } from '../actions';
+import {
+    actionCreator,
+    ADD_SPAN,
+    ADDED_OBJECT_DISPLAYED,
+    OBJECT_DISPLAYED_LOADING,
+    RESET_NUMBER_SPANS
+} from '../actions';
 
 export function* reloadObjects(scene) {
     const objectsFromStore = yield select(objectsDisplayed);
@@ -27,7 +33,7 @@ export function* reloadObjects(scene) {
         if (objD.position) base.position.set(objD.position.x, objD.position.y, base.position.z);
     }
 
-    if(spanFromStore) {
+    if (spanFromStore) {
         for (const span of spanFromStore) {
             const itemTmp = objectsFromStore.filter(i => i.uid === span.uid)[0];
 
@@ -61,6 +67,11 @@ export function* addObject(scene, action) {
         calls[appareal.type] = call(addAppareal, scene, itemName, base, appareal.type, appareal.value || appareal.values[0].name, item.settings); // TODO appareal.value to understand apareal.values[0] changed to apareal.values[0].name
     });
 
+    // Pour gestion des barres de pignon sur les travées
+    if (itemName.includes("Tente de reception")) {
+        calls["Structure pignon"] = call(addAppareal, scene, itemName, base, "Structure pignon", {name: "Structure pignon - " + itemName}, item.settings);
+    }
+
     yield all(calls);
     yield put(actionCreator(ADDED_OBJECT_DISPLAYED));
 
@@ -68,7 +79,7 @@ export function* addObject(scene, action) {
 }
 
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue, settings) {
-    if (apparealValue.name === "aucun") return null; // TODO appareal.value in object: {name: "toit cristal", price: "137"}
+    if (apparealValue.name === "aucun") return null;
 
     const obj = new THREE.Group();
     const parentBox = parentObj.userData.bb;
@@ -79,19 +90,28 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
 
     switch (apparealType) {
         case "Pignon":
-            model.position.set(2.45, 0, parentBox.max.z - 1);
-            break;
-        case "Croix de saint andre":
-            model.position.set(0, 5.1, parentBox.max.z - 3.40);
+            model.position.set(-parentBox.min.x - 0.1, 0, 2.2);
 
-            let copy = model.clone();
-            copy.rotateZ(Math.PI);
-            copy.position.set(0, -5.1, parentBox.max.z - 3.40);
-
-            obj.add(copy);
+            let pignon = model.clone();
+            pignon.rotateZ(Math.PI);
+            pignon.position.set(parentBox.min.x + 0.1, 0, 2.2);
+            obj.add(pignon);
             break;
-        case "Barre de pignon":
-            model.position.set(2.45, 0, parentBox.max.z - 2.48);
+        case "Renforcement" :
+            model.position.set(0, parentBox.min.y - 2.2, 0.2);
+
+            let renf = model.clone();
+            renf.rotateZ(Math.PI);
+            renf.position.set(0, parentBox.max.y - 2.2, 0);
+            obj.add(renf);
+            break;
+        case "Structure pignon":
+            model.position.set(-parentBox.min.x, 0, 0);
+
+            let struct = model.clone();
+            struct.rotateZ(Math.PI);
+            struct.position.set(parentBox.min.x, 0, 0);
+            obj.add(struct);
             break;
         case "Toit pagode":
             console.log(settings);
