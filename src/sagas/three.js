@@ -189,21 +189,28 @@ export function* compareApparel(scene, action) {
         }
 
         const calls = {};
+        let numberSpan = 0;
 
         object.children.forEach(c => {
             if (c.type === "Object3D" && apparel.type !== "Rideau Largeur" && apparel.type !== "Pignon" && apparel.type !== "Structure Pignon") {
 
-                    console.log(apparel.type);
-                    console.log(lastSpansItem);
+                // Pour mettre des renforcement modulo 3
+                numberSpan++;
 
-                if (apparel.type === "Renforcement" && lastSpansItem[0].spansNumber % 3 === 0)
-                    calls[c.name] = call(addAppareal, scene, itemName, c, apparel.type, apparel.value, settings);
+                if (apparel.type === "Renforcement") {
+                    // Renforcement sur la base
+                    if (numberSpan - 1 === 0)
+                        calls[apparel.type] = call(addAppareal, scene, itemName, object, apparel.type, apparel.value, settings);
+                    // Renforcement modulo 3
+                    if (numberSpan % 3 === 0)
+                        calls[c.name] = call(addAppareal, scene, itemName, c, apparel.type, apparel.value, settings);
+                }
                 if (apparel.type !== "Renforcement")
                     calls[c.name] = call(addAppareal, scene, itemName, c, apparel.type, apparel.value, settings);
             }
         });
 
-        // Pour gestion des rideau largeur pour ne pas en mettre à l'intérieur des travées
+        // Pour gestion des rideau largeur / Pignon / Structue pignon pour ne pas en mettre à l'intérieur des travées
         if (apparel.type === "Rideau Largeur" || apparel.type === "Pignon" || apparel.type === "Structure Pignon") {
 
             //TODO peut être pas opti, a voir pour changer ça
@@ -212,14 +219,12 @@ export function* compareApparel(scene, action) {
 
             if (lastSpan !== null) {
                 calls[apparel.type] = call(addApparealSpan, scene, itemName, object.getObjectByName(lastSpan), apparel.type, apparel.value, settings);
-            } else {
-                calls[apparel.type] = call(addApparealSpan, scene, itemName, object, apparel.type, apparel.value, settings);
-            }
+            } else calls[apparel.type] = call(addApparealSpan, scene, itemName, object, apparel.type, apparel.value, settings);
+
             calls[apparel.type + " Start"] = call(addApparealSpan, scene, itemName, object, apparel.type + " Start", apparel.value, settings);
 
-        } else {
-            calls[object.name] = call(addAppareal, scene, itemName, object, apparel.type, apparel.value, settings);
-        }
+        } else calls[object.name] = call(addAppareal, scene, itemName, object, apparel.type, apparel.value, settings);
+
 
         yield all(calls);
     }

@@ -10,13 +10,13 @@
 
         <!-- Liste des apparels -->
         <div v-for="(apparel, index) in detailsState().item.apparels">
-            <div class="row" style="margin-bottom: 0;">
+            <div v-if="apparel.type !== 'Structure pignon'" class="row" style="margin-bottom: 0;">
                 <div class="col">
                     <p class="label">{{apparel.type}}</p>
                 </div>
             </div>
 
-            <div class="row" style="margin-bottom: 0;">
+            <div v-if="apparel.type !== 'Structure pignon'" class="row" style="margin-bottom: 0;">
                 <div class="col" style="width: 100%">
                     <select :value="apparel.value.name"
                             @input="selectApparels[index] = $event.target.value"

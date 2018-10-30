@@ -60,27 +60,29 @@ export function* addSpan(scene, action) {
 
     // Delete rideaux et structure pignon pour les remettre mieux après
     deleteSomething(base, "Rideau Largeur");
+    deleteSomething(base, "Rideau Largeur Start");
     deleteSomething(base, "Structure pignon");
+    deleteSomething(base, "Structure pignon Start");
     deleteSomething(base, "Pignon");
+    deleteSomething(base, "Pignon Start");
 
     const calls = {};
 
-    // Pour gestion des barres de pignon sur les travées
-    calls["Structure pignon"] = call(addApparealSpan, scene, itemName, baseToAdd, "Structure pignon", {name: "Structure pignon - " + itemName}, item.settings);
-    calls["Structure pignon Start"] = call(addApparealSpan, scene, itemName, base, "Structure pignon Start", {name: "Structure pignon - " + itemName}, item.settings);
-
     item.apparels.forEach((appareal) => {
+        // Cas général
         if(appareal.type !== "Renforcement")
             calls[appareal.type] = call(addApparealSpan, scene, itemName, baseToAdd, appareal.type, appareal.value || appareal.values[0].name, item.settings);
+
+        // Pour gestion des elements "start"
         if (appareal.type === "Rideau Largeur")
             calls["Rideau Largeur Start"] = call(addApparealSpan, scene, itemName, base, "Rideau Largeur Start", appareal.value || appareal.values[0].name, item.settings);
         if (appareal.type === "Pignon")
             calls["Pignon Start"] = call(addApparealSpan, scene, itemName, base, "Pignon Start", appareal.value || appareal.values[0].name, item.settings);
         if(appareal.type === "Renforcement" && currentSpan[0].spansNumber % 3 === 0)
             calls[appareal.type] = call(addApparealSpan, scene, itemName, baseToAdd, appareal.type, appareal.value || appareal.values[0].name, item.settings);
+        if(appareal.type === "Structure pignon")
+            calls["Structure pignon Start"] = call(addApparealSpan, scene, itemName, base, "Structure pignon Start", appareal.value || appareal.values[0].name, item.settings);
     });
-
-    console.log(calls);
 
     yield all(calls);
 
@@ -123,11 +125,14 @@ export function* addApparealSpan(scene, itemName, parentObj, apparealType, appar
             model.position.set(parentBox.min.x + 0.1, 0, 2.2);
             break;
         case "Renforcement" :
-            model.position.set(0, parentBox.min.y - 2.2, 0.2);
+            let z = 0;
+            if(apparealValue.name.includes("renforcement")) z = 1;
+
+            model.position.set(0, parentBox.min.y - 2.2, z);
 
             let renf = model.clone();
             renf.rotateZ(Math.PI);
-            renf.position.set(0, parentBox.max.y - 2.2, 0);
+            renf.position.set(0, parentBox.max.y - 2.2, z);
             obj.add(renf);
             break;
         case "Structure pignon Start" :
@@ -221,18 +226,13 @@ export function* deleteSpan(scene, action) {
         // Pour placer le rideau lageur / Pignon / Structure pignon de la fin, on l'ajoute a l'avant dernière travées (celle qui deviendra la dernière après que la dernière soit delete)
         const calls = {};
         item.apparels.forEach((appareal) => {
-            if (appareal.type === "Rideau Largeur" || appareal.type === "Pignon") {
+            if (appareal.type === "Rideau Largeur" || appareal.type === "Pignon" ||appareal.type === "Structure pignon") {
                 if (itemSpans.length === 1) {
                     calls[appareal.type] = call(addApparealSpan, scene, itemName, base, appareal.type, appareal.value || appareal.values[0].name, item.settings);
                 } else
                     calls[appareal.type] = call(addApparealSpan, scene, itemName, base.getObjectByName(itemSpans[itemSpans.length - 2]), appareal.type, appareal.value || appareal.values[0].name, item.settings);
             }
         });
-
-        if (itemSpans.length === 1) {
-            calls["Structure pignon Start"] = call(addApparealSpan, scene, itemName, base, "Structure pignon Start",  {name: "Structure pignon - " + itemName}, item.settings);
-        } else
-            calls["Structure pignon Start"] = call(addApparealSpan, scene, itemName, base.getObjectByName(itemSpans[itemSpans.length - 2]), "Structure pignon Start",  {name: "Structure pignon - " + itemName}, item.settings);
 
         yield all(calls);
 

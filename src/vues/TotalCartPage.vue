@@ -8,7 +8,7 @@
 
 <script>
     import { $select } from '../sagas/vue';
-    import { objectsDisplayed, totalSelector, getSpansState } from '../selectors';
+    import { getSpansState, objectsDisplayed, totalSelector } from '../selectors';
 
     export default {
         name: "Total",
@@ -23,7 +23,7 @@
                 objDisplayed.forEach(obj => {
 
                     obj.apparels.forEach(ap => {
-                        if (!ap.value.name.includes("aucun"))
+                        if (this.shouldICalculIt(ap))
                             totalApparels += ap.value.price["ILE DE FRANCE"];
                     });
 
@@ -48,6 +48,15 @@
             },
             totalPlus10: function () {
                 return this.total() + (this.total() * 0.1);
+            },
+            shouldICalculIt: function (apparel) {
+                let display = true;
+                if (apparel.value.name.includes('aucun')) display = false;
+                if (apparel.type === 'Renforcement') display = false;
+                if (apparel.type === 'Structure pignon') display = false;
+                if (apparel.type === 'Pignon') display = false;
+
+                return display;
             }
         }
     }

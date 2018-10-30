@@ -67,11 +67,6 @@ export function* addObject(scene, action) {
         calls[appareal.type] = call(addAppareal, scene, itemName, base, appareal.type, appareal.value || appareal.values[0].name, item.settings); // TODO appareal.value to understand apareal.values[0] changed to apareal.values[0].name
     });
 
-    // Pour gestion des barres de pignon sur les travées
-    if (itemName.includes("Tente de reception")) {
-        calls["Structure pignon"] = call(addAppareal, scene, itemName, base, "Structure pignon", {name: "Structure pignon - " + itemName}, item.settings);
-    }
-
     yield all(calls);
     yield put(actionCreator(ADDED_OBJECT_DISPLAYED));
 
@@ -98,11 +93,14 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(pignon);
             break;
         case "Renforcement" :
-            model.position.set(0, parentBox.min.y - 2.2, 0.2);
+            let z = 0;
+            if(apparealValue.name.includes("renforcement")) z = 1;
+
+            model.position.set(0, parentBox.min.y - 2.2, z);
 
             let renf = model.clone();
             renf.rotateZ(Math.PI);
-            renf.position.set(0, parentBox.max.y - 2.2, 0);
+            renf.position.set(0, parentBox.max.y - 2.2, z);
             obj.add(renf);
             break;
         case "Structure pignon":
