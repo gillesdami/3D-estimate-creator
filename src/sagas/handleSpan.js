@@ -95,6 +95,9 @@ export function* addSpan(scene, action) {
 
     yield put(actionCreator(OBJECT_DISPLAYED_LOADED));
 
+
+    console.log(base);
+
     return base;
 }
 
@@ -207,7 +210,7 @@ export function* deleteSpan(scene, action) {
 
     const {uid, itemName, item, shouldIDeleteIt} = action.payload;
 
-    // Si on ajoute une travee mais qu'elle sort de la grille cette sage est quand meme appellee
+    // Si on ajoute une travee mais qu'elle sort de la grille cette saga est quand meme appellee
     if (!shouldIDeleteIt) return null;
 
     const base = scene.getObjectByName(uid);

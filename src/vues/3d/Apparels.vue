@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import {actionCreator, ADD_SPAN, APPAREL_CHANGED, DELETE_SPAN} from '../../actions';
+    import {actionCreator, ADD_SPAN, ADD_SPAN_NUMBER, APPAREL_CHANGED, DELETE_SPAN} from '../../actions';
     import { $select } from '../../sagas/vue';
     import { getDetailsState, getSpansState } from "../../selectors";
 
@@ -50,6 +50,12 @@
         methods: {
             //SPAN = TRAVEE
             addSpan: function () {
+                this.$root.$emit('put', actionCreator(ADD_SPAN_NUMBER, {
+                    uid: this.detailsState().item.uid,
+                    itemName: this.detailsState().itemName,
+                    item : this.detailsState().item
+                }));
+
                 this.$root.$emit('put', actionCreator(ADD_SPAN, {
                     uid: this.detailsState().item.uid,
                     itemName: this.detailsState().itemName,

@@ -4,19 +4,15 @@ import { getSpansState, objectsDisplayed } from '../selectors';
 
 import loadModel from './util/colladaLoader';
 import setBoxCenter from './util/setBoxCenter';
-import {
-    actionCreator,
-    ADD_SPAN,
-    ADDED_OBJECT_DISPLAYED,
-    OBJECT_DISPLAYED_LOADING,
-    RESET_NUMBER_SPANS
-} from '../actions';
+import { actionCreator, ADDED_OBJECT_DISPLAYED, OBJECT_DISPLAYED_LOADING, RESET_NUMBER_SPANS, ADD_SPAN_NUMBER } from '../actions';
+import { addSpan } from "./handleSpan";
 
 export function* reloadObjects(scene) {
     const objectsFromStore = yield select(objectsDisplayed);
-    const spanFromStore = yield select(getSpansState);
 
     yield put(actionCreator(RESET_NUMBER_SPANS));
+
+    const spanFromStore = yield select(getSpansState);
 
     for (const objD of objectsFromStore) {
         const base = yield call(
@@ -34,17 +30,29 @@ export function* reloadObjects(scene) {
     }
 
     if (spanFromStore) {
+
+        console.log(spanFromStore);
+
         for (const span of spanFromStore) {
-            const itemTmp = objectsFromStore.filter(i => i.uid === span.uid)[0];
+            const item = objectsFromStore.filter(i => i.uid === span.uid)[0];
 
             for (const s of span.lastSpansAdded) {
-                yield put(actionCreator(ADD_SPAN,
+                yield put(actionCreator(ADD_SPAN_NUMBER, {
+                    uid: span.uid,
+                    itemName: span.itemName,
+                    item,
+                    uidSpan: s
+                }));
+
+                yield call(addSpan, scene,
                     {
-                        uid: span.uid,
-                        itemName: span.itemName,
-                        item: itemTmp,
-                        uidSpan: s
-                    })
+                        payload: {
+                            uid: span.uid,
+                            itemName: span.itemName,
+                            item,
+                            uidSpan: s
+                        }
+                    }
                 );
             }
         }
@@ -94,7 +102,7 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             break;
         case "Renforcement" :
             let z = 0;
-            if(apparealValue.name.includes("renforcement")) z = 1;
+            if (apparealValue.name.includes("renforcement")) z = 1;
 
             model.position.set(0, parentBox.min.y - 2.2, z);
 

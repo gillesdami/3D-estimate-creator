@@ -1,6 +1,6 @@
 import {
     ADD_OBJECT_DISPLAYED,
-    ADD_SPAN,
+    ADD_SPAN_NUMBER,
     APPAREL_CHANGED,
     DELETE_ALL, DELETE_LAST_SPAN_ADDED,
     DELETE_OBJECT_DISPLAYED,
@@ -288,7 +288,7 @@ export const deleteAll = (state = {}, action) => {
  */
 export const spans = (state = [], action) => {
     switch (action.type) {
-        case ADD_SPAN:
+        case ADD_SPAN_NUMBER:
             const existingObj = state.find(obj => obj.uid === action.payload.uid);
             if (existingObj) {
                 return state.map(obj => {
