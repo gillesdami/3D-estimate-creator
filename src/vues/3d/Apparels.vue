@@ -3,20 +3,20 @@
         <!-- Travées -->
         <div v-if="detailsState().itemName.includes('Tente de reception')" class="travees">
             <p class="label">Ajouter/Suppimer une travée</p>
-            <button v-on:click="deleteSpan"> - </button>
+            <button id="deleteSpanButton" v-on:click="deleteSpan"> - </button>
             <span> {{surface}} m²</span>
-            <button v-on:click="addSpan"> + </button>
+            <button id="addSpanButton" v-on:click="addSpan"> + </button>
         </div>
 
         <!-- Liste des apparels -->
         <div v-for="(apparel, index) in detailsState().item.apparels">
-            <div class="row" style="margin-bottom: 0;">
+            <div v-if="apparel.type !== 'Structure pignon'" class="row" style="margin-bottom: 0;">
                 <div class="col">
                     <p class="label">{{apparel.type}}</p>
                 </div>
             </div>
 
-            <div class="row" style="margin-bottom: 0;">
+            <div v-if="apparel.type !== 'Structure pignon'" class="row" style="margin-bottom: 0;">
                 <div class="col" style="width: 100%">
                     <select :value="apparel.value.name"
                             @input="selectApparels[index] = $event.target.value"
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import {actionCreator, ADD_SPAN, APPAREL_CHANGED, DELETE_SPAN} from '../../actions';
+    import {actionCreator, ADD_SPAN, ADD_SPAN_NUMBER, APPAREL_CHANGED, DELETE_SPAN} from '../../actions';
     import { $select } from '../../sagas/vue';
     import { getDetailsState, getSpansState } from "../../selectors";
 
@@ -50,6 +50,12 @@
         methods: {
             //SPAN = TRAVEE
             addSpan: function () {
+                this.$root.$emit('put', actionCreator(ADD_SPAN_NUMBER, {
+                    uid: this.detailsState().item.uid,
+                    itemName: this.detailsState().itemName,
+                    item : this.detailsState().item
+                }));
+
                 this.$root.$emit('put', actionCreator(ADD_SPAN, {
                     uid: this.detailsState().item.uid,
                     itemName: this.detailsState().itemName,
@@ -68,12 +74,17 @@
 
                 this.calculateSurface();
             },
+            getOneSpanSurface: function () {
+                const objName = this.detailsState().itemName;
+                const nameSplit = objName.split('- ');
+
+                return nameSplit[nameSplit.length-1].split("m")[0];
+            },
             calculateSurface: function () {
                 const spansObj = this.spansSate().find(obj => obj.uid === this.detailsState().item.uid);
 
                 if (spansObj) {
-                    // 5 = Random number
-                    this.surface = spansObj.spansNumber * 5;
+                    this.surface = (spansObj.spansNumber) * this.getOneSpanSurface();
                 }
             },
             handleChange: function (value, type) {

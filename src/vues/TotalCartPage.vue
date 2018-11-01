@@ -8,7 +8,7 @@
 
 <script>
     import { $select } from '../sagas/vue';
-    import { objectsDisplayed, totalSelector } from '../selectors';
+    import { getSpansState, objectsDisplayed, totalSelector } from '../selectors';
 
     export default {
         name: "Total",
@@ -16,23 +16,47 @@
             total: function () {
                 let totalItems = $select(totalSelector, window.objectsAvailable);
                 const objDisplayed = $select(objectsDisplayed, window.objectsAvailable);
+                const spanState = $select(getSpansState);
 
                 let totalApparels = 0;
 
                 objDisplayed.forEach(obj => {
+
                     obj.apparels.forEach(ap => {
-                        if (!ap.value.name.includes("aucun"))
+                        if (this.shouldICalculIt(ap))
                             totalApparels += ap.value.price["ILE DE FRANCE"];
                     });
+
+                    // Gestion des travées
+                    const item = spanState.filter((span) => obj.uid === span.uid);
+                    if (item.length !== 0) {
+
+                        totalItems += window.objectsAvailable[obj.name].price["ILE DE FRANCE"] * item[0].spansNumber;
+                        totalItems += totalApparels * (item[0].spansNumber + 1);
+                    } else {
+                        totalItems += totalApparels;
+                    }
+
+                    totalApparels = 0;
+
                 });
 
-                return totalItems + totalApparels;
+                return totalItems;
             },
             totalMinus10: function () {
                 return this.total() - (this.total() * 0.1);
             },
             totalPlus10: function () {
                 return this.total() + (this.total() * 0.1);
+            },
+            shouldICalculIt: function (apparel) {
+                let display = true;
+                if (apparel.value.name.includes('aucun')) display = false;
+                if (apparel.type === 'Renforcement') display = false;
+                if (apparel.type === 'Structure pignon') display = false;
+                if (apparel.type === 'Pignon') display = false;
+
+                return display;
             }
         }
     }

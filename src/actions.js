@@ -68,7 +68,10 @@ export const SEND_ESTIMATION = "SEND_ESTIMATION";
 
 // region span
 export const ADD_SPAN = "ADD_SPAN";
+export const ADD_SPAN_NUMBER = "ADD_SPAN_NUMBER";
 export const DELETE_SPAN = "DELETE_SPAN";
 export const LAST_SPAN_ADDED = "LAST_SPAN_ADDED";
 export const DELETE_LAST_SPAN_ADDED = "DELETE_LAST_SPAN_ADDED";
+export const RESET_NUMBER_SPANS = "RESET_NUMBER_SPANS";
+export const RESET_ITEM_SPAN = "RESET_ITEM_SPAN";
 //endregion

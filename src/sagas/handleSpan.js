@@ -13,6 +13,7 @@ import {
     OBJECT_DISPLAYED_LOADING ,
     OBJECT_DISPLAYED_LOADED
 } from "../actions";
+import { addAppareal } from "./addObject";
 
 export function* addSpan(scene, action) {
 
@@ -25,7 +26,7 @@ export function* addSpan(scene, action) {
             return v.toString(16);
         });
 
-    const {uid, itemName, item} = action.payload;
+    const {uid, itemName, item, uidSpan} = action.payload;
 
     const base = scene.getObjectByName(uid);
 
@@ -45,27 +46,42 @@ export function* addSpan(scene, action) {
             shouldIDeleteIt: false
         }));
 
+        yield put(actionCreator(OBJECT_DISPLAYED_LOADED));
+
         return null;
     }
 
     const baseToAdd = yield call(loadModel, itemName, itemName);
-    baseToAdd.name = generateUid();
+    if(uidSpan) {
+        baseToAdd.name = uidSpan;
+    } else baseToAdd.name = generateUid();
     baseToAdd.position.set((3 * currentSpan[0].spansNumber), 0, 0); // y:0 et z:0 car placement par rapport a la tente mere
     base.add(baseToAdd);
 
-    // Delete rideaux pour les remettre mieux après
-    let apparelToDelete = scene.getObjectByName(uid).getObjectByName("Rideau Largeur");
-    while (apparelToDelete != null) {
-        apparelToDelete.parent.remove(apparelToDelete);
-        apparelToDelete = scene.getObjectByName(uid).getObjectByName("Rideau Largeur");
-    }
+    // Delete rideaux et structure pignon pour les remettre mieux après
+    deleteSomething(base, "Rideau Largeur");
+    deleteSomething(base, "Rideau Largeur Start");
+    deleteSomething(base, "Structure pignon");
+    deleteSomething(base, "Structure pignon Start");
+    deleteSomething(base, "Pignon");
+    deleteSomething(base, "Pignon Start");
 
     const calls = {};
 
     item.apparels.forEach((appareal) => {
-        calls[appareal.type] = call(addApparealSpan, scene, itemName, baseToAdd, appareal.type, appareal.value || appareal.values[0].name, item.settings);
+        // Cas général
+        if(appareal.type !== "Renforcement")
+            calls[appareal.type] = call(addApparealSpan, scene, itemName, baseToAdd, appareal.type, appareal.value || appareal.values[0].name, item.settings);
+
+        // Pour gestion des elements "start"
         if (appareal.type === "Rideau Largeur")
             calls["Rideau Largeur Start"] = call(addApparealSpan, scene, itemName, base, "Rideau Largeur Start", appareal.value || appareal.values[0].name, item.settings);
+        if (appareal.type === "Pignon")
+            calls["Pignon Start"] = call(addApparealSpan, scene, itemName, base, "Pignon Start", appareal.value || appareal.values[0].name, item.settings);
+        if(appareal.type === "Renforcement" && currentSpan[0].spansNumber % 3 === 0)
+            calls[appareal.type] = call(addApparealSpan, scene, itemName, baseToAdd, appareal.type, appareal.value || appareal.values[0].name, item.settings);
+        if(appareal.type === "Structure pignon")
+            calls["Structure pignon Start"] = call(addApparealSpan, scene, itemName, base, "Structure pignon Start", appareal.value || appareal.values[0].name, item.settings);
     });
 
     yield all(calls);
@@ -79,7 +95,18 @@ export function* addSpan(scene, action) {
 
     yield put(actionCreator(OBJECT_DISPLAYED_LOADED));
 
+
+    console.log(base);
+
     return base;
+}
+
+function deleteSomething (base, name) {
+    let apparelToDelete = base.getObjectByName(name);
+    while (apparelToDelete != null) {
+        apparelToDelete.parent.remove(apparelToDelete);
+        apparelToDelete = base.getObjectByName(name);
+    }
 }
 
 export function* addApparealSpan(scene, itemName, parentObj, apparealType, apparealValue, settings) {
@@ -93,20 +120,30 @@ export function* addApparealSpan(scene, itemName, parentObj, apparealType, appar
     model.name = apparealType;
 
     switch (apparealType) {
+        case "Pignon Start" :
+            model.rotateZ(Math.PI);
+            model.position.set(-parentBox.min.x - 0.1, 0, 2.2);
+            break;
         case "Pignon":
-            model.position.set(2.45, 0, parentBox.max.z - 1);
+            model.position.set(parentBox.min.x + 0.1, 0, 2.2);
             break;
-        case "Croix de saint andre":
-            model.position.set(0, 5.1, parentBox.max.z - 3.40);
+        case "Renforcement" :
+            let z = 0;
+            if(apparealValue.name.includes("renforcement")) z = 1;
 
-            let copy = model.clone();
-            copy.rotateZ(Math.PI);
-            copy.position.set(0, -5.1, parentBox.max.z - 3.40);
+            model.position.set(0, parentBox.min.y - 2.2, z);
 
-            obj.add(copy);
+            let renf = model.clone();
+            renf.rotateZ(Math.PI);
+            renf.position.set(0, parentBox.max.y - 2.2, z);
+            obj.add(renf);
             break;
-        case "Barre de pignon":
-            model.position.set(2.45, 0, parentBox.max.z - 2.48);
+        case "Structure pignon Start" :
+            model.position.set(-parentBox.min.x, 0, 0);
+            break;
+        case "Structure pignon":
+            model.rotateZ(Math.PI);
+            model.position.set(parentBox.min.x, 0, 0);
             break;
         case "Toit pagode":
             model.position.set(0, 0,
@@ -173,7 +210,7 @@ export function* deleteSpan(scene, action) {
 
     const {uid, itemName, item, shouldIDeleteIt} = action.payload;
 
-    // Si on ajoute une travee mais qu'elle sort de la grille cette sage est quand meme appellee
+    // Si on ajoute une travee mais qu'elle sort de la grille cette saga est quand meme appellee
     if (!shouldIDeleteIt) return null;
 
     const base = scene.getObjectByName(uid);
@@ -189,10 +226,10 @@ export function* deleteSpan(scene, action) {
     if (spanToDelete) {
         spanToDelete.parent.remove(spanToDelete);
 
-        // Pour placer le rideau lageur de la fin, on l'ajoute a l'avant dernière travées (celle qui deviendra la dernière après que la dernière soit delete)
+        // Pour placer le rideau lageur / Pignon / Structure pignon de la fin, on l'ajoute a l'avant dernière travées (celle qui deviendra la dernière après que la dernière soit delete)
         const calls = {};
         item.apparels.forEach((appareal) => {
-            if (appareal.type === "Rideau Largeur") {
+            if (appareal.type === "Rideau Largeur" || appareal.type === "Pignon" ||appareal.type === "Structure pignon") {
                 if (itemSpans.length === 1) {
                     calls[appareal.type] = call(addApparealSpan, scene, itemName, base, appareal.type, appareal.value || appareal.values[0].name, item.settings);
                 } else

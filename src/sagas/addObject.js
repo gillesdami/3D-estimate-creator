@@ -1,13 +1,18 @@
 import * as THREE from 'three';
 import { all, call, put, select } from 'redux-saga/effects';
-import { objectsDisplayed } from '../selectors';
+import { getSpansState, objectsDisplayed } from '../selectors';
 
 import loadModel from './util/colladaLoader';
 import setBoxCenter from './util/setBoxCenter';
-import { actionCreator, ADDED_OBJECT_DISPLAYED, OBJECT_DISPLAYED_LOADING } from '../actions';
+import { actionCreator, ADDED_OBJECT_DISPLAYED, OBJECT_DISPLAYED_LOADING, RESET_NUMBER_SPANS, ADD_SPAN_NUMBER } from '../actions';
+import { addSpan } from "./handleSpan";
 
 export function* reloadObjects(scene) {
     const objectsFromStore = yield select(objectsDisplayed);
+
+    yield put(actionCreator(RESET_NUMBER_SPANS));
+
+    const spanFromStore = yield select(getSpansState);
 
     for (const objD of objectsFromStore) {
         const base = yield call(
@@ -22,6 +27,35 @@ export function* reloadObjects(scene) {
             });
 
         if (objD.position) base.position.set(objD.position.x, objD.position.y, base.position.z);
+    }
+
+    if (spanFromStore) {
+
+        console.log(spanFromStore);
+
+        for (const span of spanFromStore) {
+            const item = objectsFromStore.filter(i => i.uid === span.uid)[0];
+
+            for (const s of span.lastSpansAdded) {
+                yield put(actionCreator(ADD_SPAN_NUMBER, {
+                    uid: span.uid,
+                    itemName: span.itemName,
+                    item,
+                    uidSpan: s
+                }));
+
+                yield call(addSpan, scene,
+                    {
+                        payload: {
+                            uid: span.uid,
+                            itemName: span.itemName,
+                            item,
+                            uidSpan: s
+                        }
+                    }
+                );
+            }
+        }
     }
 }
 
@@ -48,7 +82,7 @@ export function* addObject(scene, action) {
 }
 
 export function* addAppareal(scene, itemName, parentObj, apparealType, apparealValue, settings) {
-    if (apparealValue.name === "aucun") return null; // TODO appareal.value in object: {name: "toit cristal", price: "137"}
+    if (apparealValue.name === "aucun") return null;
 
     const obj = new THREE.Group();
     const parentBox = parentObj.userData.bb;
@@ -59,19 +93,31 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
 
     switch (apparealType) {
         case "Pignon":
-            model.position.set(2.45, 0, parentBox.max.z - 1);
-            break;
-        case "Croix de saint andre":
-            model.position.set(0, 5.1, parentBox.max.z - 3.40);
+            model.position.set(-parentBox.min.x - 0.1, 0, 2.2);
 
-            let copy = model.clone();
-            copy.rotateZ(Math.PI);
-            copy.position.set(0, -5.1, parentBox.max.z - 3.40);
-
-            obj.add(copy);
+            let pignon = model.clone();
+            pignon.rotateZ(Math.PI);
+            pignon.position.set(parentBox.min.x + 0.1, 0, 2.2);
+            obj.add(pignon);
             break;
-        case "Barre de pignon":
-            model.position.set(2.45, 0, parentBox.max.z - 2.48);
+        case "Renforcement" :
+            let z = 0;
+            if (apparealValue.name.includes("renforcement")) z = 1;
+
+            model.position.set(0, parentBox.min.y - 2.2, z);
+
+            let renf = model.clone();
+            renf.rotateZ(Math.PI);
+            renf.position.set(0, parentBox.max.y - 2.2, z);
+            obj.add(renf);
+            break;
+        case "Structure pignon":
+            model.position.set(-parentBox.min.x, 0, 0);
+
+            let struct = model.clone();
+            struct.rotateZ(Math.PI);
+            struct.position.set(parentBox.min.x, 0, 0);
+            obj.add(struct);
             break;
         case "Toit pagode":
             console.log(settings);
