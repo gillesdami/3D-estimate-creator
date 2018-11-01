@@ -582,6 +582,7 @@
         "activated": true,
         "section": "Structure",
         "category": "Tente de reception - 10m",
+        "area": 30,
         "price": {
             "ILE DE FRANCE": 300,
             "PACA": 300
@@ -873,6 +874,7 @@
         "activated": true,
         "section": "Structure",
         "category": "Tente de reception - 10m",
+        "area": 50,
         "price": {
             "ILE DE FRANCE": 600,
             "PACA": 900
