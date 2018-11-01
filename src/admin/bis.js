@@ -96,7 +96,11 @@
         const rows = document.querySelectorAll("div.row");
         for (row of rows) {
             const rowtype = row.querySelector("input[name=rowtype]").value;
-            const apparel = {type: rowtype, values: []};
+            let apparel = o.apparels.find(a => a.type === rowtype)
+            if(!apparel) {
+                apparel = {type: rowtype, values: []};
+                o.apparels.push(apparel);
+            }
 
             price = {} ;
             for (region of regions) {
@@ -108,8 +112,7 @@
                 name: rowname,
                 price
             });
-
-            o.apparels.push(apparel);
+            
             //settings
             const rowsettingElement = row.querySelector("input[name=rowsetting]");
             if(rowsettingElement) {
