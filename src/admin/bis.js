@@ -38,15 +38,22 @@
         const sectionInput = document.querySelector("input[name=section]");
         const categoryInput = document.querySelector("input[name=category]");
         const activatedCheckbox = document.querySelector("input[name=activated]");
+        const traveesCheckbox = document.querySelector("input[name=travee]");
+        const areaInput = document.querySelector("input[name=area]");
         sectionInput.value = o.section || '';
         categoryInput.value = o.category || '';
-        activatedCheckbox.checked = o.activated || true;
+        activatedCheckbox.checked = !!o.activated;
+        traveesCheckbox.checked = !!o.area;
+        areaInput.value = o.area;
+        areaInput.disabled = !o.area;
+        traveesCheckbox.addEventListener("click", () => areaInput.toggleAttribute("disabled"));
         document.querySelector("i#section-list").innerText = list("section");
         document.querySelector("i#category-list").innerText = list("category");
         await clickNext();// apply
         o.section = sectionInput.value;
         o.category = categoryInput.value;
         o.activated = activatedCheckbox.checked;
+        if(!traveesCheckbox.checked) o.area = ""; else o.area = areaInput.value;
 
         // importdae
         await loadPopover("importdae");
