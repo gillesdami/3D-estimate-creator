@@ -153,7 +153,7 @@
                 settingsMappings[type] ? `
             <label>${settingsMappings[type].description}
                 <input type="${settingsMappings[type].type}" name="rowsetting" id="${settingsMappings[type].name}" 
-                value="${(((settings || []).find(s => s.type === settingsMappings[type].type) || {}).value || {})[type] || 0}">
+                value="${settings[0].value["Toit pagode"]}">
             </label>
                 ` : ``
             }
