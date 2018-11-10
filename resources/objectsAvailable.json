@@ -582,7 +582,6 @@
         "activated": true,
         "section": "Structure",
         "category": "Tente de reception - 10m",
-        "area": 30,
         "price": {
             "ILE DE FRANCE": 300,
             "PACA": 300
@@ -874,7 +873,6 @@
         "activated": true,
         "section": "Structure",
         "category": "Tente de reception - 10m",
-        "area": 50,
         "price": {
             "ILE DE FRANCE": 600,
             "PACA": 900
@@ -924,6 +922,19 @@
                             "HAUTS DE FRANCE": 13,
                             "BRETAGNE": 13
                         }
+                    }
+                ]
+            },
+            {
+                "type": "Pignon",
+                "values": [
+                    {
+                        "name": "pignon blanc",
+                        "price": {}
+                    },
+                    {
+                        "name": "pignon cristal",
+                        "price": {}
                     }
                 ]
             },
@@ -1017,6 +1028,40 @@
                 "type": "Rideau Largeur",
                 "values": [
                     {
+                        "name": "rideau ouvert pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
+                        "name": "rideau fenetre pignon",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    },
+                    {
                         "name": "rideau cristal pignon",
                         "price": {
                             "ILE DE FRANCE": 13,
@@ -1079,6 +1124,32 @@
                 ]
             },
             {
+                "type": "Lestage",
+                "values": [
+                    {
+                        "name": "aucun",
+                        "price": {}
+                    },
+                    {
+                        "name": "lestage",
+                        "price": {
+                            "ILE DE FRANCE": 13,
+                            "PACA": 13,
+                            "OCCITANIE": 13,
+                            "GRAND EST": 13,
+                            "AUVERGNE RHONE ALPES": 13,
+                            "PAYS DE LA LOIRE": 13,
+                            "CENTRE VAL DE LOIRE": 13,
+                            "NOUVELLE AQUITAINE": 13,
+                            "BOURGOGNE FRANCHE COMPTE": 13,
+                            "NORMANDIE": 13,
+                            "HAUTS DE FRANCE": 13,
+                            "BRETAGNE": 13
+                        }
+                    }
+                ]
+            },
+            {
                 "type": "Structure pignon",
                 "values": [
                     {
@@ -1102,27 +1173,15 @@
             {
                 "type": "Rideau",
                 "values": [
-                    {
-                        "name": "rideau cristal",
-                        "price": {}
-                    },
-                    {
-                        "name": "aucun",
-                        "price": {}
-                    }
+                    "rideau cristal",
+                    "aucun"
                 ]
             },
             {
                 "type": "Plancher",
                 "values": [
-                    {
-                        "name": "plancher",
-                        "price": {}
-                    },
-                    {
-                        "name": "aucun",
-                        "price": {}
-                    }
+                    "plancher",
+                    "aucun"
                 ]
             }
         ]
