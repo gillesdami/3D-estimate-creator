@@ -3,8 +3,10 @@
         <!-- Travées -->
         <div v-if="detailsState().itemName.includes('Tente de reception')" class="travees">
             <p class="label">Ajouter/Suppimer une travée</p>
-            <button id="deleteSpanButton" v-on:click="deleteSpan"> - </button>
-            <span> {{surface}} m²</span>
+            <button id="deleteSpanButton"
+                    :disabled="shouldBeDisabled()"
+                    v-on:click="deleteSpan"> - </button>
+            <span> {{getArea()}} m²</span>
             <button id="addSpanButton" v-on:click="addSpan"> + </button>
         </div>
 
@@ -41,15 +43,23 @@
         data() {
             return {
                 selectApparels: [],
-                surface: 0
+                area: 0,
+                spanByClick: false
             }
         },
-        mounted: function () {
-            if (this.detailsState().item) this.calculateSurface();
-        },
         methods: {
-            //SPAN = TRAVEE
+            shouldBeDisabled: function () {
+                if (this.spansSate().length === 0) return true;
+                else {
+                    const spansObj = this.spansSate().find(obj => obj.uid === this.detailsState().item.uid);
+
+                    if (!spansObj) return true;
+                    return spansObj.spansNumber === 0;
+                }
+            },
             addSpan: function () {
+                this.spanByClick = true;
+
                 this.$root.$emit('put', actionCreator(ADD_SPAN_NUMBER, {
                     uid: this.detailsState().item.uid,
                     itemName: this.detailsState().itemName,
@@ -62,9 +72,11 @@
                     item : this.detailsState().item
                 }));
 
-                this.calculateSurface();
+                this.calculateArea();
             },
             deleteSpan: function () {
+                this.spanByClick = true;
+
                 this.$root.$emit('put', actionCreator(DELETE_SPAN, {
                     uid: this.detailsState().item.uid,
                     itemName: this.detailsState().itemName,
@@ -72,19 +84,25 @@
                     shouldIDeleteIt: true
                 }));
 
-                this.calculateSurface();
+                this.calculateArea();
             },
-            getOneSpanSurface: function () {
-                const objName = this.detailsState().itemName;
-                const nameSplit = objName.split('- ');
-
-                return nameSplit[nameSplit.length-1].split("m")[0];
+            getArea: function () {
+                if (this.detailsState().item){
+                    if (this.spansSate().length === 0) {
+                        this.area = this.detailsState().item.area;
+                    } else {
+                        if (!this.spanByClick) {
+                            this.calculateArea();
+                        }
+                    }
+                }
+                return this.area;
             },
-            calculateSurface: function () {
+            calculateArea: function () {
                 const spansObj = this.spansSate().find(obj => obj.uid === this.detailsState().item.uid);
 
                 if (spansObj) {
-                    this.surface = (spansObj.spansNumber) * this.getOneSpanSurface();
+                    this.area = (spansObj.spansNumber + 1) * this.detailsState().item.area;
                 }
             },
             handleChange: function (value, type) {

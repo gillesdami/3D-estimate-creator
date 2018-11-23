@@ -91,32 +91,37 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
 
     model.name = apparealType;
 
+    console.log(parentObj);
+
     switch (apparealType) {
         case "Pignon":
-            model.position.set(-parentBox.min.x - 0.1, 0, 2.2);
+            let hight = 2.2;
+            if(itemName.includes("5m")) hight = 2.9;
+
+            model.position.set(((parentBox.max.x - parentBox.min.x) / 2) + 0.05, 0, hight);
 
             let pignon = model.clone();
             pignon.rotateZ(Math.PI);
-            pignon.position.set(parentBox.min.x + 0.1, 0, 2.2);
+            pignon.position.set(((parentBox.min.x - parentBox.max.x) / 2) - 0.05, 0, hight);
             obj.add(pignon);
             break;
         case "Renforcement" :
             let z = 0;
             if (apparealValue.name.includes("renforcement")) z = 1;
 
-            model.position.set(0, parentBox.min.y - 2.2, z);
+            model.position.set(0, (parentBox.max.y - parentBox.min.y) / 2, z);
 
             let renf = model.clone();
             renf.rotateZ(Math.PI);
-            renf.position.set(0, parentBox.max.y - 2.2, z);
+            renf.position.set(0, (parentBox.min.y - parentBox.max.y) / 2, z);
             obj.add(renf);
             break;
         case "Structure pignon":
-            model.position.set(-parentBox.min.x, 0, 0);
+            model.position.set((parentBox.max.x - parentBox.min.x) / 2, 0, 0);
 
             let struct = model.clone();
             struct.rotateZ(Math.PI);
-            struct.position.set(parentBox.min.x, 0, 0);
+            struct.position.set((parentBox.min.x - parentBox.max.x) / 2, 0, 0);
             obj.add(struct);
             break;
         case "Toit pagode":

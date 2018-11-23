@@ -34,9 +34,11 @@ export function* addSpan(scene, action) {
     const spanState = yield select(getSpansState);
     const currentSpan = spanState.filter(span => span.uid === uid);
 
+    let sizeSpan = 3;
+    if(itemName.includes("5m")) sizeSpan = 5;
     // Position de la tente mere + le nombre de travees * 3m + la future travees
     // TODO Le 25 a changer quand on mettra une taille dynamique de la grille
-    if (base.position.x + 3 * currentSpan[0].spansNumber + 3 > 25) {
+    if (base.position.x + sizeSpan * currentSpan[0].spansNumber + 3 > 25) {
         alert("La travée va sortir de la grille, impossible de l'ajouter");
 
         yield put(actionCreator(DELETE_SPAN, {
@@ -55,7 +57,7 @@ export function* addSpan(scene, action) {
     if(uidSpan) {
         baseToAdd.name = uidSpan;
     } else baseToAdd.name = generateUid();
-    baseToAdd.position.set((3 * currentSpan[0].spansNumber), 0, 0); // y:0 et z:0 car placement par rapport a la tente mere
+    baseToAdd.position.set((sizeSpan * currentSpan[0].spansNumber), 0, 0); // y:0 et z:0 car placement par rapport a la tente mere
     base.add(baseToAdd);
 
     // Delete rideaux et structure pignon pour les remettre mieux après
@@ -119,31 +121,35 @@ export function* addApparealSpan(scene, itemName, parentObj, apparealType, appar
 
     model.name = apparealType;
 
+    let hight = 2.2;
+    if(itemName.includes("5m")) hight = 2.9;
+
+
     switch (apparealType) {
         case "Pignon Start" :
             model.rotateZ(Math.PI);
-            model.position.set(-parentBox.min.x - 0.1, 0, 2.2);
+            model.position.set(((parentBox.min.x - parentBox.max.x) / 2) - 0.05, 0, hight);
             break;
         case "Pignon":
-            model.position.set(parentBox.min.x + 0.1, 0, 2.2);
+            model.position.set(((parentBox.max.x - parentBox.min.x) / 2) + 0.05, 0, hight);
             break;
         case "Renforcement" :
             let z = 0;
             if(apparealValue.name.includes("renforcement")) z = 1;
 
-            model.position.set(0, parentBox.min.y - 2.2, z);
+            model.position.set(0, (parentBox.max.y - parentBox.min.y) / 2, z);
 
             let renf = model.clone();
             renf.rotateZ(Math.PI);
-            renf.position.set(0, parentBox.max.y - 2.2, z);
+            renf.position.set(0, (parentBox.min.y - parentBox.max.y) / 2, z);
             obj.add(renf);
             break;
         case "Structure pignon Start" :
-            model.position.set(-parentBox.min.x, 0, 0);
+            model.position.set((parentBox.min.x - parentBox.max.x) / 2, 0, 0);
             break;
         case "Structure pignon":
             model.rotateZ(Math.PI);
-            model.position.set(parentBox.min.x, 0, 0);
+            model.position.set((parentBox.max.x - parentBox.min.x) / 2, 0, 0);
             break;
         case "Toit pagode":
             model.position.set(0, 0,
