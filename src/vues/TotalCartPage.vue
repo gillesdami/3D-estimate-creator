@@ -7,8 +7,8 @@
 </template>
 
 <script>
-    import { $select } from '../sagas/vue';
-    import { getSpansState, objectsDisplayed, totalSelector } from '../selectors';
+    import {$select} from '../sagas/vue';
+    import {getSpansState, objectsDisplayed, totalSelector} from '../selectors';
 
     export default {
         name: "Total",
@@ -26,7 +26,7 @@
                     obj.apparels.forEach(ap => {
                         if (this.shouldICalculIt(ap)) {
                             totalApparels += ap.value.price["ILE DE FRANCE"];
-                            if(ap.type.includes("Toit")) {
+                            if (ap.type.includes("Toit")) {
                                 allApparels.toit = ap.value.price['ILE DE FRANCE'];
                             } else if (ap.type.includes("Plancher")) {
                                 allApparels.plancher = ap.value.price['ILE DE FRANCE'];
