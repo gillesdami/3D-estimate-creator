@@ -31,8 +31,6 @@ export function* reloadObjects(scene) {
 
     if (spanFromStore) {
 
-        console.log(spanFromStore);
-
         for (const span of spanFromStore) {
             const item = objectsFromStore.filter(i => i.uid === span.uid)[0];
 
