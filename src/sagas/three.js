@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import { all, call, fork, put, select, takeEvery } from 'redux-saga/effects';
+import {all, call, fork, put, select, takeEvery} from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
-import { addAppareal, addObject, reloadObjects } from './addObject';
-import { addApparealSpan, addSpan, deleteSpan } from './handleSpan';
+import {addAppareal, addObject, reloadObjects} from './addObject';
+import {addApparealSpan, addSpan, deleteSpan} from './handleSpan';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
@@ -27,7 +27,7 @@ import {
 } from '../actions';
 import moveObject from './moveObject';
 import initShowObjectBox from './showObjectBox';
-import { getSpansState, objectsDisplayed } from "../selectors";
+import {getSpansState, objectsDisplayed} from "../selectors";
 
 const cameraFrustum = 70;
 
@@ -259,8 +259,10 @@ export function* sendEstimation(action) {
             }) + "\n\n";
     });
 
+    console.log(detailContent);
+
     const clientName = action.payload.firstname + " " + action.payload.lastname;
-    const clientEmail = action.payload.email
+    const clientEmail = action.payload.email;
 
     const content = "Demande d'estimation : " + clientName + "\n\n"
         + detailContent + "\n\n"
