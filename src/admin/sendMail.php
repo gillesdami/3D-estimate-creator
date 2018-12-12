@@ -6,7 +6,17 @@ $to = ''; //target mail address DO NOT LET IN THE CODE
 $data = json_decode(file_get_contents('php://input'), true);
 
 $postField  = array(
-    "sender" => array(
+    "id" => 27,
+    "to" => "margot@atawa.com",
+    "replyto" => $data["clientEmail"],
+    "attr" => array(
+        "NAME" => $data["clientName"],
+        "EMAIL" => $data["clientEmail"],
+        "BODY" => $data["content"],
+        "COMMENTARY" => $data["commentary"]
+    )
+
+    /*"sender" => array(
         "name" => $data["clientName"],
         "email" => $data["clientEmail"],
     ),
@@ -21,13 +31,13 @@ $postField  = array(
         )
     ),
     "textContent" => $data["content"],
-    "subject" => "Demande d'estimation"
+    "subject" => "Demande d'estimation"*/
 );
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://api.sendinblue.com/v3/smtp/email",
+    CURLOPT_URL => "https://api.sendinblue.com/v2.0",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,

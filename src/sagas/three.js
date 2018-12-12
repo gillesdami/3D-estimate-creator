@@ -264,13 +264,14 @@ export function* sendEstimation(action) {
     const clientName = action.payload.firstname + " " + action.payload.lastname;
     const clientEmail = action.payload.email;
 
-    const content = "Demande d'estimation : " + clientName + "\n\n"
+   /* const content = "Demande d'estimation : " + clientName + "\n\n"
         + detailContent + "\n\n"
-        + "Commentaire client : " + action.payload.commentary;
+        + "Commentaire client : " + action.payload.commentary;*/
+   let commentary = action.payload.commentary;
 
     fetch('admin/sendMail.php', {
         method: 'POST',
-        body: JSON.stringify({content, clientName, clientEmail}),
+        body: JSON.stringify({detailContent, clientName, clientEmail, commentary}),
         headers: {'Content-Type': 'application/json'}
     })
         .then(r => r.json(), () => alert("Une erreur s'est produite :/"))
