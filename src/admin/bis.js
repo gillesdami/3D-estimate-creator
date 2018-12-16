@@ -53,6 +53,7 @@
         o.section = sectionInput.value;
         o.category = categoryInput.value;
         o.activated = activatedCheckbox.checked;
+        o.travee = traveesCheckbox.checked;
         if(!traveesCheckbox.checked) o.area = ""; else o.area = areaInput.value;
 
         // importdae
