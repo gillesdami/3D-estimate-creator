@@ -259,18 +259,13 @@ export function* sendEstimation(action) {
             }) + "\n\n";
     });
 
-    console.log(detailContent);
-
     const clientName = action.payload.firstname + " " + action.payload.lastname;
     const clientEmail = action.payload.email;
 
-   /* const content = "Demande d'estimation : " + clientName + "\n\n"
-        + detailContent + "\n\n"
-        + "Commentaire client : " + action.payload.commentary;*/
-   let commentary = action.payload.commentary;
+    let commentary = action.payload.commentary;
 
     fetch('admin/sendMail.php', {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify({detailContent, clientName, clientEmail, commentary}),
         headers: {'Content-Type': 'application/json'}
     })

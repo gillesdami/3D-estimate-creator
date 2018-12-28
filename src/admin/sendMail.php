@@ -1,13 +1,12 @@
 <?php
 // send estimation mail
 $apiKey = ''; //sendinblue api key DO NOT LET IN THE CODE
-$to = ''; //target mail address DO NOT LET IN THE CODE
+$to = 'margot@atawa.com'; //target mail address DO NOT LET IN THE CODE
 
 $data = json_decode(file_get_contents('php://input'), true);
 
 $postField  = array(
-    "id" => 27,
-    "to" => "margot@atawa.com",
+    "to" => $to,
     "replyto" => $data["clientEmail"],
     "attr" => array(
         "NAME" => $data["clientName"],
@@ -15,37 +14,20 @@ $postField  = array(
         "BODY" => $data["content"],
         "COMMENTARY" => $data["commentary"]
     )
-
-    /*"sender" => array(
-        "name" => $data["clientName"],
-        "email" => $data["clientEmail"],
-    ),
-    "replyTo" => array(
-        "name" => $data["clientName"],
-        "email" => $data["clientEmail"],
-    ),
-    "to" => array( 
-        array(
-            "name" => "atawa",
-            "email" => $to,
-        )
-    ),
-    "textContent" => $data["content"],
-    "subject" => "Demande d'estimation"*/
 );
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://api.sendinblue.com/v2.0",
+    CURLOPT_URL => "https://api.sendinblue.com/v2.0/template/27",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
     CURLOPT_TIMEOUT => 30,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_CUSTOMREQUEST => "PUT",
     CURLOPT_POSTFIELDS => json_encode($postField),
-    CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'api-key: '.$apiKey]
+    CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'api-key:'.$apiKey]
 ));
 
 $response = curl_exec($curl);
