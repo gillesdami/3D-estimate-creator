@@ -264,7 +264,7 @@ export function* sendEstimation(action) {
 
     let commentary = action.payload.commentary;
 
-    fetch('admin/sendMail.php', {
+    fetch('sendMail.php', {
         method: 'PUT',
         body: JSON.stringify({detailContent, clientName, clientEmail, commentary}),
         headers: {'Content-Type': 'application/json'}
