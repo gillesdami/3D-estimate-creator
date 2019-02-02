@@ -3,9 +3,7 @@
         <img class="objectItemIcon" :src="`models/${ name }/image.jpg`"/>
         <div class="objectItemTitle">
             {{ name }}
-            <p>
-                Description
-            </p>
+            <p>{{ item.description }}</p>
         </div>
     </div>
 </template>
@@ -14,7 +12,6 @@
     import { actionCreator, ADD_OBJECT_DISPLAYED, SHOW_DETAILS_PANEL } from '../../../actions';
     import { $select } from '../../../sagas/vue';
     import { objectsDisplayed } from '../../../selectors';
-
 
     export default {
         name: "object-item",

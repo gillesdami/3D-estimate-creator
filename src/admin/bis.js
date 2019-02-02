@@ -37,11 +37,13 @@
         await loadPopover("section_category");
         const sectionInput = document.querySelector("input[name=section]");
         const categoryInput = document.querySelector("input[name=category]");
+        const descriptionInput = document.querySelector("input[name=description]");
         const activatedCheckbox = document.querySelector("input[name=activated]");
         const traveesCheckbox = document.querySelector("input[name=travee]");
         const areaInput = document.querySelector("input[name=area]");
         sectionInput.value = o.section || '';
         categoryInput.value = o.category || '';
+        descriptionInput.value = o.description || '';
         activatedCheckbox.checked = !!o.activated;
         traveesCheckbox.checked = !!o.area;
         areaInput.value = o.area;
@@ -52,6 +54,7 @@
         await clickNext();// apply
         o.section = sectionInput.value;
         o.category = categoryInput.value;
+        o.description = descriptionInput.value;
         o.activated = activatedCheckbox.checked;
         o.travee = traveesCheckbox.checked;
         if(!traveesCheckbox.checked) o.area = ""; else o.area = areaInput.value;
