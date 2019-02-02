@@ -33,7 +33,7 @@ const cameraFrustum = 70;
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(cameraFrustum, window.innerWidth / window.innerHeight, 0.01, 10000);
-    camera.position.set(0, -15, 15);
+    camera.position.set(0, -30, 30);
     camera.up = new THREE.Vector3(0, 0, 1);
 
     const scene = new THREE.Scene();
@@ -41,7 +41,7 @@ export function* initThreeSaga() {
     window.THREE = THREE;//debug
     window.scene = scene;//debug
 
-    const grassGeometry = new THREE.BoxGeometry(50, 50, 0);
+    const grassGeometry = new THREE.BoxGeometry(200, 200, 0);
     const grassMaterial = new THREE.MeshBasicMaterial({color: 0x008000});
     const grassMesh = new THREE.Mesh(grassGeometry, grassMaterial);
     grassMesh.position.z = -0.51;
@@ -51,7 +51,7 @@ export function* initThreeSaga() {
     const axes = new THREE.AxesHelper(2);
     scene.add(axes);
 
-    const gridHelper = new THREE.GridHelper(50, 50);
+    const gridHelper = new THREE.GridHelper(200, 200);
     gridHelper.rotateX(Math.PI / 2);
     scene.add(gridHelper);
 
