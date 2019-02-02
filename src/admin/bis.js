@@ -20,7 +20,7 @@
     const modelList = await (await fetch('getModelList.php')).json();
     
     const apparelsTypes = ["Pignon","Croix de saint andre","Barre de pignon","Toit pagode","Toit travee","Plancher","Rideau","Rideau Longueur","Rideau Largeur","Lestage","Structure pignon","Renforcement"];
-    const settingsMappings = {"Toit pagode": {name: "hmin", type: "number", description: "Hauteur en metre à laquelle est placé le toit par rapport au sol."}};
+    const settingsMappings = {"Toit pagode": {name: "hmin", type: "number", description: "Hauteur en metres à laquelle est placé le toit par rapport au sol."}, "Toit travee": {name: "hmin", type: "number", description: "Hauteur en metres à laquelle est placé le toit par rapport au sol."}};
     const regions = ["ILE DE FRANCE","PACA","OCCITANIE","GRAND EST","AUVERGNE RHONE ALPES","PAYS DE LA LOIRE","CENTRE VAL DE LOIRE","NOUVELLE AQUITAINE","BOURGOGNE FRANCHE COMPTE","NORMANDIE","HAUTS DE FRANCE","BRETAGNE"];
 
     async function railway(objectEditedName = null) {

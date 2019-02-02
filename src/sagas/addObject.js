@@ -123,12 +123,12 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(struct);
             break;
         case "Toit pagode":
-            console.log(settings);
-            model.position.set(0, 0,
-                settings.find((e) => e.type === "hmin" && e.value['Toit pagode']).value['Toit pagode']);
+            const zSet = settings.find((e) => e.type === "hmin" && e.value['Toit pagode']);
+            model.position.set(0, 0, zSet ? zSet.value['Toit pagode'] : parentBox.max.z);
             break;
         case "Toit travee":
-            model.position.set(0, 0, parentBox.max.z - 1.03);
+            const zSet = settings.find((e) => e.type === "hmin" && e.value['Toit travee']);
+            model.position.set(0, 0, zSet ? zSet.value['Toit travee'] : parentBox.max.z - 1.03);
             break;
         case "Plancher":
             break;

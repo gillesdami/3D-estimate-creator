@@ -3,7 +3,7 @@
         "activated": true,
         "section": "Structure",
         "category": "Tente Pagode/Garden",
-        "description": "",
+        "description": "example de description",
         "price": {
             "ILE DE FRANCE": 250,
             "PACA": 220,
