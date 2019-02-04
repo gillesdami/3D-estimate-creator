@@ -28,7 +28,7 @@
     import CartItem from "./CartItem.vue";
     import { actionCreator, CLICKED_COLLAPSIBLE } from '../../../actions';
     import { $select } from '../../../sagas/vue';
-    import { getCollapsibleState, objectsDisplayed, getSpansState } from '../../../selectors';
+    import { getCollapsibleState, objectsDisplayed, getSpansState,getMobilier } from '../../../selectors';
 
     export default {
         components: {CartItem},
@@ -71,7 +71,12 @@
             }, []);
 
             const structObjectsInCart = objectsGrouped.filter((obj) => obj.section !== "Mobilier");
-            const mobObjectsInCart = objectsGrouped.filter((obj) => obj.section === "Mobilier");
+            const mobObjectsInCart = $select(getMobilier).map(o => ({
+                name: o.itemName,
+                qte: o.qte,
+                price: window.objectsAvailable[o.itemName].price["ILE DE FRANCE"],
+                apparels: []
+            }));
 
             // Gestion des travées
             const spanState = $select(getSpansState);

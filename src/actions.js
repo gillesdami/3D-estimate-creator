@@ -75,3 +75,9 @@ export const DELETE_LAST_SPAN_ADDED = "DELETE_LAST_SPAN_ADDED";
 export const RESET_NUMBER_SPANS = "RESET_NUMBER_SPANS";
 export const RESET_ITEM_SPAN = "RESET_ITEM_SPAN";
 //endregion
+
+// region mobi
+export const ADD_MOBI = "ADD_MOBI";
+export const REMOVE_MOBI = "REMOVE_MOBI";
+export const SET_MOBI = "SET_MOBI";
+//endregion

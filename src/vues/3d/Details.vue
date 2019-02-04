@@ -2,10 +2,19 @@
     <div class="details-panel">
 
         <general></general>
-        <parameters></parameters>
-        <apparels></apparels>
+        <parameters v-if="!isMobilier()"></parameters>
+        <apparels v-if="!isMobilier()"></apparels>
 
-        <div id="deleteButtonRow" class="row" v-if="detailsState().itemName && detailsState().item">
+        <div v-if="isMobilier()">
+            <p class="label">Ajouter/Suppimer du mobilier</p>
+            <button id="deleteSpanButton"
+                    :disabled="qte <= 1"
+                    v-on:click="deleteMobi"> - </button>
+            <input type="number" style="width: 40%;" v-model="qte"/><span> m²</span>
+            <button id="addSpanButton" v-on:click="addMobi"> + </button>
+        </div>
+
+        <div id="deleteButtonRow" class="row" v-if="detailsState().itemName && detailsState().item && !isMobilier()">
             <button id="validateButton"
                     v-if="objectsDisplay().filter(obj => obj.uid === detailsState().item.uid)[0] && !objectsDisplay().filter(obj => obj.uid === detailsState().item.uid)[0].isValidated"
                     v-on:click="validateAndHideDetails">VALIDER
@@ -25,10 +34,13 @@
         DELETE_OBJECT_DISPLAYED,
         HIDE_DETAILS_PANEL,
         VALIDATE_OBJECT_DISPLAYED,
-        RESET_ITEM_SPAN
+        RESET_ITEM_SPAN,
+        ADD_MOBI,
+        REMOVE_MOBI,
+        SET_MOBI
     } from '../../actions';
     import { $select } from '../../sagas/vue';
-    import { getDetailsState, objectsDisplayed } from "../../selectors";
+    import { getDetailsState, objectsDisplayed, getMobilier } from "../../selectors";
 
     export default {
         name: "Details",
@@ -38,7 +50,11 @@
             'apparels': Apparels
         },
         data() {
-            return {}
+            return {
+                qte: ($select(getMobilier)
+                    .find(m => m.itemName === this.detailsState().itemName) || {qte: 1})
+                    .qte
+            }
         },
         methods: {
             detailsState: function () {
@@ -46,6 +62,9 @@
             },
             objectsDisplay: function () {
                 return $select(objectsDisplayed);
+            },
+            isMobilier: function() {
+                return (this.detailsState().item || {}).section === "Mobilier"
             },
             deleteObjectDisplayed: function () {
                 if (confirm('Êtes-vous sûr de vouloir supprimer cet objet ?')) {
@@ -63,7 +82,28 @@
                     "isValidated": true
                 }));
                 this.$root.$emit('put', actionCreator(HIDE_DETAILS_PANEL));
+            },
+            addMobi: function() {
+                this.qte++;
+            },
+            deleteMobi: function() {
+                this.qte--;
             }
+        },
+        watch: {
+            qte: function() {
+                if(this.isMobilier) {
+                    this.$root.$emit('put', actionCreator(SET_MOBI, {
+                        itemName: this.detailsState().itemName,
+                        qte : this.qte
+                    }));
+                }
+            }
+        },
+        updated() {
+            this.qte = ($select(getMobilier)
+                    .find(m => m.itemName === this.detailsState().itemName) || {qte: 1})
+                    .qte
         }
     }
 </script>
