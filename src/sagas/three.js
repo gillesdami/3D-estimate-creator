@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import { all, call, fork, put, select, takeEvery } from 'redux-saga/effects';
+import {all, call, fork, put, select, takeEvery} from 'redux-saga/effects';
 import OrbitControls from 'three-orbitcontrols';
-import { addAppareal, addObject, reloadObjects } from './addObject';
-import { addApparealSpan, addSpan, deleteSpan } from './handleSpan';
+import {addAppareal, addObject, reloadObjects} from './addObject';
+import {addApparealSpan, addSpan, deleteSpan} from './handleSpan';
 import {
     actionCreator,
     ADD_OBJECT_DISPLAYED,
@@ -27,13 +27,13 @@ import {
 } from '../actions';
 import moveObject from './moveObject';
 import initShowObjectBox from './showObjectBox';
-import { getSpansState, objectsDisplayed } from "../selectors";
+import {getSpansState, objectsDisplayed} from "../selectors";
 
 const cameraFrustum = 70;
 
 export function* initThreeSaga() {
     const camera = new THREE.PerspectiveCamera(cameraFrustum, window.innerWidth / window.innerHeight, 0.01, 10000);
-    camera.position.set(0, -15, 15);
+    camera.position.set(0, -30, 30);
     camera.up = new THREE.Vector3(0, 0, 1);
 
     const scene = new THREE.Scene();
@@ -41,7 +41,7 @@ export function* initThreeSaga() {
     window.THREE = THREE;//debug
     window.scene = scene;//debug
 
-    const grassGeometry = new THREE.BoxGeometry(50, 50, 0);
+    const grassGeometry = new THREE.BoxGeometry(200, 200, 0);
     const grassMaterial = new THREE.MeshBasicMaterial({color: 0x008000});
     const grassMesh = new THREE.Mesh(grassGeometry, grassMaterial);
     grassMesh.position.z = -0.51;
@@ -51,7 +51,7 @@ export function* initThreeSaga() {
     const axes = new THREE.AxesHelper(2);
     scene.add(axes);
 
-    const gridHelper = new THREE.GridHelper(50, 50);
+    const gridHelper = new THREE.GridHelper(200, 200);
     gridHelper.rotateX(Math.PI / 2);
     scene.add(gridHelper);
 
@@ -260,15 +260,13 @@ export function* sendEstimation(action) {
     });
 
     const clientName = action.payload.firstname + " " + action.payload.lastname;
-    const clientEmail = action.payload.email
+    const clientEmail = action.payload.email;
 
-    const content = "Demande d'estimation : " + clientName + "\n\n"
-        + detailContent + "\n\n"
-        + "Commentaire client : " + action.payload.commentary;
+    let commentary = action.payload.commentary;
 
-    fetch('admin/sendMail.php', {
-        method: 'POST',
-        body: JSON.stringify({content, clientName, clientEmail}),
+    fetch('sendMail.php', {
+        method: 'PUT',
+        body: JSON.stringify({detailContent, clientName, clientEmail, commentary}),
         headers: {'Content-Type': 'application/json'}
     })
         .then(r => r.json(), () => alert("Une erreur s'est produite :/"))

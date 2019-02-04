@@ -31,8 +31,6 @@ export function* reloadObjects(scene) {
 
     if (spanFromStore) {
 
-        console.log(spanFromStore);
-
         for (const span of spanFromStore) {
             const item = objectsFromStore.filter(i => i.uid === span.uid)[0];
 
@@ -125,12 +123,12 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             obj.add(struct);
             break;
         case "Toit pagode":
-            console.log(settings);
-            model.position.set(0, 0,
-                settings.find((e) => e.type === "hmin" && e.value['Toit pagode']).value['Toit pagode']);
+            let zSet = settings.find((e) => e.type === "hmin" && e.value['Toit pagode']);
+            model.position.set(0, 0, zSet ? zSet.value['Toit pagode'] : parentBox.max.z);
             break;
         case "Toit travee":
-            model.position.set(0, 0, parentBox.max.z - 1.03);
+            zSet = settings.find((e) => e.type === "hmin" && e.value['Toit travee']);
+            model.position.set(0, 0, zSet ? zSet.value['Toit travee'] : parentBox.max.z - 1.03);
             break;
         case "Plancher":
             break;

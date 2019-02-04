@@ -1,7 +1,7 @@
 <template>
     <div v-if="detailsState().item && detailsState().item.apparels.length" class="apparels-box">
         <!-- Travées -->
-        <div v-if="detailsState().itemName.includes('Tente de reception')" class="travees">
+        <div v-if="displaySpan(detailsState().itemName)" class="travees">
             <p class="label">Ajouter/Suppimer une travée</p>
             <button id="deleteSpanButton"
                     :disabled="shouldBeDisabled()"
@@ -48,6 +48,11 @@
             }
         },
         methods: {
+            displaySpan : function (itemN) {
+                const objectsAvailable = window.objectsAvailable;
+
+                return objectsAvailable[itemN].travee;
+            },
             shouldBeDisabled: function () {
                 if (this.spansSate().length === 0) return true;
                 else {

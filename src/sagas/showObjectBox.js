@@ -24,6 +24,8 @@ function* showSelectedBoxHelper(scene, action) {
         //when called from SHOW_DETAILS_PANEL the object is not added to the scene yet
         yield take(ADDED_OBJECT_DISPLAYED);
         object = scene.getObjectByName(action.payload.uid);
+
+        if(!object) return;//is mobilier
     }
     
     scene.add(new SelectedBoxHelper(object));

@@ -34,8 +34,8 @@ export default function* moveObject(scene, camera, renderer, orbitControls, acti
 
     raycaster.ray.intersectPlane(new THREE.Plane(camera.up), mouseProjection);
 
-    selectedObject3D.position.x = Math.max(-25, Math.min(25, mouseProjection.x));
-    selectedObject3D.position.y = Math.max(-25, Math.min(25, mouseProjection.y));
+    selectedObject3D.position.x = Math.max(-100, Math.min(100, mouseProjection.x));
+    selectedObject3D.position.y = Math.max(-100, Math.min(100, mouseProjection.y));
 
     yield put(actionCreator(POSITION_CHANGED, {
         uid: selectedObject.item.uid,

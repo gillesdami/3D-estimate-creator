@@ -36,7 +36,7 @@ export function* addSpan(scene, action) {
 
     let sizeSpan = 3;
     if(itemName.includes("5m")) sizeSpan = 5;
-    // Position de la tente mere + le nombre de travees * 3m + la future travees
+    // Position de la tente mere + le nombre de travees * 3 ou 5m + la future travees
     // TODO Le 25 a changer quand on mettra une taille dynamique de la grille
     if (base.position.x + sizeSpan * currentSpan[0].spansNumber + 3 > 25) {
         alert("La travée va sortir de la grille, impossible de l'ajouter");
@@ -97,9 +97,6 @@ export function* addSpan(scene, action) {
 
     yield put(actionCreator(OBJECT_DISPLAYED_LOADED));
 
-
-    console.log(base);
-
     return base;
 }
 
@@ -123,7 +120,6 @@ export function* addApparealSpan(scene, itemName, parentObj, apparealType, appar
 
     let hight = 2.2;
     if(itemName.includes("5m")) hight = 2.9;
-
 
     switch (apparealType) {
         case "Pignon Start" :

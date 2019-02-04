@@ -3,6 +3,7 @@
         "activated": true,
         "section": "Structure",
         "category": "Tente Pagode/Garden",
+        "description": "example de description",
         "price": {
             "ILE DE FRANCE": 250,
             "PACA": 220,
@@ -196,6 +197,7 @@
         "activated": true,
         "section": "Structure",
         "category": "Tente Pagode/Garden",
+        "description": "",
         "price": {
             "ILE DE FRANCE": 300,
             "PACA": 260,
@@ -389,6 +391,7 @@
         "activated": true,
         "section": "Structure",
         "category": "Tente Pagode/Garden",
+        "description": "",
         "price": {
             "ILE DE FRANCE": 350,
             "PACA": 350,
@@ -582,7 +585,9 @@
         "activated": true,
         "section": "Structure",
         "category": "Tente de reception - 10m",
+        "description": "",
         "area": 30,
+        "travee": true,
         "price": {
             "ILE DE FRANCE": 300,
             "PACA": 300
@@ -874,7 +879,9 @@
         "activated": true,
         "section": "Structure",
         "category": "Tente de reception - 10m",
+        "description": "",
         "area": 50,
+        "travee": false,
         "price": {
             "ILE DE FRANCE": 600,
             "PACA": 900
@@ -1093,6 +1100,7 @@
         "activated": true,
         "section": "Structure",
         "category": "Tente stretch",
+        "description": "",
         "price": {
             "ILE DE FRANCE": 6840,
             "PACA": 20

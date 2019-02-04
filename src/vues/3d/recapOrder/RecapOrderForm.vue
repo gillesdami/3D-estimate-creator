@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="input-field col s6">
                     <textarea v-model="commentary"
-                              placeholder="Commmentaire (optionel)"
+                              placeholder="Commmentaire (optionnel)"
                               id="commentary"
                               rows="10"
                               cols="50">
@@ -37,9 +37,9 @@
 </template>
 
 <script>
-    import { actionCreator, SEND_ESTIMATION, TOGGLE_RECAP_PANEL_RECAP } from '../../../actions';
-    import { $select } from '../../../sagas/vue';
-    import { getRecapObjects } from '../../../selectors';
+    import {actionCreator, SEND_ESTIMATION, TOGGLE_RECAP_PANEL_RECAP} from '../../../actions';
+    import {$select} from '../../../sagas/vue';
+    import {getSpansState, objectsDisplayed} from '../../../selectors';
 
     export default {
         name: "RecapOrderForm",
@@ -58,14 +58,48 @@
                 this.$root.$emit('put', actionCreator(TOGGLE_RECAP_PANEL_RECAP));
             },
             sendEstimation: function () {
+                const objsDisplayed = $select(objectsDisplayed);
+                const objectsAvailable = window.objectsAvailable;
+
+                const objects = objsDisplayed.map((obj) => ({
+                    uid: obj.uid,
+                    name: obj.name,
+                    description: objectsAvailable[obj.name].description,
+                    section: objectsAvailable[obj.name].section,
+                    category: objectsAvailable[obj.name].category,
+                    apparels: obj.apparels,
+                    price: objectsAvailable[obj.name].price['ILE DE FRANCE'],
+                    qte: 1
+                }));
+
+                //increment qte
+                const objectsGrouped = objects.reduce((acc, val) => {
+                    const IndexInAcc = acc.findIndex(e => e.name === val.name && JSON.stringify(e.apparels) === JSON.stringify(val.apparels));
+
+                    if (IndexInAcc !== -1) {
+                        acc[IndexInAcc].qte++;
+                        return acc;
+                    } else {
+                        return [...acc, val]
+                    }
+                }, []);
+
+                const structObjectsInCart = objectsGrouped.filter((obj) => obj.section !== "Mobilier");
+
+                // Gestion des travées
+                const spanState = $select(getSpansState);
+                spanState.forEach(spans => {
+                    structObjectsInCart.filter((obj) => obj.uid === spans.uid)[0].qte += spans.spansNumber;
+                });
+
                 if (this.checkForm()) {
                     this.$root.$emit('put', actionCreator(SEND_ESTIMATION, {
                         firstname: this.firstname,
                         lastname: this.lastname,
                         email: this.email,
                         commentary: this.commentary,
-                        objects: $select(getRecapObjects)
-                }));
+                        objects : structObjectsInCart
+                    }));
                 }
             },
             checkForm: function () {

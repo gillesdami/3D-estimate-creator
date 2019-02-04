@@ -16,14 +16,15 @@
     const modelListElement = document.querySelector("ul#model-list");
     const popover = document.querySelector("div#popover");
     const nouveauModelInput = document.querySelector("input[name=new]");
+    const nouveauMobiInput = document.querySelector("input[name=new_mobi]");
     const objectsAvailble = await (await fetch('/objectsAvailable.json')).json();
     const modelList = await (await fetch('getModelList.php')).json();
     
     const apparelsTypes = ["Pignon","Croix de saint andre","Barre de pignon","Toit pagode","Toit travee","Plancher","Rideau","Rideau Longueur","Rideau Largeur","Lestage","Structure pignon","Renforcement"];
-    const settingsMappings = {"Toit pagode": {name: "hmin", type: "number", description: "Hauteur en metre à laquelle est placé le toit par rapport au sol."}};
+    const settingsMappings = {"Toit pagode": {name: "hmin", type: "number", description: "Hauteur en metres à laquelle est placé le toit par rapport au sol."}, "Toit travee": {name: "hmin", type: "number", description: "Hauteur en metres à laquelle est placé le toit par rapport au sol."}};
     const regions = ["ILE DE FRANCE","PACA","OCCITANIE","GRAND EST","AUVERGNE RHONE ALPES","PAYS DE LA LOIRE","CENTRE VAL DE LOIRE","NOUVELLE AQUITAINE","BOURGOGNE FRANCHE COMPTE","NORMANDIE","HAUTS DE FRANCE","BRETAGNE"];
 
-    async function railway(objectEditedName = null) {
+    async function railway(objectEditedName = null, isMobilier = false) {
         // nom
         if(!objectEditedName) {
             objectEditedName = prompt("Quel est le nom de l'objet ?");
@@ -37,33 +38,46 @@
         await loadPopover("section_category");
         const sectionInput = document.querySelector("input[name=section]");
         const categoryInput = document.querySelector("input[name=category]");
+        const descriptionInput = document.querySelector("input[name=description]");
         const activatedCheckbox = document.querySelector("input[name=activated]");
         const traveesCheckbox = document.querySelector("input[name=travee]");
         const areaInput = document.querySelector("input[name=area]");
         sectionInput.value = o.section || '';
         categoryInput.value = o.category || '';
+        descriptionInput.value = o.description || '';
         activatedCheckbox.checked = !!o.activated;
         traveesCheckbox.checked = !!o.area;
         areaInput.value = o.area;
         areaInput.disabled = !o.area;
-        traveesCheckbox.addEventListener("click", () => areaInput.toggleAttribute("disabled"));
-        document.querySelector("i#section-list").innerText = list("section");
+        if(isMobilier) {
+            sectionInput.value = "Mobilier";
+            sectionInput.disabled = true;
+            traveesCheckbox.disabled = true;
+            areaInput.disabled = true;
+        } else {
+            traveesCheckbox.addEventListener("click", () => areaInput.toggleAttribute("disabled"));
+            document.querySelector("i#section-list").innerText = list("section");
+        }
         document.querySelector("i#category-list").innerText = list("category");
         await clickNext();// apply
         o.section = sectionInput.value;
         o.category = categoryInput.value;
+        o.description = descriptionInput.value;
         o.activated = activatedCheckbox.checked;
+        o.travee = traveesCheckbox.checked;
         if(!traveesCheckbox.checked) o.area = ""; else o.area = areaInput.value;
 
         // importdae
-        await loadPopover("importdae");
-        const importdaeInput = document.querySelector("input[name=importdae]");
-        let loaderIcon = document.querySelector("img#loader_icon");
-        if(!modelList.includes(`${objectEditedName}/${objectEditedName}.dae`)) {
-            await inputFileAccepted(importdaeInput, `${objectEditedName}/${objectEditedName}.dae`, loaderIcon);
+        if (!isMobilier) {
+            await loadPopover("importdae");
+            const importdaeInput = document.querySelector("input[name=importdae]");
+            let loaderIcon = document.querySelector("img#loader_icon");
+            if(!modelList.includes(`${objectEditedName}/${objectEditedName}.dae`)) {
+                await inputFileAccepted(importdaeInput, `${objectEditedName}/${objectEditedName}.dae`, loaderIcon);
+            }
+            document.querySelector("input[name=next]").disabled = false;
+            await clickNext();
         }
-        document.querySelector("input[name=next]").disabled = false;
-        await clickNext();
 
         // importimg
         await loadPopover("importimg");
@@ -81,49 +95,55 @@
         for (region of regions) {
             document.querySelector(`input[name="${region}"]`).value = o.price[region] || 0;
         }
+        if(isMobilier) {
+            document.querySelector("input[name=next]").value = "Terminer et enregistrer";
+        }
         await clickNext();// apply
         for (region of regions) {
             o.price[region] = Number(document.querySelector(`input[name="${region}"]`).value);
         }
 
         // apparels
-        await loadPopover("apparels");
-        const apparealTypeSelector = document.querySelector("select[name=rowtype]");
-        const addRowButton = document.querySelector("input[name=addrow]");
-        addRowButton.addEventListener("click", () => addApparealRow(apparealTypeSelector.value, objectEditedName));
-        o.apparels = o.apparels || [];
-        for (appareal of o.apparels) {
-            for (apparealValue of appareal.values) {
-                addApparealRow(appareal.type, objectEditedName, apparealValue, o.settings);
+        if(!isMobilier) {
+            await loadPopover("apparels");
+            const apparealTypeSelector = document.querySelector("select[name=rowtype]");
+            const addRowButton = document.querySelector("input[name=addrow]");
+            addRowButton.addEventListener("click", () => addApparealRow(apparealTypeSelector.value, objectEditedName));
+            o.apparels = o.apparels || [];
+            o.settings = o.settings || [];
+            for (appareal of o.apparels) {
+                for (apparealValue of appareal.values) {
+                    addApparealRow(appareal.type, objectEditedName, apparealValue, o.settings);
+                }
             }
-        }
-        await clickNext();// apply
-        o.settings = [];
-        o.apparels = [];
-        const rows = document.querySelectorAll("div.row");
-        for (row of rows) {
-            const rowtype = row.querySelector("input[name=rowtype]").value;
-            let apparel = o.apparels.find(a => a.type === rowtype)
-            if(!apparel) {
-                apparel = {type: rowtype, values: []};
-                o.apparels.push(apparel);
-            }
-
-            price = {} ;
-            for (region of regions) {
-                price[region] = Number(row.querySelector(`input[name="${region}"]`).value);
-            }
-            
-            const rowname = row.querySelector("input[name=rowname]").value;
-            apparel.values.push({
-                name: rowname,
-                price
-            });
-            
-            //settings
-            const rowsettingElement = row.querySelector("input[name=rowsetting]");
-            if(rowsettingElement) {
-                o.settings.push({type: rowsettingElement.id, value: {[rowtype]: Number(rowsettingElement.value)}});
+            await clickNext();// apply
+            o.settings = [];
+            o.apparels = [];
+            const rows = document.querySelectorAll("div.row");
+            for (row of rows) {
+                const rowtype = row.querySelector("input[name=rowtype]").value;
+                let apparel = o.apparels.find(a => a.type === rowtype)
+                if(!apparel) {
+                    apparel = {type: rowtype, values: []};
+                    o.apparels.push(apparel);
+                }
+    
+                price = {} ;
+                for (region of regions) {
+                    price[region] = Number(row.querySelector(`input[name="${region}"]`).value);
+                }
+                
+                const rowname = row.querySelector("input[name=rowname]").value;
+                apparel.values.push({
+                    name: rowname,
+                    price
+                });
+                
+                //settings
+                const rowsettingElement = row.querySelector("input[name=rowsetting]");
+                if(rowsettingElement) {
+                    o.settings.push({type: rowsettingElement.id, value: {[rowtype]: Number(rowsettingElement.value)}});
+                }
             }
         }
 
@@ -153,7 +173,7 @@
                 settingsMappings[type] ? `
             <label>${settingsMappings[type].description}
                 <input type="${settingsMappings[type].type}" name="rowsetting" id="${settingsMappings[type].name}" 
-                value="${settings[0].value["Toit pagode"]}">
+                value="${settings[0] ? settings[0].value[type] : ''}">
             </label>
                 ` : ``
             }
@@ -289,7 +309,7 @@
 
             const updateButton = document.createElement("button");
             updateButton.innerText = "modifier";
-            updateButton.addEventListener("click", () => railway(object));
+            updateButton.addEventListener("click", () => railway(object, object.section === "Mobilier"));
 
             const removeButton = document.createElement("button");
             removeButton.innerText = "supprimer";
@@ -327,4 +347,5 @@
     generateModelList();
     
     nouveauModelInput.addEventListener("click", () => railway());
+    nouveauMobiInput.addEventListener("click", () => railway(null, true));
 })();
