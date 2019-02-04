@@ -8,7 +8,7 @@
 
 <script>
     import {$select} from '../sagas/vue';
-    import {getSpansState, objectsDisplayed, totalSelector} from '../selectors';
+    import {getSpansState, objectsDisplayed, totalSelector, getMobilier} from '../selectors';
 
     export default {
         name: "Total",
@@ -53,6 +53,10 @@
 
                     totalApparels = 0;
 
+                });
+
+                $select(getMobilier).forEach(o => {
+                    totalItems += window.objectsAvailable[o.itemName].price["ILE DE FRANCE"] * o.qte;
                 });
 
                 return totalItems;

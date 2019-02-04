@@ -21,7 +21,10 @@ import {
     TOGGLE_RECAP_PANEL_MAIN,
     TOGGLE_RECAP_PANEL_RECAP,
     TOGGLE_SETTINGS_PANEL,
-    VALIDATE_OBJECT_DISPLAYED
+    VALIDATE_OBJECT_DISPLAYED,
+    ADD_MOBI,
+    REMOVE_MOBI,
+    SET_MOBI
 } from "../actions";
 
 const defaultHelperState = {
@@ -170,7 +173,8 @@ export const details = (state = defaultDetailsState, action) => {
                 item: {
                     ...action.payload.item,
                     uid: action.payload.uid
-                }
+                },
+                isDisplayed: true
             };
         case SHOW_DETAILS_PANEL_FROM_SCENE:
             const objDisplayed = action.payload.objectsDisplayed.find(obj => obj.uid === action.payload.uid);
@@ -272,20 +276,49 @@ export const deleteAll = (state = {}, action) => {
     }
 };
 
-/*
+export const mobilier = (state = [], action) => {
+    action.payload = action.payload || {};
+    let mobi = state.find(m => m.itemName === action.payload.itemName);
+    
+    switch (action.type) {
+        case ADD_MOBI:
+            if(!mobi) {
+                mobi = {
+                    itemName: action.payload.itemName, 
+                    qte: action.payload.qte || 1
+                }
+                state.push(mobi);
+            }
 
-[
-    {
-        uid,
-        itemName,
-        spansNumber,
-        .
-        .
-        .
+            mobi.qte++;
+            break;
+        case REMOVE_MOBI:
+            if(!mobi) {
+                mobi = {
+                    itemName: action.payload.itemName, 
+                    qte: action.payload.qte || 1
+                }
+                state.push(mobi);
+            }
+
+            mobi.qte--;
+            break;
+        case SET_MOBI:
+            if(!mobi) {
+                mobi = {
+                    itemName: action.payload.itemName
+                }
+                state.push(mobi);
+            }
+            mobi.qte = action.payload.qte;
+            break;
+        default:
+            return state;
     }
-]
+    
+    return [...state];
+};
 
- */
 export const spans = (state = [], action) => {
     switch (action.type) {
         case ADD_SPAN_NUMBER:

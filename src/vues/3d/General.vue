@@ -1,7 +1,7 @@
 <template>
     <div class="general-header" v-if="detailsState().itemName && detailsState().item">
         <p class="title">{{detailsState().itemName}}</p>
-        <p class="details-price"> Prix : <span> {{ detailsState().item.price["ILE DE FRANCE"].toFixed(2) }} €</span></p>
+        <p class="details-price"> Prix : <span> {{ detailsState().item.price["ILE DE FRANCE"].toFixed(2) }} € {{ getUnit() }}</span></p>
     </div>
 </template>
 
@@ -14,6 +14,9 @@
         methods : {
             detailsState: function() {
                 return $select(getDetailsState);
+            },
+            getUnit: function() {
+                return this.detailsState().item.section === "Mobilier" ? "/p" : "";
             }
         }
     }

@@ -39,20 +39,24 @@
 
                 const uid = generateUid();
 
-                this.item.apparels = this.item.apparels.map(apparel => {
-                    return {
-                        ...apparel,
-                        value: apparel.values[0]
-                    }
-                });
-
+                if(this.item.section !== "Mobilier") {
+                    this.item.apparels = this.item.apparels.map(apparel => {
+                        return {
+                            ...apparel,
+                            value: apparel.values[0]
+                        }
+                    });
+                }
+                
                 if (this.isAllValidate()) {
-                    this.$root.$emit('put', actionCreator(ADD_OBJECT_DISPLAYED, {
-                        itemName: this.name,
-                        item: this.item,
-                        uid,
-                        isValidated: false
-                    }));
+                    if(this.item.section !== "Mobilier") {
+                        this.$root.$emit('put', actionCreator(ADD_OBJECT_DISPLAYED, {
+                            itemName: this.name,
+                            item: this.item,
+                            uid,
+                            isValidated: false
+                        }));
+                    }
 
                     this.$root.$emit('put', actionCreator(SHOW_DETAILS_PANEL, {
                         itemName: this.name,
