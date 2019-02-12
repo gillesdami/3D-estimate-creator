@@ -25,9 +25,6 @@
 
                     obj.apparels.forEach(ap => {
 
-                        console.log("########");
-                        console.log(ap);
-
                         if (this.shouldICalculIt(ap)) {
 
                             if (ap.type === "Rideau") {
