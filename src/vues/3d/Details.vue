@@ -10,8 +10,18 @@
             <button id="deleteSpanButton"
                     :disabled="qte <= 1"
                     v-on:click="deleteMobi"> - </button>
+<<<<<<< HEAD
             <input type="number" style="width: 40%;" v-model="qte"/><span> m²</span>
             <button id="addSpanButton" v-on:click="addMobi"> + </button>
+=======
+            <input type="number" style="width: 40%;" v-model="qte"/>
+            <button id="addSpanButton" v-on:click="addMobi"> + </button>
+
+            <div id="deleteButtonRow" class="row">
+                <button id="validateButton" v-on:click="validateAndHideDetails">VALIDER</button>
+                <img v-on:click="deleteMobiDisplayed" id="trashDetails" src="../../../assets/buttons/delete.svg"/>
+            </div>
+>>>>>>> dev
         </div>
 
         <div id="deleteButtonRow" class="row" v-if="detailsState().itemName && detailsState().item && !isMobilier()">
@@ -74,6 +84,11 @@
                     this.$root.$emit('put', actionCreator(RESET_ITEM_SPAN, {
                         uid: this.detailsState().item.uid
                     }));
+                }
+            },
+            deleteMobiDisplayed: function () {
+                if (confirm('Êtes-vous sûr de vouloir supprimer cet objet ?')) {
+                    this.qte = 0;
                 }
             },
             validateAndHideDetails: function () {

@@ -10,7 +10,7 @@
             <div class="col s6" style="padding: 0">
                 <button id="buttonCart" class="buttonCart buttonTab" :class="{'buttonTabSelected': buttonCartActivated,
                 'buttonTabNotSelected': !buttonCartActivated}"
-                        v-on:click="changeTab">COMMANDE</button>
+                        v-on:click="changeTab">MON PANIER</button>
             </div>
         </div>
         <br/>

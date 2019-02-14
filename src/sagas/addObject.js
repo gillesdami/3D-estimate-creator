@@ -127,8 +127,8 @@ export function* addAppareal(scene, itemName, parentObj, apparealType, apparealV
             model.position.set(0, 0, zSet ? zSet.value['Toit pagode'] : parentBox.max.z);
             break;
         case "Toit travee":
-            zSet = settings.find((e) => e.type === "hmin" && e.value['Toit travee']);
-            model.position.set(0, 0, zSet ? zSet.value['Toit travee'] : parentBox.max.z - 1.03);
+            const zSet2 = settings.find((e) => e.type === "hmin" && e.value['Toit travee']);
+            model.position.set(0, 0, zSet2 ? zSet2.value['Toit travee'] : parentBox.max.z - 1.03);
             break;
         case "Plancher":
             break;

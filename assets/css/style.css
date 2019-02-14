@@ -376,6 +376,11 @@ input[type=range]::-ms-thumb {
     background-color: #e5e5e5;
     color: silver;
     border-bottom: 1.5px solid silver;
+    background-image: url('../basket.svg');
+    background-size: 20px;
+    background-position-x: 10px;
+    background-repeat: no-repeat;
+    background-position-y: center;
 }
 
 .buttonTabSelected {

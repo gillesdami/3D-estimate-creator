@@ -24,16 +24,31 @@
                 objDisplayed.forEach(obj => {
 
                     obj.apparels.forEach(ap => {
+
                         if (this.shouldICalculIt(ap)) {
-                            totalApparels += ap.value.price["ILE DE FRANCE"];
-                            if (ap.type.includes("Toit")) {
-                                allApparels.toit = ap.value.price['ILE DE FRANCE'];
+
+                            if (ap.type === "Rideau") {
+                                totalApparels += ap.value.price["ILE DE FRANCE"] * 4;
+                            } else if (ap.type.includes("Toit")) {
+                                let area = window.objectsAvailable[obj.name].area;
+                                if(area != null) {
+                                    allApparels.toit = ap.value.price['ILE DE FRANCE'] * area;
+                                    totalApparels += ap.value.price["ILE DE FRANCE"] * area;
+                                } else {
+                                    allApparels.toit = ap.value.price['ILE DE FRANCE'];
+                                    totalApparels += ap.value.price["ILE DE FRANCE"];
+                                }
                             } else if (ap.type.includes("Plancher")) {
                                 allApparels.plancher = ap.value.price['ILE DE FRANCE'];
+                                totalApparels += ap.value.price["ILE DE FRANCE"];
                             } else if (ap.type.includes("Rideau Longueur")) {
                                 allApparels.rideauLongueur = ap.value.price['ILE DE FRANCE'];
+                                totalApparels += ap.value.price["ILE DE FRANCE"] * 2;
                             } else if (ap.type.includes("Rideau Largeur")) {
                                 allApparels.rideauLargeur = ap.value.price['ILE DE FRANCE'];
+                                totalApparels += ap.value.price["ILE DE FRANCE"] * 2;
+                            } else {
+                                totalApparels += ap.value.price["ILE DE FRANCE"];
                             }
                         }
                     });
@@ -41,15 +56,17 @@
                     // Gestion des travées
                     const item = spanState.filter((span) => obj.uid === span.uid);
                     if (item.length !== 0) {
+                        // prix de l'item de base
                         totalItems += window.objectsAvailable[obj.name].price["ILE DE FRANCE"] * item[0].spansNumber;
 
-                        totalItems += allApparels.toit * (item[0].spansNumber + 1);
-                        totalItems += allApparels.plancher * (item[0].spansNumber + 1);
-                        totalItems += allApparels.rideauLongueur * (item[0].spansNumber + 1) * 2;
-                        totalItems += allApparels.rideauLargeur * 2;
-                    } else {
-                        totalItems += totalApparels;
+                        // on multiplie les apparels * nombre de travees
+                        totalApparels *= (item[0].spansNumber + 1);
+
+                        // on enlève les rideaux qui ne sont pas au milieu
+                        totalApparels -= allApparels.rideauLargeur * (item[0].spansNumber + 1);
                     }
+
+                    totalItems += totalApparels;
 
                     totalApparels = 0;
 
